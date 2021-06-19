@@ -1,0 +1,60 @@
+{
+    "author": "ChalkySticks LLC",
+    "bugs": {
+        "url": "https://github.com/chalkysticks/vue3-components/issues"
+    },
+    "description": "ChalkySticks components made for Vue3",
+    "devDependencies": {
+        "@chalkysticks/sass": "github:chalkysticks/sass-theme",
+        "@chalkysticks/sdk-core": "github:chalkysticks/sdk-core",
+        "@typescript-eslint/eslint-plugin": "^2.33.0",
+        "@typescript-eslint/parser": "^2.33.0",
+        "@vue/cli-plugin-babel": "~4.5.0",
+        "@vue/cli-plugin-eslint": "~4.5.0",
+        "@vue/cli-plugin-typescript": "~4.5.0",
+        "@vue/cli-service": "~4.5.0",
+        "@vue/compiler-sfc": "^3.0.0-0",
+        "@vue/eslint-config-typescript": "^5.0.2",
+        "core-js": "^3.6.5",
+        "eslint": "^6.7.2",
+        "eslint-plugin-prettier": "^3.3.1",
+        "eslint-plugin-vue": "^7.0.0",
+        "prettier": "^2.2.1",
+        "sass": "^1.26.5",
+        "sass-loader": "^8.0.2",
+        "typescript": "~3.9.3",
+        "vue": "^3.0.0",
+        "vue-class-component": "^8.0.0-0",
+        "vue-property-decorator": "^9.1.2",
+        "vue-router": "^4.0.0-0"
+    },
+    "directories": {
+        "example": "example"
+    },
+    "files": [
+        "dist/*.js"
+    ],
+    "homepage": "https://www.chalkysticks.com",
+    "keywords": [
+        "billiards",
+        "chalkysticks",
+        "pool"
+    ],
+    "license": "MIT",
+    "main": "src/index.ts",
+    "name": "chalkysticks-vue3",
+    "peerDependencies": {
+        "vue": "^3.0.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/chalkysticks/vue3-components.git"
+    },
+    "scripts": {
+        "build": "vue-cli-service build --target lib --name chalkysticks-vue3 ./src/index.ts",
+        "lint": "vue-cli-service lint",
+        "publish": "npm publish --access public",
+        "serve": "vue-cli-service serve"
+    },
+    "version": "1.0.0"
+}
