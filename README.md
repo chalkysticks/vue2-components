@@ -81,7 +81,6 @@ import { BrandingStandard } from '@chalkysticks/vue3';
 </div>
 ```
 
-
 ## Bugs
 
 If you have questions, feature requests or a bug you want to report, please click [here](https://github.com/chalkysticks/vue3-components/issues) to file an issue.

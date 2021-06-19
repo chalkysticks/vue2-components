@@ -11,5 +11,10 @@ import '../node_modules/@chalkysticks/sass/dist/app.css';
 import { App, Plugin } from 'vue';
 import BrandingBadge from './Branding/Badge.vue';
 import BrandingStandard from './Branding/Standard.vue';
+import TvVideoTheater from './TV/VideoTheater.vue';
 
-export { BrandingBadge, BrandingStandard };
+export {
+    BrandingBadge,
+    BrandingStandard,
+    TvVideoTheater,
+};

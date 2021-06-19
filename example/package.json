@@ -8,13 +8,17 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@types/gsap": "^3.0.0",
     "core-js": "^3.6.5",
+    "eloquent-js": "github:mattkenefick/eloquentjs#v2",
+    "gsap": "^3.7.0",
     "vue": "^3.0.0",
     "vue-class-component": "^8.0.0-0",
     "vue-router": "^4.0.0-0"
   },
   "devDependencies": {
     "@chalkysticks/sass": "github:chalkysticks/sass-theme",
+    "@chalkysticks/sdk-tv": "github:chalkysticks/sdk-tv#v1",
     "@chalkysticks/vue3": "file:..",
     "@typescript-eslint/eslint-plugin": "^4.18.0",
     "@typescript-eslint/parser": "^4.18.0",
@@ -26,6 +30,7 @@
     "@vue/compiler-sfc": "^3.0.0",
     "@vue/eslint-config-prettier": "^6.0.0",
     "@vue/eslint-config-typescript": "^7.0.0",
+    "colorconsole": "github:mattkenefick/colorconsole",
     "eslint": "^6.7.2",
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-vue": "^7.0.0",

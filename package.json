@@ -56,5 +56,10 @@
         "publish": "npm publish --access public",
         "serve": "vue-cli-service serve"
     },
-    "version": "1.0.1"
+    "version": "1.0.1",
+    "dependencies": {
+        "@chalkysticks/sdk-tv": "github:chalkysticks/sdk-tv#v1",
+        "colorconsole": "github:mattkenefick/colorconsole",
+        "gsap": "^3.7.0"
+    }
 }
