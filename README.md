@@ -30,7 +30,7 @@
 Open your terminal and type in
 
 ```sh
-$ npm install -D chalkysticks/vue3-components
+$ npm install -D @chalkysticks/vue3
 ```
 
 Use them in your Vue3 project by importing them
@@ -68,7 +68,7 @@ import { BrandingBadge } from '@chalkysticks/vue3';
 
 Lorem ipsum dolor ist amet...
 
-<img width="180" src="./assets/branding-standard.png" alt="BrandingBadge" />
+<img height="70" src="./assets/branding-standard.png" alt="BrandingBadge" />
 
 ```javascript
 import { BrandingStandard } from '@chalkysticks/vue3';
@@ -84,11 +84,13 @@ import { BrandingStandard } from '@chalkysticks/vue3';
 
 ## Bugs
 
-If you have questions, feature requests or a bug you want to report, please click [here](https://github.com/mattkenefick/eloquentjs/issues) to file an issue.
+If you have questions, feature requests or a bug you want to report, please click [here](https://github.com/chalkysticks/vue3-components/issues) to file an issue.
 
 ## Author
 
-* [**Matt Kenefick**](https://www.mattkenefick.com/) [![GitHub followers](https://img.shields.io/github/followers/mattkenfick.svg?style=social)](https://github.com/mattkenfick) [![Twitter Follow](https://img.shields.io/twitter/follow/mattkenfick.svg?style=social)](https://twitter.com/mattkenfick)
+* [**Matt Kenefick**](https://www.mattkenefick.com/)
+[![GitHub followers](https://img.shields.io/github/followers/mattkenefick.svg?style=social)](https://github.com/mattkenefick)
+[![Twitter Follow](https://img.shields.io/twitter/follow/mattkenefick.svg?style=social)](https://twitter.com/mattkenefick)
 
 ## Support
 
