@@ -20,7 +20,7 @@
 
 <br/>
 
-# ChalkySticks 🎱
+## 🎱 Vue3 Components
 
 > ChalkySticks themed components for Vue3 / TypeScript platforms
 
