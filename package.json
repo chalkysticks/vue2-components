@@ -42,7 +42,7 @@
     ],
     "license": "MIT",
     "main": "src/index.ts",
-    "name": "chalkysticks-vue3",
+    "name": "@chalkysticks/vue3",
     "peerDependencies": {
         "vue": "^3.0.0"
     },
@@ -56,5 +56,5 @@
         "publish": "npm publish --access public",
         "serve": "vue-cli-service serve"
     },
-    "version": "1.0.0"
+    "version": "1.0.1"
 }
