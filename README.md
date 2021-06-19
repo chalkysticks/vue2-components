@@ -89,7 +89,9 @@ If you have questions, feature requests or a bug you want to report, please clic
 ## Author
 
 * [**Matt Kenefick**](https://www.mattkenefick.com/)
+<br />
 [![GitHub followers](https://img.shields.io/github/followers/mattkenefick.svg?style=social)](https://github.com/mattkenefick)
+<br />
 [![Twitter Follow](https://img.shields.io/twitter/follow/mattkenefick.svg?style=social)](https://twitter.com/mattkenefick)
 
 ## Support
