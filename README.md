@@ -1,20 +1,26 @@
 <p align="center">
     <a href="https://www.chalkysticks.com" target="_blank" rel="noopener noreferrer">
-        <img width="180" src="./assets/header.png" alt="ChalkySticks logo" />
+        <img width="600" src="./assets/header.png" alt="ChalkySticks logo" />
     </a>
 </p>
 
 <br/>
 
 <p align="center">
-    [![GitHub version](https://img.shields.io/badge/version-v1.0.0-blue.svg)](https://github.com/chalkysticks/vue3-components)
-    [![Backers on Patreon](https://img.shields.io/badge/backer-Patreon-orange.svg)](https://www.patreon.com/mattkenefick)
-    [![Backers on Paypal](https://img.shields.io/badge/backer-Paypal-blue.svg)](https://paypal.me/polymermallard)
+    <a href="https://github.com/chalkysticks/vue3-components" title="GitHub version">
+        <img src="https://img.shields.io/badge/version-v1.0.0-blue.svg" alt="v1.0.0" />
+    </a>
+    <a href="https://www.patreon.com/mattkenefick" title="Backers on Patreon">
+        <img src="https://img.shields.io/badge/backer-Patreon-orange.svg" alt="v1.0.0" />
+    </a>
+    <a href="https://paypal.me/polymermallard" title="Backers on Paypal">
+        <img src="https://img.shields.io/badge/backer-Paypal-blue.svg" alt="v1.0.0" />
+    </a>
 </p>
 
 <br/>
 
-# ChalkySticks ◇ Vue3 Components 🎱
+# ChalkySticks 🎱
 
 > ChalkySticks themed components for Vue3 / TypeScript platforms
 
