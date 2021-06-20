@@ -19,6 +19,7 @@
         "eslint": "^6.7.2",
         "eslint-plugin-prettier": "^3.3.1",
         "eslint-plugin-vue": "^7.0.0",
+        "husky": "^6.0.0",
         "prettier": "^2.2.1",
         "sass": "^1.26.5",
         "sass-loader": "^8.0.2",
@@ -53,10 +54,11 @@
     "scripts": {
         "build": "vue-cli-service build --target lib --name chalkysticks-vue3 ./src/index.ts",
         "lint": "vue-cli-service lint",
+        "prepare": "husky install",
         "publish": "npm publish --access public",
         "serve": "vue-cli-service serve"
     },
-    "version": "1.0.1",
+    "version": "1.0.2",
     "dependencies": {
         "@chalkysticks/sdk-tv": "github:chalkysticks/sdk-tv#v1",
         "colorconsole": "github:mattkenefick/colorconsole",
