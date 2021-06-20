@@ -3,6 +3,11 @@
     "bugs": {
         "url": "https://github.com/chalkysticks/vue3-components/issues"
     },
+    "dependencies": {
+        "@chalkysticks/sdk-tv": "github:chalkysticks/sdk-tv#v1",
+        "colorconsole": "github:mattkenefick/colorconsole",
+        "gsap": "^3.7.0"
+    },
     "description": "ChalkySticks components made for Vue3",
     "devDependencies": {
         "@chalkysticks/sass": "github:chalkysticks/sass-theme",
@@ -33,7 +38,7 @@
         "example": "example"
     },
     "files": [
-        "dist/*.js"
+        "./dist/*.js"
     ],
     "homepage": "https://www.chalkysticks.com",
     "keywords": [
@@ -42,7 +47,7 @@
         "pool"
     ],
     "license": "MIT",
-    "main": "src/index.ts",
+    "main": "./src/index.ts",
     "name": "@chalkysticks/vue3",
     "peerDependencies": {
         "vue": "^3.0.0"
@@ -58,10 +63,5 @@
         "publish": "npm publish --access public",
         "serve": "vue-cli-service serve"
     },
-    "version": "1.0.2",
-    "dependencies": {
-        "@chalkysticks/sdk-tv": "github:chalkysticks/sdk-tv#v1",
-        "colorconsole": "github:mattkenefick/colorconsole",
-        "gsap": "^3.7.0"
-    }
+    "version": "1.0.3"
 }
