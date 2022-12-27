@@ -1,0 +1,118 @@
+<template>
+	<div class="chalky authentication-sociallogin">
+		<form name="social-login">
+			<fieldset>
+				<legend>Login via Social</legend>
+
+				<button class="btn-social type-google" v-on:click="Handle_OnClickLoginWithGoogle">
+					<i class="fab fa-google"></i>
+					<span>Login with Google</span>
+				</button>
+
+				<button class="btn-social type-facebook" v-on:click="Handle_OnClickLoginWithFacebook">
+					<i class="fab fa-facebook-f"></i>
+					<span>Login with Facebook</span>
+				</button>
+			</fieldset>
+		</form>
+	</div>
+</template>
+
+<script lang="ts">
+	import Environment from '../Core/Environment';
+	import ViewBase from '../Core/Base';
+	import { ModelAuthentication } from '@chalkysticks/sdk-authentication';
+	import { Component, Prop } from 'vue-property-decorator';
+
+	@Component({ })
+	export default class AuthenticationSocialLogin extends ViewBase {
+		/**
+		 * Key to store the token on
+		 *
+		 * @type string
+		 */
+		public static storageKey: string = 'chalky.auth.token';
+
+		/**
+		 * Token passed back from the server
+		 *
+		 * @type string
+		 */
+		public static token: string = '';
+
+		/**
+		 * Authentication instance
+		 *
+		 * @type ChalkySticks/Model/Authentication
+		 */
+		public auth: ModelAuthentication = new ModelAuthentication;
+
+		/**
+		 * Check for token and save it to the object
+		 *
+		 * @return void
+		 */
+		public mounted(): void {
+			this.searchForToken();
+		}
+
+		/**
+		 * Look at the URL bar for token
+		 *
+		 * @return string
+		 */
+		public searchForToken(): string {
+			const url: URL = new URL(location.href);
+			const token: string = url.searchParams.get('token') || '';
+			const state: any = {};
+
+			// Find token from URL
+			if (token) {
+				url.searchParams.delete('token');
+				history.replaceState(state, '', url.href);
+			}
+
+			// Save to local storage
+			localStorage.setItem(AuthenticationSocialLogin.storageKey, token);
+
+			return AuthenticationSocialLogin.token = token;
+		}
+
+
+		// region: Event Handlers
+		// ---------------------------------------------------------------------
+
+		/**
+		 * @type MouseEvent e
+		 */
+		protected Handle_OnClickLoginWithFacebook(e: MouseEvent): void {
+			e.preventDefault();
+
+			this.auth.loginSocial('facebook');
+		}
+
+		/**
+		 * @type MouseEvent e
+		 */
+		protected Handle_OnClickLoginWithGoogle(e: MouseEvent): void {
+			e.preventDefault();
+
+			this.auth.loginSocial('google');
+		}
+
+		// endregion: Event Handlers
+	}
+</script>
+
+<style lang="scss">
+	.chalky.authentication-sociallogin {
+		margin: 0 auto;
+		max-width: 500px;
+
+		button {
+			display: block;
+			margin: 1rem 0;
+			width: 100%;
+		}
+	}
+</style>

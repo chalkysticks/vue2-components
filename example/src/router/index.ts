@@ -1,23 +1,20 @@
+import Vue from 'vue';
+import VueRouter, { RouteConfig } from 'vue-router';
+import Home from '../views/Home.vue';
 
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
-import ViewHome from '../views/Home.vue';
-import ViewTvVideoTheater from '../views/TV/VideoTheater.vue';
+Vue.use(VueRouter);
 
-const routes: Array<RouteRecordRaw> = [
+const routes: RouteConfig[] = [
     {
         path: '/',
-        name: 'ViewHome',
-        component: ViewHome,
-    },
-    {
-        path: '/tv/video-theater',
-        name: 'ViewTvVideoTheater',
-        component: ViewTvVideoTheater,
+        name: 'Home',
+        component: Home,
     },
 ];
 
-const router = createRouter({
-    history: createWebHistory(process.env.BASE_URL),
+const router = new VueRouter({
+    mode: 'history',
+    base: process.env.BASE_URL,
     routes,
 });
 

@@ -1,7 +1,6 @@
-
 /**
  * Environment Variables
  */
- export default class Environment {
+export default class Environment {
 
 }

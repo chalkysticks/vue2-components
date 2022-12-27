@@ -7,7 +7,7 @@
 <br/>
 
 <p align="center">
-    <a href="https://github.com/chalkysticks/vue3-components" title="GitHub version">
+    <a href="https://github.com/chalkysticks/vue2-components" title="GitHub version">
         <img src="https://img.shields.io/badge/version-v1.0.0-blue.svg" alt="v1.0.0" />
     </a>
     <a href="https://www.patreon.com/mattkenefick" title="Backers on Patreon">
@@ -20,9 +20,9 @@
 
 <br/>
 
-## 🎱 Vue3 Components
+## 🎱 Vue2.x Components
 
-> ChalkySticks themed components for Vue3 / TypeScript platforms
+> ChalkySticks themed components for Vue2.x / TypeScript platforms
 
 
 ## Installation
@@ -30,14 +30,28 @@
 Open your terminal and type in
 
 ```sh
-$ npm install -D @chalkysticks/vue3
+$ npm install -D @chalkysticks/vue2
 ```
 
-Use them in your Vue3 project by importing them
+Use them in your Vue2.x project by importing them
 
 ```typescript
-import { BrandingBadge, BrandingStandard } from '@chalkysticks/vue3';
+
+import ChalkySticks from '@chalkysticks/vue2';
+
+Vue.use(ChalkySticks, {
+    api_url: 'http://localhost:3333',
+});
 ```
+
+We can also load individual assets:
+
+```typescript
+import { ViewBase } from '@chalkysticks/vue2';
+```
+
+The Vue assets are devDependencies because loading them as regular dependencies
+will cause Vue to load twice, which throws `readonly $attrs` errors.
 
 ### BrandingBadge
 
@@ -46,7 +60,7 @@ Lorem ipsum dolor ist amet...
 <img width="180" src="./assets/branding-badge.png" alt="BrandingBadge" />
 
 ```javascript
-import { BrandingBadge } from '@chalkysticks/vue3';
+import { BrandingBadge } from '@chalkysticks/vue2';
 ```
 
 ```html
@@ -71,7 +85,7 @@ Lorem ipsum dolor ist amet...
 <img height="70" src="./assets/branding-standard.png" alt="BrandingBadge" />
 
 ```javascript
-import { BrandingStandard } from '@chalkysticks/vue3';
+import { BrandingStandard } from '@chalkysticks/vue2';
 ```
 
 ```html
@@ -83,7 +97,7 @@ import { BrandingStandard } from '@chalkysticks/vue3';
 
 ## Bugs
 
-If you have questions, feature requests or a bug you want to report, please click [here](https://github.com/chalkysticks/vue3-components/issues) to file an issue.
+If you have questions, feature requests or a bug you want to report, please click [here](https://github.com/chalkysticks/vue2-components/issues) to file an issue.
 
 ## Support
 

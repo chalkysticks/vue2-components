@@ -1,29 +1,24 @@
 {
-    "compilerOptions": {
-        "allowSyntheticDefaultImports": true,
-        "baseUrl": ".",
-        "esModuleInterop": true,
-        "experimentalDecorators": true,
-        "importHelpers": true,
-        "jsx": "preserve",
-        "lib": ["esnext", "dom", "dom.iterable", "scripthost"],
-        "module": "esnext",
-        "moduleResolution": "node",
-        "paths": {
-            "@/*": ["src/*"]
-        },
-        "skipLibCheck": true,
-        "sourceMap": true,
-        "strict": true,
-        "target": "esnext",
-        "types": ["webpack-env"]
-    },
-    "exclude": ["node_modules"],
-    "include": [
-        "src/**/*.ts",
-        "src/**/*.tsx",
-        "src/**/*.vue",
-        "tests/**/*.ts",
-        "tests/**/*.tsx"
-    ]
+	"compilerOptions": {
+		"allowSyntheticDefaultImports": true,
+		"baseUrl": ".",
+		"esModuleInterop": true,
+		"experimentalDecorators": true,
+		"forceConsistentCasingInFileNames": true,
+		"jsx": "preserve",
+		"lib": ["esnext", "dom", "dom.iterable", "scripthost"],
+		"module": "esnext",
+		"moduleResolution": "node",
+		"paths": {
+			"@/*": ["src/*"]
+		},
+		"skipLibCheck": true,
+		"sourceMap": true,
+		"strict": true,
+		"target": "esnext",
+		"types": ["webpack-env"],
+		"useDefineForClassFields": true
+	},
+	"exclude": ["node_modules"],
+	"include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "tests/**/*.ts", "tests/**/*.tsx"]
 }
