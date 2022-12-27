@@ -66,5 +66,5 @@
         "publish": "npm publish --access public",
         "serve": "vue-cli-service serve ./src/index.ts"
     },
-    "version": "1.0.4"
+    "version": "1.0.5"
 }
