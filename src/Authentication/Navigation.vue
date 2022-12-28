@@ -1,5 +1,5 @@
 <template>
-	<div class="chalky authentication-navigation">
+	<div class="chalky authentication-navigation" :class="{ 'state-logged-in': authModel.isLoggedIn() }">
 		<!-- When we're logged out -->
 		<section class="logged-out">
 			<button class="type-light" v-on:click="Handle_OnClickSignIn">
@@ -22,7 +22,7 @@
 
 		<!-- Helpers -->
 		<section class="utility" v-bind:class="{ 'd-none': !showLogin }">
-			<AuthenticationAuthPanel class="type-modal" ref="authPanel" />
+			<AuthenticationAuthPanel :authModel="authModel" class="type-modal" ref="authPanel" />
 		</section>
 	</div>
 </template>
@@ -31,7 +31,7 @@
 	import ViewBase from '../Core/Base';
 	import Environment from '../Core/Environment';
 	import AuthenticationAuthPanel from './AuthPanel.vue';
-	import { CollectionSchedule, ModelSchedule } from '@chalkysticks/sdk-tv';
+	import { CollectionSchedule, Constants, ModelAuthentication, ModelSchedule } from '@chalkysticks/sdk';
 	import { Component, Prop, Ref } from 'vue-property-decorator';
 
 	@Component({
@@ -41,37 +41,64 @@
 	})
 	export default class AuthenticationNavigation extends ViewBase {
 		/**
-		 * Reference to AuthPanel
-		 *
-		 * @type AuthenticationAuthPanel
+		 * @return AuthenticationAuthPanel
 		 */
 		public get authPanel(): AuthenticationAuthPanel {
 			return this.$refs.authPanel as AuthenticationAuthPanel;
 		}
 
 		/**
-		 * Show login modal
-		 *
+		 * @type ChalkySticks/Model/Authentication
+		 */
+		@Prop({
+			default: () => new ModelAuthentication(undefined, {
+				baseUrl: Constants.API_URL_V1,
+			})
+		})
+		public authModel!: ModelAuthentication;
+
+		/**
 		 * @return boolean
 		 */
 		public showLogin: boolean = false;
 
 		/**
-		 * Attach events
-		 *
 		 * @return void
 		 */
 		public attachEvents(): void {
 			document.addEventListener('click', this.Handle_OnClickDocument);
+			this.authModel.on('login:success', this.Handle_OnLogin);
 		}
 
 		/**
-		 * Detach events
-		 *
 		 * @return void
 		 */
 		public detachEvents(): void {
 			document.removeEventListener('click', this.Handle_OnClickDocument);
+			this.authModel.off('login:success', this.Handle_OnLogin);
+		}
+
+		/**
+		 * @return void
+		 */
+		public hide(): void {
+			// Animate out
+			this.authPanel.animateOut();
+
+			// Hide login
+			setTimeout(() => (this.showLogin = false), 500);
+		}
+
+		/**
+		 * @return void
+		 */
+		public show(): void {
+			// Toggle appearance of auth panel
+			this.showLogin = true;
+
+			// Animate
+			this.authPanel.animateInStart();
+			this.authPanel.animateIn();
 		}
 
 		// region: Event Handlers
@@ -82,12 +109,10 @@
 		 * @return void
 		 */
 		protected Handle_OnClickDocument(e: MouseEvent): void {
-			e.preventDefault();
-
 			if (this.showLogin) {
-				this.authPanel.animateOut();
+				e.preventDefault();
 
-				setTimeout(() => (this.showLogin = false), 500);
+				this.hide();
 			}
 		}
 
@@ -100,12 +125,18 @@
 			e.stopPropagation();
 			e.stopImmediatePropagation();
 
-			// Toggle appearance of auth panel
-			this.showLogin = true;
-
 			// Animate
-			this.authPanel.animateInStart();
-			this.authPanel.animateIn();
+			this.show();
+		}
+
+		/**
+		 * @return void
+		 */
+		protected Handle_OnLogin(): void {
+			this.$forceUpdate();
+
+			// Hide the modal
+			this.hide();
 		}
 
 		// endregion: Event Handlers
@@ -114,5 +145,19 @@
 
 <style lang="scss">
 	.chalky.authentication-navigation {
+		.logged-in {
+			display: none;
+		}
+
+		// State
+		// ---------------------------------------------------------------------
+
+		&.state-logged-in .logged-in {
+			display: block;
+		}
+
+		&.state-logged-in .logged-out {
+			display: none;
+		}
 	}
 </style>

@@ -7,7 +7,7 @@
 <script lang="ts">
 	import ViewBase from '../Core/Base';
 	import Environment from '../Core/Environment';
-	import { CollectionSchedule, ModelSchedule } from '@chalkysticks/sdk-tv';
+	import { CollectionSchedule, ModelSchedule } from '@chalkysticks/sdk';
 	import { Component, Prop } from 'vue-property-decorator';
 
 	@Component

@@ -8,11 +8,9 @@
 	import Base from '../Core/Base';
 	import { Component, Prop } from 'vue-property-decorator';
 
-	@Component({})
+	@Component
 	export default class BrandingStandard extends Base {
 		/**
-		 * Class Name
-		 *
 		 * @type string
 		 */
 		public get className(): string {

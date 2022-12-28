@@ -5,9 +5,7 @@
     },
     "dependencies": {
         "@chalkysticks/sass": "github:chalkysticks/sass-theme",
-        "@chalkysticks/sdk-authentication": "github:chalkysticks/sdk-authentication",
-        "@chalkysticks/sdk-core": "github:chalkysticks/sdk-core",
-        "@chalkysticks/sdk-tv": "github:chalkysticks/sdk-tv#v1",
+        "@chalkysticks/sdk": "github:chalkysticks/sdk",
         "@fortawesome/fontawesome-free": "^5.15.3",
         "colorconsole": "github:mattkenefick/colorconsole",
         "gsap": "^3.7.0"
@@ -64,7 +62,7 @@
         "lint": "vue-cli-service lint",
         "prepare": "husky install",
         "publish": "npm publish --access public",
-        "serve": "vue-cli-service serve ./src/index.ts"
+        "serve": "vue-cli-service serve ./src/app.ts"
     },
-    "version": "1.0.5"
+    "version": "1.0.6"
 }

@@ -1,9 +1,7 @@
-// @ts-nocheck
-
 // Theme
 // ---------------------------------------------------------------------------
 
-import '@chalkysticks/sass/dist/app.css';
+import '@chalkysticks/sass/build/app.css';
 import '@fortawesome/fontawesome-free/css/all.css';
 
 

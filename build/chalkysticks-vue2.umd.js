@@ -17494,7 +17494,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, ".chalky.authentication-authpanel{backg
 
 /***/ }),
 
-/***/ 8157:
+/***/ 9926:
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -17847,19 +17847,19 @@ var update = add("6ea9c242", content, true, {"sourceMap":false,"shadowMode":fals
 
 /***/ }),
 
-/***/ 7564:
+/***/ 9742:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(8157);
+var content = __webpack_require__(9926);
 if(content.__esModule) content = content.default;
 if(typeof content === 'string') content = [[module.id, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
 var add = (__webpack_require__(5536)/* ["default"] */ .Z)
-var update = add("62566987", content, true, {"sourceMap":false,"shadowMode":false});
+var update = add("c938f17c", content, true, {"sourceMap":false,"shadowMode":false});
 
 /***/ }),
 
@@ -26939,8 +26939,8 @@ var Standard_component = normalizeComponent(
 )
 
 /* harmony default export */ const Standard = (Standard_component.exports);
-;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js??clonedRuleSet-85.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/templateLoader.js??ruleSet[1].rules[4]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Authentication/BasicLogin.vue?vue&type=template&id=7082a508&
-var BasicLoginvue_type_template_id_7082a508_render = function render() {
+;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js??clonedRuleSet-85.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/templateLoader.js??ruleSet[1].rules[4]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Authentication/BasicLogin.vue?vue&type=template&id=726d6eb4&
+var BasicLoginvue_type_template_id_726d6eb4_render = function render() {
   var _vm = this,
     _c = _vm._self._c,
     _setup = _vm._self._setupProxy;
@@ -26950,7 +26950,7 @@ var BasicLoginvue_type_template_id_7082a508_render = function render() {
     on: {
       "submit": _vm.Handle_OnSubmit
     }
-  }, [_c('fieldset', [_c('legend', [_vm._v("Login")]), _c('label', [_c('h3', [_vm._v("Email Address")]), _c('input', {
+  }, [_c('fieldset', [_c('legend', [_vm._v("Login")]), _c('label', [_c('h3', [_vm._v("Email Address Farts")]), _c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -27001,7 +27001,7 @@ var BasicLoginvue_type_template_id_7082a508_render = function render() {
     staticClass: "fa fa-exclamation-triangle"
   }), _vm._v("   "), _c('span', [_vm._v(_vm._s(_vm.message))])]) : _vm._e()])])]);
 };
-var BasicLoginvue_type_template_id_7082a508_staticRenderFns = [function () {
+var BasicLoginvue_type_template_id_726d6eb4_staticRenderFns = [function () {
   var _vm = this,
     _c = _vm._self._c,
     _setup = _vm._self._setupProxy;
@@ -27014,7 +27014,7 @@ var BasicLoginvue_type_template_id_7082a508_staticRenderFns = [function () {
   }), _c('span', [_vm._v("Login")])])]);
 }];
 
-;// CONCATENATED MODULE: ./src/Authentication/BasicLogin.vue?vue&type=template&id=7082a508&
+;// CONCATENATED MODULE: ./src/Authentication/BasicLogin.vue?vue&type=template&id=726d6eb4&
 
 // EXTERNAL MODULE: ./node_modules/@chalkysticks/sdk-core/dist/index.js
 var dist = __webpack_require__(3531);
@@ -27630,9 +27630,9 @@ AuthenticationBasicLogin = BasicLoginvue_type_script_lang_ts_decorate([vue_class
 /* harmony default export */ const BasicLoginvue_type_script_lang_ts_ = (AuthenticationBasicLogin);
 ;// CONCATENATED MODULE: ./src/Authentication/BasicLogin.vue?vue&type=script&lang=ts&
  /* harmony default export */ const Authentication_BasicLoginvue_type_script_lang_ts_ = (BasicLoginvue_type_script_lang_ts_); 
-// EXTERNAL MODULE: ./node_modules/vue-style-loader/index.js??clonedRuleSet-67.use[0]!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-67.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-67.use[2]!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-67.use[3]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-67.use[4]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Authentication/BasicLogin.vue?vue&type=style&index=0&id=7082a508&prod&lang=scss&
-var BasicLoginvue_type_style_index_0_id_7082a508_prod_lang_scss_ = __webpack_require__(7564);
-;// CONCATENATED MODULE: ./src/Authentication/BasicLogin.vue?vue&type=style&index=0&id=7082a508&prod&lang=scss&
+// EXTERNAL MODULE: ./node_modules/vue-style-loader/index.js??clonedRuleSet-67.use[0]!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-67.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-67.use[2]!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-67.use[3]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-67.use[4]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Authentication/BasicLogin.vue?vue&type=style&index=0&id=726d6eb4&prod&lang=scss&
+var BasicLoginvue_type_style_index_0_id_726d6eb4_prod_lang_scss_ = __webpack_require__(9742);
+;// CONCATENATED MODULE: ./src/Authentication/BasicLogin.vue?vue&type=style&index=0&id=726d6eb4&prod&lang=scss&
 
 ;// CONCATENATED MODULE: ./src/Authentication/BasicLogin.vue
 
@@ -27645,8 +27645,8 @@ var BasicLoginvue_type_style_index_0_id_7082a508_prod_lang_scss_ = __webpack_req
 
 var BasicLogin_component = normalizeComponent(
   Authentication_BasicLoginvue_type_script_lang_ts_,
-  BasicLoginvue_type_template_id_7082a508_render,
-  BasicLoginvue_type_template_id_7082a508_staticRenderFns,
+  BasicLoginvue_type_template_id_726d6eb4_render,
+  BasicLoginvue_type_template_id_726d6eb4_staticRenderFns,
   false,
   null,
   null,

@@ -1,5 +1,9 @@
 <template>
-	<div class="chalky authentication-basiclogin">
+	<div class="chalky authentication-basiclogin" :class="{
+		'state-loading': this.authModel.loading,
+		'state-login-failed': this.loginFailed,
+		'state-login-success': this.authModel.isLoggedIn(),
+	}">
 		<form v-on:submit="Handle_OnSubmit">
 			<fieldset>
 				<legend>Login</legend>
@@ -28,13 +32,18 @@
 				</label>
 
 				<footer>
-					<button name="btnLogin">
-						<i class="fa fa-user"></i>
+					<div class="alert alert-success" v-if="this.authModel.isLoggedIn()">
+						<i class="fa fa-check-circle"></i>
+						&nbsp;
+						<span>Welcome {{ this.authModel.user.getName() }}</span>
+					</div>
+					<button name="btnLogin" type="submit" v-else>
+						<i class="fa fa-user icon"></i>
 						<span>Login</span>
 					</button>
 				</footer>
 
-				<div class="alert alert-danger" v-if="message">
+				<div class="alert alert-danger" v-if="this.loginFailed">
 					<i class="fa fa-exclamation-triangle"></i>
 					&nbsp;
 					<span>{{ message }}</span>
@@ -47,7 +56,7 @@
 <script lang="ts">
 	import Environment from '../Core/Environment';
 	import ViewBase from '../Core/Base';
-	import { ModelAuthentication } from '@chalkysticks/sdk-authentication';
+	import { Constants, ModelAuthentication, ModelUser } from '@chalkysticks/sdk';
 	import { Component, Prop } from 'vue-property-decorator';
 
 	@Component
@@ -55,12 +64,22 @@
 		/**
 		 * @type ChalkySticks/Model/Authentication
 		 */
-		public authModel: ModelAuthentication = new ModelAuthentication();
+		@Prop({
+			default: () => new ModelAuthentication(undefined, {
+				baseUrl: Constants.API_URL_V1,
+			})
+		})
+		public authModel!: ModelAuthentication;
 
 		/**
 		 * @type string
 		 */
 		public email: string = '';
+
+		/**
+		 * @type boolean
+		 */
+		public loginFailed: boolean = false;
 
 		/**
 		 * @type string
@@ -91,10 +110,19 @@
 		/**
 		 * Login via email
 		 *
-		 * @return Promise<any>
+		 * @return Promise<ModelUser>
 		 */
-		public login(): Promise<any> {
-			return this.authModel.login(this.email, this.password);
+		public async login(): Promise<ModelUser> {
+			// Reset login failure
+			this.loginFailed = false;
+
+			// Attempt login
+			try {
+				return await this.authModel.login(this.email, this.password);
+			}
+			catch (e) {
+				throw new Error('User could not be logged in.');
+			}
 		}
 
 
@@ -106,6 +134,7 @@
 		 * @return void
 		 */
 		protected Handle_OnKeydownInput(e: KeyboardEvent): void {
+			this.loginFailed = false;
 			this.message = '';
 		}
 
@@ -114,6 +143,11 @@
 		 */
 		protected Handle_OnFailure(): void {
 			this.message = 'Login attempt unsuccessful';
+			this.loginFailed = true;
+
+			setTimeout(() => {
+				this.loginFailed = false;
+			}, 1000);
 		}
 
 		/**
@@ -141,9 +175,49 @@
 	.chalky.authentication-basiclogin {
 		margin: 0 auto;
 		max-width: 500px;
+		transition: opacity 0.15s ease-in-out;
 
 		button {
 			margin-bottom: 1rem;
+			transition: background-color 1s ease-in-out;
+		}
+
+		// State
+		// ---------------------------------------------------------------------
+
+		&.state-loading {
+			opacity: 0.75;
+			pointer-events: none;
+
+			button {
+				background-image: url("data:image/svg+xml,%0A%3Csvg version='1.1' id='L9' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 100 100' enable-background='new 0 0 0 0' xml:space='preserve'%3E%3Cpath fill='%23fff' d='M73,50c0-12.7-10.3-23-23-23S27,37.3,27,50 M30.9,50c0-10.5,8.5-19.1,19.1-19.1S69.1,39.5,69.1,50'%3E%3CanimateTransform attributeName='transform' attributeType='XML' type='rotate' dur='1s' from='0 50 50' to='360 50 50' repeatCount='indefinite' /%3E%3C/path%3E%3C/svg%3E");
+				background-repeat: no-repeat;
+				background-size: 30px;
+				background-position: 0.5rem center;
+
+				.icon {
+					opacity: 0;
+				}
+			}
+		}
+
+		&.state-login-failed {
+			button {
+				background-color: var(--chalky-red);
+				transition: background-color 0s ease-in-out;
+			}
+		}
+
+		&.state-login-success {
+			label {
+				opacity: 0.75;
+				pointer-events: none;
+			}
+
+			button {
+				background-color: var(--chalky-green);
+				transition: background-color 0s ease-in-out;
+			}
 		}
 	}
 </style>

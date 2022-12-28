@@ -5,9 +5,10 @@
 		</header>
 
 		<section>
-			<AuthenticationBasicLogin />
+			<AuthenticationBasicLogin :authModel="authModel" />
 			<hr />
-			<AuthenticationSocialLogin />
+			<AuthenticationSocialLogin :authModel="authModel" />
+
 			<div class="text-center">
 				<a href="/forgot-password" title="Forgot Password">
 					<span>Forgot Password?</span>
@@ -18,13 +19,14 @@
 </template>
 
 <script lang="ts">
-	import BrandingBadge from '../Branding/Badge.vue';
-	import BrandingStandard from '../Branding/Standard.vue';
 	import AuthenticationBasicLogin from './BasicLogin.vue';
 	import AuthenticationSocialLogin from './SocialLogin.vue';
-	import gsap from 'gsap';
+	import BrandingBadge from '../Branding/Badge.vue';
+	import BrandingStandard from '../Branding/Standard.vue';
 	import ViewBase from '../Core/Base';
-	import { Component } from 'vue-property-decorator';
+	import gsap from 'gsap';
+	import { Constants, ModelAuthentication } from '@chalkysticks/sdk';
+	import { Component, Prop } from 'vue-property-decorator';
 
 	@Component({
 		components: {
@@ -35,6 +37,15 @@
 		},
 	})
 	export default class AuthenticationAuthPanel extends ViewBase {
+		/**
+		 * @type ChalkySticks/Model/Authentication
+		 */
+		@Prop({
+			default: () => new ModelAuthentication(undefined, {
+				baseUrl: Constants.API_URL_V1,
+			})
+		})
+		public authModel!: ModelAuthentication;
 
 		// region: Event Handlers
 		// ---------------------------------------------------------------------------
@@ -49,7 +60,6 @@
 		}
 
 		// endregion: Event Handlers
-
 
 		// region: Animation
 		// ---------------------------------------------------------------------------
@@ -91,7 +101,6 @@
 		}
 
 		// endregion: Animation
-
 	}
 </script>
 

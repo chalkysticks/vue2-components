@@ -21,7 +21,7 @@
 <script lang="ts">
 	import Environment from '../Core/Environment';
 	import ViewBase from '../Core/Base';
-	import { ModelAuthentication } from '@chalkysticks/sdk-authentication';
+	import { Constants, ModelAuthentication } from '@chalkysticks/sdk';
 	import { Component, Prop } from 'vue-property-decorator';
 
 	@Component({ })
@@ -41,11 +41,14 @@
 		public static token: string = '';
 
 		/**
-		 * Authentication instance
-		 *
 		 * @type ChalkySticks/Model/Authentication
 		 */
-		public auth: ModelAuthentication = new ModelAuthentication;
+		@Prop({
+			default: () => new ModelAuthentication(undefined, {
+				baseUrl: Constants.API_URL_V1,
+			})
+		})
+		public authModel!: ModelAuthentication;
 
 		/**
 		 * Check for token and save it to the object
@@ -88,7 +91,7 @@
 		protected Handle_OnClickLoginWithFacebook(e: MouseEvent): void {
 			e.preventDefault();
 
-			this.auth.loginSocial('facebook');
+			this.authModel.loginSocial('facebook');
 		}
 
 		/**
@@ -97,7 +100,7 @@
 		protected Handle_OnClickLoginWithGoogle(e: MouseEvent): void {
 			e.preventDefault();
 
-			this.auth.loginSocial('google');
+			this.authModel.loginSocial('google');
 		}
 
 		// endregion: Event Handlers
