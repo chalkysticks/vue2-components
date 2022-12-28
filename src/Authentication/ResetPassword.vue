@@ -12,6 +12,11 @@
 	import { CollectionSchedule, ModelSchedule } from '@chalkysticks/sdk';
 	import { Component, Prop } from 'vue-property-decorator';
 
+	/**
+	 * @class AuthenticationResetPassword
+	 * @package Authentication
+	 * @project ChalkySticks SDK Vue2.0 Components
+	 */
 	@Component({})
 	export default class AuthenticationResetPassword extends ViewBase {
 

@@ -8,6 +8,11 @@
 	import Base from '../Core/Base';
 	import { Component, Prop } from 'vue-property-decorator';
 
+	/**
+	 * @class BrandingStandardd
+	 * @package Branding
+	 * @project ChalkySticks SDK Vue2.0 Components
+	 */
 	@Component
 	export default class BrandingStandard extends Base {
 		/**

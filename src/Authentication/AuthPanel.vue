@@ -28,6 +28,11 @@
 	import { Constants, ModelAuthentication } from '@chalkysticks/sdk';
 	import { Component, Prop } from 'vue-property-decorator';
 
+	/**
+	 * @class AuthenticationAuthPanel
+	 * @package Authentication
+	 * @project ChalkySticks SDK Vue2.0 Components
+	 */
 	@Component({
 		components: {
 			AuthenticationBasicLogin,

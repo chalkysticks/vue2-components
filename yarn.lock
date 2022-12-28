@@ -976,14 +976,18 @@
 
 "@chalkysticks/sdk-core@github:chalkysticks/sdk-core":
   version "1.1.1"
-  resolved "https://codeload.github.com/chalkysticks/sdk-core/tar.gz/655bf2a7e4ba6540fcd93bd1c3ba139055054671"
+  resolved "https://codeload.github.com/chalkysticks/sdk-core/tar.gz/21a35fcff5851acd512fcf69095c41c3b2e99321"
   dependencies:
     "@chalkysticks/mrm-preset" "github:chalkysticks/mrm-preset"
+    esbuild "^0.16.10"
     restmc "git+https://github.com/mattkenefick/restmc.git"
 
-"@chalkysticks/sdk-pad@github:chalkysticks/sdk-pad":
-  version "1.0.6"
-  resolved "https://codeload.github.com/chalkysticks/sdk-pad/tar.gz/baf367f7e4411c711508e21001a4f01b4fea6408"
+"@chalkysticks/sdk-pad@github:chalkysticks/sdk-pad#v2":
+  version "1.0.12"
+  resolved "https://codeload.github.com/chalkysticks/sdk-pad/tar.gz/cb74a9cde87e3e6f2b02fc5d8aadf83956520fba"
+  dependencies:
+    "@chalkysticks/mrm-preset" "github:chalkysticks/mrm-preset"
+    "@chalkysticks/sdk-core" "github:chalkysticks/sdk-core"
 
 "@chalkysticks/sdk-players@github:chalkysticks/sdk-players":
   version "1.0.6"
@@ -1000,8 +1004,8 @@
     "@chalkysticks/sdk-core" "github:chalkysticks/sdk-core"
 
 "@chalkysticks/sdk-venues@github:chalkysticks/sdk-venues#v1":
-  version "1.0.11"
-  resolved "https://codeload.github.com/chalkysticks/sdk-venues/tar.gz/50c8130b3ac0a15057382be4fd564f08edc96d83"
+  version "1.0.12"
+  resolved "https://codeload.github.com/chalkysticks/sdk-venues/tar.gz/2d4dedea0a69159934a33a73988be5fe7e55b565"
   dependencies:
     "@chalkysticks/mrm-preset" "github:chalkysticks/mrm-preset"
     "@chalkysticks/sdk-core" "github:chalkysticks/sdk-core"
@@ -1015,12 +1019,12 @@
 
 "@chalkysticks/sdk@github:chalkysticks/sdk":
   version "1.1.1"
-  resolved "https://codeload.github.com/chalkysticks/sdk/tar.gz/e4073a45ad43d00d7e4117c5005ad40aafa62a12"
+  resolved "https://codeload.github.com/chalkysticks/sdk/tar.gz/f4acd209a44a19413cc8daa50baaac1a57568120"
   dependencies:
     "@chalkysticks/mrm-preset" "github:chalkysticks/mrm-preset"
     "@chalkysticks/sdk-authentication" "github:chalkysticks/sdk-authentication"
     "@chalkysticks/sdk-core" "github:chalkysticks/sdk-core"
-    "@chalkysticks/sdk-pad" "github:chalkysticks/sdk-pad"
+    "@chalkysticks/sdk-pad" "github:chalkysticks/sdk-pad#v2"
     "@chalkysticks/sdk-players" "github:chalkysticks/sdk-players"
     "@chalkysticks/sdk-tv" "github:chalkysticks/sdk-tv#v1"
     "@chalkysticks/sdk-venues" "github:chalkysticks/sdk-venues#v1"
@@ -5466,8 +5470,8 @@ resolve@^1.10.0, resolve@^1.14.2:
     supports-preserve-symlinks-flag "^1.0.0"
 
 "restmc@git+https://github.com/mattkenefick/restmc.git":
-  version "0.8.0"
-  resolved "git+https://github.com/mattkenefick/restmc.git#f6113daf6a8bc175fa4a56f6d11a000a8c48df8e"
+  version "0.9.0"
+  resolved "git+https://github.com/mattkenefick/restmc.git#37fbe3f8cdf13323b922354cf9e85c9a7fb32673"
   dependencies:
     "@types/node-fetch" "^2.5.7"
     axios "^0.21.4"

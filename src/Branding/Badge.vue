@@ -6,6 +6,11 @@
 	import Base from '../Core/Base';
 	import { Component, Prop } from 'vue-property-decorator';
 
+	/**
+	 * @class BrandingBadge
+	 * @package Branding
+	 * @project ChalkySticks SDK Vue2.0 Components
+	 */
 	@Component({})
 	export default class BrandingBadge extends Base {
 		/**

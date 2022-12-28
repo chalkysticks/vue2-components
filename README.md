@@ -99,6 +99,12 @@ import { BrandingStandard } from '@chalkysticks/vue2';
 
 If you have questions, feature requests or a bug you want to report, please click [here](https://github.com/chalkysticks/vue2-components/issues) to file an issue.
 
+## Troubleshooting
+
+It's important that we set `useDefineForClassFields` to `false` in `tsconfig.json` due to
+a breaking change. If it's set to true, then the decorators like `@Prop` will not be
+effective.
+
 ## Support
 
 Like what you see? Keep me awake at night by buying me a coffee or two.

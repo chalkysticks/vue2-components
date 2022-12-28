@@ -3,6 +3,11 @@ import ColorConsole from 'colorconsole';
 import gsap from 'gsap';
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
+/**
+ * @class Base
+ * @package Core
+ * @project ChalkySticks SDK Vue2.0 Components
+ */
 @Component({})
 export default class ViewBase extends Vue {
 	/**

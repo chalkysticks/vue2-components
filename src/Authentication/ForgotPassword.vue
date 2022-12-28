@@ -11,6 +11,11 @@
 	import Environment from '../Core/Environment';
 	import { Component, Prop } from 'vue-property-decorator';
 
+	/**
+	 * @class AuthenticationForgotPassword
+	 * @package Authentication
+	 * @project ChalkySticks SDK Vue2.0 Components
+	 */
 	@Component({})
 	export default class AuthenticationForgotPassword extends ViewBase {
 

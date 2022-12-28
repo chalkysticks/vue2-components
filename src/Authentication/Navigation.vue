@@ -34,6 +34,11 @@
 	import { CollectionSchedule, Constants, ModelAuthentication, ModelSchedule } from '@chalkysticks/sdk';
 	import { Component, Prop, Ref } from 'vue-property-decorator';
 
+	/**
+	 * @class AuthenticationNavigation
+	 * @package Authentication
+	 * @project ChalkySticks SDK Vue2.0 Components
+	 */
 	@Component({
 		components: {
 			AuthenticationAuthPanel,

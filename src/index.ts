@@ -17,6 +17,9 @@ import AuthenticationSocialLogin from './Authentication/SocialLogin.vue';
 import BrandingBadge from './Branding/Badge.vue';
 import BrandingStandard from './Branding/Standard.vue';
 import TvVideoTheater from './TV/VideoTheater.vue';
+import VenueCard from './Venue/Card.vue';
+import VenueList from './Venue/List.vue';
+import VenueMap from './Venue/Map.vue';
 import ViewBase from './Core/Base';
 
 export default {
@@ -41,6 +44,9 @@ export default {
 		app.component('BrandingBadge', BrandingBadge);
 		app.component('BrandingStandard', BrandingStandard);
 		app.component('TvVideoTheater', TvVideoTheater);
+		app.component('VenueCard', VenueCard);
+		app.component('VenueList', VenueList);
+		app.component('VenueMap', VenueMap);
 	}
 }
 

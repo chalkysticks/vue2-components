@@ -1,5 +1,5 @@
 <template>
-	<div id="app">
+	<div id="app" style="background: var(--chalky-blue); color: #fff;">
 		<section class="level-0">
 			<header>
 				<h2>Branding</h2>
@@ -76,13 +76,77 @@
 				</div>
 			</section>
 		</section>
+
+		<section class="level-0">
+			<header>
+				<h2>Television</h2>
+			</header>
+
+			<section class="level-1">
+				<header>
+					<h3>VideoTheater</h3>
+				</header>
+				<div>
+					<TvVideoTheater ref="videoTheater" channel="billiards" />
+
+					<form>
+						<select v-on:change="Handle_OnChangeTvChannel">
+							<option value="">Chalky</option>
+							<option value="1-pocket">1-pocket</option>
+							<option value="8-ball">8-ball</option>
+							<option value="9-ball">9-ball</option>
+							<option value="10-ball">10-ball</option>
+							<option value="billiards">billiards</option>
+							<option value="snooker">snooker</option>
+							<option value="straight">straight</option>
+							<option value="trickshot">trickshot</option>
+						</select>
+					</form>
+				</div>
+			</section>
+		</section>
+
+		<section class="level-0">
+			<header>
+				<h2>Venues</h2>
+			</header>
+
+			<section class="level-1">
+				<header>
+					<h3>Venue List</h3>
+				</header>
+				<div>
+					<VenueList />
+				</div>
+			</section>
+
+			<section class="level-1">
+				<header>
+					<h3>Venue Card</h3>
+				</header>
+				<div>
+					<VenueCard />
+				</div>
+			</section>
+
+			<section class="level-1">
+				<header>
+					<h3>Venue Map</h3>
+				</header>
+				<div>
+					<VenueMap />
+				</div>
+			</section>
+		</section>
 	</div>
 </template>
 
 <script lang="ts">
 	import AuthenticationAuthPanel from '@/Authentication/AuthPanel.vue';
+	import TvVideoTheater from '@/TV/TvVideoTheater.vue';
+	import { VideoTheaterChannel } from '@/TV/VideoTheater.vue';
 	import { Constants, ModelAuthentication } from '@chalkysticks/sdk';
-	import { Component, Prop, Vue } from 'vue-property-decorator';
+	import { Component, Prop, Ref, Vue } from 'vue-property-decorator';
 
 	@Component({
 		components: {
@@ -90,6 +154,12 @@
 		},
 	})
 	export default class Example extends Vue {
+		/**
+		 * @type TVVideoTheater
+		 */
+		@Ref('videoTheater')
+		readonly videoTheater!: typeof TvVideoTheater;
+
 		/**
 		 * @type ChalkySticks/Model/Authentication
 		 */
@@ -99,6 +169,24 @@
 			})
 		})
 		public authModel!: ModelAuthentication;
+
+		// region: Event Handlers
+		// ---------------------------------------------------------------------------
+
+		/**
+		 * @param Event e
+		 * @return Promise<void>
+		 */
+		protected async Handle_OnChangeTvChannel(e: Event): Promise<void> {
+			e.preventDefault();
+
+			const target: HTMLSelectElement = e.currentTarget as HTMLSelectElement;
+			const gameType: string = target.value;
+
+			this.videoTheater.setByGame(gameType);
+		}
+
+		// endregion: Event Handlers
 	}
 </script>
 
@@ -109,7 +197,6 @@
 		color: #2c3e50;
 		font-family: Avenir, Helvetica, Arial, sans-serif;
 		margin: 0 auto;
-		max-width: 1024px;
 		padding: 2rem;
 		text-align: left;
 

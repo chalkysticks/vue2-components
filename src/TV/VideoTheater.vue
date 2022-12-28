@@ -1,15 +1,35 @@
 <template>
-	<div class="chalky tv-videotheater ratio ratio-16x9">
+	<div class="chalky tv-videotheater ratio ratio-16x9" :class="{ 'state-controls': allowControl } ">
 		<div :id="playerId"></div>
 	</div>
 </template>
 
 <script lang="ts">
-	import ViewBase from '../Core/Base';
 	import Environment from '../Core/Environment';
-	import { CollectionSchedule, ModelSchedule } from '@chalkysticks/sdk';
+	import ViewBase from '../Core/Base';
+	import { CollectionSchedule, Constants, ModelSchedule } from '@chalkysticks/sdk';
 	import { Component, Prop } from 'vue-property-decorator';
 
+	/**
+	 * @type Enum
+	 */
+	export const VideoTheaterChannel: Record<string, string> = {
+		'10BALL': '10-ball',
+		'1POCKET': '1-pocket',
+		'8BALL': '8-ball',
+		'9BALL': '9-ball',
+		'BILLIARDS': 'billiards',
+		'CHALKY': '',
+		'SNOOKER': 'snooker',
+		'STRAIGHT': 'straight',
+		'TRICK': 'trickshot',
+	}
+
+	/**
+	 * @class TVVideoTheater
+	 * @package TV
+	 * @project ChalkySticks SDK Vue2.0 Components
+	 */
 	@Component
 	export default class TvVideoTheater extends ViewBase {
 		/**
@@ -18,8 +38,13 @@
 		 * @return boolean
 		 */
 		public get isUsingSchedule(): boolean {
-			return this.collection && this.collection.length > 0;
+			return this.scheduleCollection && this.scheduleCollection.length > 0;
 		}
+
+		/**
+		 * @type boolean
+		 */
+		public allowControl: boolean = false;
 
 		/**
 		 * Reference to YT player
@@ -31,10 +56,7 @@
 		/**
 		 * @type boolean
 		 */
-		@Prop({
-			default: true,
-		})
-		public autoplay!: boolean;
+		public autoplay: boolean = true;
 
 		/**
 		 * Function names to bind to class, typically used for event handlers
@@ -51,12 +73,10 @@
 			'Handle_OnYouTubeReady',
 		];
 
-		/**
-		 * Collection of Scheduled items
-		 *
-		 * @type CollectionSchedule
-		 */
-		public collection: CollectionSchedule = new CollectionSchedule;
+		@Prop({
+			default: '',
+		})
+		public channel!: string;
 
 		/**
 		 * Current time of the video
@@ -81,7 +101,7 @@
 		 * @type boolean
 		 */
 		@Prop({
-			default: false,
+			default: true,
 		})
 		public mute!: boolean;
 
@@ -93,6 +113,15 @@
 		public playerId: string = Math.random()
 			.toString(16)
 			.substr(2, 8);
+
+		/**
+		 * Collection of Scheduled items
+		 *
+		 * @type CollectionSchedule
+		 */
+		public scheduleCollection: CollectionSchedule = new CollectionSchedule({
+			baseUrl: Constants.API_URL_V1,
+		});
 
 		/**
 		 * Get URL
@@ -109,14 +138,21 @@
 		protected interval: number = 0;
 
 		/**
-		 * On created
+		 * @param object options
 		 **/
-		constructor(options = {}) {
+		constructor(options: Record<string, any> = {}) {
 			super(options);
 
 			// Embed script
 			if (this.requiresScript()) {
 				this.embedScript();
+			}
+
+			// Set by schedule default
+			if (this.autoplay) {
+				setTimeout(() => {
+					this.setByGame(this.channel);
+				}, 1);
 			}
 		}
 
@@ -139,20 +175,17 @@
 			this.interval = 0;
 		}
 
-
 		// region: Actions
 		// ---------------------------------------------------------------------------
 
 		/**
-		 * Create player
-		 *
+		 * @param string code
+		 * @param number time
 		 * @return void
 		 */
 		public createPlayer(code: string, time: number = 0) {
-			if (ViewBase.window.YT && ViewBase.window.YT.Player) {
-				// this.createPlayer(videoId, time);
-			}
-			else {
+			// YT not loaded
+			if (!ViewBase.window.YT || !ViewBase.window.YT.Player) {
 				setTimeout(() => {
 					this.createPlayer(code, time);
 				}, 250);
@@ -191,8 +224,6 @@
 		}
 
 		/**
-		 * Pause video
-		 *
 		 * @return void
 		 */
 		public pause(): void {
@@ -200,8 +231,6 @@
 		}
 
 		/**
-		 * Play video
-		 *
 		 * @return void
 		 */
 		public play(): void {
@@ -209,63 +238,29 @@
 		}
 
 		/**
-		 * Seek backward by
-		 *
 		 * @param number seconds
 		 * @return void
 		 */
-		public seekBackward(interval: number): void {
+		public seekBackward(interval: number = 30): void {
 			const seconds: number = Math.max(0, this.currentTime - interval);
 			this.api.seekTo(seconds, true);
 		}
 
 		/**
-		 * Seek forward by
-		 *
 		 * @param number seconds
 		 * @return void
 		 */
-		public seekForward(interval: number): void {
+		public seekForward(interval: number = 30): void {
 			const seconds: number = Math.min(this.duration, this.currentTime + interval);
 			this.api.seekTo(seconds, true);
 		}
 
 		/**
-		 * Seek video
-		 *
 		 * @param number seconds
 		 * @return void
 		 */
-		public seekTo(seconds: number): void {
+		public seekTo(seconds: number = 30): void {
 			this.api.seekTo(seconds, true);
-		}
-
-		/**
-		 * Toggle video
-		 *
-		 * @return void
-		 */
-		public toggle(): void {
-			if (this.isPlaying) {
-				this.pause();
-			}
-			else {
-				this.play();
-			}
-		}
-
-		/**
-		 * Toggle mute
-		 *
-		 * @return void
-		 */
-		public toggleMute(): void {
-			if (this.api.isMuted()) {
-				this.api.unMute();
-			}
-			else {
-				this.api.mute();
-			}
 		}
 
 		/**
@@ -275,6 +270,19 @@
 		 */
 		public setById(videoId: string, time: number = 0): void {
 			this.createPlayer(videoId, time);
+		}
+
+		/**
+		 * @param string gameType
+		 * @return void
+		 */
+		public setByGame(gameType: string): void {
+			this.scheduleCollection
+				.setQueryParam('channel', gameType)
+				.fetch()
+				.then(() => {
+					this.setBySchedule(this.scheduleCollection);
+				});
 		}
 
 		/**
@@ -288,7 +296,7 @@
 			const time: number = ~~collection.getTimeForCurrentVideo();
 
 			// Set schedule
-			this.collection = collection;
+			this.scheduleCollection = collection;
 
 			// Show title
 			this.setUrl(model.getEmbedUrl(), time);
@@ -317,8 +325,31 @@
 			this.createPlayer(videoId, time);
 		}
 
-		// endregion: Actions
+		/**
+		 * @return void
+		 */
+		public toggle(): void {
+			if (this.isPlaying) {
+				this.pause();
+			}
+			else {
+				this.play();
+			}
+		}
 
+		/**
+		 * @return void
+		 */
+		public toggleMute(): void {
+			if (this.api.isMuted()) {
+				this.api.unMute();
+			}
+			else {
+				this.api.mute();
+			}
+		}
+
+		// endregion: Actions
 
 		// region: Getters
 		// ---------------------------------------------------------------------------
@@ -334,7 +365,6 @@
 
 		// endregion: Getters
 
-
 		// region: Event Handlers
 		// ---------------------------------------------------------------------------
 
@@ -347,7 +377,7 @@
 				this.duration = this.api.getDuration(); // cache me
 			}
 			catch (e) {
-				//
+				// console.log('VTYT Err', e);
 			}
 		}
 
@@ -357,7 +387,7 @@
 		protected Handle_OnPlayerEnded(): void {
 			if (this.isUsingSchedule) {
 				setTimeout(() => {
-					this.setBySchedule(this.collection);
+					this.setBySchedule(this.scheduleCollection);
 				}, 500);
 			}
 		}
@@ -397,9 +427,9 @@
 				url: this.api.getVideoUrl(),
 			});
 
-			console.log('Duration', this.api.getDuration());
-			console.log('Current Time', this.api.getCurrentTime());
-			console.log('URL', this.api.getVideoUrl());
+			// console.log('Duration', this.api.getDuration());
+			// console.log('Current Time', this.api.getCurrentTime());
+			// console.log('URL', this.api.getVideoUrl());
 		}
 
 		/**
@@ -454,6 +484,7 @@
 <style lang="scss">
 	.chalky.tv-videotheater {
 		margin: 0 auto;
+		pointer-events: none;
 		position: relative;
 
 		iframe {
@@ -463,6 +494,13 @@
 			position: absolute;
 			top: 0;
 			width: 100%;
+		}
+
+		// State
+		// ---------------------------------------------------------------------
+
+		&.state-controls {
+			pointer-events: all;
 		}
 	}
 </style>
