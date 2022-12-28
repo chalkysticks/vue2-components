@@ -65,5 +65,5 @@
         "reinstall": "rm -rf ./node_modules/ && rm yarn.lock && yarn install",
         "serve": "vue-cli-service serve ./src/app.ts"
     },
-    "version": "1.0.7"
+    "version": "1.0.8"
 }

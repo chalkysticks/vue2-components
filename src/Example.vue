@@ -114,6 +114,8 @@
 			<section class="level-1">
 				<header>
 					<h3>Venue List</h3>
+
+					<p><small>@todo add location</small></p>
 				</header>
 				<div>
 					<VenueList />
@@ -137,6 +139,12 @@
 					<VenueMap />
 				</div>
 			</section>
+		</section>
+
+		<section class="level-0">
+			<header>
+				<h2>Wallet</h2>
+			</header>
 		</section>
 	</div>
 </template>
