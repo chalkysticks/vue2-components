@@ -979,7 +979,6 @@
   resolved "https://codeload.github.com/chalkysticks/sdk-core/tar.gz/21a35fcff5851acd512fcf69095c41c3b2e99321"
   dependencies:
     "@chalkysticks/mrm-preset" "github:chalkysticks/mrm-preset"
-    esbuild "^0.16.10"
     restmc "git+https://github.com/mattkenefick/restmc.git"
 
 "@chalkysticks/sdk-pad@github:chalkysticks/sdk-pad#v2":
@@ -1024,7 +1023,7 @@
     "@chalkysticks/mrm-preset" "github:chalkysticks/mrm-preset"
     "@chalkysticks/sdk-authentication" "github:chalkysticks/sdk-authentication"
     "@chalkysticks/sdk-core" "github:chalkysticks/sdk-core"
-    "@chalkysticks/sdk-pad" "github:chalkysticks/sdk-pad#v2"
+    "@chalkysticks/sdk-pad" "github:chalkysticks/sdk-pad"
     "@chalkysticks/sdk-players" "github:chalkysticks/sdk-players"
     "@chalkysticks/sdk-tv" "github:chalkysticks/sdk-tv#v1"
     "@chalkysticks/sdk-venues" "github:chalkysticks/sdk-venues#v1"
