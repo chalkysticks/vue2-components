@@ -27486,12 +27486,36 @@ var ViewBase = /*#__PURE__*/function (_Vue) {
 }((external_commonjs_vue_commonjs2_vue_root_Vue_default()));
 ViewBase = __decorate([vue_class_component_esm({})], ViewBase);
 /* harmony default export */ const Base = (ViewBase);
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.object.assign.js
+var es_object_assign = __webpack_require__(9601);
+;// CONCATENATED MODULE: ./node_modules/@chalkysticks/sdk-core/build/esm/Common/Constants.js
+/* harmony default export */ const Common_Constants = ({
+  API_URL: 'https://api.chalkysticks.com/v3',
+  API_URL_V1: 'https://api.chalkysticks.com/v1',
+  API_URL_V2: 'https://api.chalkysticks.com/v2',
+  DEFAULT_COLLECTION_LIMIT: 20,
+  NOTIFICATION_PREFERENCE: 'native',
+  STATIC_URL: 'https://static.chalkysticks.com'
+});
 ;// CONCATENATED MODULE: ./node_modules/@chalkysticks/sdk-core/build/esm/Lib/ChalkySticks.js
 
 
-var ChalkySticks_ChalkySticks = /*#__PURE__*/(/* unused pure expression or super */ null && (_createClass(function ChalkySticks() {
-  _classCallCheck(this, ChalkySticks);
-})));
+
+
+var ChalkySticks_ChalkySticks = /*#__PURE__*/(/* unused pure expression or super */ null && (function () {
+  function ChalkySticks() {
+    _classCallCheck(this, ChalkySticks);
+  }
+  _createClass(ChalkySticks, null, [{
+    key: "configure",
+    value: function configure() {
+      var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+      var key;
+      Object.assign(Constants, options.constants);
+    }
+  }]);
+  return ChalkySticks;
+}()));
 
 ;// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/defineProperty.js
 
@@ -27510,13 +27534,6 @@ function defineProperty_defineProperty(obj, key, value) {
   }
   return obj;
 }
-;// CONCATENATED MODULE: ./node_modules/@chalkysticks/sdk-core/build/esm/Common/Constants.js
-/* harmony default export */ const Constants = ({
-  API_URL: 'https://api.chalkysticks.com/v3',
-  API_URL_V1: 'https://api.chalkysticks.com/v1',
-  API_URL_V2: 'https://api.chalkysticks.com/v2',
-  DEFAULT_COLLECTION_LIMIT: 20
-});
 ;// CONCATENATED MODULE: ./node_modules/@chalkysticks/sdk-core/build/esm/Common/Environment.js
 
 
@@ -27713,7 +27730,7 @@ var Base_Base = /*#__PURE__*/function (_Collection) {
     _this = _super.call(this, options);
     defineProperty_defineProperty(_assertThisInitialized(_this), "baseUrl", Environment_Environment.app.api_url);
     defineProperty_defineProperty(_assertThisInitialized(_this), "limit", Environment_Environment.app.limit);
-    _this.baseUrl = options.baseUrl || _this.baseUrl || Environment_Environment.app.api_url || Constants.API_URL;
+    _this.baseUrl = options.baseUrl || _this.baseUrl || Environment_Environment.app.api_url || Common_Constants.API_URL;
     _this.setOptions({
       withCredentials: false
     });
@@ -27793,7 +27810,7 @@ var ModelBase = /*#__PURE__*/function (_Model) {
     classCallCheck_classCallCheck(this, ModelBase);
     _this = _super.call(this, attributes, options);
     defineProperty_defineProperty(_assertThisInitialized(_this), "baseUrl", Environment_Environment.app.api_url);
-    _this.baseUrl = options.baseUrl || _this.baseUrl || Environment_Environment.app.api_url || Constants.API_URL;
+    _this.baseUrl = options.baseUrl || _this.baseUrl || Environment_Environment.app.api_url || Common_Constants.API_URL;
     _this.setOptions({
       withCredentials: false
     });
@@ -29744,7 +29761,7 @@ var AuthenticationBasicLogin = /*#__PURE__*/function (_ViewBase) {
 BasicLoginvue_type_script_lang_ts_decorate([Prop({
   "default": function _default() {
     return new ModelAuthentication(undefined, {
-      baseUrl: Constants.API_URL_V1
+      baseUrl: Common_Constants.API_URL_V1
     });
   }
 })], AuthenticationBasicLogin.prototype, "authModel", void 0);
@@ -30013,7 +30030,7 @@ AuthenticationSocialLogin.token = '';
 SocialLoginvue_type_script_lang_ts_decorate([Prop({
   "default": function _default() {
     return new ModelAuthentication(undefined, {
-      baseUrl: Constants.API_URL_V1
+      baseUrl: Common_Constants.API_URL_V1
     });
   }
 })], AuthenticationSocialLogin.prototype, "authModel", void 0);
@@ -30332,7 +30349,7 @@ var AuthenticationAuthPanel = /*#__PURE__*/function (_ViewBase) {
 AuthPanelvue_type_script_lang_ts_decorate([Prop({
   "default": function _default() {
     return new ModelAuthentication(undefined, {
-      baseUrl: Constants.API_URL_V1
+      baseUrl: Common_Constants.API_URL_V1
     });
   }
 })], AuthenticationAuthPanel.prototype, "authModel", void 0);
@@ -30676,7 +30693,7 @@ var AuthenticationNavigation = /*#__PURE__*/function (_ViewBase) {
 Navigationvue_type_script_lang_ts_decorate([Prop({
   "default": function _default() {
     return new ModelAuthentication(undefined, {
-      baseUrl: Constants.API_URL_V1
+      baseUrl: Common_Constants.API_URL_V1
     });
   }
 })], AuthenticationNavigation.prototype, "authModel", void 0);
@@ -30833,7 +30850,7 @@ var TvVideoTheater = /*#__PURE__*/function (_ViewBase) {
      * @type CollectionSchedule
      */
     _this.scheduleCollection = new CollectionSchedule({
-      baseUrl: Constants.API_URL_V1
+      baseUrl: Common_Constants.API_URL_V1
     });
     /**
      * Get URL
@@ -31555,7 +31572,7 @@ var VenueList = /*#__PURE__*/function (_ViewBase) {
 Listvue_type_script_lang_ts_decorate([Prop({
   "default": function _default() {
     return new CollectionVenue({
-      baseUrl: Constants.API_URL_V1,
+      baseUrl: Common_Constants.API_URL_V1,
       limit: 5
     });
   }

@@ -976,7 +976,7 @@
 
 "@chalkysticks/sdk-core@github:chalkysticks/sdk-core":
   version "1.1.1"
-  resolved "https://codeload.github.com/chalkysticks/sdk-core/tar.gz/21a35fcff5851acd512fcf69095c41c3b2e99321"
+  resolved "https://codeload.github.com/chalkysticks/sdk-core/tar.gz/ad418d3d8dcab41b9ce8b534f84bdfacd2a488c6"
   dependencies:
     "@chalkysticks/mrm-preset" "github:chalkysticks/mrm-preset"
     esbuild "^0.16.10"
@@ -1019,7 +1019,7 @@
 
 "@chalkysticks/sdk@github:chalkysticks/sdk":
   version "1.1.1"
-  resolved "https://codeload.github.com/chalkysticks/sdk/tar.gz/d001790ee590944874c7ef76fb910586ce605645"
+  resolved "https://codeload.github.com/chalkysticks/sdk/tar.gz/711ea30681e792137b7a785033b248589408ceb3"
   dependencies:
     "@chalkysticks/mrm-preset" "github:chalkysticks/mrm-preset"
     "@chalkysticks/sdk-authentication" "github:chalkysticks/sdk-authentication"
