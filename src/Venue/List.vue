@@ -1,6 +1,6 @@
 <template>
 	<div class="chalky venue-list" :class="{ }">
-		<VenueCard v-for="venueModel in venueCollection" :venueModel="venueModel" />
+		<VenueCard v-bind:key="venueModel.id" v-for="venueModel in venueCollection" :venueModel="venueModel" />
 
 		<footer class="actions">
 			<button v-on:click="Handle_OnClickPrevious">Previous</button>
