@@ -62,8 +62,9 @@
         "lint": "vue-cli-service lint",
         "prepare": "husky install",
         "publish": "npm publish --access public",
-        "reinstall": "rm -rf ./node_modules/ && rm yarn.lock && yarn install",
-        "serve": "vue-cli-service serve ./src/app.ts"
+        "reinstall": "rm -rf ./node_modules/; rm yarn.lock; yarn install; yarn build",
+        "serve": "vue-cli-service serve ./src/app.ts",
+        "version": "npm version minor"
     },
     "version": "1.0.11"
 }
