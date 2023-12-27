@@ -47,9 +47,7 @@
 		public allowControl: boolean = false;
 
 		/**
-		 * Reference to YT player
-		 *
-		 * @type any
+		 * @type YTPlayer
 		 */
 		public api: any;
 
@@ -59,11 +57,6 @@
 		public autoplay: boolean = true;
 
 		/**
-		 * Function names to bind to class, typically used for event handlers
-		 *
-		 * Example:
-		 *     ['Handle_OnEvent', 'Handle_On...']
-		 *
 		 * @type string[]
 		 */
 		public bindings: string[] = [
@@ -73,9 +66,10 @@
 			'Handle_OnYouTubeReady',
 		];
 
-		@Prop({
-			default: '',
-		})
+		/**
+		 * @type string
+		 */
+		@Prop({ default: '' })
 		public channel!: string;
 
 		/**
@@ -84,6 +78,13 @@
 		 * @type number
 		 */
 		public currentTime: number = 0;
+
+		/**
+		 * If we run out of videos or get an unresolvable error, show this video
+		 *
+		 * @type string
+		 */
+		public defaultVideoUrl: string = 'https://www.youtube.com/watch?v=5dKlZ8DYUpA';
 
 		/**
 		 * Duration of the video
@@ -100,14 +101,10 @@
 		/**
 		 * @type boolean
 		 */
-		@Prop({
-			default: true,
-		})
+		@Prop({ default: true })
 		public mute!: boolean;
 
 		/**
-		 * Random player ID
-		 *
 		 * @type string
 		 */
 		public playerId: string = Math.random()
@@ -115,8 +112,6 @@
 			.substr(2, 8);
 
 		/**
-		 * Collection of Scheduled items
-		 *
 		 * @type CollectionSchedule
 		 */
 		public scheduleCollection: CollectionSchedule = new CollectionSchedule({
@@ -124,18 +119,14 @@
 		});
 
 		/**
-		 * Get URL
-		 *
 		 * @type string
 		 */
 		public url: string = '';
 
 		/**
-		 * Set interval
-		 *
-		 * @type number
+		 * @type ReturnType<typeof setInterval>
 		 */
-		protected interval: number = 0;
+		protected interval: ReturnType<typeof setInterval> = 0;
 
 		/**
 		 * @param object options
@@ -157,8 +148,6 @@
 		}
 
 		/**
-		 * Attach events
-		 *
 		 * @return void
 		 */
 		public attachEvents(): void {
@@ -166,8 +155,6 @@
 		}
 
 		/**
-		 * Detach events
-		 *
 		 * @return void
 		 */
 		public detachEvents(): void {
@@ -203,6 +190,7 @@
 			else {
 				this.api = new ViewBase.window.YT.Player(this.playerId, {
 					events: {
+						onError: () => this.Handle_OnPlayerError(),
 						onReady: (e: any) => this.Handle_OnPlayerReady(e),
 						onStateChange: (e: any) => this.Handle_OnPlayerStateChange(e),
 					},
@@ -221,6 +209,17 @@
 					videoId: code,
 				});
 			}
+		}
+
+		/**
+		 * @return void
+		 */
+		public flagAndSkip(): void {
+			// Flag video that failed
+			this.scheduleCollection.flagCurrentVideo();
+
+			// Set new video
+			this.setBySchedule(this.scheduleCollection);
 		}
 
 		/**
@@ -293,13 +292,16 @@
 		 */
 		public setBySchedule(collection: CollectionSchedule): void {
 			const model: ModelSchedule = collection.getCurrentVideo();
-			const time: number = ~~collection.getTimeForCurrentVideo();
+			const embedUrl: string = model?.getEmbedUrl() || this.defaultVideoUrl;
+			const time: number = embedUrl !== this.defaultVideoUrl
+				? ~~collection.getTimeForCurrentVideo()
+				: 0;
 
 			// Set schedule
 			this.scheduleCollection = collection;
 
 			// Show title
-			this.setUrl(model.getEmbedUrl(), time);
+			this.setUrl(embedUrl, time);
 		}
 
 		/**
@@ -390,6 +392,40 @@
 					this.setBySchedule(this.scheduleCollection);
 				}, 500);
 			}
+
+			// Trigger end
+			this.dispatch('player:ended');
+		}
+
+		/**
+		 * @return void
+		 */
+		protected Handle_OnPlayerError(): void {
+			// Flag and skip if we're using a schedule
+			if (this.isUsingSchedule) {
+				setTimeout(() => this.flagAndSkip());
+			}
+
+			// Trigger error
+			this.dispatch('player:error');
+		}
+
+		/**
+		 * @return void
+		 */
+		protected Handle_OnPlayerReady(e: any): void {
+			if (this.autoplay) {
+				e.target.playVideo();
+			}
+
+			this.trigger('player:ready', {
+				duration: this.api.getDuration(),
+				url: this.api.getVideoUrl(),
+			});
+
+			// console.log('Duration', this.api.getDuration());
+			// console.log('Current Time', this.api.getCurrentTime());
+			// console.log('URL', this.api.getVideoUrl());
 		}
 
 		/**
@@ -412,24 +448,6 @@
 			if (e.data == ViewBase.window.YT.PlayerState.ENDED) {
 				this.Handle_OnPlayerEnded();
 			}
-		}
-
-		/**
-		 * @return void
-		 */
-		protected Handle_OnPlayerReady(e: any): void {
-			if (this.autoplay) {
-				e.target.playVideo();
-			}
-
-			this.trigger('player:ready', {
-				duration: this.api.getDuration(),
-				url: this.api.getVideoUrl(),
-			});
-
-			// console.log('Duration', this.api.getDuration());
-			// console.log('Current Time', this.api.getCurrentTime());
-			// console.log('URL', this.api.getVideoUrl());
 		}
 
 		/**

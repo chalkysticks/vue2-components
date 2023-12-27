@@ -31,7 +31,9 @@
 		@Prop({
 			default: () => new CollectionVenue({
 				baseUrl: Constants.API_URL_V1,
-				limit: 5,
+				qp: {
+					limit: 5,
+				},
 			}),
 		})
 		public venueCollection!: CollectionVenue;

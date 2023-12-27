@@ -85,6 +85,15 @@
 			<section class="level-1">
 				<header>
 					<h3>VideoTheater</h3>
+
+					<p>
+						<strong>@todo</strong>
+					</p>
+					<p style="width: 250px;">
+						I would like to hook this up to a Players API endpoint
+						that pulls in specific player info. Also create a new
+						schedule view like Hulu / YTTV.
+					</p>
 				</header>
 				<div>
 					<TvVideoTheater ref="videoTheater" channel="billiards" />
