@@ -28,10 +28,10 @@
 </template>
 
 <script lang="ts">
-	import ViewBase from '../Core/Base';
-	import Environment from '../Core/Environment';
+	import * as ChalkySticks from '@chalkysticks/sdk';
 	import AuthenticationAuthPanel from './AuthPanel.vue';
-	import { CollectionSchedule, Constants, ModelAuthentication, ModelSchedule } from '@chalkysticks/sdk';
+	import Environment from '../Core/Environment';
+	import ViewBase from '../Core/Base';
 	import { Component, Prop, Ref } from 'vue-property-decorator';
 
 	/**
@@ -56,11 +56,11 @@
 		 * @type ChalkySticks/Model/Authentication
 		 */
 		@Prop({
-			default: () => new ModelAuthentication(undefined, {
-				baseUrl: Constants.API_URL_V1,
+			default: () => new ChalkySticks.Model.Authentication(undefined, {
+				baseUrl: ChalkySticks.Core.Constants.API_URL_V1,
 			})
 		})
-		public authModel!: ModelAuthentication;
+		public authModel!: typeof ChalkySticks.Model.Authentication;
 
 		/**
 		 * @return boolean

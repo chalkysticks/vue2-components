@@ -5,9 +5,9 @@
 </template>
 
 <script lang="ts">
+	import * as ChalkySticks from '@chalkysticks/sdk';
 	import Environment from '../Core/Environment';
 	import ViewBase from '../Core/Base';
-	import { CollectionSchedule, Constants, ModelSchedule } from '@chalkysticks/sdk';
 	import { Component, Prop } from 'vue-property-decorator';
 
 	/**
@@ -114,8 +114,8 @@
 		/**
 		 * @type CollectionSchedule
 		 */
-		public scheduleCollection: CollectionSchedule = new CollectionSchedule({
-			baseUrl: Constants.API_URL_V1,
+		public scheduleCollection: typeof ChalkySticks.Collection.Schedule = new ChalkySticks.Collection.Schedule({
+			baseUrl: ChalkySticks.Core.Constants.API_URL_V1,
 		});
 
 		/**
@@ -290,8 +290,8 @@
 		 *
 		 * @return void
 		 */
-		public setBySchedule(collection: CollectionSchedule): void {
-			const model: ModelSchedule = collection.getCurrentVideo();
+		public setBySchedule(collection: typeof ChalkySticks.Collection.Schedule): void {
+			const model: typeof ChalkySticks.Model.Schedule = collection.getCurrentVideo();
 			const embedUrl: string = model?.getEmbedUrl() || this.defaultVideoUrl;
 			const time: number = embedUrl !== this.defaultVideoUrl
 				? ~~collection.getTimeForCurrentVideo()
@@ -310,7 +310,7 @@
 		 * @param ModelSchedule model
 		 * @return void
 		 */
-		public setByModel(model: ModelSchedule): void {
+		public setByModel(model: typeof ChalkySticks.Model.Schedule): void {
 			this.setUrl(model.getEmbedUrl());
 		}
 

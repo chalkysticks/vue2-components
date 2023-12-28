@@ -54,9 +54,9 @@
 </template>
 
 <script lang="ts">
+	import * as ChalkySticks from '@chalkysticks/sdk';
 	import Environment from '../Core/Environment';
 	import ViewBase from '../Core/Base';
-	import { Constants, ModelAuthentication, ModelUser } from '@chalkysticks/sdk';
 	import { Component, Prop } from 'vue-property-decorator';
 
 	/**
@@ -70,11 +70,11 @@
 		 * @type ChalkySticks/Model/Authentication
 		 */
 		@Prop({
-			default: () => new ModelAuthentication(undefined, {
-				baseUrl: Constants.API_URL_V1,
+			default: () => new ChalkySticks.Model.Authentication(undefined, {
+				baseUrl: ChalkySticks.Core.Constants.API_URL_V1,
 			})
 		})
-		public authModel!: ModelAuthentication;
+		public authModel!: typeof ChalkySticks.Model.Authentication;
 
 		/**
 		 * @type string
@@ -115,9 +115,9 @@
 		/**
 		 * Login via email
 		 *
-		 * @return Promise<ModelUser>
+		 * @return Promise<ChalkySticks.Model.User>
 		 */
-		public async login(): Promise<ModelUser> {
+		public async login(): Promise<typeof ChalkySticks.Model.User> {
 			// Reset login failure
 			this.loginFailed = false;
 

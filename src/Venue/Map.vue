@@ -5,8 +5,8 @@
 </template>
 
 <script lang="ts">
+	import * as ChalkySticks from '@chalkysticks/sdk';
 	import ViewBase from '../Core/Base';
-	import { Constants, CollectionVenue, ModelVenue, ModelUser } from '@chalkysticks/sdk';
 	import { Component, Prop } from 'vue-property-decorator';
 
 	/**
@@ -20,32 +20,14 @@
 		 * @type ChalkySticks/Collection/Venue
 		 */
 		@Prop({
-			default: () => new CollectionVenue(),
+			default: () => new ChalkySticks.Collection.Venue(),
 		})
-		public venueCollection!: CollectionVenue;
-
-		/**
-		 * @return void
-		 */
-		public attachEvents(): void {
-
-		}
-
-		/**
-		 * @return void
-		 */
-		public detachEvents(): void {
-
-		}
-
-		// region: Event Handlers
-		// ---------------------------------------------------------------------------
-
-		// endregion: Event Handlers
+		public venueCollection!: typeof ChalkySticks.Collection.Venue;
 	}
 </script>
 
 <style lang="scss">
 	.chalky.venue-map {
+		// Not implemented
 	}
 </style>

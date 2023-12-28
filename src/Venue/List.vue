@@ -10,8 +10,8 @@
 </template>
 
 <script lang="ts">
+	import * as ChalkySticks from '@chalkysticks/sdk';
 	import ViewBase from '../Core/Base';
-	import { Constants, CollectionVenue, ModelVenue, ModelUser } from '@chalkysticks/sdk';
 	import { Component, Prop } from 'vue-property-decorator';
 
 	/**
@@ -29,14 +29,14 @@
 		 * @type ChalkySticks/Collection/Venue
 		 */
 		@Prop({
-			default: () => new CollectionVenue({
-				baseUrl: Constants.API_URL_V1,
+			default: () => new ChalkySticks.Collection.Venue({
+				baseUrl: ChalkySticks.Core.Constants.API_URL_V1,
 				qp: {
 					limit: 5,
 				},
 			}),
 		})
-		public venueCollection!: CollectionVenue;
+		public venueCollection!: typeof ChalkySticks.Collection.Venue;
 
 		/**
 		 * @constructor
@@ -48,20 +48,6 @@
 			if (!this.venueCollection.length) {
 				this.venueCollection.fetch();
 			}
-		}
-
-		/**
-		 * @return void
-		 */
-		public attachEvents(): void {
-
-		}
-
-		/**
-		 * @return void
-		 */
-		public detachEvents(): void {
-
 		}
 
 		// region: Event Handlers

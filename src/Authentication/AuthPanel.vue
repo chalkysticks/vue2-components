@@ -19,13 +19,13 @@
 </template>
 
 <script lang="ts">
+	import * as ChalkySticks from '@chalkysticks/sdk';
 	import AuthenticationBasicLogin from './BasicLogin.vue';
 	import AuthenticationSocialLogin from './SocialLogin.vue';
 	import BrandingBadge from '../Branding/Badge.vue';
 	import BrandingStandard from '../Branding/Standard.vue';
 	import ViewBase from '../Core/Base';
 	import gsap from 'gsap';
-	import { Constants, ModelAuthentication } from '@chalkysticks/sdk';
 	import { Component, Prop } from 'vue-property-decorator';
 
 	/**
@@ -46,11 +46,11 @@
 		 * @type ChalkySticks/Model/Authentication
 		 */
 		@Prop({
-			default: () => new ModelAuthentication(undefined, {
-				baseUrl: Constants.API_URL_V1,
+			default: () => new ChalkySticks.Model.Authentication(undefined, {
+				baseUrl: ChalkySticks.Core.Constants.API_URL_V1,
 			})
 		})
-		public authModel!: ModelAuthentication;
+		public authModel!: typeof ChalkySticks.Model.Authentication;
 
 		// region: Event Handlers
 		// ---------------------------------------------------------------------------

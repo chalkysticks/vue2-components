@@ -46,8 +46,8 @@
 </template>
 
 <script lang="ts">
+	import * as ChalkySticks from '@chalkysticks/sdk';
 	import ViewBase from '../Core/Base';
-	import { Constants, ModelVenue, ModelUser } from '@chalkysticks/sdk';
 	import { Component, Prop } from 'vue-property-decorator';
 
 	/**
@@ -61,9 +61,9 @@
 		 * @type ChalkySticks/Model/Venue
 		 */
 		@Prop({
-			default: () => new ModelVenue,
+			default: () => new ChalkySticks.Model.Venue,
 		})
-		public venueModel!: ModelVenue;
+		public venueModel!: typeof ChalkySticks.Model.Venue;
 
 		/**
 		 * @return void
