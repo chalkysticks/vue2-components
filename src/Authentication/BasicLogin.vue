@@ -54,9 +54,9 @@
 </template>
 
 <script lang="ts">
-	import * as ChalkySticks from '@chalkysticks/sdk';
 	import Environment from '../Core/Environment';
 	import ViewBase from '../Core/Base';
+	import { Authentication, Core } from '@chalkysticks/sdk';
 	import { Component, Prop } from 'vue-property-decorator';
 
 	/**
@@ -66,113 +66,112 @@
 	 */
 	@Component({})
 	export default class AuthenticationBasicLogin extends ViewBase {
-		// /**
-		//  * @type ChalkySticks/Model/Authentication
-		//  */
-		// @Prop({
-		// 	default: () => new Authentication.Model.Authentication(undefined, {
-		// 		baseUrl: Core.Constants.API_URL_V1,
-		// 	})
-		// })
-		// public authModel!: Authentication.Model.Authentication;
+		/**
+		 * @type ChalkySticks/Model/Authentication
+		 */
+		@Prop({
+			default: () => new Authentication.Model.Authentication(undefined, {
+				baseUrl: Core.Constants.API_URL_V1,
+			})
+		})
+		public authModel!: Authentication.Model.Authentication;
 
-		// /**
-		//  * @type string
-		//  */
-		// public email: string = '';
+		/**
+		 * @type string
+		 */
+		public email: string = '';
 
-		// /**
-		//  * @type boolean
-		//  */
-		// public loginFailed: boolean = false;
+		/**
+		 * @type boolean
+		 */
+		public loginFailed: boolean = false;
 
-		// /**
-		//  * @type string
-		//  */
-		// public message: string = '';
+		/**
+		 * @type string
+		 */
+		public message: string = '';
 
-		// /**
-		//  * @type string
-		//  */
-		// public password: string = '';
+		/**
+		 * @type string
+		 */
+		public password: string = '';
 
-		// /**
-		//  * @return void
-		//  */
-		// public attachEvents(): void {
-		// 	this.authModel.on('error', this.Handle_OnFailure);
-		// 	this.authModel.on('success', this.Handle_OnSuccess);
-		// }
+		/**
+		 * @return void
+		 */
+		public attachEvents(): void {
+			this.authModel.on('error', this.Handle_OnFailure);
+			this.authModel.on('success', this.Handle_OnSuccess);
+		}
 
-		// /**
-		//  * @return void
-		//  */
-		// public detachEvents(): void {
-		// 	this.authModel.off('error', this.Handle_OnFailure);
-		// 	this.authModel.off('success', this.Handle_OnSuccess);
-		// }
+		/**
+		 * @return void
+		 */
+		public detachEvents(): void {
+			this.authModel.off('error', this.Handle_OnFailure);
+			this.authModel.off('success', this.Handle_OnSuccess);
+		}
 
-		// /**
-		//  * Login via email
-		//  *
-		//  * @return Promise<ChalkySticks.Model.User>
-		//  */
-		// public async login(): Promise ChalkySticks.Model.User> {
-		// 	// Reset login failure
-		// 	this.loginFailed = false;
+		/**
+		 * Login via email
+		 *
+		 * @return Promise<ChalkySticks.Model.User>
+		 */
+		public async login(): Promise <Core.Model.User> {
+			// Reset login failure
+			this.loginFailed = false;
 
-		// 	// Attempt login
-		// 	try {
-		// 		return await this.authModel.login(this.email, this.password);
-		// 	}
-		// 	catch (e) {
-		// 		throw new Error('User could not be logged in.');
-		// 	}
-		// }
+			// Attempt login
+			try {
+				return await this.authModel.login(this.email, this.password);
+			}
+			catch (e) {
+				throw new Error('User could not be logged in.');
+			}
+		}
 
+		// region: Event Handlers
+		// ---------------------------------------------------------------------------
 
-		// // region: Event Handlers
-		// // ---------------------------------------------------------------------------
+		/**
+		 * @param KeyboardEvent e
+		 * @return void
+		 */
+		protected Handle_OnKeydownInput(e: KeyboardEvent): void {
+			this.loginFailed = false;
+			this.message = '';
+		}
 
-		// /**
-		//  * @param KeyboardEvent e
-		//  * @return void
-		//  */
-		// protected Handle_OnKeydownInput(e: KeyboardEvent): void {
-		// 	this.loginFailed = false;
-		// 	this.message = '';
-		// }
+		/**
+		 * @return void
+		 */
+		protected Handle_OnFailure(): void {
+			this.message = 'Login attempt unsuccessful';
+			this.loginFailed = true;
 
-		// /**
-		//  * @return void
-		//  */
-		// protected Handle_OnFailure(): void {
-		// 	this.message = 'Login attempt unsuccessful';
-		// 	this.loginFailed = true;
+			setTimeout(() => {
+				this.loginFailed = false;
+			}, 1000);
+		}
 
-		// 	setTimeout(() => {
-		// 		this.loginFailed = false;
-		// 	}, 1000);
-		// }
+		/**
+		 * @param SubmitEvent e
+		 * @return void
+		 */
+		protected Handle_OnSubmit(e: SubmitEvent): void {
+			e.preventDefault();
 
-		// /**
-		//  * @param SubmitEvent e
-		//  * @return void
-		//  */
-		// protected Handle_OnSubmit(e: SubmitEvent): void {
-		// 	e.preventDefault();
+			this.login();
+		}
 
-		// 	this.login();
-		// }
+		/**
+		 * @return void
+		 */
+		protected Handle_OnSuccess(): void {
+			console.log('success');
+		}
 
-		// /**
-		//  * @return void
-		//  */
-		// protected Handle_OnSuccess(): void {
-		// 	console.log('success');
-		// }
-
-		// // endregion: Event Handlers
+		// endregion: Event Handlers
 	}
 </script>
 

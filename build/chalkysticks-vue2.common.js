@@ -12491,7 +12491,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.chalky.authentication-authpanel{backg
 
 /***/ }),
 
-/***/ 8576:
+/***/ 916:
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -12921,19 +12921,19 @@ var update = add("25f4d278", content, true, {"sourceMap":false,"shadowMode":fals
 
 /***/ }),
 
-/***/ 3891:
+/***/ 5578:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(8576);
+var content = __webpack_require__(916);
 if(content.__esModule) content = content.default;
 if(typeof content === 'string') content = [[module.id, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
 var add = (__webpack_require__(9185)/* ["default"] */ .Z)
-var update = add("35768a6f", content, true, {"sourceMap":false,"shadowMode":false});
+var update = add("bfb24aee", content, true, {"sourceMap":false,"shadowMode":false});
 
 /***/ }),
 
@@ -16772,8 +16772,8 @@ var staticRenderFns = [function () {
 
 ;// CONCATENATED MODULE: ./src/Authentication/AuthPanel.vue?vue&type=template&id=7afaf698
 
-;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js??clonedRuleSet-40.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/templateLoader.js??ruleSet[1].rules[4]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Authentication/BasicLogin.vue?vue&type=template&id=b54dbff6
-var BasicLoginvue_type_template_id_b54dbff6_render = function render() {
+;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js??clonedRuleSet-40.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/templateLoader.js??ruleSet[1].rules[4]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Authentication/BasicLogin.vue?vue&type=template&id=16a7a34d
+var BasicLoginvue_type_template_id_16a7a34d_render = function render() {
   var _vm = this,
     _c = _vm._self._c,
     _setup = _vm._self._setupProxy;
@@ -16850,7 +16850,7 @@ var BasicLoginvue_type_template_id_b54dbff6_render = function render() {
     staticClass: "fa fa-exclamation-triangle"
   }), _vm._v("   "), _c('span', [_vm._v(_vm._s(_vm.message))])]) : _vm._e()])])]);
 };
-var BasicLoginvue_type_template_id_b54dbff6_staticRenderFns = [];
+var BasicLoginvue_type_template_id_16a7a34d_staticRenderFns = [];
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/web.url-search-params.delete.js
 var web_url_search_params_delete = __webpack_require__(8858);
@@ -17470,178 +17470,6 @@ let ViewBase = class ViewBase extends index_umd.Vue {
 };
 ViewBase = __decorate([(0,index_umd.Component)({})], ViewBase);
 /* harmony default export */ const Core_Base = (ViewBase);
-;// CONCATENATED MODULE: ./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib/index.js!./node_modules/ts-loader/index.js??clonedRuleSet-41.use[2]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Authentication/BasicLogin.vue?vue&type=script&lang=ts
-var BasicLoginvue_type_script_lang_ts_decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
-  var c = arguments.length,
-    r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
-    d;
-  if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-  return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-
-
-/**
- * @class AuthenticationBasicLogin
- * @package Authentication
- * @project ChalkySticks SDK Vue2.0 Components
- */
-let AuthenticationBasicLogin = class AuthenticationBasicLogin extends Core_Base {};
-AuthenticationBasicLogin = BasicLoginvue_type_script_lang_ts_decorate([(0,index_umd.Component)({})], AuthenticationBasicLogin);
-/* harmony default export */ const BasicLoginvue_type_script_lang_ts = (AuthenticationBasicLogin);
-;// CONCATENATED MODULE: ./src/Authentication/BasicLogin.vue?vue&type=script&lang=ts
- /* harmony default export */ const Authentication_BasicLoginvue_type_script_lang_ts = (BasicLoginvue_type_script_lang_ts); 
-// EXTERNAL MODULE: ./node_modules/vue-style-loader/index.js??clonedRuleSet-22.use[0]!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-22.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-22.use[2]!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-22.use[3]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-22.use[4]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Authentication/BasicLogin.vue?vue&type=style&index=0&id=b54dbff6&prod&lang=scss
-var BasicLoginvue_type_style_index_0_id_b54dbff6_prod_lang_scss = __webpack_require__(3891);
-;// CONCATENATED MODULE: ./src/Authentication/BasicLogin.vue?vue&type=style&index=0&id=b54dbff6&prod&lang=scss
-
-;// CONCATENATED MODULE: ./node_modules/@vue/vue-loader-v15/lib/runtime/componentNormalizer.js
-/* globals __VUE_SSR_CONTEXT__ */
-
-// IMPORTANT: Do NOT use ES2015 features in this file (except for modules).
-// This module is a runtime utility for cleaner component module output and will
-// be included in the final webpack user bundle.
-
-function normalizeComponent(
-  scriptExports,
-  render,
-  staticRenderFns,
-  functionalTemplate,
-  injectStyles,
-  scopeId,
-  moduleIdentifier /* server only */,
-  shadowMode /* vue-cli only */
-) {
-  // Vue.extend constructor export interop
-  var options =
-    typeof scriptExports === 'function' ? scriptExports.options : scriptExports
-
-  // render functions
-  if (render) {
-    options.render = render
-    options.staticRenderFns = staticRenderFns
-    options._compiled = true
-  }
-
-  // functional template
-  if (functionalTemplate) {
-    options.functional = true
-  }
-
-  // scopedId
-  if (scopeId) {
-    options._scopeId = 'data-v-' + scopeId
-  }
-
-  var hook
-  if (moduleIdentifier) {
-    // server build
-    hook = function (context) {
-      // 2.3 injection
-      context =
-        context || // cached call
-        (this.$vnode && this.$vnode.ssrContext) || // stateful
-        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
-      // 2.2 with runInNewContext: true
-      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
-        context = __VUE_SSR_CONTEXT__
-      }
-      // inject component styles
-      if (injectStyles) {
-        injectStyles.call(this, context)
-      }
-      // register component module identifier for async chunk inferrence
-      if (context && context._registeredComponents) {
-        context._registeredComponents.add(moduleIdentifier)
-      }
-    }
-    // used by ssr in case component is cached and beforeCreate
-    // never gets called
-    options._ssrRegister = hook
-  } else if (injectStyles) {
-    hook = shadowMode
-      ? function () {
-          injectStyles.call(
-            this,
-            (options.functional ? this.parent : this).$root.$options.shadowRoot
-          )
-        }
-      : injectStyles
-  }
-
-  if (hook) {
-    if (options.functional) {
-      // for template-only hot-reload because in that case the render fn doesn't
-      // go through the normalizer
-      options._injectStyles = hook
-      // register for functional component in vue file
-      var originalRender = options.render
-      options.render = function renderWithStyleInjection(h, context) {
-        hook.call(context)
-        return originalRender(h, context)
-      }
-    } else {
-      // inject component registration as beforeCreate hook
-      var existing = options.beforeCreate
-      options.beforeCreate = existing ? [].concat(existing, hook) : [hook]
-    }
-  }
-
-  return {
-    exports: scriptExports,
-    options: options
-  }
-}
-
-;// CONCATENATED MODULE: ./src/Authentication/BasicLogin.vue
-
-
-
-;
-
-
-/* normalize component */
-
-var component = normalizeComponent(
-  Authentication_BasicLoginvue_type_script_lang_ts,
-  BasicLoginvue_type_template_id_b54dbff6_render,
-  BasicLoginvue_type_template_id_b54dbff6_staticRenderFns,
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* harmony default export */ const BasicLogin = (component.exports);
-;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js??clonedRuleSet-40.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/templateLoader.js??ruleSet[1].rules[4]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Authentication/SocialLogin.vue?vue&type=template&id=308e8d65
-var SocialLoginvue_type_template_id_308e8d65_render = function render() {
-  var _vm = this,
-    _c = _vm._self._c,
-    _setup = _vm._self._setupProxy;
-  return _c('div', {
-    staticClass: "chalky authentication-sociallogin"
-  }, [_c('form', {
-    attrs: {
-      "name": "social-login"
-    }
-  }, [_c('fieldset', [_c('legend', [_vm._v("Login via Social")]), _c('button', {
-    staticClass: "btn-social type-google",
-    on: {
-      "click": _vm.Handle_OnClickLoginWithGoogle
-    }
-  }, [_c('i', {
-    staticClass: "fab fa-google"
-  }), _c('span', [_vm._v("Login with Google")])]), _c('button', {
-    staticClass: "btn-social type-facebook",
-    on: {
-      "click": _vm.Handle_OnClickLoginWithFacebook
-    }
-  }, [_c('i', {
-    staticClass: "fab fa-facebook-f"
-  }), _c('span', [_vm._v("Login with Facebook")])])])])]);
-};
-var SocialLoginvue_type_template_id_308e8d65_staticRenderFns = [];
-
 ;// CONCATENATED MODULE: ./node_modules/@chalkysticks/sdk-core/build/esm/Common/Constants.js
 /* harmony default export */ const Common_Constants = ({
   API_URL: 'https://api.chalkysticks.com/v3',
@@ -18784,6 +18612,268 @@ class Wallet extends Base_Base {
 
 
 
+
+;// CONCATENATED MODULE: ./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib/index.js!./node_modules/ts-loader/index.js??clonedRuleSet-41.use[2]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Authentication/BasicLogin.vue?vue&type=script&lang=ts
+var BasicLoginvue_type_script_lang_ts_decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
+  var c = arguments.length,
+    r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
+    d;
+  if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+  return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+/**
+ * @class AuthenticationBasicLogin
+ * @package Authentication
+ * @project ChalkySticks SDK Vue2.0 Components
+ */
+let AuthenticationBasicLogin = class AuthenticationBasicLogin extends Core_Base {
+  constructor() {
+    super(...arguments);
+    /**
+     * @type string
+     */
+    this.email = '';
+    /**
+     * @type boolean
+     */
+    this.loginFailed = false;
+    /**
+     * @type string
+     */
+    this.message = '';
+    /**
+     * @type string
+     */
+    this.password = '';
+    // endregion: Event Handlers
+  }
+  /**
+   * @return void
+   */
+  attachEvents() {
+    this.authModel.on('error', this.Handle_OnFailure);
+    this.authModel.on('success', this.Handle_OnSuccess);
+  }
+  /**
+   * @return void
+   */
+  detachEvents() {
+    this.authModel.off('error', this.Handle_OnFailure);
+    this.authModel.off('success', this.Handle_OnSuccess);
+  }
+  /**
+   * Login via email
+   *
+   * @return Promise<ChalkySticks.Model.User>
+   */
+  async login() {
+    // Reset login failure
+    this.loginFailed = false;
+    // Attempt login
+    try {
+      return await this.authModel.login(this.email, this.password);
+    } catch (e) {
+      throw new Error('User could not be logged in.');
+    }
+  }
+  // region: Event Handlers
+  // ---------------------------------------------------------------------------
+  /**
+   * @param KeyboardEvent e
+   * @return void
+   */
+  Handle_OnKeydownInput(e) {
+    this.loginFailed = false;
+    this.message = '';
+  }
+  /**
+   * @return void
+   */
+  Handle_OnFailure() {
+    this.message = 'Login attempt unsuccessful';
+    this.loginFailed = true;
+    setTimeout(() => {
+      this.loginFailed = false;
+    }, 1000);
+  }
+  /**
+   * @param SubmitEvent e
+   * @return void
+   */
+  Handle_OnSubmit(e) {
+    e.preventDefault();
+    this.login();
+  }
+  /**
+   * @return void
+   */
+  Handle_OnSuccess() {
+    console.log('success');
+  }
+};
+BasicLoginvue_type_script_lang_ts_decorate([(0,index_umd.Prop)({
+  default: () => new Authentication(undefined, {
+    baseUrl: Common_Constants.API_URL_V1
+  })
+})], AuthenticationBasicLogin.prototype, "authModel", void 0);
+AuthenticationBasicLogin = BasicLoginvue_type_script_lang_ts_decorate([(0,index_umd.Component)({})], AuthenticationBasicLogin);
+/* harmony default export */ const BasicLoginvue_type_script_lang_ts = (AuthenticationBasicLogin);
+;// CONCATENATED MODULE: ./src/Authentication/BasicLogin.vue?vue&type=script&lang=ts
+ /* harmony default export */ const Authentication_BasicLoginvue_type_script_lang_ts = (BasicLoginvue_type_script_lang_ts); 
+// EXTERNAL MODULE: ./node_modules/vue-style-loader/index.js??clonedRuleSet-22.use[0]!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-22.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-22.use[2]!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-22.use[3]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-22.use[4]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Authentication/BasicLogin.vue?vue&type=style&index=0&id=16a7a34d&prod&lang=scss
+var BasicLoginvue_type_style_index_0_id_16a7a34d_prod_lang_scss = __webpack_require__(5578);
+;// CONCATENATED MODULE: ./src/Authentication/BasicLogin.vue?vue&type=style&index=0&id=16a7a34d&prod&lang=scss
+
+;// CONCATENATED MODULE: ./node_modules/@vue/vue-loader-v15/lib/runtime/componentNormalizer.js
+/* globals __VUE_SSR_CONTEXT__ */
+
+// IMPORTANT: Do NOT use ES2015 features in this file (except for modules).
+// This module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle.
+
+function normalizeComponent(
+  scriptExports,
+  render,
+  staticRenderFns,
+  functionalTemplate,
+  injectStyles,
+  scopeId,
+  moduleIdentifier /* server only */,
+  shadowMode /* vue-cli only */
+) {
+  // Vue.extend constructor export interop
+  var options =
+    typeof scriptExports === 'function' ? scriptExports.options : scriptExports
+
+  // render functions
+  if (render) {
+    options.render = render
+    options.staticRenderFns = staticRenderFns
+    options._compiled = true
+  }
+
+  // functional template
+  if (functionalTemplate) {
+    options.functional = true
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = 'data-v-' + scopeId
+  }
+
+  var hook
+  if (moduleIdentifier) {
+    // server build
+    hook = function (context) {
+      // 2.3 injection
+      context =
+        context || // cached call
+        (this.$vnode && this.$vnode.ssrContext) || // stateful
+        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
+      // 2.2 with runInNewContext: true
+      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+        context = __VUE_SSR_CONTEXT__
+      }
+      // inject component styles
+      if (injectStyles) {
+        injectStyles.call(this, context)
+      }
+      // register component module identifier for async chunk inferrence
+      if (context && context._registeredComponents) {
+        context._registeredComponents.add(moduleIdentifier)
+      }
+    }
+    // used by ssr in case component is cached and beforeCreate
+    // never gets called
+    options._ssrRegister = hook
+  } else if (injectStyles) {
+    hook = shadowMode
+      ? function () {
+          injectStyles.call(
+            this,
+            (options.functional ? this.parent : this).$root.$options.shadowRoot
+          )
+        }
+      : injectStyles
+  }
+
+  if (hook) {
+    if (options.functional) {
+      // for template-only hot-reload because in that case the render fn doesn't
+      // go through the normalizer
+      options._injectStyles = hook
+      // register for functional component in vue file
+      var originalRender = options.render
+      options.render = function renderWithStyleInjection(h, context) {
+        hook.call(context)
+        return originalRender(h, context)
+      }
+    } else {
+      // inject component registration as beforeCreate hook
+      var existing = options.beforeCreate
+      options.beforeCreate = existing ? [].concat(existing, hook) : [hook]
+    }
+  }
+
+  return {
+    exports: scriptExports,
+    options: options
+  }
+}
+
+;// CONCATENATED MODULE: ./src/Authentication/BasicLogin.vue
+
+
+
+;
+
+
+/* normalize component */
+
+var component = normalizeComponent(
+  Authentication_BasicLoginvue_type_script_lang_ts,
+  BasicLoginvue_type_template_id_16a7a34d_render,
+  BasicLoginvue_type_template_id_16a7a34d_staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* harmony default export */ const BasicLogin = (component.exports);
+;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js??clonedRuleSet-40.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/templateLoader.js??ruleSet[1].rules[4]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Authentication/SocialLogin.vue?vue&type=template&id=308e8d65
+var SocialLoginvue_type_template_id_308e8d65_render = function render() {
+  var _vm = this,
+    _c = _vm._self._c,
+    _setup = _vm._self._setupProxy;
+  return _c('div', {
+    staticClass: "chalky authentication-sociallogin"
+  }, [_c('form', {
+    attrs: {
+      "name": "social-login"
+    }
+  }, [_c('fieldset', [_c('legend', [_vm._v("Login via Social")]), _c('button', {
+    staticClass: "btn-social type-google",
+    on: {
+      "click": _vm.Handle_OnClickLoginWithGoogle
+    }
+  }, [_c('i', {
+    staticClass: "fab fa-google"
+  }), _c('span', [_vm._v("Login with Google")])]), _c('button', {
+    staticClass: "btn-social type-facebook",
+    on: {
+      "click": _vm.Handle_OnClickLoginWithFacebook
+    }
+  }, [_c('i', {
+    staticClass: "fab fa-facebook-f"
+  }), _c('span', [_vm._v("Login with Facebook")])])])])]);
+};
+var SocialLoginvue_type_template_id_308e8d65_staticRenderFns = [];
 
 ;// CONCATENATED MODULE: ./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib/index.js!./node_modules/ts-loader/index.js??clonedRuleSet-41.use[2]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Authentication/SocialLogin.vue?vue&type=script&lang=ts
 
