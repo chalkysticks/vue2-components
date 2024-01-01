@@ -7,7 +7,6 @@
 </template>
 
 <script lang="ts">
-	import * as ChalkySticks from '@chalkysticks/sdk';
 	import ViewBase from '../Core/Base';
 	import Environment from '../Core/Environment';
 	import { Component, Prop } from 'vue-property-decorator';
@@ -19,7 +18,6 @@
 	 */
 	@Component({})
 	export default class AuthenticationResetPassword extends ViewBase {
-
 		/**
 		 * Function names to bind to class, typically used for event handlers
 		 *
@@ -32,31 +30,11 @@
 		];
 
 		/**
-		 * On created
-		 **/
+		 * Constructor
+		 */
 		constructor(options = {}) {
 			super(options);
-
 		}
-
-		/**
-		 * Attach events
-		 *
-		 * @return void
-		 */
-		public attachEvents(): void {
-			//
-		}
-
-		/**
-		 * Detach events
-		 *
-		 * @return void
-		 */
-		public detachEvents(): void {
-			//
-		}
-
 	}
 </script>
 

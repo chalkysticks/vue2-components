@@ -46,8 +46,8 @@
 </template>
 
 <script lang="ts">
-	import * as ChalkySticks from '@chalkysticks/sdk';
 	import ViewBase from '../Core/Base';
+	import { Core, Venues } from '@chalkysticks/sdk';
 	import { Component, Prop } from 'vue-property-decorator';
 
 	/**
@@ -61,23 +61,9 @@
 		 * @type ChalkySticks/Model/Venue
 		 */
 		@Prop({
-			default: () => new ChalkySticks.Model.Venue,
+			default: () => new Venues.Model.Venue,
 		})
-		public venueModel!: typeof ChalkySticks.Model.Venue;
-
-		/**
-		 * @return void
-		 */
-		public attachEvents(): void {
-
-		}
-
-		/**
-		 * @return void
-		 */
-		public detachEvents(): void {
-
-		}
+		public venueModel!: Venues.Model.Venue;
 
 		/**
 		 * @return string
@@ -93,11 +79,6 @@
 
 			return output;
 		}
-
-		// region: Event Handlers
-		// ---------------------------------------------------------------------------
-
-		// endregion: Event Handlers
 	}
 </script>
 

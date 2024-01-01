@@ -159,11 +159,11 @@
 </template>
 
 <script lang="ts">
-	import * as ChalkySticks from '@chalkysticks/sdk';
 	import AuthenticationAuthPanel from '@/Authentication/AuthPanel.vue';
 	import TvVideoTheater from '@/TV/TvVideoTheater.vue';
-	import { VideoTheaterChannel } from '@/TV/VideoTheater.vue';
 	import { Component, Prop, Ref, Vue } from 'vue-property-decorator';
+	import { Authentication, Core } from '@chalkysticks/sdk';
+	import { VideoTheaterChannel } from '@/TV/VideoTheater.vue';
 
 	@Component({
 		components: {
@@ -181,11 +181,11 @@
 		 * @type ChalkySticks/Model/Authentication
 		 */
 		@Prop({
-			default: () => new ChalkySticks.Model.Authentication(undefined, {
-				baseUrl: ChalkySticks.Core.Constants.API_URL_V1,
+			default: () => new Authentication.Model.Authentication(undefined, {
+				baseUrl: Core.Constants.API_URL_V1,
 			})
 		})
-		public authModel!: typeof ChalkySticks.Model.Authentication;
+		public authModel!: Authentication.Model.Authentication;
 
 		// region: Event Handlers
 		// ---------------------------------------------------------------------------

@@ -19,9 +19,9 @@
 </template>
 
 <script lang="ts">
-	import * as ChalkySticks from '@chalkysticks/sdk';
 	import Environment from '../Core/Environment';
 	import ViewBase from '../Core/Base';
+	import { Authentication, Core } from '@chalkysticks/sdk';
 	import { Component, Prop } from 'vue-property-decorator';
 
 	/**
@@ -49,11 +49,11 @@
 		 * @type ChalkySticks/Model/Authentication
 		 */
 		@Prop({
-			default: () => new ChalkySticks.Model.Authentication(undefined, {
-				baseUrl: ChalkySticks.Core.Constants.API_URL_V1,
+			default: () => new Authentication.Model.Authentication(undefined, {
+				baseUrl: Core.Constants.API_URL_V1,
 			})
 		})
-		public authModel!: typeof ChalkySticks.Model.Authentication;
+		public authModel!: Authentication.Model.Authentication;
 
 		/**
 		 * Check for token and save it to the object

@@ -1,12 +1,12 @@
 <template>
-	<div class="chalky venue-map" :class="{ }">
+	<div class="chalky venue-map">
 		venue map
 	</div>
 </template>
 
 <script lang="ts">
-	import * as ChalkySticks from '@chalkysticks/sdk';
 	import ViewBase from '../Core/Base';
+	import { Venues } from '@chalkysticks/sdk';
 	import { Component, Prop } from 'vue-property-decorator';
 
 	/**
@@ -20,9 +20,9 @@
 		 * @type ChalkySticks/Collection/Venue
 		 */
 		@Prop({
-			default: () => new ChalkySticks.Collection.Venue(),
+			default: () => new Venues.Collection.Venue(),
 		})
-		public venueCollection!: typeof ChalkySticks.Collection.Venue;
+		public venueCollection!: Venues.Collection.Venue;
 	}
 </script>
 

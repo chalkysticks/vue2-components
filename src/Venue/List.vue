@@ -10,8 +10,8 @@
 </template>
 
 <script lang="ts">
-	import * as ChalkySticks from '@chalkysticks/sdk';
 	import ViewBase from '../Core/Base';
+	import { Core, Venues } from '@chalkysticks/sdk';
 	import { Component, Prop } from 'vue-property-decorator';
 
 	/**
@@ -29,14 +29,14 @@
 		 * @type ChalkySticks/Collection/Venue
 		 */
 		@Prop({
-			default: () => new ChalkySticks.Collection.Venue({
-				baseUrl: ChalkySticks.Core.Constants.API_URL_V1,
+			default: () => new Venues.Collection.Venue({
+				baseUrl: Core.Constants.API_URL_V1,
 				qp: {
 					limit: 5,
 				},
 			}),
 		})
-		public venueCollection!: typeof ChalkySticks.Collection.Venue;
+		public venueCollection!: Venues.Collection.Venue;
 
 		/**
 		 * @constructor

@@ -5,10 +5,10 @@
 </template>
 
 <script lang="ts">
-	import * as ChalkySticks from '@chalkysticks/sdk';
 	import Environment from '../Core/Environment';
 	import ViewBase from '../Core/Base';
 	import { Component, Prop } from 'vue-property-decorator';
+	import { Core, TV } from '@chalkysticks/sdk';
 
 	/**
 	 * @type Enum
@@ -114,8 +114,8 @@
 		/**
 		 * @type CollectionSchedule
 		 */
-		public scheduleCollection: typeof ChalkySticks.Collection.Schedule = new ChalkySticks.Collection.Schedule({
-			baseUrl: ChalkySticks.Core.Constants.API_URL_V1,
+		public scheduleCollection: TV.Collection.Schedule = new TV.Collection.Schedule({
+			baseUrl: Core.Constants.API_URL_V1,
 		});
 
 		/**
@@ -126,7 +126,7 @@
 		/**
 		 * @type ReturnType<typeof setInterval>
 		 */
-		protected interval: ReturnType<typeof setInterval> = 0;
+		protected interval: any = 0;
 
 		/**
 		 * @param object options
@@ -290,8 +290,8 @@
 		 *
 		 * @return void
 		 */
-		public setBySchedule(collection: typeof ChalkySticks.Collection.Schedule): void {
-			const model: typeof ChalkySticks.Model.Schedule = collection.getCurrentVideo();
+		public setBySchedule(collection: TV.Collection.Schedule): void {
+			const model: TV.Model.Schedule = collection.getCurrentVideo();
 			const embedUrl: string = model?.getEmbedUrl() || this.defaultVideoUrl;
 			const time: number = embedUrl !== this.defaultVideoUrl
 				? ~~collection.getTimeForCurrentVideo()
@@ -310,7 +310,7 @@
 		 * @param ModelSchedule model
 		 * @return void
 		 */
-		public setByModel(model: typeof ChalkySticks.Model.Schedule): void {
+		public setByModel(model: TV.Model.Schedule): void {
 			this.setUrl(model.getEmbedUrl());
 		}
 

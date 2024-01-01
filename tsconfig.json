@@ -12,11 +12,16 @@
 		"paths": {
 			"@/*": ["src/*"]
 		},
+		"resolveJsonModule": true,
 		"skipLibCheck": true,
 		"sourceMap": true,
 		"strict": true,
 		"target": "esnext",
-		"types": ["webpack-env"],
+		"typeRoots": [
+			"node_modules/@types",
+			"types"
+		],
+		"types": ["node", "webpack-env"],
 		"useDefineForClassFields": false
 	},
 	"exclude": ["node_modules"],
