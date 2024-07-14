@@ -1,14 +1,14 @@
 <template>
-	<div class="chalky tv-videotheater ratio ratio-16x9" :class="{ 'state-controls': allowControl } ">
-		<div :id="playerId"></div>
+	<div class="chalky tv-videotheater ratio ratio-16x9" v-bind:class="{ 'state-controls': allowControl }">
+		<div v-bind:id="playerId"></div>
 	</div>
 </template>
 
 <script lang="ts">
+	import * as ChalkySticks from '@chalkysticks/sdk';
 	import Environment from '../Core/Environment';
 	import ViewBase from '../Core/Base';
 	import { Component, Prop } from 'vue-property-decorator';
-	import { Core, TV } from '@chalkysticks/sdk';
 
 	/**
 	 * @type Enum
@@ -23,7 +23,7 @@
 		'SNOOKER': 'snooker',
 		'STRAIGHT': 'straight',
 		'TRICK': 'trickshot',
-	}
+	};
 
 	/**
 	 * @class TVVideoTheater
@@ -31,7 +31,7 @@
 	 * @project ChalkySticks SDK Vue2.0 Components
 	 */
 	@Component
-	export default class TvVideoTheater extends ViewBase {
+	export default class VideoTheater extends ViewBase {
 		/**
 		 * Determine if we're using the schedule
 		 *
@@ -59,12 +59,7 @@
 		/**
 		 * @type string[]
 		 */
-		public bindings: string[] = [
-			'Handle_OnInterval',
-			'Handle_OnPlayerStateChange',
-			'Handle_OnPlayerReady',
-			'Handle_OnYouTubeReady',
-		];
+		public bindings: string[] = ['Handle_OnInterval', 'Handle_OnPlayerStateChange', 'Handle_OnPlayerReady', 'Handle_OnYouTubeReady'];
 
 		/**
 		 * @type string
@@ -107,15 +102,13 @@
 		/**
 		 * @type string
 		 */
-		public playerId: string = Math.random()
-			.toString(16)
-			.substr(2, 8);
+		public playerId: string = Math.random().toString(16).substr(2, 8);
 
 		/**
 		 * @type CollectionSchedule
 		 */
-		public scheduleCollection: TV.Collection.Schedule = new TV.Collection.Schedule({
-			baseUrl: Core.Constants.API_URL_V1,
+		public scheduleCollection = new ChalkySticks.Collection.Schedule({
+			baseUrl: ChalkySticks.Core.Constants.API_URL_V1,
 		});
 
 		/**
@@ -186,8 +179,7 @@
 					startSeconds: time,
 					videoId: code,
 				});
-			}
-			else {
+			} else {
 				this.api = new ViewBase.window.YT.Player(this.playerId, {
 					events: {
 						onError: () => this.Handle_OnPlayerError(),
@@ -290,12 +282,10 @@
 		 *
 		 * @return void
 		 */
-		public setBySchedule(collection: TV.Collection.Schedule): void {
-			const model: TV.Model.Schedule = collection.getCurrentVideo();
-			const embedUrl: string = model?.getEmbedUrl() || this.defaultVideoUrl;
-			const time: number = embedUrl !== this.defaultVideoUrl
-				? ~~collection.getTimeForCurrentVideo()
-				: 0;
+		public setBySchedule(collection: typeof ChalkySticks.Collection.Schedule): void {
+			const model = collection.getCurrentVideo();
+			const embedUrl = model?.getEmbedUrl() || this.defaultVideoUrl;
+			const time = embedUrl !== this.defaultVideoUrl ? ~~collection.getTimeForCurrentVideo() : 0;
 
 			// Set schedule
 			this.scheduleCollection = collection;
@@ -310,7 +300,7 @@
 		 * @param ModelSchedule model
 		 * @return void
 		 */
-		public setByModel(model: TV.Model.Schedule): void {
+		public setByModel(model: typeof ChalkySticks.Model.Schedule): void {
 			this.setUrl(model.getEmbedUrl());
 		}
 
@@ -333,8 +323,7 @@
 		public toggle(): void {
 			if (this.isPlaying) {
 				this.pause();
-			}
-			else {
+			} else {
 				this.play();
 			}
 		}
@@ -345,8 +334,7 @@
 		public toggleMute(): void {
 			if (this.api.isMuted()) {
 				this.api.unMute();
-			}
-			else {
+			} else {
 				this.api.mute();
 			}
 		}
@@ -362,7 +350,7 @@
 		 * @return boolean
 		 */
 		public requiresScript(): boolean {
-			return typeof(window) != 'undefined' && !((window as any).YT);
+			return typeof window != 'undefined' && !(window as any).YT;
 		}
 
 		// endregion: Getters
@@ -377,8 +365,7 @@
 			try {
 				this.currentTime = this.api.getCurrentTime();
 				this.duration = this.api.getDuration(); // cache me
-			}
-			catch (e) {
+			} catch (e) {
 				// console.log('VTYT Err', e);
 			}
 		}
@@ -458,7 +445,6 @@
 		}
 
 		// endregion: Event Handlers
-
 
 		// region: Helpers
 		// ---------------------------------------------------------------------------

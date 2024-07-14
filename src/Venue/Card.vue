@@ -1,12 +1,13 @@
 <template>
-	<div class="chalky venue-card" :class="'type-' + venueModel.getType()">
+	<div class="chalky venue-card" v-bind:class="'type-' + venueModel.getType()">
 		<section class="gallery">
-			<picture v-for="media in venueModel.media">
-				<source :srcset="media.getUrl()">
-				<img src="https://map.chalkysticks.com/image/backgrounds/no-photos-venue.jpg" alt="">
+			<picture v-bind:key="index" v-for="(media, index) in venueModel.media">
+				<source v-bind:srcset="media.getUrl()" />
+				<img src="https://map.chalkysticks.com/image/backgrounds/no-photos-venue.jpg" alt="" />
 			</picture>
+
 			<picture v-if="venueModel.media.length == 0">
-				<img src="https://map.chalkysticks.com/image/backgrounds/no-photos-venue.jpg" alt="">
+				<img src="https://map.chalkysticks.com/image/backgrounds/no-photos-venue.jpg" alt="" />
 			</picture>
 		</section>
 
@@ -15,7 +16,12 @@
 		</header>
 
 		<section class="details">
-			<span class="detail tag" :class="venueDetailModel.getKey()" v-for="venueDetailModel in venueModel.detail">
+			<span
+				class="detail tag"
+				v-bind:class="venueDetailModel.getKey()"
+				v-bind:key="venueDetailModel.getKey()"
+				v-for="venueDetailModel in venueModel.detail"
+			>
 				{{ venueDetailModel.getValue() }}
 			</span>
 		</section>
@@ -25,15 +31,15 @@
 		</section>
 
 		<section class="actions">
-			<a class="action" target="_blank" :href="'tel:' + venueModel.getPhone()" v-if="venueModel.getPhone()">
+			<a class="action" target="_blank" v-bind:href="'tel:' + venueModel.getPhone()" v-if="venueModel.getPhone()">
 				<i class="icon fa fa-phone"></i>
 				<span class="caption">{{ venueModel.getPhone() }}</span>
 			</a>
-			<a class="action" target="_blank" :href="venueModel.getWebsite()" v-if="venueModel.getWebsite()">
+			<a class="action" target="_blank" v-bind:href="venueModel.getWebsite()" v-if="venueModel.getWebsite()">
 				<i class="icon fa fa-globe"></i>
 				<span class="caption">Website</span>
 			</a>
-			<a class="action" target="_blank" :href="getMapUrl()" v-if="venueModel.getAddress()">
+			<a class="action" target="_blank" v-bind:href="getMapUrl()" v-if="venueModel.getAddress()">
 				<i class="icon fa fa-map-marker"></i>
 				<span class="caption">View Map</span>
 			</a>
@@ -47,7 +53,7 @@
 
 <script lang="ts">
 	import ViewBase from '../Core/Base';
-	import { Core, Venues } from '@chalkysticks/sdk';
+	import * as ChalkySticks from '@chalkysticks/sdk';
 	import { Component, Prop } from 'vue-property-decorator';
 
 	/**
@@ -61,9 +67,14 @@
 		 * @type ChalkySticks/Model/Venue
 		 */
 		@Prop({
-			default: () => new Venues.Model.Venue,
+			default: () => new ChalkySticks.Model.Venue(),
 		})
-		public venueModel!: Venues.Model.Venue;
+		public venueModel;
+
+		/**
+		 * @type ChalkySticks/Collection/Venue
+		 */
+		protected venueCollection = new ChalkySticks.Collection.Venue();
 
 		/**
 		 * @return string

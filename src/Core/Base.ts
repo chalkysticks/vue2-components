@@ -1,5 +1,4 @@
 import Environment from './Environment';
-import ColorConsole from 'colorconsole';
 import gsap from 'gsap';
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
@@ -136,9 +135,7 @@ export default class ViewBase extends Vue {
 		super(params);
 
 		// Cid
-		this.cid = Math.random()
-			.toString(32)
-			.substr(2, 6);
+		this.cid = Math.random().toString(32).substr(2, 6);
 	}
 
 	/**
@@ -156,7 +153,9 @@ export default class ViewBase extends Vue {
 		// Some views can automatically animate in
 		if (this.allowAnimation && this.autoAnimateIn) {
 			this.AnimateInStart();
-			this.AnimateIn(() => {}, true);
+			this.AnimateIn(() => {
+				// Do nothing
+			}, true);
 		}
 
 		// Update animator
@@ -218,16 +217,13 @@ export default class ViewBase extends Vue {
 	 * @return void
 	 */
 	public bind(...parameters: string[]): void {
-		const self: ViewBase = this as any;
+		(parameters as (keyof this)[]).forEach((funcName) => {
+			const func = this[funcName];
 
-		parameters.map((funcName) => {
-			// @ts-ignore
-			if (!self[funcName]) {
-				console.warn('Attempting to bind ', funcName, ' which does not exist.');
-			}
-			else {
-				// @ts-ignore
-				self[funcName] = self[funcName].bind(self);
+			if (typeof func !== 'function') {
+				console.warn(`Attempting to bind '${funcName.toString()}' which does not exist or is not a function.`);
+			} else {
+				this[funcName] = func.bind(this);
 			}
 		});
 	}
@@ -242,9 +238,6 @@ export default class ViewBase extends Vue {
 
 		while (this.bindings.length) {
 			const funcName: string = this.bindings.pop() as string;
-
-			ColorConsole.passive('Binding:', funcName);
-
 			this.bind(funcName);
 		}
 	}
@@ -265,7 +258,7 @@ export default class ViewBase extends Vue {
 			callback: callback,
 			lastCall: 0,
 			time: time,
-		}
+		};
 
 		// Event
 		// @todo, if we already have event + onwho of type, cache
@@ -283,11 +276,7 @@ export default class ViewBase extends Vue {
 	 * @param boolean = true bind
 	 * @return void
 	 */
-	public delayed(
-		funcName: string,
-		delay: number = 1,
-		bind: boolean = true
-	): void {
+	public delayed(funcName: string, delay: number = 1, bind: boolean = true): void {
 		const cls: any = this as any;
 		const func: any = bind ? cls[funcName].bind(this) : cls[funcName];
 
@@ -301,7 +290,7 @@ export default class ViewBase extends Vue {
 	 */
 	public elementExists() {
 		if (!this.$el || !this.$el.classList) {
-			ColorConsole.warn(this.name, 'Element does not exist.');
+			console.warn(this.name, 'Element does not exist.');
 			return false;
 		}
 
@@ -385,16 +374,10 @@ export default class ViewBase extends Vue {
 				}
 			});
 		}
-		else {
-			ColorConsole.passive(
-				'Rendering, but not children for: ' + this.name
-			);
-		}
 
 		// Post
 		this.postrender();
 	}
-
 
 	// region: State
 	// ------------------------------------------------------------------------
@@ -432,12 +415,8 @@ export default class ViewBase extends Vue {
 	public setState(type: string, namespace: string = 'state'): void {
 		if (this.elementExists()) {
 			this.$el.classList.add(namespace + '-' + type);
-		}
-		else {
-			ColorConsole.warn(
-				'Could not set state `' + type + '` of ns `' + namespace + '`',
-				this.$el
-			);
+		} else {
+			console.warn('Could not set state `' + type + '` of ns `' + namespace + '`', this.$el);
 		}
 	}
 
@@ -463,8 +442,7 @@ export default class ViewBase extends Vue {
 	public toggleState(type: string, namespace: string = 'state'): boolean {
 		if (this.hasState(type, namespace)) {
 			this.unsetState(type, namespace);
-		}
-		else {
+		} else {
 			this.setState(type, namespace);
 		}
 
@@ -497,7 +475,6 @@ export default class ViewBase extends Vue {
 
 	// endregion: State
 
-
 	// region: Events
 	// ------------------------------------------------------------------------
 
@@ -508,7 +485,7 @@ export default class ViewBase extends Vue {
 	 * @param object args
 	 * @return void
 	 */
-	 public dispatch(eventName: string, detail: any = null): void {
+	public dispatch(eventName: string, detail: any = null): void {
 		eventName = this.cid + ':' + eventName;
 		const event: CustomEvent = new CustomEvent(eventName, { detail });
 		window.dispatchEvent(event);
@@ -553,7 +530,6 @@ export default class ViewBase extends Vue {
 
 	// endregion: Events
 
-
 	// region: Event Handlers
 	// -------------------------------------------------------------------------
 
@@ -568,7 +544,7 @@ export default class ViewBase extends Vue {
 	 * @param Event e
 	 * @return void
 	 */
-	protected  Handle_OnDebouncedEvent(e: Event): void {
+	protected Handle_OnDebouncedEvent(e: Event): void {
 		let i;
 
 		for (i in this.debouncedEvents) {
@@ -584,7 +560,6 @@ export default class ViewBase extends Vue {
 
 	// endregion: Event Handlers
 
-
 	// region: Animation
 	// ------------------------------------------------------------------------
 
@@ -596,15 +571,14 @@ export default class ViewBase extends Vue {
 	 *
 	 * @return void
 	 */
-	 public AnimateInStart(): void {
+	public AnimateInStart(): void {
 		if (!this.allowAnimation) {
 			return;
 		}
 
 		if (this.animator) {
 			// Do nothing
-		}
-		else {
+		} else {
 			// Set starting state BEFORE AnimateOut
 			gsap.set(this.$el, {
 				opacity: 0.0,
@@ -632,8 +606,7 @@ export default class ViewBase extends Vue {
 		// Prioritize custom animator
 		if (this.animator) {
 			return this.animator.AnimateIn(callback);
-		}
-		else {
+		} else {
 			// Animate in
 			gsap.to(this.$el, this.baseAnimationSpeed, {
 				onComplete: () => {
@@ -656,8 +629,7 @@ export default class ViewBase extends Vue {
 
 		if (this.animator) {
 			// Do nothing
-		}
-		else {
+		} else {
 			// Set starting state BEFORE AnimateOut
 			gsap.set(this.$el, {
 				opacity: 1.0,
@@ -685,8 +657,7 @@ export default class ViewBase extends Vue {
 		// Prioritize custom animator
 		if (this.animator) {
 			return this.animator.AnimateOut(callback);
-		}
-		else {
+		} else {
 			gsap.to(this.$el, this.baseAnimationSpeed, {
 				onComplete: () => {
 					callback();

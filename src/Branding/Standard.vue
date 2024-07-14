@@ -1,5 +1,11 @@
 <template>
-	<div class="chalky branding-standard branding-logo-text" :class="className">
+	<div class="chalky branding-standard branding-logo-text" v-bind:class="{
+		'on-light': mode === 'light',
+		'on-dark': mode === 'dark',
+		'size-sm': size === 'sm',
+		'size-md': size === 'md',
+		'size-lg': size === 'lg',
+	}">
 		<h2>ChalkySticks</h2>
 	</div>
 </template>
@@ -18,24 +24,10 @@
 		/**
 		 * @type string
 		 */
-		public get className(): string {
-			return [
-				this.mode === 'dark' ? 'on-light' : 'on-dark',
-				'size-' + this.size,
-			].join(' ');
-		}
-
-		/**
-		 * Mode
-		 * e.g. dark, light
-		 *
-		 * @type string
-		 */
 		@Prop({
 			default: 'dark',
-			type: String,
 		})
-		public mode!: string;
+		public mode!: 'dark' | 'light';
 
 		/**
 		 * Size of badge
@@ -45,14 +37,7 @@
 		 */
 		@Prop({
 			default: 'sm',
-			type: String,
 		})
-		public size!: string;
+		public size!: 'sm' | 'md' | 'lg';
 	}
 </script>
-
-<style lang="scss">
-	.chalky.branding-standard {
-
-	}
-</style>

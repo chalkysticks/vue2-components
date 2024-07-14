@@ -1,5 +1,14 @@
 <template>
-	<i class="chalky branding-badge branding-chalky-badge" :class="className"></i>
+	<i
+		class="chalky branding-badge branding-chalky-badge"
+		v-bind:class="{
+			'on-light': mode === 'light',
+			'on-dark': mode === 'dark',
+			'size-sm': size === 'sm',
+			'size-md': size === 'md',
+			'size-lg': size === 'lg',
+		}"
+	></i>
 </template>
 
 <script lang="ts">
@@ -11,31 +20,15 @@
 	 * @package Branding
 	 * @project ChalkySticks SDK Vue2.0 Components
 	 */
-	@Component({})
+	@Component
 	export default class BrandingBadge extends Base {
 		/**
-		 * Class Name
-		 *
-		 * @type string
-		 */
-		public get className(): string {
-			return [
-				this.mode === 'dark' ? 'on-light' : 'on-dark',
-				'size-' + this.size,
-			].join(' ');
-		}
-
-		/**
-		 * Mode
-		 * e.g. dark, light
-		 *
 		 * @type string
 		 */
 		@Prop({
 			default: 'dark',
-			type: String,
 		})
-		public mode!: string;
+		public mode!: 'dark' | 'light';
 
 		/**
 		 * Size of badge
@@ -45,14 +38,7 @@
 		 */
 		@Prop({
 			default: 'sm',
-			type: String,
 		})
-		public size!: string;
+		public size!: 'sm' | 'md' | 'lg';
 	}
 </script>
-
-<style lang="scss">
-	.chalky.branding-badge {
-
-	}
-</style>

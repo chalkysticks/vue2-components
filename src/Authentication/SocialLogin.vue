@@ -19,9 +19,8 @@
 </template>
 
 <script lang="ts">
-	import Environment from '../Core/Environment';
+	import * as ChalkySticks from '@chalkysticks/sdk';
 	import ViewBase from '../Core/Base';
-	import { Authentication, Core } from '@chalkysticks/sdk';
 	import { Component, Prop } from 'vue-property-decorator';
 
 	/**
@@ -29,7 +28,7 @@
 	 * @package Authentication
 	 * @project ChalkySticks SDK Vue2.0 Components
 	 */
-	@Component({ })
+	@Component
 	export default class AuthenticationSocialLogin extends ViewBase {
 		/**
 		 * Key to store the token on
@@ -49,11 +48,12 @@
 		 * @type ChalkySticks/Model/Authentication
 		 */
 		@Prop({
-			default: () => new Authentication.Model.Authentication(undefined, {
-				baseUrl: Core.Constants.API_URL_V1,
-			})
+			default: () =>
+				new ChalkySticks.Model.Authentication(undefined, {
+					baseUrl: ChalkySticks.Core.Constants.API_URL_V1,
+				}),
 		})
-		public authModel!: Authentication.Model.Authentication;
+		public authModel;
 
 		/**
 		 * Check for token and save it to the object
@@ -83,9 +83,8 @@
 			// Save to local storage
 			localStorage.setItem(AuthenticationSocialLogin.storageKey, token);
 
-			return AuthenticationSocialLogin.token = token;
+			return (AuthenticationSocialLogin.token = token);
 		}
-
 
 		// region: Event Handlers
 		// ---------------------------------------------------------------------

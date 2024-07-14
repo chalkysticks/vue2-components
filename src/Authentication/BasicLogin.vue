@@ -1,9 +1,12 @@
 <template>
-	<div class="chalky authentication-basiclogin" :class="{
-		'state-loading': this.authModel.loading,
-		'state-login-failed': this.loginFailed,
-		'state-login-success': this.authModel.isLoggedIn(),
-	}">
+	<div
+		class="chalky authentication-basiclogin"
+		v-bind:class="{
+			'state-loading': this.authModel.loading,
+			'state-login-failed': this.loginFailed,
+			'state-login-success': this.authModel.isLoggedIn(),
+		}"
+	>
 		<form v-on:submit="Handle_OnSubmit">
 			<fieldset>
 				<legend>Login</legend>
@@ -17,18 +20,12 @@
 						type="email"
 						v-model="email"
 						v-on:keydown="Handle_OnKeydownInput"
-						/>
+					/>
 				</label>
 
 				<label>
 					<h3>Password</h3>
-					<input
-						minlength="6"
-						name="password"
-						type="password"
-						v-model="password"
-						v-on:keydown="Handle_OnKeydownInput"
-						/>
+					<input minlength="6" name="password" type="password" v-model="password" v-on:keydown="Handle_OnKeydownInput" />
 				</label>
 
 				<footer>
@@ -37,10 +34,8 @@
 						&nbsp;
 						<span>Welcome {{ this.authModel.user.getName() }}</span>
 					</div>
-					<button name="btnLogin" type="submit" v-else>
-						<i class="fa fa-user icon"></i>
-						<span>Login</span>
-					</button>
+
+					<ButtonLogin v-else />
 				</footer>
 
 				<div class="alert alert-danger" v-if="this.loginFailed">
@@ -54,9 +49,8 @@
 </template>
 
 <script lang="ts">
-	import Environment from '../Core/Environment';
+	import * as ChalkySticks from '@chalkysticks/sdk';
 	import ViewBase from '../Core/Base';
-	import { Authentication, Core } from '@chalkysticks/sdk';
 	import { Component, Prop } from 'vue-property-decorator';
 
 	/**
@@ -64,17 +58,18 @@
 	 * @package Authentication
 	 * @project ChalkySticks SDK Vue2.0 Components
 	 */
-	@Component({})
+	@Component
 	export default class AuthenticationBasicLogin extends ViewBase {
 		/**
 		 * @type ChalkySticks/Model/Authentication
 		 */
 		@Prop({
-			default: () => new Authentication.Model.Authentication(undefined, {
-				baseUrl: Core.Constants.API_URL_V1,
-			})
+			default: () =>
+				new ChalkySticks.Model.Authentication(undefined, {
+					baseUrl: ChalkySticks.Core.Constants.API_URL_V1,
+				}),
 		})
-		public authModel!: Authentication.Model.Authentication;
+		public authModel;
 
 		/**
 		 * @type string
@@ -117,16 +112,15 @@
 		 *
 		 * @return Promise<ChalkySticks.Model.User>
 		 */
-		public async login(): Promise <Core.Model.User> {
+		public async login(): Promise<typeof ChalkySticks.Model.User> {
 			// Reset login failure
 			this.loginFailed = false;
 
 			// Attempt login
 			try {
 				return await this.authModel.login(this.email, this.password);
-			}
-			catch (e) {
-				throw new Error('User could not be logged in.');
+			} catch (e) {
+				// this.$emit('error');
 			}
 		}
 
@@ -148,6 +142,7 @@
 		protected Handle_OnFailure(): void {
 			this.message = 'Login attempt unsuccessful';
 			this.loginFailed = true;
+			this.$emit('error');
 
 			setTimeout(() => {
 				this.loginFailed = false;
@@ -168,7 +163,8 @@
 		 * @return void
 		 */
 		protected Handle_OnSuccess(): void {
-			console.log('success');
+			this.$emit('login', this.authModel.user);
+			this.$emit('success', this.authModel.user);
 		}
 
 		// endregion: Event Handlers

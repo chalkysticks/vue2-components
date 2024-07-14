@@ -1,5 +1,5 @@
 <template>
-	<div class="chalky authentication-navigation" :class="{ 'state-logged-in': authModel.isLoggedIn() }">
+	<div class="chalky authentication-navigation" v-bind:class="{ 'state-logged-in': authModel.isLoggedIn() }">
 		<!-- When we're logged out -->
 		<section class="logged-out">
 			<button class="type-light" v-on:click="Handle_OnClickSignIn">
@@ -10,9 +10,7 @@
 		<!-- When we're logged in -->
 		<section class="logged-in">
 			<button class="btn btn-plain no-hover" style="overflow: visible">
-				<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-					12
-				</span>
+				<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">12</span>
 				<i class="fa fa-bell"></i>
 			</button>
 			<button class="btn btn-plain no-hover">
@@ -22,16 +20,16 @@
 
 		<!-- Helpers -->
 		<section class="utility" v-bind:class="{ 'd-none': !showLogin }">
-			<AuthenticationAuthPanel :authModel="authModel" class="type-modal" ref="authPanel" />
+			<AuthenticationAuthPanel v-bind:authModel="authModel" class="type-modal" ref="authPanel" />
 		</section>
 	</div>
 </template>
 
 <script lang="ts">
+	import * as ChalkySticks from '@chalkysticks/sdk';
 	import AuthenticationAuthPanel from './AuthPanel.vue';
 	import Environment from '../Core/Environment';
 	import ViewBase from '../Core/Base';
-	import { Authentication, Core } from '@chalkysticks/sdk';
 	import { Component, Prop, Ref } from 'vue-property-decorator';
 
 	/**
@@ -56,11 +54,12 @@
 		 * @type ChalkySticks/Model/Authentication
 		 */
 		@Prop({
-			default: () => new Authentication.Model.Authentication(undefined, {
-				baseUrl: Core.Constants.API_URL_V1,
-			})
+			default: () =>
+				new ChalkySticks.Model.Authentication(undefined, {
+					baseUrl: ChalkySticks.Core.Constants.API_URL_V1,
+				}),
 		})
-		public authModel!: Authentication.Model.Authentication;
+		public authModel;
 
 		/**
 		 * @return boolean

@@ -24,7 +24,6 @@
 
 > ChalkySticks themed components for Vue2.x / TypeScript platforms
 
-
 ## Installation
 
 Open your terminal and type in
@@ -36,11 +35,10 @@ $ npm install -D @chalkysticks/vue2
 Use them in your Vue2.x project by importing them
 
 ```typescript
-
 import ChalkySticks from '@chalkysticks/vue2';
 
 Vue.use(ChalkySticks, {
-    api_url: 'http://localhost:3333',
+	api_url: 'http://localhost:3333',
 });
 ```
 
@@ -65,16 +63,16 @@ import { BrandingBadge } from '@chalkysticks/vue2';
 
 ```html
 <div>
-    <BrandingBadge size="sm" mode="dark" />
-    <BrandingBadge size="sm" mode="light" />
+	<BrandingBadge size="sm" mode="dark" />
+	<BrandingBadge size="sm" mode="light" />
 </div>
 <div>
-    <BrandingBadge mode="dark" />
-    <BrandingBadge mode="light" />
+	<BrandingBadge mode="dark" />
+	<BrandingBadge mode="light" />
 </div>
 <div>
-    <BrandingBadge size="lg" mode="dark" />
-    <BrandingBadge size="lg" mode="light" />
+	<BrandingBadge size="lg" mode="dark" />
+	<BrandingBadge size="lg" mode="light" />
 </div>
 ```
 
@@ -90,8 +88,8 @@ import { BrandingStandard } from '@chalkysticks/vue2';
 
 ```html
 <div class="d-flex">
-    <BrandingStandard class="background-chalky-white p-3" mode="dark" />
-    <BrandingStandard class="background-chalky-blue p-3" mode="light" />
+	<BrandingStandard class="background-chalky-white p-3" mode="dark" />
+	<BrandingStandard class="background-chalky-blue p-3" mode="light" />
 </div>
 ```
 

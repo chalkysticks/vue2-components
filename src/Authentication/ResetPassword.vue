@@ -1,12 +1,9 @@
 <template>
-	<div class="chalky authentication-resetpassword">
-		Sign In
-		(opens dialog)
-		Or avatars
-	</div>
+	<div class="chalky authentication-resetpassword">Sign In (opens dialog) Or avatars</div>
 </template>
 
 <script lang="ts">
+	import * as ChalkySticks from '@chalkysticks/sdk';
 	import ViewBase from '../Core/Base';
 	import Environment from '../Core/Environment';
 	import { Component, Prop } from 'vue-property-decorator';
@@ -16,7 +13,7 @@
 	 * @package Authentication
 	 * @project ChalkySticks SDK Vue2.0 Components
 	 */
-	@Component({})
+	@Component
 	export default class AuthenticationResetPassword extends ViewBase {
 		/**
 		 * Function names to bind to class, typically used for event handlers
@@ -26,8 +23,7 @@
 		 *
 		 * @type string[]
 		 */
-		public bindings: string[] = [
-		];
+		public bindings: string[] = [];
 
 		/**
 		 * Constructor
@@ -40,5 +36,6 @@
 
 <style lang="scss">
 	.chalky.authentication-resetpassword {
+		// Not implemented
 	}
 </style>

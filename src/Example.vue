@@ -1,5 +1,5 @@
 <template>
-	<div id="app" style="background: var(--chalky-blue); color: #fff;">
+	<div class="app" style="background: var(--chalky-blue); color: #fff">
 		<section class="level-0">
 			<header>
 				<h2>Branding</h2>
@@ -8,28 +8,48 @@
 			<section class="level-1">
 				<header>
 					<h3>Badges</h3>
+
+					<dl>
+						<dt>Size</dt>
+						<dd>sm, md, lg</dd>
+
+						<dt>Mode</dt>
+						<dd>dark, light</dd>
+					</dl>
 				</header>
 				<div>
-					<BrandingBadge size="sm" mode="dark" />
-					<BrandingBadge size="sm" mode="light" />
+					<ChalkyBrandingBadge size="sm" mode="dark" />
+					<ChalkyBrandingBadge size="sm" mode="light" />
 				</div>
 				<div>
-					<BrandingBadge size="md" mode="dark" />
-					<BrandingBadge size="md" mode="light" />
+					<ChalkyBrandingBadge size="md" mode="dark" />
+					<ChalkyBrandingBadge size="md" mode="light" />
 				</div>
 				<div>
-					<BrandingBadge size="lg" mode="dark" />
-					<BrandingBadge size="lg" mode="light" />
+					<ChalkyBrandingBadge size="lg" mode="dark" />
+					<ChalkyBrandingBadge size="lg" mode="light" />
 				</div>
 			</section>
 
 			<section class="level-1">
 				<header>
 					<h3>Standard Branding</h3>
+
+					<dl>
+						<dt>Class</dt>
+						<dd>
+							background-chalky-white,
+							<br />
+							background-chalky-blue
+						</dd>
+
+						<dt>Mode</dt>
+						<dd>dark, light</dd>
+					</dl>
 				</header>
 				<div class="d-flex">
-					<BrandingStandard class="background-chalky-white p-3" mode="dark" />
-					<BrandingStandard class="background-chalky-blue p-3" mode="light" />
+					<ChalkyBrandingStandard class="background-chalky-white p-3" mode="light" />
+					<ChalkyBrandingStandard class="background-chalky-blue p-3" mode="dark" />
 				</div>
 			</section>
 		</section>
@@ -43,12 +63,18 @@
 					<h3>Standard Login</h3>
 					<p>
 						<small>
-							Submit won't work here because <br />of the modal for some reason.
+							Submit won't work here because
+							<br />
+							of the modal for some reason.
 						</small>
 					</p>
 				</header>
 				<div>
-					<AuthenticationBasicLogin :authModel="authModel" />
+					<ChalkyAuthenticationBasicLogin
+						v-bind:authModel="authModel"
+						v-on:success="Handle_OnLoginSuccess"
+						v-on:error="Handle_OnLoginError"
+					/>
 				</div>
 			</section>
 			<section class="level-1">
@@ -56,7 +82,7 @@
 					<h3>Social Login</h3>
 				</header>
 				<div>
-					<AuthenticationSocialLogin />
+					<ChalkyAuthenticationSocialLogin />
 				</div>
 			</section>
 			<section class="level-1">
@@ -64,7 +90,11 @@
 					<h3>Login Header</h3>
 				</header>
 				<div>
-					<AuthenticationNavigation :authModel="authModel" />
+					<ChalkyAuthenticationNavigation
+						v-bind:authModel="authModel"
+						v-on:success="Handle_OnLoginSuccess"
+						v-on:error="Handle_OnLoginError"
+					/>
 				</div>
 			</section>
 			<section class="level-1">
@@ -72,7 +102,11 @@
 					<h3>Auth Panel</h3>
 				</header>
 				<div>
-					<AuthenticationAuthPanel :authModel="authModel" />
+					<ChalkyAuthenticationAuthPanel
+						v-bind:authModel="authModel"
+						v-on:success="Handle_OnLoginSuccess"
+						v-on:error="Handle_OnLoginError"
+					/>
 				</div>
 			</section>
 		</section>
@@ -89,14 +123,14 @@
 					<p>
 						<strong>@todo</strong>
 					</p>
-					<p style="width: 250px;">
-						I would like to hook this up to a Players API endpoint
-						that pulls in specific player info. Also create a new
-						schedule view like Hulu / YTTV.
+					<p style="width: 250px">
+						I would like to hook this up to a Players API endpoint that pulls in specific player info.
+						<br />
+						Also create a new schedule view like Hulu / YTTV.
 					</p>
 				</header>
 				<div>
-					<TvVideoTheater ref="videoTheater" channel="billiards" />
+					<ChalkyTvVideoTheater ref="videoTheater" channel="billiards" />
 
 					<form>
 						<select v-on:change="Handle_OnChangeTvChannel">
@@ -127,7 +161,7 @@
 					<p><small>@todo add location</small></p>
 				</header>
 				<div>
-					<VenueList />
+					<ChalkyVenueList />
 				</div>
 			</section>
 
@@ -136,7 +170,7 @@
 					<h3>Venue Card</h3>
 				</header>
 				<div>
-					<VenueCard />
+					<ChalkyVenueCard />
 				</div>
 			</section>
 
@@ -145,7 +179,7 @@
 					<h3>Venue Map</h3>
 				</header>
 				<div>
-					<VenueMap />
+					<ChalkyVenueMap />
 				</div>
 			</section>
 		</section>
@@ -160,7 +194,7 @@
 
 <script lang="ts">
 	import AuthenticationAuthPanel from '@/Authentication/AuthPanel.vue';
-	import TvVideoTheater from '@/TV/TvVideoTheater.vue';
+	import ChalkyTvVideoTheater from '@/TV/TvVideoTheater.vue';
 	import { Component, Prop, Ref, Vue } from 'vue-property-decorator';
 	import { Authentication, Core } from '@chalkysticks/sdk';
 	import { VideoTheaterChannel } from '@/TV/VideoTheater.vue';
@@ -175,20 +209,35 @@
 		 * @type TVVideoTheater
 		 */
 		@Ref('videoTheater')
-		readonly videoTheater!: typeof TvVideoTheater;
+		readonly videoTheater!: typeof ChalkyTvVideoTheater;
 
 		/**
 		 * @type ChalkySticks/Model/Authentication
 		 */
 		@Prop({
-			default: () => new Authentication.Model.Authentication(undefined, {
-				baseUrl: Core.Constants.API_URL_V1,
-			})
+			default: () =>
+				new Authentication.Model.Authentication(undefined, {
+					baseUrl: Core.Constants.API_URL_V1,
+				}),
 		})
 		public authModel!: Authentication.Model.Authentication;
 
 		// region: Event Handlers
 		// ---------------------------------------------------------------------------
+
+		/**
+		 * @return Promise<void>
+		 */
+		protected async Handle_OnLoginError(): Promise<void> {
+			console.log('Login error');
+		}
+
+		/**
+		 * @return Promise<void>
+		 */
+		protected async Handle_OnLoginSuccess(): Promise<void> {
+			console.log('Login success');
+		}
 
 		/**
 		 * @param Event e
@@ -208,7 +257,7 @@
 </script>
 
 <style lang="scss">
-	#app {
+	.app {
 		-moz-osx-font-smoothing: grayscale;
 		-webkit-font-smoothing: antialiased;
 		color: #2c3e50;
@@ -233,7 +282,7 @@
 		}
 
 		h2 {
-			color: #D1D1D1;
+			color: #d1d1d1;
 			font-size: 1.75rem;
 			font-weight: 700;
 			letter-spacing: -0.05rem;
