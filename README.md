@@ -29,7 +29,7 @@
 Open your terminal and type in
 
 ```sh
-$ npm install -D @chalkysticks/vue2-components
+$ yarn add chalkysticks/vue2-components
 ```
 
 Use them in your Vue2.x project by importing them
