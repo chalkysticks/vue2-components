@@ -22,6 +22,22 @@ import VenueList from './Venue/List.vue';
 import VenueMap from './Venue/Map.vue';
 import ViewBase from './Core/Base';
 
+const components = {
+	AuthenticationAuthPanel,
+	AuthenticationBasicLogin,
+	AuthenticationForgotPassword,
+	AuthenticationNavigation,
+	AuthenticationResetPassword,
+	AuthenticationSocialLogin,
+	BrandingBadge,
+	BrandingStandard,
+	ButtonLogin,
+	TvVideoTheater,
+	VenueCard,
+	VenueList,
+	VenueMap,
+};
+
 const ChalkySticks = {
 	/**
 	 * Install ChalkySticks Vue2
@@ -54,7 +70,8 @@ const ChalkySticks = {
 		};
 
 		Object.keys(components).forEach((name) => {
-			Vue.component(`Chalky${name}`, components[name]);
+			const component = components[name as keyof typeof components];
+			Vue.component(`Chalky${name}`, component);
 		});
 	},
 };

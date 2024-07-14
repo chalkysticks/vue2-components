@@ -6,25 +6,20 @@
 		"experimentalDecorators": true,
 		"forceConsistentCasingInFileNames": true,
 		"jsx": "preserve",
-		"lib": ["es2020", "dom", "dom.iterable", "scripthost"],
-		"module": "es2020",
+		"lib": ["esnext", "dom", "dom.iterable", "scripthost"],
+		"module": "esnext",
 		"moduleResolution": "node",
 		"paths": {
-			"@/*": ["src/*"]
+			"@/*": ["src/*"],
+			"@chalkysticks/sdk": ["node_modules/@chalkysticks/sdk/build/esm/index.d.ts"]
 		},
 		"resolveJsonModule": true,
 		"skipLibCheck": true,
 		"sourceMap": true,
 		"strict": false,
-		"target": "es2020",
-		"typeRoots": [
-			"node_modules/@types",
-			"types"
-		],
-		"types": [
-			"node",
-			"webpack-env"
-		],
+		"target": "esnext",
+		"types": ["node", "webpack-env"],
+		"typeRoots": ["node_modules/@types", "types"],
 		"useDefineForClassFields": false
 	},
 	"exclude": ["node_modules"],

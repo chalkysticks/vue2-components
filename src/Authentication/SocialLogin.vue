@@ -19,7 +19,7 @@
 </template>
 
 <script lang="ts">
-	import * as ChalkySticks from '@chalkysticks/sdk';
+	import ChalkySticks from '@chalkysticks/sdk';
 	import ViewBase from '../Core/Base';
 	import { Component, Prop } from 'vue-property-decorator';
 
@@ -53,7 +53,7 @@
 					baseUrl: ChalkySticks.Core.Constants.API_URL_V1,
 				}),
 		})
-		public authModel;
+		public authModel: ChalkySticks.Model.Authentication;
 
 		/**
 		 * Check for token and save it to the object

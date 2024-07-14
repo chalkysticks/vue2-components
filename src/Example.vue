@@ -194,9 +194,9 @@
 
 <script lang="ts">
 	import AuthenticationAuthPanel from '@/Authentication/AuthPanel.vue';
-	import ChalkyTvVideoTheater from '@/TV/TvVideoTheater.vue';
+	import ChalkySticks from '@chalkysticks/sdk';
+	import ChalkyVideoTheater from '@/TV/TvVideoTheater.vue';
 	import { Component, Prop, Ref, Vue } from 'vue-property-decorator';
-	import { Authentication, Core } from '@chalkysticks/sdk';
 	import { VideoTheaterChannel } from '@/TV/VideoTheater.vue';
 
 	@Component({
@@ -206,21 +206,21 @@
 	})
 	export default class Example extends Vue {
 		/**
-		 * @type TVVideoTheater
+		 * @type ChalkyVideoTheater
 		 */
 		@Ref('videoTheater')
-		readonly videoTheater!: typeof ChalkyTvVideoTheater;
+		readonly videoTheater!: typeof ChalkyVideoTheater;
 
 		/**
 		 * @type ChalkySticks/Model/Authentication
 		 */
 		@Prop({
 			default: () =>
-				new Authentication.Model.Authentication(undefined, {
-					baseUrl: Core.Constants.API_URL_V1,
+				new ChalkySticks.Model.Authentication(undefined, {
+					baseUrl: ChalkySticks.Core.Constants.API_URL_V1,
 				}),
 		})
-		public authModel!: Authentication.Model.Authentication;
+		public authModel!: ChalkySticks.Model.Authentication;
 
 		// region: Event Handlers
 		// ---------------------------------------------------------------------------

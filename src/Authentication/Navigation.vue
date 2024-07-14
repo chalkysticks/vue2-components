@@ -26,7 +26,7 @@
 </template>
 
 <script lang="ts">
-	import * as ChalkySticks from '@chalkysticks/sdk';
+	import ChalkySticks from '@chalkysticks/sdk';
 	import AuthenticationAuthPanel from './AuthPanel.vue';
 	import Environment from '../Core/Environment';
 	import ViewBase from '../Core/Base';
@@ -59,7 +59,7 @@
 					baseUrl: ChalkySticks.Core.Constants.API_URL_V1,
 				}),
 		})
-		public authModel;
+		public authModel: ChalkySticks.Model.Authentication;
 
 		/**
 		 * @return boolean

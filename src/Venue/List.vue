@@ -1,5 +1,5 @@
 <template>
-	<div class="chalky venue-list" v-bind:class="{ }">
+	<div class="chalky venue-list" v-bind:class="{}">
 		<VenueCard v-bind:key="venueModel.id" v-for="venueModel in venueCollection" v-bind:venueModel="venueModel" />
 
 		<footer class="actions">
@@ -10,7 +10,7 @@
 </template>
 
 <script lang="ts">
-	import * as ChalkySticks from '@chalkysticks/sdk';
+	import ChalkySticks from '@chalkysticks/sdk';
 	import ViewBase from '../Core/Base';
 	import { Component, Prop } from 'vue-property-decorator';
 
@@ -29,14 +29,15 @@
 		 * @type ChalkySticks/Collection/Venue
 		 */
 		@Prop({
-			default: () => new ChalkySticks.Collection.Venue({
-				baseUrl: ChalkySticks.Core.Constants.API_URL_V1,
-				qp: {
-					limit: 5,
-				},
-			}),
+			default: () =>
+				new ChalkySticks.Collection.Venue({
+					baseUrl: ChalkySticks.Core.Constants.API_URL_V1,
+					qp: {
+						limit: 5,
+					},
+				}),
 		})
-		public venueCollection;
+		public venueCollection: ChalkySticks.Collection.Venue;
 
 		/**
 		 * @constructor
@@ -99,10 +100,18 @@
 			grid-template-rows: auto auto auto;
 			margin: 1em 0;
 
-			.gallery { grid-area: 1 / 1 / 4 / 2; }
-			.title { grid-area: 1 / 2 / 2 / 3; }
-			.address { grid-area: 2 / 2 / 3 / 3; }
-			.actions { grid-area: 3 / 2 / 4 / 3; }
+			.gallery {
+				grid-area: 1 / 1 / 4 / 2;
+			}
+			.title {
+				grid-area: 1 / 2 / 2 / 3;
+			}
+			.address {
+				grid-area: 2 / 2 / 3 / 3;
+			}
+			.actions {
+				grid-area: 3 / 2 / 4 / 3;
+			}
 
 			.gallery {
 				margin-right: 1rem;

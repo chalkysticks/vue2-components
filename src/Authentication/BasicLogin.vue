@@ -49,7 +49,7 @@
 </template>
 
 <script lang="ts">
-	import * as ChalkySticks from '@chalkysticks/sdk';
+	import ChalkySticks from '@chalkysticks/sdk';
 	import ViewBase from '../Core/Base';
 	import { Component, Prop } from 'vue-property-decorator';
 
@@ -69,7 +69,7 @@
 					baseUrl: ChalkySticks.Core.Constants.API_URL_V1,
 				}),
 		})
-		public authModel;
+		public authModel: ChalkySticks.Model.Authentication;
 
 		/**
 		 * @type string
@@ -112,7 +112,7 @@
 		 *
 		 * @return Promise<ChalkySticks.Model.User>
 		 */
-		public async login(): Promise<typeof ChalkySticks.Model.User> {
+		public async login(): Promise<ChalkySticks.Model.User> {
 			// Reset login failure
 			this.loginFailed = false;
 
