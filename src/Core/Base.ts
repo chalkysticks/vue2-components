@@ -7,7 +7,6 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
  * @package Core
  * @project ChalkySticks SDK Vue2.0 Components
  */
-@Component({})
 export default class ViewBase extends Vue {
 	/**
 	 * Reference to Window

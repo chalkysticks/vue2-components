@@ -10972,8 +10972,8 @@ exports.deprecate = function (fn, msg) {
 };
 var debugs = {};
 var debugEnvRegex = /^$/;
-if (({"NODE_ENV":"production","VUE_APP_VERSION":"1.4.0","BASE_URL":"/"}).NODE_DEBUG) {
-  var debugEnv = ({"NODE_ENV":"production","VUE_APP_VERSION":"1.4.0","BASE_URL":"/"}).NODE_DEBUG;
+if (({"NODE_ENV":"production","VUE_APP_VERSION":"1.4.2","BASE_URL":"/"}).NODE_DEBUG) {
+  var debugEnv = ({"NODE_ENV":"production","VUE_APP_VERSION":"1.4.2","BASE_URL":"/"}).NODE_DEBUG;
   debugEnv = debugEnv.replace(/[|\\{}()[\]^$+?.]/g, '\\$&').replace(/\*/g, '.*').replace(/,/g, '$|^').toUpperCase();
   debugEnvRegex = new RegExp('^' + debugEnv + '$', 'i');
 }
@@ -17532,7 +17532,7 @@ __webpack_require__.d(__webpack_exports__, {
   VenueCard: () => (/* reexport */ Card),
   VenueList: () => (/* reexport */ List),
   VenueMap: () => (/* reexport */ entry_lib_Map),
-  ViewBase: () => (/* reexport */ Core_Base),
+  ViewBase: () => (/* reexport */ ViewBase),
   "default": () => (/* binding */ entry_lib)
 });
 
@@ -19194,13 +19194,6 @@ var index_umd = __webpack_require__(5916);
 
 
 
-var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
-  var c = arguments.length,
-    r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
-    d;
-  if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-  return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
 
 
 
@@ -19209,7 +19202,7 @@ var __decorate = undefined && undefined.__decorate || function (decorators, targ
  * @package Core
  * @project ChalkySticks SDK Vue2.0 Components
  */
-let ViewBase = class ViewBase extends index_umd.Vue {
+class ViewBase extends index_umd.Vue {
   /**
    * Reference to Window
    */
@@ -19781,11 +19774,9 @@ let ViewBase = class ViewBase extends index_umd.Vue {
       });
     }
   }
-};
-ViewBase = __decorate([(0,index_umd.Component)({})], ViewBase);
-/* harmony default export */ const Core_Base = (ViewBase);
+}
 ;// CONCATENATED MODULE: ./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib/index.js!./node_modules/ts-loader/index.js??clonedRuleSet-41.use[2]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Authentication/BasicLogin.vue?vue&type=script&lang=ts
-var BasicLoginvue_type_script_lang_ts_decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
+var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
   var c = arguments.length,
     r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
     d;
@@ -19800,7 +19791,7 @@ var BasicLoginvue_type_script_lang_ts_decorate = undefined && undefined.__decora
  * @package Authentication
  * @project ChalkySticks SDK Vue2.0 Components
  */
-let AuthenticationBasicLogin = class AuthenticationBasicLogin extends Core_Base {
+let AuthenticationBasicLogin = class AuthenticationBasicLogin extends ViewBase {
   constructor() {
     super(...arguments);
     /**
@@ -19888,12 +19879,12 @@ let AuthenticationBasicLogin = class AuthenticationBasicLogin extends Core_Base 
     this.$emit('success', this.authModel.user);
   }
 };
-BasicLoginvue_type_script_lang_ts_decorate([(0,index_umd.Prop)({
+__decorate([(0,index_umd.Prop)({
   default: () => new esm.Model.Authentication(undefined, {
     baseUrl: esm.Core.Constants.API_URL_V1
   })
 })], AuthenticationBasicLogin.prototype, "authModel", void 0);
-AuthenticationBasicLogin = BasicLoginvue_type_script_lang_ts_decorate([index_umd.Component], AuthenticationBasicLogin);
+AuthenticationBasicLogin = __decorate([index_umd.Component], AuthenticationBasicLogin);
 /* harmony default export */ const BasicLoginvue_type_script_lang_ts = (AuthenticationBasicLogin);
 ;// CONCATENATED MODULE: ./src/Authentication/BasicLogin.vue?vue&type=script&lang=ts
  /* harmony default export */ const Authentication_BasicLoginvue_type_script_lang_ts = (BasicLoginvue_type_script_lang_ts); 
@@ -20070,7 +20061,7 @@ var AuthenticationSocialLogin_1;
  * @package Authentication
  * @project ChalkySticks SDK Vue2.0 Components
  */
-let AuthenticationSocialLogin = (_AuthenticationSocialLogin = class AuthenticationSocialLogin extends Core_Base {
+let AuthenticationSocialLogin = (_AuthenticationSocialLogin = class AuthenticationSocialLogin extends ViewBase {
   /**
    * Check for token and save it to the object
    *
@@ -20181,7 +20172,7 @@ var Badgevue_type_script_lang_ts_decorate = undefined && undefined.__decorate ||
  * @package Branding
  * @project ChalkySticks SDK Vue2.0 Components
  */
-let BrandingBadge = class BrandingBadge extends Core_Base {};
+let BrandingBadge = class BrandingBadge extends ViewBase {};
 Badgevue_type_script_lang_ts_decorate([(0,index_umd.Prop)({
   default: 'dark'
 })], BrandingBadge.prototype, "mode", void 0);
@@ -20245,7 +20236,7 @@ var Standardvue_type_script_lang_ts_decorate = undefined && undefined.__decorate
  * @package Branding
  * @project ChalkySticks SDK Vue2.0 Components
  */
-let BrandingStandard = class BrandingStandard extends Core_Base {};
+let BrandingStandard = class BrandingStandard extends ViewBase {};
 Standardvue_type_script_lang_ts_decorate([(0,index_umd.Prop)({
   default: 'dark'
 })], BrandingStandard.prototype, "mode", void 0);
@@ -20297,7 +20288,7 @@ var AuthPanelvue_type_script_lang_ts_decorate = undefined && undefined.__decorat
  * @package Authentication
  * @project ChalkySticks SDK Vue2.0 Components
  */
-let AuthenticationAuthPanel = class AuthenticationAuthPanel extends Core_Base {
+let AuthenticationAuthPanel = class AuthenticationAuthPanel extends ViewBase {
   // region: Event Handlers
   // ---------------------------------------------------------------------------
   /**
@@ -20412,7 +20403,7 @@ var ForgotPasswordvue_type_script_lang_ts_decorate = undefined && undefined.__de
  * @package Authentication
  * @project ChalkySticks SDK Vue2.0 Components
  */
-let AuthenticationForgotPassword = class AuthenticationForgotPassword extends Core_Base {
+let AuthenticationForgotPassword = class AuthenticationForgotPassword extends ViewBase {
   constructor() {
     super(...arguments);
     /**
@@ -20531,7 +20522,7 @@ var Navigationvue_type_script_lang_ts_decorate = undefined && undefined.__decora
  * @package Authentication
  * @project ChalkySticks SDK Vue2.0 Components
  */
-let AuthenticationNavigation = class AuthenticationNavigation extends Core_Base {
+let AuthenticationNavigation = class AuthenticationNavigation extends ViewBase {
   constructor() {
     super(...arguments);
     /**
@@ -20675,7 +20666,7 @@ var ResetPasswordvue_type_script_lang_ts_decorate = undefined && undefined.__dec
  * @package Authentication
  * @project ChalkySticks SDK Vue2.0 Components
  */
-let AuthenticationResetPassword = class AuthenticationResetPassword extends Core_Base {
+let AuthenticationResetPassword = class AuthenticationResetPassword extends ViewBase {
   /**
    * Constructor
    */
@@ -20760,7 +20751,7 @@ var Loginvue_type_script_lang_ts_decorate = undefined && undefined.__decorate ||
  * @package Button
  * @project @chalkysticks/vue2-components
  */
-let ButtonLogin = class ButtonLogin extends Core_Base {};
+let ButtonLogin = class ButtonLogin extends ViewBase {};
 ButtonLogin = Loginvue_type_script_lang_ts_decorate([index_umd.Component], ButtonLogin);
 /* harmony default export */ const Loginvue_type_script_lang_ts = (ButtonLogin);
 ;// CONCATENATED MODULE: ./src/Button/Login.vue?vue&type=script&lang=ts
@@ -20838,7 +20829,7 @@ const VideoTheaterChannel = {
  * @package TV
  * @project ChalkySticks SDK Vue2.0 Components
  */
-let VideoTheater = class VideoTheater extends Core_Base {
+let VideoTheater = class VideoTheater extends ViewBase {
   /**
    * Determine if we're using the schedule
    *
@@ -20937,7 +20928,7 @@ let VideoTheater = class VideoTheater extends Core_Base {
    */
   createPlayer(code, time = 0) {
     // YT not loaded
-    if (!Core_Base.window.YT || !Core_Base.window.YT.Player) {
+    if (!ViewBase.window.YT || !ViewBase.window.YT.Player) {
       setTimeout(() => {
         this.createPlayer(code, time);
       }, 250);
@@ -20950,7 +20941,7 @@ let VideoTheater = class VideoTheater extends Core_Base {
         videoId: code
       });
     } else {
-      this.api = new Core_Base.window.YT.Player(this.playerId, {
+      this.api = new ViewBase.window.YT.Player(this.playerId, {
         events: {
           onError: () => this.Handle_OnPlayerError(),
           onReady: e => this.Handle_OnPlayerReady(e),
@@ -21164,9 +21155,9 @@ let VideoTheater = class VideoTheater extends Core_Base {
   Handle_OnPlayerStateChange(e) {
     let state = e.data;
     // Flag playing state
-    this.isPlaying = e.data == Core_Base.window.YT.PlayerState.PLAYING;
+    this.isPlaying = e.data == ViewBase.window.YT.PlayerState.PLAYING;
     // Check if ended
-    if (e.data == Core_Base.window.YT.PlayerState.ENDED) {
+    if (e.data == ViewBase.window.YT.PlayerState.ENDED) {
       this.Handle_OnPlayerEnded();
     }
   }
@@ -21187,7 +21178,7 @@ let VideoTheater = class VideoTheater extends Core_Base {
     tag.src = 'https://www.youtube.com/iframe_api';
     const firstScriptTag = document.getElementsByTagName('script')[0];
     firstScriptTag?.parentNode?.insertBefore(tag, firstScriptTag);
-    Core_Base.window.onYouTubeIframeAPIReady = () => {
+    ViewBase.window.onYouTubeIframeAPIReady = () => {
       return this.Handle_OnYouTubeReady();
     };
   }
@@ -21339,7 +21330,7 @@ var Cardvue_type_script_lang_ts_decorate = undefined && undefined.__decorate || 
  * @package Venue
  * @project ChalkySticks SDK Vue2.0 Components
  */
-let VenueCard = class VenueCard extends Core_Base {
+let VenueCard = class VenueCard extends ViewBase {
   constructor() {
     super(...arguments);
     /**
@@ -21440,7 +21431,7 @@ var Listvue_type_script_lang_ts_decorate = undefined && undefined.__decorate || 
  * @package Venue
  * @project ChalkySticks SDK Vue2.0 Components
  */
-let VenueList = class VenueList extends Core_Base {
+let VenueList = class VenueList extends ViewBase {
   /**
    * @constructor
    */
@@ -21534,7 +21525,7 @@ var Mapvue_type_script_lang_ts_decorate = undefined && undefined.__decorate || f
  * @package Venue
  * @project ChalkySticks SDK Vue2.0 Components
  */
-let VenueMap = class VenueMap extends Core_Base {};
+let VenueMap = class VenueMap extends ViewBase {};
 Mapvue_type_script_lang_ts_decorate([(0,index_umd.Prop)({
   default: () => new esm.Collection.Venue()
 })], VenueMap.prototype, "venueCollection", void 0);
