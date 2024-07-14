@@ -53,7 +53,7 @@
 					baseUrl: ChalkySticks.Core.Constants.API_URL_V1,
 				}),
 		})
-		public authModel: ChalkySticks.Model.Authentication;
+		public authModel!: ChalkySticks.Model.Authentication;
 
 		/**
 		 * Check for token and save it to the object

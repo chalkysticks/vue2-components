@@ -10972,8 +10972,8 @@ exports.deprecate = function (fn, msg) {
 };
 var debugs = {};
 var debugEnvRegex = /^$/;
-if (({"NODE_ENV":"production","VUE_APP_VERSION":"1.2.0","BASE_URL":"/"}).NODE_DEBUG) {
-  var debugEnv = ({"NODE_ENV":"production","VUE_APP_VERSION":"1.2.0","BASE_URL":"/"}).NODE_DEBUG;
+if (({"NODE_ENV":"production","VUE_APP_VERSION":"1.3.0","BASE_URL":"/"}).NODE_DEBUG) {
+  var debugEnv = ({"NODE_ENV":"production","VUE_APP_VERSION":"1.3.0","BASE_URL":"/"}).NODE_DEBUG;
   debugEnv = debugEnv.replace(/[|\\{}()[\]^$+?.]/g, '\\$&').replace(/\*/g, '.*').replace(/,/g, '$|^').toUpperCase();
   debugEnvRegex = new RegExp('^' + debugEnv + '$', 'i');
 }
@@ -12463,7 +12463,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.chalky.authentication-authpanel{backg
 
 /***/ }),
 
-/***/ 1570:
+/***/ 436:
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -12516,7 +12516,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, ``, ""]);
 
 /***/ }),
 
-/***/ 4146:
+/***/ 4951:
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -12564,7 +12564,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, ``, ""]);
 
 /***/ }),
 
-/***/ 636:
+/***/ 6638:
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -12636,7 +12636,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.chalky.tv-videotheater{margin:0 auto;
 
 /***/ }),
 
-/***/ 1042:
+/***/ 6731:
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -12660,7 +12660,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.chalky.venue-card{max-width:480px}.ch
 
 /***/ }),
 
-/***/ 1788:
+/***/ 109:
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -12684,7 +12684,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.chalky.venue-list{--thumbnail-size:10
 
 /***/ }),
 
-/***/ 8175:
+/***/ 7736:
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -12893,19 +12893,19 @@ var update = add("3bc70c63", content, true, {"sourceMap":false,"shadowMode":fals
 
 /***/ }),
 
-/***/ 8672:
+/***/ 909:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(1570);
+var content = __webpack_require__(436);
 if(content.__esModule) content = content.default;
 if(typeof content === 'string') content = [[module.id, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
 var add = (__webpack_require__(3197)/* ["default"] */ .A)
-var update = add("3d1e4200", content, true, {"sourceMap":false,"shadowMode":false});
+var update = add("34dc66a9", content, true, {"sourceMap":false,"shadowMode":false});
 
 /***/ }),
 
@@ -12925,19 +12925,19 @@ var update = add("286b7ccf", content, true, {"sourceMap":false,"shadowMode":fals
 
 /***/ }),
 
-/***/ 2244:
+/***/ 9045:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(4146);
+var content = __webpack_require__(4951);
 if(content.__esModule) content = content.default;
 if(typeof content === 'string') content = [[module.id, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
 var add = (__webpack_require__(3197)/* ["default"] */ .A)
-var update = add("0ea0d003", content, true, {"sourceMap":false,"shadowMode":false});
+var update = add("2e2f6640", content, true, {"sourceMap":false,"shadowMode":false});
 
 /***/ }),
 
@@ -12957,19 +12957,19 @@ var update = add("18c1a3ef", content, true, {"sourceMap":false,"shadowMode":fals
 
 /***/ }),
 
-/***/ 4734:
+/***/ 4708:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(636);
+var content = __webpack_require__(6638);
 if(content.__esModule) content = content.default;
 if(typeof content === 'string') content = [[module.id, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
 var add = (__webpack_require__(3197)/* ["default"] */ .A)
-var update = add("72640c3b", content, true, {"sourceMap":false,"shadowMode":false});
+var update = add("1df7be8f", content, true, {"sourceMap":false,"shadowMode":false});
 
 /***/ }),
 
@@ -13005,51 +13005,51 @@ var update = add("623d8557", content, true, {"sourceMap":false,"shadowMode":fals
 
 /***/ }),
 
-/***/ 7748:
+/***/ 3101:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(1042);
+var content = __webpack_require__(6731);
 if(content.__esModule) content = content.default;
 if(typeof content === 'string') content = [[module.id, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
 var add = (__webpack_require__(3197)/* ["default"] */ .A)
-var update = add("70898e83", content, true, {"sourceMap":false,"shadowMode":false});
+var update = add("11ccc0d6", content, true, {"sourceMap":false,"shadowMode":false});
 
 /***/ }),
 
-/***/ 4506:
+/***/ 6715:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(1788);
+var content = __webpack_require__(109);
 if(content.__esModule) content = content.default;
 if(typeof content === 'string') content = [[module.id, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
 var add = (__webpack_require__(3197)/* ["default"] */ .A)
-var update = add("a12cffe6", content, true, {"sourceMap":false,"shadowMode":false});
+var update = add("03672d3c", content, true, {"sourceMap":false,"shadowMode":false});
 
 /***/ }),
 
-/***/ 5017:
+/***/ 7450:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(8175);
+var content = __webpack_require__(7736);
 if(content.__esModule) content = content.default;
 if(typeof content === 'string') content = [[module.id, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
 var add = (__webpack_require__(3197)/* ["default"] */ .A)
-var update = add("0effccc4", content, true, {"sourceMap":false,"shadowMode":false});
+var update = add("1c1bb415", content, true, {"sourceMap":false,"shadowMode":false});
 
 /***/ }),
 
@@ -19099,8 +19099,8 @@ var esm_ChalkySticks;
   ChalkySticks.Wallet = sdk_wallet_build_esm_namespaceObject;
 })(esm_ChalkySticks || (esm_ChalkySticks = {}));
 /* harmony default export */ const esm = (esm_ChalkySticks);
-;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js??clonedRuleSet-40.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/templateLoader.js??ruleSet[1].rules[4]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Authentication/BasicLogin.vue?vue&type=template&id=18a72db9
-var BasicLoginvue_type_template_id_18a72db9_render = function render() {
+;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js??clonedRuleSet-40.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/templateLoader.js??ruleSet[1].rules[4]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Authentication/BasicLogin.vue?vue&type=template&id=16e5988a
+var BasicLoginvue_type_template_id_16e5988a_render = function render() {
   var _vm = this,
     _c = _vm._self._c,
     _setup = _vm._self._setupProxy;
@@ -19170,7 +19170,7 @@ var BasicLoginvue_type_template_id_18a72db9_render = function render() {
     staticClass: "fa fa-exclamation-triangle"
   }), _vm._v("   "), _c('span', [_vm._v(_vm._s(_vm.message))])]) : _vm._e()])])]);
 };
-var BasicLoginvue_type_template_id_18a72db9_staticRenderFns = [];
+var BasicLoginvue_type_template_id_16e5988a_staticRenderFns = [];
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/web.url-search-params.delete.js
 var web_url_search_params_delete = __webpack_require__(4603);
@@ -19849,6 +19849,7 @@ let AuthenticationBasicLogin = class AuthenticationBasicLogin extends Core_Base 
     } catch (e) {
       // this.$emit('error');
     }
+    return new esm.Model.User();
   }
   // region: Event Handlers
   // ---------------------------------------------------------------------------
@@ -19896,9 +19897,9 @@ AuthenticationBasicLogin = BasicLoginvue_type_script_lang_ts_decorate([index_umd
 /* harmony default export */ const BasicLoginvue_type_script_lang_ts = (AuthenticationBasicLogin);
 ;// CONCATENATED MODULE: ./src/Authentication/BasicLogin.vue?vue&type=script&lang=ts
  /* harmony default export */ const Authentication_BasicLoginvue_type_script_lang_ts = (BasicLoginvue_type_script_lang_ts); 
-// EXTERNAL MODULE: ./node_modules/vue-style-loader/index.js??clonedRuleSet-22.use[0]!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-22.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-22.use[2]!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-22.use[3]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-22.use[4]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Authentication/BasicLogin.vue?vue&type=style&index=0&id=18a72db9&prod&lang=scss
-var BasicLoginvue_type_style_index_0_id_18a72db9_prod_lang_scss = __webpack_require__(8672);
-;// CONCATENATED MODULE: ./src/Authentication/BasicLogin.vue?vue&type=style&index=0&id=18a72db9&prod&lang=scss
+// EXTERNAL MODULE: ./node_modules/vue-style-loader/index.js??clonedRuleSet-22.use[0]!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-22.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-22.use[2]!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-22.use[3]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-22.use[4]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Authentication/BasicLogin.vue?vue&type=style&index=0&id=16e5988a&prod&lang=scss
+var BasicLoginvue_type_style_index_0_id_16e5988a_prod_lang_scss = __webpack_require__(909);
+;// CONCATENATED MODULE: ./src/Authentication/BasicLogin.vue?vue&type=style&index=0&id=16e5988a&prod&lang=scss
 
 ;// CONCATENATED MODULE: ./node_modules/@vue/vue-loader-v15/lib/runtime/componentNormalizer.js
 /* globals __VUE_SSR_CONTEXT__ */
@@ -20009,8 +20010,8 @@ function normalizeComponent(
 
 var component = normalizeComponent(
   Authentication_BasicLoginvue_type_script_lang_ts,
-  BasicLoginvue_type_template_id_18a72db9_render,
-  BasicLoginvue_type_template_id_18a72db9_staticRenderFns,
+  BasicLoginvue_type_template_id_16e5988a_render,
+  BasicLoginvue_type_template_id_16e5988a_staticRenderFns,
   false,
   null,
   null,
@@ -20019,8 +20020,8 @@ var component = normalizeComponent(
 )
 
 /* harmony default export */ const BasicLogin = (component.exports);
-;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js??clonedRuleSet-40.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/templateLoader.js??ruleSet[1].rules[4]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Authentication/SocialLogin.vue?vue&type=template&id=3373f577
-var SocialLoginvue_type_template_id_3373f577_render = function render() {
+;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js??clonedRuleSet-40.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/templateLoader.js??ruleSet[1].rules[4]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Authentication/SocialLogin.vue?vue&type=template&id=604b6250
+var SocialLoginvue_type_template_id_604b6250_render = function render() {
   var _vm = this,
     _c = _vm._self._c,
     _setup = _vm._self._setupProxy;
@@ -20046,7 +20047,7 @@ var SocialLoginvue_type_template_id_3373f577_render = function render() {
     staticClass: "fab fa-facebook-f"
   }), _c('span', [_vm._v("Login with Facebook")])])])])]);
 };
-var SocialLoginvue_type_template_id_3373f577_staticRenderFns = [];
+var SocialLoginvue_type_template_id_604b6250_staticRenderFns = [];
 
 ;// CONCATENATED MODULE: ./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib/index.js!./node_modules/ts-loader/index.js??clonedRuleSet-41.use[2]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Authentication/SocialLogin.vue?vue&type=script&lang=ts
 var _AuthenticationSocialLogin;
@@ -20122,9 +20123,9 @@ AuthenticationSocialLogin = AuthenticationSocialLogin_1 = SocialLoginvue_type_sc
 /* harmony default export */ const SocialLoginvue_type_script_lang_ts = (AuthenticationSocialLogin);
 ;// CONCATENATED MODULE: ./src/Authentication/SocialLogin.vue?vue&type=script&lang=ts
  /* harmony default export */ const Authentication_SocialLoginvue_type_script_lang_ts = (SocialLoginvue_type_script_lang_ts); 
-// EXTERNAL MODULE: ./node_modules/vue-style-loader/index.js??clonedRuleSet-22.use[0]!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-22.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-22.use[2]!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-22.use[3]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-22.use[4]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Authentication/SocialLogin.vue?vue&type=style&index=0&id=3373f577&prod&lang=scss
-var SocialLoginvue_type_style_index_0_id_3373f577_prod_lang_scss = __webpack_require__(4734);
-;// CONCATENATED MODULE: ./src/Authentication/SocialLogin.vue?vue&type=style&index=0&id=3373f577&prod&lang=scss
+// EXTERNAL MODULE: ./node_modules/vue-style-loader/index.js??clonedRuleSet-22.use[0]!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-22.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-22.use[2]!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-22.use[3]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-22.use[4]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Authentication/SocialLogin.vue?vue&type=style&index=0&id=604b6250&prod&lang=scss
+var SocialLoginvue_type_style_index_0_id_604b6250_prod_lang_scss = __webpack_require__(4708);
+;// CONCATENATED MODULE: ./src/Authentication/SocialLogin.vue?vue&type=style&index=0&id=604b6250&prod&lang=scss
 
 ;// CONCATENATED MODULE: ./src/Authentication/SocialLogin.vue
 
@@ -20137,8 +20138,8 @@ var SocialLoginvue_type_style_index_0_id_3373f577_prod_lang_scss = __webpack_req
 
 var SocialLogin_component = normalizeComponent(
   Authentication_SocialLoginvue_type_script_lang_ts,
-  SocialLoginvue_type_template_id_3373f577_render,
-  SocialLoginvue_type_template_id_3373f577_staticRenderFns,
+  SocialLoginvue_type_template_id_604b6250_render,
+  SocialLoginvue_type_template_id_604b6250_staticRenderFns,
   false,
   null,
   null,
@@ -20454,8 +20455,8 @@ var ForgotPassword_component = normalizeComponent(
 )
 
 /* harmony default export */ const ForgotPassword = (ForgotPassword_component.exports);
-;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js??clonedRuleSet-40.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/templateLoader.js??ruleSet[1].rules[4]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Authentication/Navigation.vue?vue&type=template&id=670f0cf1
-var Navigationvue_type_template_id_670f0cf1_render = function render() {
+;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js??clonedRuleSet-40.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/templateLoader.js??ruleSet[1].rules[4]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Authentication/Navigation.vue?vue&type=template&id=2c50603e
+var Navigationvue_type_template_id_2c50603e_render = function render() {
   var _vm = this,
     _c = _vm._self._c,
     _setup = _vm._self._setupProxy;
@@ -20484,7 +20485,7 @@ var Navigationvue_type_template_id_670f0cf1_render = function render() {
     }
   })], 1)]);
 };
-var Navigationvue_type_template_id_670f0cf1_staticRenderFns = [function () {
+var Navigationvue_type_template_id_2c50603e_staticRenderFns = [function () {
   var _vm = this,
     _c = _vm._self._c,
     _setup = _vm._self._setupProxy;
@@ -20511,7 +20512,7 @@ var Navigationvue_type_template_id_670f0cf1_staticRenderFns = [function () {
   })])]);
 }];
 
-;// CONCATENATED MODULE: ./src/Authentication/Navigation.vue?vue&type=template&id=670f0cf1
+;// CONCATENATED MODULE: ./src/Authentication/Navigation.vue?vue&type=template&id=2c50603e
 
 ;// CONCATENATED MODULE: ./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib/index.js!./node_modules/ts-loader/index.js??clonedRuleSet-41.use[2]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Authentication/Navigation.vue?vue&type=script&lang=ts
 var Navigationvue_type_script_lang_ts_decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
@@ -20623,9 +20624,9 @@ AuthenticationNavigation = Navigationvue_type_script_lang_ts_decorate([(0,index_
 /* harmony default export */ const Navigationvue_type_script_lang_ts = (AuthenticationNavigation);
 ;// CONCATENATED MODULE: ./src/Authentication/Navigation.vue?vue&type=script&lang=ts
  /* harmony default export */ const Authentication_Navigationvue_type_script_lang_ts = (Navigationvue_type_script_lang_ts); 
-// EXTERNAL MODULE: ./node_modules/vue-style-loader/index.js??clonedRuleSet-22.use[0]!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-22.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-22.use[2]!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-22.use[3]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-22.use[4]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Authentication/Navigation.vue?vue&type=style&index=0&id=670f0cf1&prod&lang=scss
-var Navigationvue_type_style_index_0_id_670f0cf1_prod_lang_scss = __webpack_require__(2244);
-;// CONCATENATED MODULE: ./src/Authentication/Navigation.vue?vue&type=style&index=0&id=670f0cf1&prod&lang=scss
+// EXTERNAL MODULE: ./node_modules/vue-style-loader/index.js??clonedRuleSet-22.use[0]!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-22.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-22.use[2]!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-22.use[3]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-22.use[4]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Authentication/Navigation.vue?vue&type=style&index=0&id=2c50603e&prod&lang=scss
+var Navigationvue_type_style_index_0_id_2c50603e_prod_lang_scss = __webpack_require__(9045);
+;// CONCATENATED MODULE: ./src/Authentication/Navigation.vue?vue&type=style&index=0&id=2c50603e&prod&lang=scss
 
 ;// CONCATENATED MODULE: ./src/Authentication/Navigation.vue
 
@@ -20638,8 +20639,8 @@ var Navigationvue_type_style_index_0_id_670f0cf1_prod_lang_scss = __webpack_requ
 
 var Navigation_component = normalizeComponent(
   Authentication_Navigationvue_type_script_lang_ts,
-  Navigationvue_type_template_id_670f0cf1_render,
-  Navigationvue_type_template_id_670f0cf1_staticRenderFns,
+  Navigationvue_type_template_id_2c50603e_render,
+  Navigationvue_type_template_id_2c50603e_staticRenderFns,
   false,
   null,
   null,
@@ -21240,8 +21241,8 @@ var VideoTheater_component = normalizeComponent(
 )
 
 /* harmony default export */ const TV_VideoTheater = (VideoTheater_component.exports);
-;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js??clonedRuleSet-40.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/templateLoader.js??ruleSet[1].rules[4]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Venue/Card.vue?vue&type=template&id=f0c24f56
-var Cardvue_type_template_id_f0c24f56_render = function render() {
+;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js??clonedRuleSet-40.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/templateLoader.js??ruleSet[1].rules[4]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Venue/Card.vue?vue&type=template&id=49b28bcc
+var Cardvue_type_template_id_49b28bcc_render = function render() {
   var _vm = this,
     _c = _vm._self._c,
     _setup = _vm._self._setupProxy;
@@ -21320,7 +21321,7 @@ var Cardvue_type_template_id_f0c24f56_render = function render() {
     staticClass: "address"
   }, [_vm._v(_vm._s(_vm.venueModel.getAddress()))])])]);
 };
-var Cardvue_type_template_id_f0c24f56_staticRenderFns = [];
+var Cardvue_type_template_id_49b28bcc_staticRenderFns = [];
 
 ;// CONCATENATED MODULE: ./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib/index.js!./node_modules/ts-loader/index.js??clonedRuleSet-41.use[2]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Venue/Card.vue?vue&type=script&lang=ts
 var Cardvue_type_script_lang_ts_decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
@@ -21365,9 +21366,9 @@ VenueCard = Cardvue_type_script_lang_ts_decorate([index_umd.Component], VenueCar
 /* harmony default export */ const Cardvue_type_script_lang_ts = (VenueCard);
 ;// CONCATENATED MODULE: ./src/Venue/Card.vue?vue&type=script&lang=ts
  /* harmony default export */ const Venue_Cardvue_type_script_lang_ts = (Cardvue_type_script_lang_ts); 
-// EXTERNAL MODULE: ./node_modules/vue-style-loader/index.js??clonedRuleSet-22.use[0]!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-22.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-22.use[2]!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-22.use[3]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-22.use[4]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Venue/Card.vue?vue&type=style&index=0&id=f0c24f56&prod&lang=scss
-var Cardvue_type_style_index_0_id_f0c24f56_prod_lang_scss = __webpack_require__(7748);
-;// CONCATENATED MODULE: ./src/Venue/Card.vue?vue&type=style&index=0&id=f0c24f56&prod&lang=scss
+// EXTERNAL MODULE: ./node_modules/vue-style-loader/index.js??clonedRuleSet-22.use[0]!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-22.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-22.use[2]!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-22.use[3]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-22.use[4]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Venue/Card.vue?vue&type=style&index=0&id=49b28bcc&prod&lang=scss
+var Cardvue_type_style_index_0_id_49b28bcc_prod_lang_scss = __webpack_require__(3101);
+;// CONCATENATED MODULE: ./src/Venue/Card.vue?vue&type=style&index=0&id=49b28bcc&prod&lang=scss
 
 ;// CONCATENATED MODULE: ./src/Venue/Card.vue
 
@@ -21380,8 +21381,8 @@ var Cardvue_type_style_index_0_id_f0c24f56_prod_lang_scss = __webpack_require__(
 
 var Card_component = normalizeComponent(
   Venue_Cardvue_type_script_lang_ts,
-  Cardvue_type_template_id_f0c24f56_render,
-  Cardvue_type_template_id_f0c24f56_staticRenderFns,
+  Cardvue_type_template_id_49b28bcc_render,
+  Cardvue_type_template_id_49b28bcc_staticRenderFns,
   false,
   null,
   null,
@@ -21390,8 +21391,8 @@ var Card_component = normalizeComponent(
 )
 
 /* harmony default export */ const Card = (Card_component.exports);
-;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js??clonedRuleSet-40.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/templateLoader.js??ruleSet[1].rules[4]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Venue/List.vue?vue&type=template&id=12d90330
-var Listvue_type_template_id_12d90330_render = function render() {
+;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js??clonedRuleSet-40.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/templateLoader.js??ruleSet[1].rules[4]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Venue/List.vue?vue&type=template&id=a4c35546
+var Listvue_type_template_id_a4c35546_render = function render() {
   var _vm = this,
     _c = _vm._self._c,
     _setup = _vm._self._setupProxy;
@@ -21417,7 +21418,7 @@ var Listvue_type_template_id_12d90330_render = function render() {
     }
   }, [_vm._v("Next")])])], 2);
 };
-var Listvue_type_template_id_12d90330_staticRenderFns = [];
+var Listvue_type_template_id_a4c35546_staticRenderFns = [];
 
 ;// CONCATENATED MODULE: ./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib/index.js!./node_modules/ts-loader/index.js??clonedRuleSet-41.use[2]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Venue/List.vue?vue&type=script&lang=ts
 var Listvue_type_script_lang_ts_decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
@@ -21481,9 +21482,9 @@ VenueList = Listvue_type_script_lang_ts_decorate([index_umd.Component], VenueLis
 /* harmony default export */ const Listvue_type_script_lang_ts = (VenueList);
 ;// CONCATENATED MODULE: ./src/Venue/List.vue?vue&type=script&lang=ts
  /* harmony default export */ const Venue_Listvue_type_script_lang_ts = (Listvue_type_script_lang_ts); 
-// EXTERNAL MODULE: ./node_modules/vue-style-loader/index.js??clonedRuleSet-22.use[0]!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-22.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-22.use[2]!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-22.use[3]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-22.use[4]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Venue/List.vue?vue&type=style&index=0&id=12d90330&prod&lang=scss
-var Listvue_type_style_index_0_id_12d90330_prod_lang_scss = __webpack_require__(4506);
-;// CONCATENATED MODULE: ./src/Venue/List.vue?vue&type=style&index=0&id=12d90330&prod&lang=scss
+// EXTERNAL MODULE: ./node_modules/vue-style-loader/index.js??clonedRuleSet-22.use[0]!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-22.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-22.use[2]!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-22.use[3]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-22.use[4]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Venue/List.vue?vue&type=style&index=0&id=a4c35546&prod&lang=scss
+var Listvue_type_style_index_0_id_a4c35546_prod_lang_scss = __webpack_require__(6715);
+;// CONCATENATED MODULE: ./src/Venue/List.vue?vue&type=style&index=0&id=a4c35546&prod&lang=scss
 
 ;// CONCATENATED MODULE: ./src/Venue/List.vue
 
@@ -21496,8 +21497,8 @@ var Listvue_type_style_index_0_id_12d90330_prod_lang_scss = __webpack_require__(
 
 var List_component = normalizeComponent(
   Venue_Listvue_type_script_lang_ts,
-  Listvue_type_template_id_12d90330_render,
-  Listvue_type_template_id_12d90330_staticRenderFns,
+  Listvue_type_template_id_a4c35546_render,
+  Listvue_type_template_id_a4c35546_staticRenderFns,
   false,
   null,
   null,
@@ -21506,8 +21507,8 @@ var List_component = normalizeComponent(
 )
 
 /* harmony default export */ const List = (List_component.exports);
-;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js??clonedRuleSet-40.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/templateLoader.js??ruleSet[1].rules[4]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Venue/Map.vue?vue&type=template&id=11cac81a
-var Mapvue_type_template_id_11cac81a_render = function render() {
+;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js??clonedRuleSet-40.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/templateLoader.js??ruleSet[1].rules[4]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Venue/Map.vue?vue&type=template&id=3a3146fd
+var Mapvue_type_template_id_3a3146fd_render = function render() {
   var _vm = this,
     _c = _vm._self._c,
     _setup = _vm._self._setupProxy;
@@ -21515,7 +21516,7 @@ var Mapvue_type_template_id_11cac81a_render = function render() {
     staticClass: "chalky venue-map"
   }, [_vm._v("venue map")]);
 };
-var Mapvue_type_template_id_11cac81a_staticRenderFns = [];
+var Mapvue_type_template_id_3a3146fd_staticRenderFns = [];
 
 ;// CONCATENATED MODULE: ./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib/index.js!./node_modules/ts-loader/index.js??clonedRuleSet-41.use[2]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Venue/Map.vue?vue&type=script&lang=ts
 var Mapvue_type_script_lang_ts_decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
@@ -21541,9 +21542,9 @@ VenueMap = Mapvue_type_script_lang_ts_decorate([index_umd.Component], VenueMap);
 /* harmony default export */ const Mapvue_type_script_lang_ts = (VenueMap);
 ;// CONCATENATED MODULE: ./src/Venue/Map.vue?vue&type=script&lang=ts
  /* harmony default export */ const Venue_Mapvue_type_script_lang_ts = (Mapvue_type_script_lang_ts); 
-// EXTERNAL MODULE: ./node_modules/vue-style-loader/index.js??clonedRuleSet-22.use[0]!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-22.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-22.use[2]!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-22.use[3]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-22.use[4]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Venue/Map.vue?vue&type=style&index=0&id=11cac81a&prod&lang=scss
-var Mapvue_type_style_index_0_id_11cac81a_prod_lang_scss = __webpack_require__(5017);
-;// CONCATENATED MODULE: ./src/Venue/Map.vue?vue&type=style&index=0&id=11cac81a&prod&lang=scss
+// EXTERNAL MODULE: ./node_modules/vue-style-loader/index.js??clonedRuleSet-22.use[0]!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-22.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-22.use[2]!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-22.use[3]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-22.use[4]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Venue/Map.vue?vue&type=style&index=0&id=3a3146fd&prod&lang=scss
+var Mapvue_type_style_index_0_id_3a3146fd_prod_lang_scss = __webpack_require__(7450);
+;// CONCATENATED MODULE: ./src/Venue/Map.vue?vue&type=style&index=0&id=3a3146fd&prod&lang=scss
 
 ;// CONCATENATED MODULE: ./src/Venue/Map.vue
 
@@ -21556,8 +21557,8 @@ var Mapvue_type_style_index_0_id_11cac81a_prod_lang_scss = __webpack_require__(5
 
 var Map_component = normalizeComponent(
   Venue_Mapvue_type_script_lang_ts,
-  Mapvue_type_template_id_11cac81a_render,
-  Mapvue_type_template_id_11cac81a_staticRenderFns,
+  Mapvue_type_template_id_3a3146fd_render,
+  Mapvue_type_template_id_3a3146fd_staticRenderFns,
   false,
   null,
   null,

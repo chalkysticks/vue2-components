@@ -69,7 +69,7 @@
 		@Prop({
 			default: () => new ChalkySticks.Model.Venue(),
 		})
-		public venueModel: ChalkySticks.Model.Venue;
+		public venueModel!: ChalkySticks.Model.Venue;
 
 		/**
 		 * @type ChalkySticks/Collection/Venue

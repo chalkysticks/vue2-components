@@ -20,7 +20,7 @@
 		@Prop({
 			default: () => new ChalkySticks.Collection.Venue(),
 		})
-		public venueCollection: ChalkySticks.Collection.Venue;
+		public venueCollection!: ChalkySticks.Collection.Venue;
 	}
 </script>
 

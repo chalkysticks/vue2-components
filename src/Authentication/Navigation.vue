@@ -59,7 +59,7 @@
 					baseUrl: ChalkySticks.Core.Constants.API_URL_V1,
 				}),
 		})
-		public authModel: ChalkySticks.Model.Authentication;
+		public authModel!: ChalkySticks.Model.Authentication;
 
 		/**
 		 * @return boolean

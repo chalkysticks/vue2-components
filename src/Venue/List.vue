@@ -37,7 +37,7 @@
 					},
 				}),
 		})
-		public venueCollection: ChalkySticks.Collection.Venue;
+		public venueCollection!: ChalkySticks.Collection.Venue;
 
 		/**
 		 * @constructor

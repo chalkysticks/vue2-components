@@ -69,7 +69,7 @@
 					baseUrl: ChalkySticks.Core.Constants.API_URL_V1,
 				}),
 		})
-		public authModel: ChalkySticks.Model.Authentication;
+		public authModel!: ChalkySticks.Model.Authentication;
 
 		/**
 		 * @type string
@@ -122,6 +122,8 @@
 			} catch (e) {
 				// this.$emit('error');
 			}
+
+			return new ChalkySticks.Model.User();
 		}
 
 		// region: Event Handlers
