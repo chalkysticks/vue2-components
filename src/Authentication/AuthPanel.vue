@@ -41,7 +41,7 @@
 			BrandingStandard,
 		},
 	})
-	export default class AuthenticationAuthPanel extends ViewBase {
+	class AuthenticationAuthPanel extends ViewBase {
 		/**
 		 * @type ChalkySticks/Model/Authentication
 		 */
@@ -108,6 +108,8 @@
 
 		// endregion: Animation
 	}
+
+	export default AuthenticationAuthPanel;
 </script>
 
 <style lang="scss">

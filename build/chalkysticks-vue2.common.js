@@ -10972,8 +10972,8 @@ exports.deprecate = function (fn, msg) {
 };
 var debugs = {};
 var debugEnvRegex = /^$/;
-if (({"NODE_ENV":"production","VUE_APP_VERSION":"1.4.2","BASE_URL":"/"}).NODE_DEBUG) {
-  var debugEnv = ({"NODE_ENV":"production","VUE_APP_VERSION":"1.4.2","BASE_URL":"/"}).NODE_DEBUG;
+if (({"NODE_ENV":"production","VUE_APP_VERSION":"1.4.3","BASE_URL":"/"}).NODE_DEBUG) {
+  var debugEnv = ({"NODE_ENV":"production","VUE_APP_VERSION":"1.4.3","BASE_URL":"/"}).NODE_DEBUG;
   debugEnv = debugEnv.replace(/[|\\{}()[\]^$+?.]/g, '\\$&').replace(/\*/g, '.*').replace(/,/g, '$|^').toUpperCase();
   debugEnvRegex = new RegExp('^' + debugEnv + '$', 'i');
 }
@@ -12439,7 +12439,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `/*!
 
 /***/ }),
 
-/***/ 2044:
+/***/ 4268:
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -12877,19 +12877,19 @@ var update = add("ffe6ce42", content, true, {"sourceMap":false,"shadowMode":fals
 
 /***/ }),
 
-/***/ 8574:
+/***/ 8886:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(2044);
+var content = __webpack_require__(4268);
 if(content.__esModule) content = content.default;
 if(typeof content === 'string') content = [[module.id, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
 var add = (__webpack_require__(3197)/* ["default"] */ .A)
-var update = add("3bc70c63", content, true, {"sourceMap":false,"shadowMode":false});
+var update = add("235d5f49", content, true, {"sourceMap":false,"shadowMode":false});
 
 /***/ }),
 
@@ -17774,7 +17774,7 @@ if (typeof window !== 'undefined') {
 var app = __webpack_require__(4317);
 // EXTERNAL MODULE: ./node_modules/@fortawesome/fontawesome-free/css/all.css
 var css_all = __webpack_require__(9948);
-;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js??clonedRuleSet-40.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/templateLoader.js??ruleSet[1].rules[4]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Authentication/AuthPanel.vue?vue&type=template&id=dda15888
+;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js??clonedRuleSet-40.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/templateLoader.js??ruleSet[1].rules[4]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Authentication/AuthPanel.vue?vue&type=template&id=6be5d99a
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c,
@@ -17814,7 +17814,7 @@ var staticRenderFns = [function () {
   }, [_c('span', [_vm._v("Forgot Password?")])])]);
 }];
 
-;// CONCATENATED MODULE: ./src/Authentication/AuthPanel.vue?vue&type=template&id=dda15888
+;// CONCATENATED MODULE: ./src/Authentication/AuthPanel.vue?vue&type=template&id=6be5d99a
 
 ;// CONCATENATED MODULE: ./node_modules/@chalkysticks/sdk-core/build/esm/Common/Constants.js
 /* harmony default export */ const Constants = ({
@@ -20352,9 +20352,9 @@ AuthenticationAuthPanel = AuthPanelvue_type_script_lang_ts_decorate([(0,index_um
 /* harmony default export */ const AuthPanelvue_type_script_lang_ts = (AuthenticationAuthPanel);
 ;// CONCATENATED MODULE: ./src/Authentication/AuthPanel.vue?vue&type=script&lang=ts
  /* harmony default export */ const Authentication_AuthPanelvue_type_script_lang_ts = (AuthPanelvue_type_script_lang_ts); 
-// EXTERNAL MODULE: ./node_modules/vue-style-loader/index.js??clonedRuleSet-22.use[0]!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-22.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-22.use[2]!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-22.use[3]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-22.use[4]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Authentication/AuthPanel.vue?vue&type=style&index=0&id=dda15888&prod&lang=scss
-var AuthPanelvue_type_style_index_0_id_dda15888_prod_lang_scss = __webpack_require__(8574);
-;// CONCATENATED MODULE: ./src/Authentication/AuthPanel.vue?vue&type=style&index=0&id=dda15888&prod&lang=scss
+// EXTERNAL MODULE: ./node_modules/vue-style-loader/index.js??clonedRuleSet-22.use[0]!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-22.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-22.use[2]!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-22.use[3]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-22.use[4]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Authentication/AuthPanel.vue?vue&type=style&index=0&id=6be5d99a&prod&lang=scss
+var AuthPanelvue_type_style_index_0_id_6be5d99a_prod_lang_scss = __webpack_require__(8886);
+;// CONCATENATED MODULE: ./src/Authentication/AuthPanel.vue?vue&type=style&index=0&id=6be5d99a&prod&lang=scss
 
 ;// CONCATENATED MODULE: ./src/Authentication/AuthPanel.vue
 
