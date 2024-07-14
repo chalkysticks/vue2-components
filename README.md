@@ -29,13 +29,13 @@
 Open your terminal and type in
 
 ```sh
-$ npm install -D @chalkysticks/vue2
+$ npm install -D @chalkysticks/vue2-components
 ```
 
 Use them in your Vue2.x project by importing them
 
 ```typescript
-import ChalkySticks from '@chalkysticks/vue2';
+import ChalkySticks from '@chalkysticks/vue2-components';
 
 Vue.use(ChalkySticks, {
 	api_url: 'http://localhost:3333',
@@ -45,11 +45,24 @@ Vue.use(ChalkySticks, {
 We can also load individual assets:
 
 ```typescript
-import { ViewBase } from '@chalkysticks/vue2';
+import { AuthenticationAuthPanel, BrandingBadge, ..., ViewBase } from '@chalkysticks/vue2-components';
 ```
 
 The Vue assets are devDependencies because loading them as regular dependencies
 will cause Vue to load twice, which throws `readonly $attrs` errors.
+
+## Components
+
+Components are automatically registered with the `Chalky` prefix like this:
+
+```
+<ChalkyBrandingBadge size="sm" mode="dark" />
+<ChalkyBrandingBadge size="sm" mode="light" />
+<ChalkyBrandingStandard class="background-chalky-blue p-3" mode="dark" />
+<ChalkyTvVideoTheater ref="videoTheater" channel="billiards" />
+```
+
+They can also be imported without the prefix from the `@chalkysticks/vue2-components` package as seen above.
 
 ### BrandingBadge
 
@@ -58,21 +71,21 @@ Lorem ipsum dolor ist amet...
 <img width="180" src="./assets/branding-badge.png" alt="BrandingBadge" />
 
 ```javascript
-import { BrandingBadge } from '@chalkysticks/vue2';
+import { BrandingBadge } from '@chalkysticks/vue2-components';
 ```
 
 ```html
 <div>
-	<BrandingBadge size="sm" mode="dark" />
-	<BrandingBadge size="sm" mode="light" />
+	<ChalkyBrandingBadge size="sm" mode="dark" />
+	<ChalkyBrandingBadge size="sm" mode="light" />
 </div>
 <div>
-	<BrandingBadge mode="dark" />
-	<BrandingBadge mode="light" />
+	<ChalkyBrandingBadge mode="dark" />
+	<ChalkyBrandingBadge mode="light" />
 </div>
 <div>
-	<BrandingBadge size="lg" mode="dark" />
-	<BrandingBadge size="lg" mode="light" />
+	<ChalkyBrandingBadge size="lg" mode="dark" />
+	<ChalkyBrandingBadge size="lg" mode="light" />
 </div>
 ```
 
@@ -83,13 +96,13 @@ Lorem ipsum dolor ist amet...
 <img height="70" src="./assets/branding-standard.png" alt="BrandingBadge" />
 
 ```javascript
-import { BrandingStandard } from '@chalkysticks/vue2';
+import { BrandingStandard } from '@chalkysticks/vue2-components';
 ```
 
 ```html
 <div class="d-flex">
-	<BrandingStandard class="background-chalky-white p-3" mode="dark" />
-	<BrandingStandard class="background-chalky-blue p-3" mode="light" />
+	<ChalkyBrandingStandard class="background-chalky-white p-3" mode="dark" />
+	<ChalkyBrandingStandard class="background-chalky-blue p-3" mode="light" />
 </div>
 ```
 

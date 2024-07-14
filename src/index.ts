@@ -52,23 +52,6 @@ const ChalkySticks = {
 		// Directives (like v-model, v-show)
 		// @see https://v3.vuejs.org/guide/custom-directive.html#intro
 
-		// Provide components
-		const components = {
-			AuthenticationAuthPanel,
-			AuthenticationBasicLogin,
-			AuthenticationForgotPassword,
-			AuthenticationNavigation,
-			AuthenticationResetPassword,
-			AuthenticationSocialLogin,
-			BrandingBadge,
-			BrandingStandard,
-			ButtonLogin,
-			TvVideoTheater,
-			VenueCard,
-			VenueList,
-			VenueMap,
-		};
-
 		Object.keys(components).forEach((name) => {
 			const component = components[name as keyof typeof components];
 			Vue.component(`Chalky${name}`, component);

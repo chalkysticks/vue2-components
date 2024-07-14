@@ -10982,8 +10982,8 @@ exports.deprecate = function (fn, msg) {
 };
 var debugs = {};
 var debugEnvRegex = /^$/;
-if (({"NODE_ENV":"production","VUE_APP_VERSION":"1.3.0","BASE_URL":"/"}).NODE_DEBUG) {
-  var debugEnv = ({"NODE_ENV":"production","VUE_APP_VERSION":"1.3.0","BASE_URL":"/"}).NODE_DEBUG;
+if (({"NODE_ENV":"production","VUE_APP_VERSION":"1.4.0","BASE_URL":"/"}).NODE_DEBUG) {
+  var debugEnv = ({"NODE_ENV":"production","VUE_APP_VERSION":"1.4.0","BASE_URL":"/"}).NODE_DEBUG;
   debugEnv = debugEnv.replace(/[|\\{}()[\]^$+?.]/g, '\\$&').replace(/\*/g, '.*').replace(/,/g, '$|^').toUpperCase();
   debugEnvRegex = new RegExp('^' + debugEnv + '$', 'i');
 }
@@ -21625,22 +21625,6 @@ const src_ChalkySticks = {
     };
     // Directives (like v-model, v-show)
     // @see https://v3.vuejs.org/guide/custom-directive.html#intro
-    // Provide components
-    const components = {
-      AuthenticationAuthPanel: AuthPanel,
-      AuthenticationBasicLogin: BasicLogin,
-      AuthenticationForgotPassword: ForgotPassword,
-      AuthenticationNavigation: Navigation,
-      AuthenticationResetPassword: ResetPassword,
-      AuthenticationSocialLogin: SocialLogin,
-      BrandingBadge: Badge,
-      BrandingStandard: Standard,
-      ButtonLogin: Login,
-      TvVideoTheater: TV_VideoTheater,
-      VenueCard: Card,
-      VenueList: List,
-      VenueMap: entry_lib_Map
-    };
     Object.keys(components).forEach(name => {
       const component = components[name];
       Vue.component(`Chalky${name}`, component);

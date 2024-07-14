@@ -75,5 +75,5 @@
         "serve": "vue-cli-service serve ./src/app.ts",
         "test": "vue-cli-service test:unit"
     },
-    "version": "1.4.0"
+    "version": "1.4.1"
 }
