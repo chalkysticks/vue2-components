@@ -224,11 +224,11 @@
 		}
 
 		/**
-		 * @param Event e
+		 * @param PointerEvent e
 		 * @return Promise<void>
 		 */
-		protected async Handle_OnClickMap(e: Event): Promise<void> {
-			this.$emit('click');
+		protected async Handle_OnClickMap(e: PointerEvent): Promise<void> {
+			this.$emit('click', e);
 		}
 
 		/**
