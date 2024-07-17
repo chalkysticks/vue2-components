@@ -15095,7 +15095,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.chalky.venue-list{--thumbnail-size:10
 
 /***/ }),
 
-/***/ 6004:
+/***/ 9697:
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -15584,19 +15584,19 @@ var update = add("03672d3c", content, true, {"sourceMap":false,"shadowMode":fals
 
 /***/ }),
 
-/***/ 8586:
+/***/ 976:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(6004);
+var content = __webpack_require__(9697);
 if(content.__esModule) content = content.default;
 if(typeof content === 'string') content = [[module.id, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
 var add = (__webpack_require__(3197)/* ["default"] */ .A)
-var update = add("7000a5c1", content, true, {"sourceMap":false,"shadowMode":false});
+var update = add("29afc49e", content, true, {"sourceMap":false,"shadowMode":false});
 
 /***/ }),
 
@@ -24467,8 +24467,8 @@ var List_component = (0,componentNormalizer/* default */.A)(
 )
 
 /* harmony default export */ const List = (List_component.exports);
-;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js??clonedRuleSet-40.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/templateLoader.js??ruleSet[1].rules[4]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Venue/Map.vue?vue&type=template&id=6d7e9816
-var Mapvue_type_template_id_6d7e9816_render = function render() {
+;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js??clonedRuleSet-40.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/templateLoader.js??ruleSet[1].rules[4]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Venue/Map.vue?vue&type=template&id=e5d23514
+var Mapvue_type_template_id_e5d23514_render = function render() {
   var _vm = this,
     _c = _vm._self._c,
     _setup = _vm._self._setupProxy;
@@ -24499,11 +24499,17 @@ var Mapvue_type_template_id_6d7e9816_render = function render() {
       "zoom": _vm.zoom
     },
     on: {
-      "bounds_changed": _vm.Handle_OnBoundsChanged
+      "bounds_changed": _vm.Handle_OnBoundsChanged,
+      "click": _vm.Handle_OnClickMap
     }
   }, _vm._l(_vm.markers, function (marker, index) {
-    return _c('GmapMarker', {
+    return _c('div', {
       key: index,
+      staticClass: "marker-container",
+      on: {
+        "click": _vm.Handle_OnClickMarkerContainer
+      }
+    }, [_c('GmapMarker', {
       attrs: {
         "clickable": true,
         "draggable": false,
@@ -24515,10 +24521,10 @@ var Mapvue_type_template_id_6d7e9816_render = function render() {
           return _vm.Handle_OnClickMarker($event, marker);
         }
       }
-    });
-  }), 1)], 1);
+    })], 1);
+  }), 0)], 1);
 };
-var Mapvue_type_template_id_6d7e9816_staticRenderFns = [];
+var Mapvue_type_template_id_e5d23514_staticRenderFns = [];
 
 // EXTERNAL MODULE: ./node_modules/vue-class-component/dist/vue-class-component.common.js
 var vue_class_component_common = __webpack_require__(1002);
@@ -24753,13 +24759,6 @@ let VenueMap = class VenueMap extends ViewBase {
     this.populateMarkers();
   }
   /**
-   * @param Event e
-   * @return Promise<void>
-   */
-  async Handle_OnClickMarker(e, marker) {
-    this.$emit('marker:click', marker.model);
-  }
-  /**
    * @return Promise<void>
    */
   async Handle_OnBoundsChanged() {
@@ -24777,6 +24776,27 @@ let VenueMap = class VenueMap extends ViewBase {
         longitude: lng
       });
     }, 1000, true);
+  }
+  /**
+   * @param Event e
+   * @return Promise<void>
+   */
+  async Handle_OnClickMap(e) {
+    this.$emit('click');
+  }
+  /**
+   * @param Event e
+   * @return Promise<void>
+   */
+  async Handle_OnClickMarker(e, marker) {
+    this.$emit('marker:click', marker.model);
+  }
+  /**
+   * @param PointerEvent e
+   * @return Promise<void>
+   */
+  async Handle_OnClickMarkerContainer(e) {
+    e.stopPropagation();
   }
   /**
    * @param object e
@@ -24815,9 +24835,9 @@ VenueMap = Mapvue_type_script_lang_ts_decorate([index_umd.Component], VenueMap);
 /* harmony default export */ const Mapvue_type_script_lang_ts = (VenueMap);
 ;// CONCATENATED MODULE: ./src/Venue/Map.vue?vue&type=script&lang=ts
  /* harmony default export */ const Venue_Mapvue_type_script_lang_ts = (Mapvue_type_script_lang_ts); 
-// EXTERNAL MODULE: ./node_modules/vue-style-loader/index.js??clonedRuleSet-22.use[0]!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-22.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-22.use[2]!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-22.use[3]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-22.use[4]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Venue/Map.vue?vue&type=style&index=0&id=6d7e9816&prod&lang=scss
-var Mapvue_type_style_index_0_id_6d7e9816_prod_lang_scss = __webpack_require__(8586);
-;// CONCATENATED MODULE: ./src/Venue/Map.vue?vue&type=style&index=0&id=6d7e9816&prod&lang=scss
+// EXTERNAL MODULE: ./node_modules/vue-style-loader/index.js??clonedRuleSet-22.use[0]!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-22.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-22.use[2]!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-22.use[3]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-22.use[4]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Venue/Map.vue?vue&type=style&index=0&id=e5d23514&prod&lang=scss
+var Mapvue_type_style_index_0_id_e5d23514_prod_lang_scss = __webpack_require__(976);
+;// CONCATENATED MODULE: ./src/Venue/Map.vue?vue&type=style&index=0&id=e5d23514&prod&lang=scss
 
 ;// CONCATENATED MODULE: ./src/Venue/Map.vue
 
@@ -24830,8 +24850,8 @@ var Mapvue_type_style_index_0_id_6d7e9816_prod_lang_scss = __webpack_require__(8
 
 var Map_component = (0,componentNormalizer/* default */.A)(
   Venue_Mapvue_type_script_lang_ts,
-  Mapvue_type_template_id_6d7e9816_render,
-  Mapvue_type_template_id_6d7e9816_staticRenderFns,
+  Mapvue_type_template_id_e5d23514_render,
+  Mapvue_type_template_id_e5d23514_staticRenderFns,
   false,
   null,
   null,

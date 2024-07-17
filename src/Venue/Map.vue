@@ -20,16 +20,17 @@
 				zoomControl: true,
 			}"
 			v-bind:zoom="zoom"
+			v-on:click="Handle_OnClickMap"
 		>
-			<GmapMarker
-				v-bind:clickable="true"
-				v-bind:draggable="false"
-				v-bind:icon="defaultIcon"
-				v-bind:key="index"
-				v-bind:position="marker.position"
-				v-for="(marker, index) in markers"
-				v-on:click="Handle_OnClickMarker($event, marker)"
-			/>
+			<div class="marker-container" v-bind:key="index" v-for="(marker, index) in markers" v-on:click="Handle_OnClickMarkerContainer">
+				<GmapMarker
+					v-bind:clickable="true"
+					v-bind:draggable="false"
+					v-bind:icon="defaultIcon"
+					v-bind:position="marker.position"
+					v-on:click="Handle_OnClickMarker($event, marker)"
+				/>
+			</div>
 		</GmapMap>
 	</div>
 </template>
@@ -196,14 +197,6 @@
 		}
 
 		/**
-		 * @param Event e
-		 * @return Promise<void>
-		 */
-		protected async Handle_OnClickMarker(e: any, marker: IGoogleMapMarker): Promise<void> {
-			this.$emit('marker:click', marker.model);
-		}
-
-		/**
 		 * @return Promise<void>
 		 */
 		protected async Handle_OnBoundsChanged(): Promise<void> {
@@ -228,6 +221,30 @@
 				1000,
 				true,
 			);
+		}
+
+		/**
+		 * @param Event e
+		 * @return Promise<void>
+		 */
+		protected async Handle_OnClickMap(e: Event): Promise<void> {
+			this.$emit('click');
+		}
+
+		/**
+		 * @param Event e
+		 * @return Promise<void>
+		 */
+		protected async Handle_OnClickMarker(e: any, marker: IGoogleMapMarker): Promise<void> {
+			this.$emit('marker:click', marker.model);
+		}
+
+		/**
+		 * @param PointerEvent e
+		 * @return Promise<void>
+		 */
+		protected async Handle_OnClickMarkerContainer(e: PointerEvent): Promise<void> {
+			e.stopPropagation();
 		}
 
 		/**
