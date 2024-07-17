@@ -11385,8 +11385,8 @@ exports.deprecate = function (fn, msg) {
 };
 var debugs = {};
 var debugEnvRegex = /^$/;
-if (({"NODE_ENV":"production","VUE_APP_GOOGLE_MAP_API":"AIzaSyD9_wCYmN1dEk8LgO42RbrkfnurD1GPQ7s","VUE_APP_VERSION":"1.6.2","BASE_URL":"/"}).NODE_DEBUG) {
-  var debugEnv = ({"NODE_ENV":"production","VUE_APP_GOOGLE_MAP_API":"AIzaSyD9_wCYmN1dEk8LgO42RbrkfnurD1GPQ7s","VUE_APP_VERSION":"1.6.2","BASE_URL":"/"}).NODE_DEBUG;
+if (({"NODE_ENV":"production","VUE_APP_GOOGLE_MAP_API":"AIzaSyD9_wCYmN1dEk8LgO42RbrkfnurD1GPQ7s","VUE_APP_VERSION":"1.6.4","BASE_URL":"/"}).NODE_DEBUG) {
+  var debugEnv = ({"NODE_ENV":"production","VUE_APP_GOOGLE_MAP_API":"AIzaSyD9_wCYmN1dEk8LgO42RbrkfnurD1GPQ7s","VUE_APP_VERSION":"1.6.4","BASE_URL":"/"}).NODE_DEBUG;
   debugEnv = debugEnv.replace(/[|\\{}()[\]^$+?.]/g, '\\$&').replace(/\*/g, '.*').replace(/,/g, '$|^').toUpperCase();
   debugEnvRegex = new RegExp('^' + debugEnv + '$', 'i');
 }
@@ -15105,7 +15105,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.chalky.venue-list{--thumbnail-size:10
 
 /***/ }),
 
-/***/ 6414:
+/***/ 3858:
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -15594,19 +15594,19 @@ var update = add("66916f9a", content, true, {"sourceMap":false,"shadowMode":fals
 
 /***/ }),
 
-/***/ 4641:
+/***/ 889:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(6414);
+var content = __webpack_require__(3858);
 if(content.__esModule) content = content.default;
 if(typeof content === 'string') content = [[module.id, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
 var add = (__webpack_require__(9045)/* ["default"] */ .A)
-var update = add("4191b78a", content, true, {"sourceMap":false,"shadowMode":false});
+var update = add("7a1830c2", content, true, {"sourceMap":false,"shadowMode":false});
 
 /***/ }),
 
@@ -24477,8 +24477,8 @@ var List_component = (0,componentNormalizer/* default */.A)(
 )
 
 /* harmony default export */ const List = (List_component.exports);
-;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js??clonedRuleSet-85.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/templateLoader.js??ruleSet[1].rules[4]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Venue/Map.vue?vue&type=template&id=0126d11c
-var Mapvue_type_template_id_0126d11c_render = function render() {
+;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js??clonedRuleSet-85.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/templateLoader.js??ruleSet[1].rules[4]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Venue/Map.vue?vue&type=template&id=6d7e9816
+var Mapvue_type_template_id_6d7e9816_render = function render() {
   var _vm = this,
     _c = _vm._self._c,
     _setup = _vm._self._setupProxy;
@@ -24496,7 +24496,6 @@ var Mapvue_type_template_id_0126d11c_render = function render() {
         lat: _vm.latitude,
         lng: _vm.longitude
       },
-      "zoom": _vm.zoom,
       "options": {
         disableDefaultUi: true,
         fullscreenControl: false,
@@ -24504,8 +24503,10 @@ var Mapvue_type_template_id_0126d11c_render = function render() {
         rotateControl: false,
         scaleControl: false,
         streetViewControl: true,
+        styles: _vm.options,
         zoomControl: true
-      }
+      },
+      "zoom": _vm.zoom
     },
     on: {
       "bounds_changed": _vm.Handle_OnBoundsChanged
@@ -24527,7 +24528,7 @@ var Mapvue_type_template_id_0126d11c_render = function render() {
     });
   }), 1)], 1);
 };
-var Mapvue_type_template_id_0126d11c_staticRenderFns = [];
+var Mapvue_type_template_id_6d7e9816_staticRenderFns = [];
 
 // EXTERNAL MODULE: ./node_modules/vue-class-component/dist/vue-class-component.common.js
 var vue_class_component_common = __webpack_require__(7625);
@@ -24681,6 +24682,45 @@ let VenueMap = class VenueMap extends ViewBase {
      * @type IGoogleMapMarker[]
      */
     this.markers = [];
+    /**
+     * @type IGoogleMapOption[]
+     */
+    this.options = [{
+      featureType: 'poi.business',
+      stylers: [{
+        visibility: 'off'
+      }]
+    }, {
+      featureType: 'poi.medical',
+      stylers: [{
+        visibility: 'off'
+      }]
+    }, {
+      featureType: 'poi.attraction',
+      stylers: [{
+        visibility: 'off'
+      }]
+    }, {
+      featureType: 'poi.government',
+      stylers: [{
+        visibility: 'off'
+      }]
+    }, {
+      featureType: 'poi.place_of_worship',
+      stylers: [{
+        visibility: 'off'
+      }]
+    }, {
+      featureType: 'poi.school',
+      stylers: [{
+        visibility: 'off'
+      }]
+    }, {
+      featureType: 'poi.sports_complex',
+      stylers: [{
+        visibility: 'off'
+      }]
+    }];
     // Check if we need to load data
     if (!this.venueCollection.length) {
       this.venueCollection.fetch();
@@ -24785,9 +24825,9 @@ VenueMap = Mapvue_type_script_lang_ts_decorate([index_umd.Component], VenueMap);
 /* harmony default export */ const Mapvue_type_script_lang_ts = (VenueMap);
 ;// CONCATENATED MODULE: ./src/Venue/Map.vue?vue&type=script&lang=ts
  /* harmony default export */ const Venue_Mapvue_type_script_lang_ts = (Mapvue_type_script_lang_ts); 
-// EXTERNAL MODULE: ./node_modules/vue-style-loader/index.js??clonedRuleSet-67.use[0]!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-67.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-67.use[2]!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-67.use[3]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-67.use[4]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Venue/Map.vue?vue&type=style&index=0&id=0126d11c&prod&lang=scss
-var Mapvue_type_style_index_0_id_0126d11c_prod_lang_scss = __webpack_require__(4641);
-;// CONCATENATED MODULE: ./src/Venue/Map.vue?vue&type=style&index=0&id=0126d11c&prod&lang=scss
+// EXTERNAL MODULE: ./node_modules/vue-style-loader/index.js??clonedRuleSet-67.use[0]!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-67.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-67.use[2]!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-67.use[3]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-67.use[4]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Venue/Map.vue?vue&type=style&index=0&id=6d7e9816&prod&lang=scss
+var Mapvue_type_style_index_0_id_6d7e9816_prod_lang_scss = __webpack_require__(889);
+;// CONCATENATED MODULE: ./src/Venue/Map.vue?vue&type=style&index=0&id=6d7e9816&prod&lang=scss
 
 ;// CONCATENATED MODULE: ./src/Venue/Map.vue
 
@@ -24800,8 +24840,8 @@ var Mapvue_type_style_index_0_id_0126d11c_prod_lang_scss = __webpack_require__(4
 
 var Map_component = (0,componentNormalizer/* default */.A)(
   Venue_Mapvue_type_script_lang_ts,
-  Mapvue_type_template_id_0126d11c_render,
-  Mapvue_type_template_id_0126d11c_staticRenderFns,
+  Mapvue_type_template_id_6d7e9816_render,
+  Mapvue_type_template_id_6d7e9816_staticRenderFns,
   false,
   null,
   null,

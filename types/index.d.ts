@@ -9,6 +9,11 @@ interface IGoogleMapMarker {
 	position: IGoogleMapPosition;
 }
 
+interface IGoogleMapOption {
+	featureType: string;
+	stylers: any;
+}
+
 interface IMapPosition {
 	latitude: number;
 	longitude: number;

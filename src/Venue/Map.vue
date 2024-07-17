@@ -4,11 +4,11 @@
 			map-type-id="terrain"
 			style="width: 100%; height: 100%"
 			ref="map"
+			v-on:bounds_changed="Handle_OnBoundsChanged"
 			v-bind:center="{
 				lat: latitude,
 				lng: longitude,
 			}"
-			v-bind:zoom="zoom"
 			v-bind:options="{
 				disableDefaultUi: true,
 				fullscreenControl: false,
@@ -16,9 +16,10 @@
 				rotateControl: false,
 				scaleControl: false,
 				streetViewControl: true,
+				styles: options,
 				zoomControl: true,
 			}"
-			v-on:bounds_changed="Handle_OnBoundsChanged"
+			v-bind:zoom="zoom"
 		>
 			<GmapMarker
 				v-bind:clickable="true"
@@ -104,6 +105,40 @@
 		 * @type IGoogleMapMarker[]
 		 */
 		protected markers: IGoogleMapMarker[] = [];
+
+		/**
+		 * @type IGoogleMapOption[]
+		 */
+		protected options: IGoogleMapOption[] = [
+			{
+				featureType: 'poi.business',
+				stylers: [{ visibility: 'off' }],
+			},
+			{
+				featureType: 'poi.medical',
+				stylers: [{ visibility: 'off' }],
+			},
+			{
+				featureType: 'poi.attraction',
+				stylers: [{ visibility: 'off' }],
+			},
+			{
+				featureType: 'poi.government',
+				stylers: [{ visibility: 'off' }],
+			},
+			{
+				featureType: 'poi.place_of_worship',
+				stylers: [{ visibility: 'off' }],
+			},
+			{
+				featureType: 'poi.school',
+				stylers: [{ visibility: 'off' }],
+			},
+			{
+				featureType: 'poi.sports_complex',
+				stylers: [{ visibility: 'off' }],
+			},
+		];
 
 		/**
 		 * @constructor
