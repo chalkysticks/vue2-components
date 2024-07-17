@@ -4,10 +4,9 @@
 		v-bind:class="{
 			'on-light': mode === 'light',
 			'on-dark': mode === 'dark',
-			'size-sm': size === 'sm',
-			'size-md': size === 'md',
-			'size-lg': size === 'lg',
 		}"
+		v-bind:mode="mode"
+		v-bind:size="size"
 	></i>
 </template>
 
@@ -32,13 +31,13 @@
 
 		/**
 		 * Size of badge
-		 * e.g. sm, md, lg
+		 * e.g. 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 		 *
 		 * @type string
 		 */
 		@Prop({
 			default: 'sm',
 		})
-		public size!: 'sm' | 'md' | 'lg';
+		public size!: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 	}
 </script>
