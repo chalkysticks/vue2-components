@@ -8,7 +8,7 @@ Vue.config.productionTip = false;
 Vue.use(ChalkySticks, {
 	google: {
 		maps: {
-			api_key: 'AIzaSyD9_wCYmN1dEk8LgO42RbrkfnurD1GPQ7s',
+			api_key: process.env.VUE_APP_GOOGLE_MAP_API || '',
 		},
 	},
 	sdk: {
