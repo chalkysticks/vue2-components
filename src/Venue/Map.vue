@@ -63,7 +63,7 @@
 		/**
 		 * @type string
 		 */
-		public defaultIcon: string = require('@/Assets/image/markers/pin-0.svg');
+		public defaultIcon: string = require('../Assets/image/markers/pin-0.svg');
 
 		/**
 		 * @type number
