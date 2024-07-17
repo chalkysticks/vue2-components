@@ -179,7 +179,14 @@
 					<h3>Venue Map</h3>
 				</header>
 				<div>
-					<ChalkyVenueMap />
+					<ChalkyVenueMap
+						v-bind:venueCollection="venueCollection"
+						v-bind:latitude="mapLatitude"
+						v-bind:longitude="mapLongitude"
+						v-bind:zoom="mapZoom"
+						v-on:marker:click="Handle_OnClickMapMarker"
+						v-on:map:move="Handle_OnMoveMap"
+					/>
 				</div>
 			</section>
 		</section>
@@ -222,6 +229,41 @@
 		})
 		public authModel!: ChalkySticks.Model.Authentication;
 
+		/**
+		 * @type ChalkySticks/Collection/Venue
+		 */
+		@Prop({
+			default: () =>
+				new ChalkySticks.Collection.Venue({
+					baseUrl: ChalkySticks.Core.Constants.API_URL_V1,
+				}),
+		})
+		public venueCollection!: ChalkySticks.Collection.Venue;
+
+		/**
+		 * @type number
+		 */
+		protected mapLatitude: number = 40.7884;
+
+		/**
+		 * @type number
+		 */
+		protected mapLongitude: number = -73.977198;
+
+		/**
+		 * @type number
+		 */
+		protected mapZoom: number = 13;
+
+		/**
+		 * @return void
+		 */
+		public mounted(): void {
+			console.log('Collection', this.venueCollection);
+
+			// this.venueCollection.fetch();
+		}
+
 		// region: Event Handlers
 		// ---------------------------------------------------------------------------
 
@@ -250,6 +292,25 @@
 			const gameType: string = target.value;
 
 			this.videoTheater.setByGame(gameType);
+		}
+
+		/**
+		 * @param Event e
+		 * @return Promise<void>
+		 */
+		protected async Handle_OnClickMapMarker(venueModel: ChalkySticks.Model.Venue): Promise<void> {
+			console.log('Clicked marker', venueModel);
+
+			this.mapZoom = 10;
+			this.mapLongitude = 0;
+		}
+
+		/**
+		 * @param IMapPosition position
+		 * @return Promise<void>
+		 */
+		protected async Handle_OnMoveMap(position: IMapPosition): Promise<void> {
+			console.log('Map moved', position);
 		}
 
 		// endregion: Event Handlers

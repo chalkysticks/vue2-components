@@ -6,7 +6,14 @@ Vue.config.silent = true;
 Vue.config.productionTip = false;
 
 Vue.use(ChalkySticks, {
-	api_url: 'http://localhost:3333',
+	google: {
+		maps: {
+			api_key: 'AIzaSyD9_wCYmN1dEk8LgO42RbrkfnurD1GPQ7s',
+		},
+	},
+	sdk: {
+		api_url: 'https://api.chalkysticks.com',
+	},
 });
 
 new Vue({

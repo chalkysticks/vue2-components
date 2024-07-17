@@ -1,0 +1,4 @@
+-   Figure out the ChalkySticks configure in .install
+-   Share the Core library amongst packages
+-   Maybe use a provider to share settings?
+-   Create Factories, I need a Venue Collection factory and more.

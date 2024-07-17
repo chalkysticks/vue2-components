@@ -1,3 +1,6 @@
+import * as VueGoogleMaps from 'vue2-google-maps';
+import ChalkySticks from '@chalkysticks/sdk';
+
 // Theme
 // ---------------------------------------------------------------------------
 
@@ -38,16 +41,27 @@ const components = {
 	VenueMap,
 };
 
-const ChalkySticks = {
+const ChalkySticksVue = {
 	/**
 	 * Install ChalkySticks Vue2
 	 */
-	install: (Vue: any, options: any) => {
+	install: (Vue: any, options: any = {}) => {
 		// Provide an API through Vue’s provide/inject API
 		Vue.prototype.$chalky = {
 			log: () => console.log('ChalkySticks v3', options),
 			options: options,
 		};
+
+		// Configure ChalkySticks
+		ChalkySticks.Core.ChalkySticks.configure(options.sdk || {});
+
+		// Configure Google Maps
+		Vue.use(VueGoogleMaps, {
+			load: {
+				key: options.google?.maps?.api_key,
+				libraries: 'places',
+			},
+		});
 
 		// Directives (like v-model, v-show)
 		// @see https://v3.vuejs.org/guide/custom-directive.html#intro
@@ -77,4 +91,4 @@ export {
 	ViewBase,
 };
 
-export default ChalkySticks;
+export default ChalkySticksVue;

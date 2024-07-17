@@ -23,5 +23,6 @@
 		"useDefineForClassFields": false
 	},
 	"exclude": ["node_modules"],
+	"files": ["./types/index.d.ts"],
 	"include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "tests/**/*.ts", "tests/**/*.tsx"]
 }

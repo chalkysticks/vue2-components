@@ -11,6 +11,409 @@
 return /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ 2065:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+// ESM COMPAT FLAG
+__webpack_require__.r(__webpack_exports__);
+
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, {
+  "default": () => (/* binding */ autocomplete)
+});
+
+;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js??clonedRuleSet-85.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/templateLoader.js??ruleSet[1].rules[4]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./node_modules/vue2-google-maps/dist/components/autocomplete.vue?vue&type=template&id=5e569f3e
+var render = function render() {
+  var _vm = this,
+    _c = _vm._self._c,
+    _setup = _vm._self._setupProxy;
+  return _c('input', _vm._g(_vm._b({
+    ref: "input"
+  }, 'input', _vm.$attrs, false), _vm.$listeners));
+};
+var staticRenderFns = [];
+
+;// CONCATENATED MODULE: ./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib/index.js??clonedRuleSet-85.use[1]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./node_modules/vue2-google-maps/dist/components/autocomplete.vue?vue&type=script&lang=js
+/* harmony default export */ const autocompletevue_type_script_lang_js = ((function (x) {
+  return x.default || x;
+})(__webpack_require__(1045)));
+;// CONCATENATED MODULE: ./node_modules/vue2-google-maps/dist/components/autocomplete.vue?vue&type=script&lang=js
+ /* harmony default export */ const components_autocompletevue_type_script_lang_js = (autocompletevue_type_script_lang_js); 
+// EXTERNAL MODULE: ./node_modules/@vue/vue-loader-v15/lib/runtime/componentNormalizer.js
+var componentNormalizer = __webpack_require__(1656);
+;// CONCATENATED MODULE: ./node_modules/vue2-google-maps/dist/components/autocomplete.vue
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,componentNormalizer/* default */.A)(
+  components_autocompletevue_type_script_lang_js,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* harmony default export */ const autocomplete = (component.exports);
+
+/***/ }),
+
+/***/ 6445:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+// ESM COMPAT FLAG
+__webpack_require__.r(__webpack_exports__);
+
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, {
+  "default": () => (/* binding */ infoWindow)
+});
+
+;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js??clonedRuleSet-85.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/templateLoader.js??ruleSet[1].rules[4]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./node_modules/vue2-google-maps/dist/components/infoWindow.vue?vue&type=template&id=25e3f758
+var render = function render() {
+  var _vm = this,
+    _c = _vm._self._c,
+    _setup = _vm._self._setupProxy;
+  return _c('div', [_c('div', {
+    ref: "flyaway"
+  }, [_vm._t("default")], 2)]);
+};
+var staticRenderFns = [];
+
+;// CONCATENATED MODULE: ./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib/index.js??clonedRuleSet-85.use[1]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./node_modules/vue2-google-maps/dist/components/infoWindow.vue?vue&type=script&lang=js
+/* harmony default export */ const infoWindowvue_type_script_lang_js = ((function (x) {
+  return x.default || x;
+})(__webpack_require__(465)));
+;// CONCATENATED MODULE: ./node_modules/vue2-google-maps/dist/components/infoWindow.vue?vue&type=script&lang=js
+ /* harmony default export */ const components_infoWindowvue_type_script_lang_js = (infoWindowvue_type_script_lang_js); 
+// EXTERNAL MODULE: ./node_modules/@vue/vue-loader-v15/lib/runtime/componentNormalizer.js
+var componentNormalizer = __webpack_require__(1656);
+;// CONCATENATED MODULE: ./node_modules/vue2-google-maps/dist/components/infoWindow.vue
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,componentNormalizer/* default */.A)(
+  components_infoWindowvue_type_script_lang_js,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* harmony default export */ const infoWindow = (component.exports);
+
+/***/ }),
+
+/***/ 6668:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+// ESM COMPAT FLAG
+__webpack_require__.r(__webpack_exports__);
+
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, {
+  "default": () => (/* binding */ map)
+});
+
+;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js??clonedRuleSet-85.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/templateLoader.js??ruleSet[1].rules[4]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./node_modules/vue2-google-maps/dist/components/map.vue?vue&type=template&id=6839df3e
+var render = function render() {
+  var _vm = this,
+    _c = _vm._self._c,
+    _setup = _vm._self._setupProxy;
+  return _c('div', {
+    staticClass: "vue-map-container"
+  }, [_c('div', {
+    ref: "vue-map",
+    staticClass: "vue-map"
+  }), _c('div', {
+    staticClass: "vue-map-hidden"
+  }, [_vm._t("default")], 2), _vm._t("visible")], 2);
+};
+var staticRenderFns = [];
+
+;// CONCATENATED MODULE: ./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib/index.js??clonedRuleSet-85.use[1]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./node_modules/vue2-google-maps/dist/components/map.vue?vue&type=script&lang=js
+/* harmony default export */ const mapvue_type_script_lang_js = ((function (x) {
+  return x.default || x;
+})(__webpack_require__(5939)));
+;// CONCATENATED MODULE: ./node_modules/vue2-google-maps/dist/components/map.vue?vue&type=script&lang=js
+ /* harmony default export */ const components_mapvue_type_script_lang_js = (mapvue_type_script_lang_js); 
+// EXTERNAL MODULE: ./node_modules/vue-style-loader/index.js??clonedRuleSet-57.use[0]!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-57.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-57.use[2]!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-57.use[3]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./node_modules/vue2-google-maps/dist/components/map.vue?vue&type=style&index=0&id=6839df3e&prod&lang=css
+var mapvue_type_style_index_0_id_6839df3e_prod_lang_css = __webpack_require__(21);
+;// CONCATENATED MODULE: ./node_modules/vue2-google-maps/dist/components/map.vue?vue&type=style&index=0&id=6839df3e&prod&lang=css
+
+// EXTERNAL MODULE: ./node_modules/@vue/vue-loader-v15/lib/runtime/componentNormalizer.js
+var componentNormalizer = __webpack_require__(1656);
+;// CONCATENATED MODULE: ./node_modules/vue2-google-maps/dist/components/map.vue
+
+
+
+;
+
+
+/* normalize component */
+
+var component = (0,componentNormalizer/* default */.A)(
+  components_mapvue_type_script_lang_js,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* harmony default export */ const map = (component.exports);
+
+/***/ }),
+
+/***/ 7766:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+// ESM COMPAT FLAG
+__webpack_require__.r(__webpack_exports__);
+
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, {
+  __esModule: () => (/* reexport */ placeInputImplvue_type_script_lang_js_external/* __esModule */.B),
+  "default": () => (/* binding */ placeInput)
+});
+
+;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js??clonedRuleSet-85.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/templateLoader.js??ruleSet[1].rules[4]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./node_modules/vue2-google-maps/dist/components/placeInput.vue?vue&type=template&id=13bfbbee
+var render = function render() {
+  var _vm = this,
+    _c = _vm._self._c,
+    _setup = _vm._self._setupProxy;
+  return _c('label', [_c('span', {
+    domProps: {
+      "textContent": _vm._s(_vm.label)
+    }
+  }), _c('input', {
+    ref: "input",
+    class: _vm.className,
+    attrs: {
+      "type": "text",
+      "placeholder": _vm.placeholder
+    }
+  })]);
+};
+var staticRenderFns = [];
+
+// EXTERNAL MODULE: ./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib/index.js??clonedRuleSet-85.use[1]!./node_modules/vue2-google-maps/dist/components/placeInputImpl.js?vue&type=script&lang=js&external
+var placeInputImplvue_type_script_lang_js_external = __webpack_require__(68);
+;// CONCATENATED MODULE: ./node_modules/vue2-google-maps/dist/components/placeInputImpl.js?vue&type=script&lang=js&external
+ /* harmony default export */ const components_placeInputImplvue_type_script_lang_js_external = (placeInputImplvue_type_script_lang_js_external/* default */.A); 
+// EXTERNAL MODULE: ./node_modules/@vue/vue-loader-v15/lib/runtime/componentNormalizer.js
+var componentNormalizer = __webpack_require__(1656);
+;// CONCATENATED MODULE: ./node_modules/vue2-google-maps/dist/components/placeInput.vue
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,componentNormalizer/* default */.A)(
+  components_placeInputImplvue_type_script_lang_js_external,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* harmony default export */ const placeInput = (component.exports);
+
+/***/ }),
+
+/***/ 3164:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+// ESM COMPAT FLAG
+__webpack_require__.r(__webpack_exports__);
+
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, {
+  "default": () => (/* binding */ streetViewPanorama)
+});
+
+;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js??clonedRuleSet-85.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/templateLoader.js??ruleSet[1].rules[4]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./node_modules/vue2-google-maps/dist/components/streetViewPanorama.vue?vue&type=template&id=50f7f8d6
+var render = function render() {
+  var _vm = this,
+    _c = _vm._self._c,
+    _setup = _vm._self._setupProxy;
+  return _c('div', {
+    staticClass: "vue-street-view-pano-container"
+  }, [_c('div', {
+    ref: "vue-street-view-pano",
+    staticClass: "vue-street-view-pano"
+  }), _vm._t("default")], 2);
+};
+var staticRenderFns = [];
+
+;// CONCATENATED MODULE: ./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib/index.js??clonedRuleSet-85.use[1]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./node_modules/vue2-google-maps/dist/components/streetViewPanorama.vue?vue&type=script&lang=js
+/* harmony default export */ const streetViewPanoramavue_type_script_lang_js = ((function (x) {
+  return x.default || x;
+})(__webpack_require__(816)));
+;// CONCATENATED MODULE: ./node_modules/vue2-google-maps/dist/components/streetViewPanorama.vue?vue&type=script&lang=js
+ /* harmony default export */ const components_streetViewPanoramavue_type_script_lang_js = (streetViewPanoramavue_type_script_lang_js); 
+// EXTERNAL MODULE: ./node_modules/vue-style-loader/index.js??clonedRuleSet-57.use[0]!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-57.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-57.use[2]!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-57.use[3]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./node_modules/vue2-google-maps/dist/components/streetViewPanorama.vue?vue&type=style&index=0&id=50f7f8d6&prod&lang=css
+var streetViewPanoramavue_type_style_index_0_id_50f7f8d6_prod_lang_css = __webpack_require__(2716);
+;// CONCATENATED MODULE: ./node_modules/vue2-google-maps/dist/components/streetViewPanorama.vue?vue&type=style&index=0&id=50f7f8d6&prod&lang=css
+
+// EXTERNAL MODULE: ./node_modules/@vue/vue-loader-v15/lib/runtime/componentNormalizer.js
+var componentNormalizer = __webpack_require__(1656);
+;// CONCATENATED MODULE: ./node_modules/vue2-google-maps/dist/components/streetViewPanorama.vue
+
+
+
+;
+
+
+/* normalize component */
+
+var component = (0,componentNormalizer/* default */.A)(
+  components_streetViewPanoramavue_type_script_lang_js,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* harmony default export */ const streetViewPanorama = (component.exports);
+
+/***/ }),
+
+/***/ 1656:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   A: () => (/* binding */ normalizeComponent)
+/* harmony export */ });
+/* globals __VUE_SSR_CONTEXT__ */
+
+// IMPORTANT: Do NOT use ES2015 features in this file (except for modules).
+// This module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle.
+
+function normalizeComponent(
+  scriptExports,
+  render,
+  staticRenderFns,
+  functionalTemplate,
+  injectStyles,
+  scopeId,
+  moduleIdentifier /* server only */,
+  shadowMode /* vue-cli only */
+) {
+  // Vue.extend constructor export interop
+  var options =
+    typeof scriptExports === 'function' ? scriptExports.options : scriptExports
+
+  // render functions
+  if (render) {
+    options.render = render
+    options.staticRenderFns = staticRenderFns
+    options._compiled = true
+  }
+
+  // functional template
+  if (functionalTemplate) {
+    options.functional = true
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = 'data-v-' + scopeId
+  }
+
+  var hook
+  if (moduleIdentifier) {
+    // server build
+    hook = function (context) {
+      // 2.3 injection
+      context =
+        context || // cached call
+        (this.$vnode && this.$vnode.ssrContext) || // stateful
+        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
+      // 2.2 with runInNewContext: true
+      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+        context = __VUE_SSR_CONTEXT__
+      }
+      // inject component styles
+      if (injectStyles) {
+        injectStyles.call(this, context)
+      }
+      // register component module identifier for async chunk inferrence
+      if (context && context._registeredComponents) {
+        context._registeredComponents.add(moduleIdentifier)
+      }
+    }
+    // used by ssr in case component is cached and beforeCreate
+    // never gets called
+    options._ssrRegister = hook
+  } else if (injectStyles) {
+    hook = shadowMode
+      ? function () {
+          injectStyles.call(
+            this,
+            (options.functional ? this.parent : this).$root.$options.shadowRoot
+          )
+        }
+      : injectStyles
+  }
+
+  if (hook) {
+    if (options.functional) {
+      // for template-only hot-reload because in that case the render fn doesn't
+      // go through the normalizer
+      options._injectStyles = hook
+      // register for functional component in vue file
+      var originalRender = options.render
+      options.render = function renderWithStyleInjection(h, context) {
+        hook.call(context)
+        return originalRender(h, context)
+      }
+    } else {
+      // inject component registration as beforeCreate hook
+      var existing = options.beforeCreate
+      options.beforeCreate = existing ? [].concat(existing, hook) : [hook]
+    }
+  }
+
+  return {
+    exports: scriptExports,
+    options: options
+  }
+}
+
+
+/***/ }),
+
 /***/ 6191:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
@@ -10982,8 +11385,8 @@ exports.deprecate = function (fn, msg) {
 };
 var debugs = {};
 var debugEnvRegex = /^$/;
-if (({"NODE_ENV":"production","VUE_APP_VERSION":"1.4.3","BASE_URL":"/"}).NODE_DEBUG) {
-  var debugEnv = ({"NODE_ENV":"production","VUE_APP_VERSION":"1.4.3","BASE_URL":"/"}).NODE_DEBUG;
+if (({"NODE_ENV":"production","VUE_APP_VERSION":"1.5.0","BASE_URL":"/"}).NODE_DEBUG) {
+  var debugEnv = ({"NODE_ENV":"production","VUE_APP_VERSION":"1.5.0","BASE_URL":"/"}).NODE_DEBUG;
   debugEnv = debugEnv.replace(/[|\\{}()[\]^$+?.]/g, '\\$&').replace(/\*/g, '.*').replace(/,/g, '$|^').toUpperCase();
   debugEnvRegex = new RegExp('^' + debugEnv + '$', 'i');
 }
@@ -12188,6 +12591,1966 @@ exports.mixins = mixins;
 
 /***/ }),
 
+/***/ 1045:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];
+    for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }
+  return target;
+};
+var _bindProps = __webpack_require__(8479);
+var _simulateArrowDown = __webpack_require__(4731);
+var _simulateArrowDown2 = _interopRequireDefault(_simulateArrowDown);
+var _mapElementFactory = __webpack_require__(1959);
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {
+    default: obj
+  };
+}
+var mappedProps = {
+  bounds: {
+    type: Object
+  },
+  componentRestrictions: {
+    type: Object,
+    // Do not bind -- must check for undefined
+    // in the property
+    noBind: true
+  },
+  types: {
+    type: Array,
+    default: function _default() {
+      return [];
+    }
+  }
+};
+var props = {
+  selectFirstOnEnter: {
+    required: false,
+    type: Boolean,
+    default: false
+  },
+  options: {
+    type: Object
+  }
+};
+exports["default"] = {
+  mounted: function mounted() {
+    var _this = this;
+    this.$gmapApiPromiseLazy().then(function () {
+      if (_this.selectFirstOnEnter) {
+        (0, _simulateArrowDown2.default)(_this.$refs.input);
+      }
+      if (typeof google.maps.places.Autocomplete !== 'function') {
+        throw new Error('google.maps.places.Autocomplete is undefined. Did you add \'places\' to libraries when loading Google Maps?');
+      }
+
+      /* eslint-disable no-unused-vars */
+      var finalOptions = _extends({}, (0, _bindProps.getPropsValues)(_this, mappedProps), _this.options);
+      _this.$autocomplete = new google.maps.places.Autocomplete(_this.$refs.input, finalOptions);
+      (0, _bindProps.bindProps)(_this, _this.$autocomplete, mappedProps);
+      _this.$watch('componentRestrictions', function (v) {
+        if (v !== undefined) {
+          _this.$autocomplete.setComponentRestrictions(v);
+        }
+      });
+
+      // Not using `bindEvents` because we also want
+      // to return the result of `getPlace()`
+      _this.$autocomplete.addListener('place_changed', function () {
+        _this.$emit('place_changed', _this.$autocomplete.getPlace());
+      });
+    });
+  },
+  props: _extends({}, (0, _mapElementFactory.mappedPropsToVueProps)(mappedProps), props)
+};
+
+/***/ }),
+
+/***/ 739:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+var _mapElementFactory = __webpack_require__(1959);
+var _mapElementFactory2 = _interopRequireDefault(_mapElementFactory);
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {
+    default: obj
+  };
+}
+var props = {
+  center: {
+    type: Object,
+    twoWay: true,
+    required: true
+  },
+  radius: {
+    type: Number,
+    twoWay: true
+  },
+  draggable: {
+    type: Boolean,
+    default: false
+  },
+  editable: {
+    type: Boolean,
+    default: false
+  },
+  options: {
+    type: Object,
+    twoWay: false
+  }
+};
+var events = ['click', 'dblclick', 'drag', 'dragend', 'dragstart', 'mousedown', 'mousemove', 'mouseout', 'mouseover', 'mouseup', 'rightclick'];
+exports["default"] = (0, _mapElementFactory2.default)({
+  mappedProps: props,
+  name: 'circle',
+  ctr: function ctr() {
+    return google.maps.Circle;
+  },
+  events: events
+});
+
+/***/ }),
+
+/***/ 465:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+var _mapElementFactory = __webpack_require__(1959);
+var _mapElementFactory2 = _interopRequireDefault(_mapElementFactory);
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {
+    default: obj
+  };
+}
+var props = {
+  options: {
+    type: Object,
+    required: false,
+    default: function _default() {
+      return {};
+    }
+  },
+  position: {
+    type: Object,
+    twoWay: true
+  },
+  zIndex: {
+    type: Number,
+    twoWay: true
+  }
+};
+var events = ['domready', 'closeclick', 'content_changed'];
+exports["default"] = (0, _mapElementFactory2.default)({
+  mappedProps: props,
+  events: events,
+  name: 'infoWindow',
+  ctr: function ctr() {
+    return google.maps.InfoWindow;
+  },
+  props: {
+    opened: {
+      type: Boolean,
+      default: true
+    }
+  },
+  inject: {
+    '$markerPromise': {
+      default: null
+    }
+  },
+  mounted: function mounted() {
+    var el = this.$refs.flyaway;
+    el.parentNode.removeChild(el);
+  },
+  beforeCreate: function beforeCreate(options) {
+    var _this = this;
+    options.content = this.$refs.flyaway;
+    if (this.$markerPromise) {
+      delete options.position;
+      return this.$markerPromise.then(function (mo) {
+        _this.$markerObject = mo;
+        return mo;
+      });
+    }
+  },
+  methods: {
+    _openInfoWindow: function _openInfoWindow() {
+      if (this.opened) {
+        if (this.$markerObject !== null) {
+          this.$infoWindowObject.open(this.$map, this.$markerObject);
+        } else {
+          this.$infoWindowObject.open(this.$map);
+        }
+      } else {
+        this.$infoWindowObject.close();
+      }
+    }
+  },
+  afterCreate: function afterCreate() {
+    var _this2 = this;
+    this._openInfoWindow();
+    this.$watch('opened', function () {
+      _this2._openInfoWindow();
+    });
+  }
+});
+
+/***/ }),
+
+/***/ 1959:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+var _slicedToArray = function () {
+  function sliceIterator(arr, i) {
+    var _arr = [];
+    var _n = true;
+    var _d = false;
+    var _e = undefined;
+    try {
+      for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+        _arr.push(_s.value);
+        if (i && _arr.length === i) break;
+      }
+    } catch (err) {
+      _d = true;
+      _e = err;
+    } finally {
+      try {
+        if (!_n && _i["return"]) _i["return"]();
+      } finally {
+        if (_d) throw _e;
+      }
+    }
+    return _arr;
+  }
+  return function (arr, i) {
+    if (Array.isArray(arr)) {
+      return arr;
+    } else if (Symbol.iterator in Object(arr)) {
+      return sliceIterator(arr, i);
+    } else {
+      throw new TypeError("Invalid attempt to destructure non-iterable instance");
+    }
+  };
+}();
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];
+    for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }
+  return target;
+};
+exports["default"] = function (options) {
+  var mappedProps = options.mappedProps,
+    name = options.name,
+    ctr = options.ctr,
+    ctrArgs = options.ctrArgs,
+    events = options.events,
+    beforeCreate = options.beforeCreate,
+    afterCreate = options.afterCreate,
+    props = options.props,
+    rest = _objectWithoutProperties(options, ['mappedProps', 'name', 'ctr', 'ctrArgs', 'events', 'beforeCreate', 'afterCreate', 'props']);
+  var promiseName = '$' + name + 'Promise';
+  var instanceName = '$' + name + 'Object';
+  assert(!(rest.props instanceof Array), '`props` should be an object, not Array');
+  return _extends({}, typeof GENERATE_DOC !== 'undefined' ? {
+    $vgmOptions: options
+  } : {}, {
+    mixins: [_mapElementMixin2.default],
+    props: _extends({}, props, mappedPropsToVueProps(mappedProps)),
+    render: function render() {
+      return '';
+    },
+    provide: function provide() {
+      var _this = this;
+      var promise = this.$mapPromise.then(function (map) {
+        // Infowindow needs this to be immediately available
+        _this.$map = map;
+
+        // Initialize the maps with the given options
+        var options = _extends({}, _this.options, {
+          map: map
+        }, (0, _bindProps.getPropsValues)(_this, mappedProps));
+        delete options.options; // delete the extra options
+
+        if (beforeCreate) {
+          var result = beforeCreate.bind(_this)(options);
+          if (result instanceof Promise) {
+            return result.then(function () {
+              return {
+                options: options
+              };
+            });
+          }
+        }
+        return {
+          options: options
+        };
+      }).then(function (_ref) {
+        var _Function$prototype$b;
+        var options = _ref.options;
+        var ConstructorObject = ctr();
+        // https://stackoverflow.com/questions/1606797/use-of-apply-with-new-operator-is-this-possible
+        _this[instanceName] = ctrArgs ? new ((_Function$prototype$b = Function.prototype.bind).call.apply(_Function$prototype$b, [ConstructorObject, null].concat(_toConsumableArray(ctrArgs(options, (0, _bindProps.getPropsValues)(_this, props || {}))))))() : new ConstructorObject(options);
+        (0, _bindProps.bindProps)(_this, _this[instanceName], mappedProps);
+        (0, _bindEvents2.default)(_this, _this[instanceName], events);
+        if (afterCreate) {
+          afterCreate.bind(_this)(_this[instanceName]);
+        }
+        return _this[instanceName];
+      });
+      this[promiseName] = promise;
+      return _defineProperty({}, promiseName, promise);
+    },
+    destroyed: function destroyed() {
+      // Note: not all Google Maps components support maps
+      if (this[instanceName] && this[instanceName].setMap) {
+        this[instanceName].setMap(null);
+      }
+    }
+  }, rest);
+};
+exports.mappedPropsToVueProps = mappedPropsToVueProps;
+var _bindEvents = __webpack_require__(3716);
+var _bindEvents2 = _interopRequireDefault(_bindEvents);
+var _bindProps = __webpack_require__(8479);
+var _mapElementMixin = __webpack_require__(4884);
+var _mapElementMixin2 = _interopRequireDefault(_mapElementMixin);
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {
+    default: obj
+  };
+}
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+  return obj;
+}
+function _toConsumableArray(arr) {
+  if (Array.isArray(arr)) {
+    for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) {
+      arr2[i] = arr[i];
+    }
+    return arr2;
+  } else {
+    return Array.from(arr);
+  }
+}
+function _objectWithoutProperties(obj, keys) {
+  var target = {};
+  for (var i in obj) {
+    if (keys.indexOf(i) >= 0) continue;
+    if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+    target[i] = obj[i];
+  }
+  return target;
+}
+
+/**
+ *
+ * @param {Object} options
+ * @param {Object} options.mappedProps - Definitions of props
+ * @param {Object} options.mappedProps.PROP.type - Value type
+ * @param {Boolean} options.mappedProps.PROP.twoWay
+ *  - Whether the prop has a corresponding PROP_changed
+ *   event
+ * @param {Boolean} options.mappedProps.PROP.noBind
+ *  - If true, do not apply the default bindProps / bindEvents.
+ * However it will still be added to the list of component props
+ * @param {Object} options.props - Regular Vue-style props.
+ *  Note: must be in the Object form because it will be
+ *  merged with the `mappedProps`
+ *
+ * @param {Object} options.events - Google Maps API events
+ *  that are not bound to a corresponding prop
+ * @param {String} options.name - e.g. `polyline`
+ * @param {=> String} options.ctr - constructor, e.g.
+ *  `google.maps.Polyline`. However, since this is not
+ *  generally available during library load, this becomes
+ *  a function instead, e.g. () => google.maps.Polyline
+ *  which will be called only after the API has been loaded
+ * @param {(MappedProps, OtherVueProps) => Array} options.ctrArgs -
+ *   If the constructor in `ctr` needs to be called with
+ *   arguments other than a single `options` object, e.g. for
+ *   GroundOverlay, we call `new GroundOverlay(url, bounds, options)`
+ *   then pass in a function that returns the argument list as an array
+ *
+ * Otherwise, the constructor will be called with an `options` object,
+ *   with property and values merged from:
+ *
+ *   1. the `options` property, if any
+ *   2. a `map` property with the Google Maps
+ *   3. all the properties passed to the component in `mappedProps`
+ * @param {Object => Any} options.beforeCreate -
+ *  Hook to modify the options passed to the initializer
+ * @param {(options.ctr, Object) => Any} options.afterCreate -
+ *  Hook called when
+ *
+ */
+
+function assert(v, message) {
+  if (!v) throw new Error(message);
+}
+
+/**
+ * Strips out the extraneous properties we have in our
+ * props definitions
+ * @param {Object} props
+ */
+function mappedPropsToVueProps(mappedProps) {
+  return Object.entries(mappedProps).map(function (_ref3) {
+    var _ref4 = _slicedToArray(_ref3, 2),
+      key = _ref4[0],
+      prop = _ref4[1];
+    var value = {};
+    if ('type' in prop) value.type = prop.type;
+    if ('default' in prop) value.default = prop.default;
+    if ('required' in prop) value.required = prop.required;
+    return [key, value];
+  }).reduce(function (acc, _ref5) {
+    var _ref6 = _slicedToArray(_ref5, 2),
+      key = _ref6[0],
+      val = _ref6[1];
+    acc[key] = val;
+    return acc;
+  }, {});
+}
+
+/***/ }),
+
+/***/ 4884:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+/**
+ * @class MapElementMixin
+ *
+ * Extends components to include the following fields:
+ *
+ * @property $map        The Google map (valid only after the promise returns)
+ *
+ *
+ * */
+exports["default"] = {
+  inject: {
+    '$mapPromise': {
+      default: 'abcdef'
+    }
+  },
+  provide: function provide() {
+    var _this = this;
+
+    // Note: although this mixin is not "providing" anything,
+    // components' expect the `$map` property to be present on the component.
+    // In order for that to happen, this mixin must intercept the $mapPromise
+    // .then(() =>) first before its component does so.
+    //
+    // Since a provide() on a mixin is executed before a provide() on the
+    // component, putting this code in provide() ensures that the $map is
+    // already set by the time the
+    // component's provide() is called.
+    this.$mapPromise.then(function (map) {
+      _this.$map = map;
+    });
+    return {};
+  }
+};
+
+/***/ }),
+
+/***/ 5939:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];
+    for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }
+  return target;
+};
+var _bindEvents = __webpack_require__(3716);
+var _bindEvents2 = _interopRequireDefault(_bindEvents);
+var _bindProps = __webpack_require__(8479);
+var _mountableMixin = __webpack_require__(3688);
+var _mountableMixin2 = _interopRequireDefault(_mountableMixin);
+var _TwoWayBindingWrapper = __webpack_require__(7459);
+var _TwoWayBindingWrapper2 = _interopRequireDefault(_TwoWayBindingWrapper);
+var _WatchPrimitiveProperties = __webpack_require__(6419);
+var _WatchPrimitiveProperties2 = _interopRequireDefault(_WatchPrimitiveProperties);
+var _mapElementFactory = __webpack_require__(1959);
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {
+    default: obj
+  };
+}
+var props = {
+  center: {
+    required: true,
+    twoWay: true,
+    type: Object,
+    noBind: true
+  },
+  zoom: {
+    required: false,
+    twoWay: true,
+    type: Number,
+    noBind: true
+  },
+  heading: {
+    type: Number,
+    twoWay: true
+  },
+  mapTypeId: {
+    twoWay: true,
+    type: String
+  },
+  tilt: {
+    twoWay: true,
+    type: Number
+  },
+  options: {
+    type: Object,
+    default: function _default() {
+      return {};
+    }
+  }
+};
+var events = ['bounds_changed', 'click', 'dblclick', 'drag', 'dragend', 'dragstart', 'idle', 'mousemove', 'mouseout', 'mouseover', 'resize', 'rightclick', 'tilesloaded'];
+
+// Plain Google Maps methods exposed here for convenience
+var linkedMethods = ['panBy', 'panTo', 'panToBounds', 'fitBounds'].reduce(function (all, methodName) {
+  all[methodName] = function () {
+    if (this.$mapObject) {
+      this.$mapObject[methodName].apply(this.$mapObject, arguments);
+    }
+  };
+  return all;
+}, {});
+
+// Other convenience methods exposed by Vue Google Maps
+var customMethods = {
+  resize: function resize() {
+    if (this.$mapObject) {
+      google.maps.event.trigger(this.$mapObject, 'resize');
+    }
+  },
+  resizePreserveCenter: function resizePreserveCenter() {
+    if (!this.$mapObject) {
+      return;
+    }
+    var oldCenter = this.$mapObject.getCenter();
+    google.maps.event.trigger(this.$mapObject, 'resize');
+    this.$mapObject.setCenter(oldCenter);
+  },
+  /// Override mountableMixin::_resizeCallback
+  /// because resizePreserveCenter is usually the
+  /// expected behaviour
+  _resizeCallback: function _resizeCallback() {
+    this.resizePreserveCenter();
+  }
+};
+exports["default"] = {
+  mixins: [_mountableMixin2.default],
+  props: (0, _mapElementFactory.mappedPropsToVueProps)(props),
+  provide: function provide() {
+    var _this = this;
+    this.$mapPromise = new Promise(function (resolve, reject) {
+      _this.$mapPromiseDeferred = {
+        resolve: resolve,
+        reject: reject
+      };
+    });
+    return {
+      '$mapPromise': this.$mapPromise
+    };
+  },
+  computed: {
+    finalLat: function finalLat() {
+      return this.center && typeof this.center.lat === 'function' ? this.center.lat() : this.center.lat;
+    },
+    finalLng: function finalLng() {
+      return this.center && typeof this.center.lng === 'function' ? this.center.lng() : this.center.lng;
+    },
+    finalLatLng: function finalLatLng() {
+      return {
+        lat: this.finalLat,
+        lng: this.finalLng
+      };
+    }
+  },
+  watch: {
+    zoom: function zoom(_zoom) {
+      if (this.$mapObject) {
+        this.$mapObject.setZoom(_zoom);
+      }
+    }
+  },
+  mounted: function mounted() {
+    var _this2 = this;
+    return this.$gmapApiPromiseLazy().then(function () {
+      // getting the DOM element where to create the map
+      var element = _this2.$refs['vue-map'];
+
+      // creating the map
+      var options = _extends({}, _this2.options, (0, _bindProps.getPropsValues)(_this2, props));
+      delete options.options;
+      _this2.$mapObject = new google.maps.Map(element, options);
+
+      // binding properties (two and one way)
+      (0, _bindProps.bindProps)(_this2, _this2.$mapObject, props);
+      // binding events
+      (0, _bindEvents2.default)(_this2, _this2.$mapObject, events);
+
+      // manually trigger center and zoom
+      (0, _TwoWayBindingWrapper2.default)(function (increment, decrement, shouldUpdate) {
+        _this2.$mapObject.addListener('center_changed', function () {
+          if (shouldUpdate()) {
+            _this2.$emit('center_changed', _this2.$mapObject.getCenter());
+          }
+          decrement();
+        });
+        (0, _WatchPrimitiveProperties2.default)(_this2, ['finalLat', 'finalLng'], function updateCenter() {
+          increment();
+          _this2.$mapObject.setCenter(_this2.finalLatLng);
+        });
+      });
+      _this2.$mapObject.addListener('zoom_changed', function () {
+        _this2.$emit('zoom_changed', _this2.$mapObject.getZoom());
+      });
+      _this2.$mapObject.addListener('bounds_changed', function () {
+        _this2.$emit('bounds_changed', _this2.$mapObject.getBounds());
+      });
+      _this2.$mapPromiseDeferred.resolve(_this2.$mapObject);
+      return _this2.$mapObject;
+    }).catch(function (error) {
+      throw error;
+    });
+  },
+  methods: _extends({}, customMethods, linkedMethods)
+};
+
+/***/ }),
+
+/***/ 5941:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+var _mapElementFactory = __webpack_require__(1959);
+var _mapElementFactory2 = _interopRequireDefault(_mapElementFactory);
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {
+    default: obj
+  };
+}
+var props = {
+  animation: {
+    twoWay: true,
+    type: Number
+  },
+  attribution: {
+    type: Object
+  },
+  clickable: {
+    type: Boolean,
+    twoWay: true,
+    default: true
+  },
+  cursor: {
+    type: String,
+    twoWay: true
+  },
+  draggable: {
+    type: Boolean,
+    twoWay: true,
+    default: false
+  },
+  icon: {
+    twoWay: true
+  },
+  label: {},
+  opacity: {
+    type: Number,
+    default: 1
+  },
+  options: {
+    type: Object
+  },
+  place: {
+    type: Object
+  },
+  position: {
+    type: Object,
+    twoWay: true
+  },
+  shape: {
+    type: Object,
+    twoWay: true
+  },
+  title: {
+    type: String,
+    twoWay: true
+  },
+  zIndex: {
+    type: Number,
+    twoWay: true
+  },
+  visible: {
+    twoWay: true,
+    default: true
+  }
+};
+var events = ['click', 'rightclick', 'dblclick', 'drag', 'dragstart', 'dragend', 'mouseup', 'mousedown', 'mouseover', 'mouseout'];
+
+/**
+ * @class Marker
+ *
+ * Marker class with extra support for
+ *
+ * - Embedded info windows
+ * - Clustered markers
+ *
+ * Support for clustered markers is for backward-compatability
+ * reasons. Otherwise we should use a cluster-marker mixin or
+ * subclass.
+ */
+exports["default"] = (0, _mapElementFactory2.default)({
+  mappedProps: props,
+  events: events,
+  name: 'marker',
+  ctr: function ctr() {
+    return google.maps.Marker;
+  },
+  inject: {
+    '$clusterPromise': {
+      default: null
+    }
+  },
+  render: function render(h) {
+    if (!this.$slots.default || this.$slots.default.length === 0) {
+      return '';
+    } else if (this.$slots.default.length === 1) {
+      // So that infowindows can have a marker parent
+      return this.$slots.default[0];
+    } else {
+      return h('div', this.$slots.default);
+    }
+  },
+  destroyed: function destroyed() {
+    if (!this.$markerObject) {
+      return;
+    }
+    if (this.$clusterObject) {
+      // Repaint will be performed in `updated()` of cluster
+      this.$clusterObject.removeMarker(this.$markerObject, true);
+    } else {
+      this.$markerObject.setMap(null);
+    }
+  },
+  beforeCreate: function beforeCreate(options) {
+    if (this.$clusterPromise) {
+      options.map = null;
+    }
+    return this.$clusterPromise;
+  },
+  afterCreate: function afterCreate(inst) {
+    var _this = this;
+    if (this.$clusterPromise) {
+      this.$clusterPromise.then(function (co) {
+        co.addMarker(inst);
+        _this.$clusterObject = co;
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ 2057:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+var _slicedToArray = function () {
+  function sliceIterator(arr, i) {
+    var _arr = [];
+    var _n = true;
+    var _d = false;
+    var _e = undefined;
+    try {
+      for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+        _arr.push(_s.value);
+        if (i && _arr.length === i) break;
+      }
+    } catch (err) {
+      _d = true;
+      _e = err;
+    } finally {
+      try {
+        if (!_n && _i["return"]) _i["return"]();
+      } finally {
+        if (_d) throw _e;
+      }
+    }
+    return _arr;
+  }
+  return function (arr, i) {
+    if (Array.isArray(arr)) {
+      return arr;
+    } else if (Symbol.iterator in Object(arr)) {
+      return sliceIterator(arr, i);
+    } else {
+      throw new TypeError("Invalid attempt to destructure non-iterable instance");
+    }
+  };
+}();
+var _mapElementFactory = __webpack_require__(1959);
+var _mapElementFactory2 = _interopRequireDefault(_mapElementFactory);
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {
+    default: obj
+  };
+}
+var props = {
+  draggable: {
+    type: Boolean
+  },
+  editable: {
+    type: Boolean
+  },
+  options: {
+    type: Object
+  },
+  path: {
+    type: Array,
+    twoWay: true,
+    noBind: true
+  },
+  paths: {
+    type: Array,
+    twoWay: true,
+    noBind: true
+  }
+};
+var events = ['click', 'dblclick', 'drag', 'dragend', 'dragstart', 'mousedown', 'mousemove', 'mouseout', 'mouseover', 'mouseup', 'rightclick'];
+exports["default"] = (0, _mapElementFactory2.default)({
+  props: {
+    deepWatch: {
+      type: Boolean,
+      default: false
+    }
+  },
+  events: events,
+  mappedProps: props,
+  name: 'polygon',
+  ctr: function ctr() {
+    return google.maps.Polygon;
+  },
+  beforeCreate: function beforeCreate(options) {
+    if (!options.path) delete options.path;
+    if (!options.paths) delete options.paths;
+  },
+  afterCreate: function afterCreate(inst) {
+    var _this = this;
+    var clearEvents = function () {};
+
+    // Watch paths, on our own, because we do not want to set either when it is
+    // empty
+    this.$watch('paths', function (paths) {
+      if (paths) {
+        clearEvents();
+        inst.setPaths(paths);
+        var updatePaths = function () {
+          _this.$emit('paths_changed', inst.getPaths());
+        };
+        var eventListeners = [];
+        var mvcArray = inst.getPaths();
+        for (var i = 0; i < mvcArray.getLength(); i++) {
+          var mvcPath = mvcArray.getAt(i);
+          eventListeners.push([mvcPath, mvcPath.addListener('insert_at', updatePaths)]);
+          eventListeners.push([mvcPath, mvcPath.addListener('remove_at', updatePaths)]);
+          eventListeners.push([mvcPath, mvcPath.addListener('set_at', updatePaths)]);
+        }
+        eventListeners.push([mvcArray, mvcArray.addListener('insert_at', updatePaths)]);
+        eventListeners.push([mvcArray, mvcArray.addListener('remove_at', updatePaths)]);
+        eventListeners.push([mvcArray, mvcArray.addListener('set_at', updatePaths)]);
+        clearEvents = function () {
+          eventListeners.map(function (_ref) {
+            var _ref2 = _slicedToArray(_ref, 2),
+              obj = _ref2[0],
+              listenerHandle = _ref2[1];
+            return (
+              // eslint-disable-line no-unused-vars
+              google.maps.event.removeListener(listenerHandle)
+            );
+          });
+        };
+      }
+    }, {
+      deep: this.deepWatch,
+      immediate: true
+    });
+    this.$watch('path', function (path) {
+      if (path) {
+        clearEvents();
+        inst.setPaths(path);
+        var mvcPath = inst.getPath();
+        var eventListeners = [];
+        var updatePaths = function () {
+          _this.$emit('path_changed', inst.getPath());
+        };
+        eventListeners.push([mvcPath, mvcPath.addListener('insert_at', updatePaths)]);
+        eventListeners.push([mvcPath, mvcPath.addListener('remove_at', updatePaths)]);
+        eventListeners.push([mvcPath, mvcPath.addListener('set_at', updatePaths)]);
+        clearEvents = function () {
+          eventListeners.map(function (_ref3) {
+            var _ref4 = _slicedToArray(_ref3, 2),
+              obj = _ref4[0],
+              listenerHandle = _ref4[1];
+            return (
+              // eslint-disable-line no-unused-vars
+              google.maps.event.removeListener(listenerHandle)
+            );
+          });
+        };
+      }
+    }, {
+      deep: this.deepWatch,
+      immediate: true
+    });
+  }
+});
+
+/***/ }),
+
+/***/ 1595:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+var _slicedToArray = function () {
+  function sliceIterator(arr, i) {
+    var _arr = [];
+    var _n = true;
+    var _d = false;
+    var _e = undefined;
+    try {
+      for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+        _arr.push(_s.value);
+        if (i && _arr.length === i) break;
+      }
+    } catch (err) {
+      _d = true;
+      _e = err;
+    } finally {
+      try {
+        if (!_n && _i["return"]) _i["return"]();
+      } finally {
+        if (_d) throw _e;
+      }
+    }
+    return _arr;
+  }
+  return function (arr, i) {
+    if (Array.isArray(arr)) {
+      return arr;
+    } else if (Symbol.iterator in Object(arr)) {
+      return sliceIterator(arr, i);
+    } else {
+      throw new TypeError("Invalid attempt to destructure non-iterable instance");
+    }
+  };
+}();
+var _mapElementFactory = __webpack_require__(1959);
+var _mapElementFactory2 = _interopRequireDefault(_mapElementFactory);
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {
+    default: obj
+  };
+}
+var props = {
+  draggable: {
+    type: Boolean
+  },
+  editable: {
+    type: Boolean
+  },
+  options: {
+    twoWay: false,
+    type: Object
+  },
+  path: {
+    type: Array,
+    twoWay: true
+  }
+};
+var events = ['click', 'dblclick', 'drag', 'dragend', 'dragstart', 'mousedown', 'mousemove', 'mouseout', 'mouseover', 'mouseup', 'rightclick'];
+exports["default"] = (0, _mapElementFactory2.default)({
+  mappedProps: props,
+  props: {
+    deepWatch: {
+      type: Boolean,
+      default: false
+    }
+  },
+  events: events,
+  name: 'polyline',
+  ctr: function ctr() {
+    return google.maps.Polyline;
+  },
+  afterCreate: function afterCreate() {
+    var _this = this;
+    var clearEvents = function () {};
+    this.$watch('path', function (path) {
+      if (path) {
+        clearEvents();
+        _this.$polylineObject.setPath(path);
+        var mvcPath = _this.$polylineObject.getPath();
+        var eventListeners = [];
+        var updatePaths = function () {
+          _this.$emit('path_changed', _this.$polylineObject.getPath());
+        };
+        eventListeners.push([mvcPath, mvcPath.addListener('insert_at', updatePaths)]);
+        eventListeners.push([mvcPath, mvcPath.addListener('remove_at', updatePaths)]);
+        eventListeners.push([mvcPath, mvcPath.addListener('set_at', updatePaths)]);
+        clearEvents = function () {
+          eventListeners.map(function (_ref) {
+            var _ref2 = _slicedToArray(_ref, 2),
+              obj = _ref2[0],
+              listenerHandle = _ref2[1];
+            return (
+              // eslint-disable-line no-unused-vars
+              google.maps.event.removeListener(listenerHandle)
+            );
+          });
+        };
+      }
+    }, {
+      deep: this.deepWatch,
+      immediate: true
+    });
+  }
+});
+
+/***/ }),
+
+/***/ 182:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+var _mapElementFactory = __webpack_require__(1959);
+var _mapElementFactory2 = _interopRequireDefault(_mapElementFactory);
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {
+    default: obj
+  };
+}
+var props = {
+  bounds: {
+    type: Object,
+    twoWay: true
+  },
+  draggable: {
+    type: Boolean,
+    default: false
+  },
+  editable: {
+    type: Boolean,
+    default: false
+  },
+  options: {
+    type: Object,
+    twoWay: false
+  }
+};
+var events = ['click', 'dblclick', 'drag', 'dragend', 'dragstart', 'mousedown', 'mousemove', 'mouseout', 'mouseover', 'mouseup', 'rightclick'];
+exports["default"] = (0, _mapElementFactory2.default)({
+  mappedProps: props,
+  name: 'rectangle',
+  ctr: function ctr() {
+    return google.maps.Rectangle;
+  },
+  events: events
+});
+
+/***/ }),
+
+/***/ 816:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];
+    for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }
+  return target;
+};
+var _bindEvents = __webpack_require__(3716);
+var _bindEvents2 = _interopRequireDefault(_bindEvents);
+var _bindProps = __webpack_require__(8479);
+var _mountableMixin = __webpack_require__(3688);
+var _mountableMixin2 = _interopRequireDefault(_mountableMixin);
+var _TwoWayBindingWrapper = __webpack_require__(7459);
+var _TwoWayBindingWrapper2 = _interopRequireDefault(_TwoWayBindingWrapper);
+var _WatchPrimitiveProperties = __webpack_require__(6419);
+var _WatchPrimitiveProperties2 = _interopRequireDefault(_WatchPrimitiveProperties);
+var _mapElementFactory = __webpack_require__(1959);
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {
+    default: obj
+  };
+}
+var props = {
+  zoom: {
+    twoWay: true,
+    type: Number
+  },
+  pov: {
+    twoWay: true,
+    type: Object,
+    trackProperties: ['pitch', 'heading']
+  },
+  position: {
+    twoWay: true,
+    type: Object,
+    noBind: true
+  },
+  pano: {
+    twoWay: true,
+    type: String
+  },
+  motionTracking: {
+    twoWay: false,
+    type: Boolean
+  },
+  visible: {
+    twoWay: true,
+    type: Boolean,
+    default: true
+  },
+  options: {
+    twoWay: false,
+    type: Object,
+    default: function _default() {
+      return {};
+    }
+  }
+};
+var events = ['closeclick', 'status_changed'];
+exports["default"] = {
+  mixins: [_mountableMixin2.default],
+  props: (0, _mapElementFactory.mappedPropsToVueProps)(props),
+  replace: false,
+  // necessary for css styles
+  methods: {
+    resize: function resize() {
+      if (this.$panoObject) {
+        google.maps.event.trigger(this.$panoObject, 'resize');
+      }
+    }
+  },
+  provide: function provide() {
+    var _this = this;
+    var promise = new Promise(function (resolve, reject) {
+      _this.$panoPromiseDeferred = {
+        resolve: resolve,
+        reject: reject
+      };
+    });
+    return {
+      '$panoPromise': promise,
+      '$mapPromise': promise // so that we can use it with markers
+    };
+  },
+  computed: {
+    finalLat: function finalLat() {
+      return this.position && typeof this.position.lat === 'function' ? this.position.lat() : this.position.lat;
+    },
+    finalLng: function finalLng() {
+      return this.position && typeof this.position.lng === 'function' ? this.position.lng() : this.position.lng;
+    },
+    finalLatLng: function finalLatLng() {
+      return {
+        lat: this.finalLat,
+        lng: this.finalLng
+      };
+    }
+  },
+  watch: {
+    zoom: function zoom(_zoom) {
+      if (this.$panoObject) {
+        this.$panoObject.setZoom(_zoom);
+      }
+    }
+  },
+  mounted: function mounted() {
+    var _this2 = this;
+    return this.$gmapApiPromiseLazy().then(function () {
+      // getting the DOM element where to create the map
+      var element = _this2.$refs['vue-street-view-pano'];
+
+      // creating the map
+      var options = _extends({}, _this2.options, (0, _bindProps.getPropsValues)(_this2, props));
+      delete options.options;
+      _this2.$panoObject = new google.maps.StreetViewPanorama(element, options);
+
+      // binding properties (two and one way)
+      (0, _bindProps.bindProps)(_this2, _this2.$panoObject, props);
+      // binding events
+      (0, _bindEvents2.default)(_this2, _this2.$panoObject, events);
+
+      // manually trigger position
+      (0, _TwoWayBindingWrapper2.default)(function (increment, decrement, shouldUpdate) {
+        // Panos take a while to load
+        increment();
+        _this2.$panoObject.addListener('position_changed', function () {
+          if (shouldUpdate()) {
+            _this2.$emit('position_changed', _this2.$panoObject.getPosition());
+          }
+          decrement();
+        });
+        (0, _WatchPrimitiveProperties2.default)(_this2, ['finalLat', 'finalLng'], function updateCenter() {
+          increment();
+          _this2.$panoObject.setPosition(_this2.finalLatLng);
+        });
+      });
+      _this2.$panoPromiseDeferred.resolve(_this2.$panoObject);
+      return _this2.$panoPromise;
+    }).catch(function (error) {
+      throw error;
+    });
+  }
+};
+
+/***/ }),
+
+/***/ 2957:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.StreetViewPanorama = exports.MountableMixin = exports.Autocomplete = exports.MapElementFactory = exports.MapElementMixin = exports.PlaceInput = exports.Map = exports.InfoWindow = exports.Rectangle = exports.Cluster = exports.Circle = exports.Polygon = exports.Polyline = exports.Marker = exports.loadGmapApi = undefined;
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];
+    for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }
+  return target;
+};
+
+// Vue component imports
+
+exports.install = install;
+exports.gmapApi = gmapApi;
+var _lazyValue = __webpack_require__(7967);
+var _lazyValue2 = _interopRequireDefault(_lazyValue);
+var _manager = __webpack_require__(885);
+var _marker = __webpack_require__(5941);
+var _marker2 = _interopRequireDefault(_marker);
+var _polyline = __webpack_require__(1595);
+var _polyline2 = _interopRequireDefault(_polyline);
+var _polygon = __webpack_require__(2057);
+var _polygon2 = _interopRequireDefault(_polygon);
+var _circle = __webpack_require__(739);
+var _circle2 = _interopRequireDefault(_circle);
+var _rectangle = __webpack_require__(182);
+var _rectangle2 = _interopRequireDefault(_rectangle);
+var _infoWindow = __webpack_require__(6445);
+var _infoWindow2 = _interopRequireDefault(_infoWindow);
+var _map = __webpack_require__(6668);
+var _map2 = _interopRequireDefault(_map);
+var _streetViewPanorama = __webpack_require__(3164);
+var _streetViewPanorama2 = _interopRequireDefault(_streetViewPanorama);
+var _placeInput = __webpack_require__(7766);
+var _placeInput2 = _interopRequireDefault(_placeInput);
+var _autocomplete = __webpack_require__(2065);
+var _autocomplete2 = _interopRequireDefault(_autocomplete);
+var _mapElementMixin = __webpack_require__(4884);
+var _mapElementMixin2 = _interopRequireDefault(_mapElementMixin);
+var _mapElementFactory = __webpack_require__(1959);
+var _mapElementFactory2 = _interopRequireDefault(_mapElementFactory);
+var _mountableMixin = __webpack_require__(3688);
+var _mountableMixin2 = _interopRequireDefault(_mountableMixin);
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {
+    default: obj
+  };
+}
+
+// HACK: Cluster should be loaded conditionally
+// However in the web version, it's not possible to write
+// `import 'vue2-google-maps/src/components/cluster'`, so we need to
+// import it anyway (but we don't have to register it)
+// Therefore we use babel-plugin-transform-inline-environment-variables to
+// set BUILD_DEV to truthy / falsy
+var Cluster = undefined;
+var GmapApi = null;
+
+// export everything
+exports.loadGmapApi = _manager.loadGmapApi;
+exports.Marker = _marker2.default;
+exports.Polyline = _polyline2.default;
+exports.Polygon = _polygon2.default;
+exports.Circle = _circle2.default;
+exports.Cluster = Cluster;
+exports.Rectangle = _rectangle2.default;
+exports.InfoWindow = _infoWindow2.default;
+exports.Map = _map2.default;
+exports.PlaceInput = _placeInput2.default;
+exports.MapElementMixin = _mapElementMixin2.default;
+exports.MapElementFactory = _mapElementFactory2.default;
+exports.Autocomplete = _autocomplete2.default;
+exports.MountableMixin = _mountableMixin2.default;
+exports.StreetViewPanorama = _streetViewPanorama2.default;
+function install(Vue, options) {
+  // Set defaults
+  options = _extends({
+    installComponents: true,
+    autobindAllEvents: false
+  }, options);
+
+  // Update the global `GmapApi`. This will allow
+  // components to use the `google` global reactively
+  // via:
+  //   import {gmapApi} from 'vue2-google-maps'
+  //   export default {  computed: { google: gmapApi }  }
+  GmapApi = new Vue({
+    data: {
+      gmapApi: null
+    }
+  });
+  var defaultResizeBus = new Vue();
+
+  // Use a lazy to only load the API when
+  // a VGM component is loaded
+  var gmapApiPromiseLazy = makeGmapApiPromiseLazy(options);
+  Vue.mixin({
+    created: function created() {
+      this.$gmapDefaultResizeBus = defaultResizeBus;
+      this.$gmapOptions = options;
+      this.$gmapApiPromiseLazy = gmapApiPromiseLazy;
+    }
+  });
+  Vue.$gmapDefaultResizeBus = defaultResizeBus;
+  Vue.$gmapApiPromiseLazy = gmapApiPromiseLazy;
+  if (options.installComponents) {
+    Vue.component('GmapMap', _map2.default);
+    Vue.component('GmapMarker', _marker2.default);
+    Vue.component('GmapInfoWindow', _infoWindow2.default);
+    Vue.component('GmapPolyline', _polyline2.default);
+    Vue.component('GmapPolygon', _polygon2.default);
+    Vue.component('GmapCircle', _circle2.default);
+    Vue.component('GmapRectangle', _rectangle2.default);
+    Vue.component('GmapAutocomplete', _autocomplete2.default);
+    Vue.component('GmapPlaceInput', _placeInput2.default);
+    Vue.component('GmapStreetViewPanorama', _streetViewPanorama2.default);
+  }
+}
+function makeGmapApiPromiseLazy(options) {
+  // Things to do once the API is loaded
+  function onApiLoaded() {
+    GmapApi.gmapApi = {};
+    return window.google;
+  }
+  if (options.load) {
+    // If library should load the API
+    return (0, _lazyValue2.default)(function () {
+      // Load the
+      // This will only be evaluated once
+      if (typeof window === 'undefined') {
+        // server side -- never resolve this promise
+        return new Promise(function () {}).then(onApiLoaded);
+      } else {
+        return new Promise(function (resolve, reject) {
+          try {
+            window['vueGoogleMapsInit'] = resolve;
+            (0, _manager.loadGmapApi)(options.load, options.loadCn);
+          } catch (err) {
+            reject(err);
+          }
+        }).then(onApiLoaded);
+      }
+    });
+  } else {
+    // If library should not handle API, provide
+    // end-users with the global `vueGoogleMapsInit: () => undefined`
+    // when the Google Maps API has been loaded
+    var promise = new Promise(function (resolve) {
+      if (typeof window === 'undefined') {
+        // Do nothing if run from server-side
+        return;
+      }
+      window['vueGoogleMapsInit'] = resolve;
+    }).then(onApiLoaded);
+    return (0, _lazyValue2.default)(function () {
+      return promise;
+    });
+  }
+}
+function gmapApi() {
+  return GmapApi.gmapApi && window.google;
+}
+
+/***/ }),
+
+/***/ 885:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
+  return typeof obj;
+} : function (obj) {
+  return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+};
+var isApiSetUp = false;
+
+/**
+ * @param apiKey    API Key, or object with the URL parameters. For example
+ *                  to use Google Maps Premium API, pass
+ *                    `{ client: <YOUR-CLIENT-ID> }`.
+ *                  You may pass the libraries and/or version (as `v`) parameter into
+ *                  this parameter and skip the next two parameters
+ * @param version   Google Maps version
+ * @param libraries Libraries to load (@see
+ *                  https://developers.google.com/maps/documentation/javascript/libraries)
+ * @param loadCn    Boolean. If set to true, the map will be loaded from google maps China
+ *                  (@see https://developers.google.com/maps/documentation/javascript/basics#GoogleMapsChina)
+ *
+ * Example:
+ * ```
+ *      import {load} from 'vue-google-maps'
+ *
+ *      load(<YOUR-API-KEY>)
+ *
+ *      load({
+ *              key: <YOUR-API-KEY>,
+ *      })
+ *
+ *      load({
+ *              client: <YOUR-CLIENT-ID>,
+ *              channel: <YOUR CHANNEL>
+ *      })
+ * ```
+ */
+var loadGmapApi = exports.loadGmapApi = function (options, loadCn) {
+  if (typeof document === 'undefined') {
+    // Do nothing if run from server-side
+    return;
+  }
+  if (!isApiSetUp) {
+    isApiSetUp = true;
+    var googleMapScript = document.createElement('SCRIPT');
+
+    // Allow options to be an object.
+    // This is to support more esoteric means of loading Google Maps,
+    // such as Google for business
+    // https://developers.google.com/maps/documentation/javascript/get-api-key#premium-auth
+    if ((typeof options === 'undefined' ? 'undefined' : _typeof(options)) !== 'object') {
+      throw new Error('options should  be an object');
+    }
+
+    // libraries
+    if (Array.prototype.isPrototypeOf(options.libraries)) {
+      options.libraries = options.libraries.join(',');
+    }
+    options['callback'] = 'vueGoogleMapsInit';
+    var baseUrl = 'https://maps.googleapis.com/';
+    if (typeof loadCn === 'boolean' && loadCn === true) {
+      baseUrl = 'https://maps.google.cn/';
+    }
+    var url = baseUrl + 'maps/api/js?' + Object.keys(options).map(function (key) {
+      return encodeURIComponent(key) + '=' + encodeURIComponent(options[key]);
+    }).join('&');
+    googleMapScript.setAttribute('src', url);
+    googleMapScript.setAttribute('async', '');
+    googleMapScript.setAttribute('defer', '');
+    document.head.appendChild(googleMapScript);
+  } else {
+    throw new Error('You already started the loading of google maps');
+  }
+};
+
+/***/ }),
+
+/***/ 7459:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = TwoWayBindingWrapper;
+/**
+ * When you have two-way bindings, but the actual bound value will not equal
+ * the value you initially passed in, then to avoid an infinite loop you
+ * need to increment a counter every time you pass in a value, decrement the
+ * same counter every time the bound value changed, but only bubble up
+ * the event when the counter is zero.
+ *
+Example:
+
+Let's say DrawingRecognitionCanvas is a deep-learning backed canvas
+that, when given the name of an object (e.g. 'dog'), draws a dog.
+But whenever the drawing on it changes, it also sends back its interpretation
+of the image by way of the @newObjectRecognized event.
+
+<input
+  type="text"
+  placeholder="an object, e.g. Dog, Cat, Frog"
+  v-model="identifiedObject" />
+<DrawingRecognitionCanvas
+  :object="identifiedObject"
+  @newObjectRecognized="identifiedObject = $event"
+  />
+
+new TwoWayBindingWrapper((increment, decrement, shouldUpdate) => {
+  this.$watch('identifiedObject', () => {
+    // new object passed in
+    increment()
+  })
+  this.$deepLearningBackend.on('drawingChanged', () => {
+    recognizeObject(this.$deepLearningBackend)
+      .then((object) => {
+        decrement()
+        if (shouldUpdate()) {
+          this.$emit('newObjectRecognized', object.name)
+        }
+      })
+  })
+})
+ */
+function TwoWayBindingWrapper(fn) {
+  var counter = 0;
+  fn(function () {
+    counter += 1;
+  }, function () {
+    counter = Math.max(0, counter - 1);
+  }, function () {
+    return counter === 0;
+  });
+}
+
+/***/ }),
+
+/***/ 6419:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = WatchPrimitiveProperties;
+/**
+ * Watch the individual properties of a PoD object, instead of the object
+ * per se. This is different from a deep watch where both the reference
+ * and the individual values are watched.
+ *
+ * In effect, it throttles the multiple $watch to execute at most once per tick.
+ */
+function WatchPrimitiveProperties(vueInst, propertiesToTrack, handler) {
+  var immediate = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
+  var isHandled = false;
+  function requestHandle() {
+    if (!isHandled) {
+      isHandled = true;
+      vueInst.$nextTick(function () {
+        isHandled = false;
+        handler();
+      });
+    }
+  }
+  var _iteratorNormalCompletion = true;
+  var _didIteratorError = false;
+  var _iteratorError = undefined;
+  try {
+    for (var _iterator = propertiesToTrack[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+      var prop = _step.value;
+      vueInst.$watch(prop, requestHandle, {
+        immediate: immediate
+      });
+    }
+  } catch (err) {
+    _didIteratorError = true;
+    _iteratorError = err;
+  } finally {
+    try {
+      if (!_iteratorNormalCompletion && _iterator.return) {
+        _iterator.return();
+      }
+    } finally {
+      if (_didIteratorError) {
+        throw _iteratorError;
+      }
+    }
+  }
+}
+
+/***/ }),
+
+/***/ 3716:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = function (vueInst, googleMapsInst, events) {
+  var _loop = function (eventName) {
+    if (vueInst.$gmapOptions.autobindAllEvents || vueInst.$listeners[eventName]) {
+      googleMapsInst.addListener(eventName, function (ev) {
+        vueInst.$emit(eventName, ev);
+      });
+    }
+  };
+  var _iteratorNormalCompletion = true;
+  var _didIteratorError = false;
+  var _iteratorError = undefined;
+  try {
+    for (var _iterator = events[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+      var eventName = _step.value;
+      _loop(eventName);
+    }
+  } catch (err) {
+    _didIteratorError = true;
+    _iteratorError = err;
+  } finally {
+    try {
+      if (!_iteratorNormalCompletion && _iterator.return) {
+        _iterator.return();
+      }
+    } finally {
+      if (_didIteratorError) {
+        throw _iteratorError;
+      }
+    }
+  }
+};
+
+/***/ }),
+
+/***/ 8479:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.getPropsValues = getPropsValues;
+exports.bindProps = bindProps;
+var _WatchPrimitiveProperties = __webpack_require__(6419);
+var _WatchPrimitiveProperties2 = _interopRequireDefault(_WatchPrimitiveProperties);
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {
+    default: obj
+  };
+}
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+function getPropsValues(vueInst, props) {
+  return Object.keys(props).reduce(function (acc, prop) {
+    if (vueInst[prop] !== undefined) {
+      acc[prop] = vueInst[prop];
+    }
+    return acc;
+  }, {});
+}
+
+/**
+  * Binds the properties defined in props to the google maps instance.
+  * If the prop is an Object type, and we wish to track the properties
+  * of the object (e.g. the lat and lng of a LatLng), then we do a deep
+  * watch. For deep watch, we also prevent the _changed event from being
+  * emitted if the data source was external.
+  */
+function bindProps(vueInst, googleMapsInst, props) {
+  var _loop = function (attribute) {
+    var _props$attribute = props[attribute],
+      twoWay = _props$attribute.twoWay,
+      type = _props$attribute.type,
+      trackProperties = _props$attribute.trackProperties,
+      noBind = _props$attribute.noBind;
+    if (noBind) return 'continue';
+    var setMethodName = 'set' + capitalizeFirstLetter(attribute);
+    var getMethodName = 'get' + capitalizeFirstLetter(attribute);
+    var eventName = attribute.toLowerCase() + '_changed';
+    var initialValue = vueInst[attribute];
+    if (typeof googleMapsInst[setMethodName] === 'undefined') {
+      throw new Error(setMethodName + ' is not a method of (the Maps object corresponding to) ' + vueInst.$options._componentTag);
+    }
+
+    // We need to avoid an endless
+    // propChanged -> event emitted -> propChanged -> event emitted loop
+    // although this may really be the user's responsibility
+    if (type !== Object || !trackProperties) {
+      // Track the object deeply
+      vueInst.$watch(attribute, function () {
+        var attributeValue = vueInst[attribute];
+        googleMapsInst[setMethodName](attributeValue);
+      }, {
+        immediate: typeof initialValue !== 'undefined',
+        deep: type === Object
+      });
+    } else {
+      (0, _WatchPrimitiveProperties2.default)(vueInst, trackProperties.map(function (prop) {
+        return attribute + '.' + prop;
+      }), function () {
+        googleMapsInst[setMethodName](vueInst[attribute]);
+      }, vueInst[attribute] !== undefined);
+    }
+    if (twoWay && (vueInst.$gmapOptions.autobindAllEvents || vueInst.$listeners[eventName])) {
+      googleMapsInst.addListener(eventName, function () {
+        // eslint-disable-line no-unused-vars
+        vueInst.$emit(eventName, googleMapsInst[getMethodName]());
+      });
+    }
+  };
+  for (var attribute in props) {
+    var _ret = _loop(attribute);
+    if (_ret === 'continue') continue;
+  }
+}
+
+/***/ }),
+
+/***/ 7967:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+// This piece of code was orignally written by sindresorhus and can be seen here
+// https://github.com/sindresorhus/lazy-value/blob/master/index.js
+
+exports["default"] = function (fn) {
+  var called = false;
+  var ret = void 0;
+  return function () {
+    if (!called) {
+      called = true;
+      ret = fn();
+    }
+    return ret;
+  };
+};
+
+/***/ }),
+
+/***/ 3688:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+/*
+Mixin for objects that are mounted by Google Maps
+Javascript API.
+
+These are objects that are sensitive to element resize
+operations so it exposes a property which accepts a bus
+
+*/
+
+exports["default"] = {
+  props: ['resizeBus'],
+  data: function data() {
+    return {
+      _actualResizeBus: null
+    };
+  },
+  created: function created() {
+    if (typeof this.resizeBus === 'undefined') {
+      this.$data._actualResizeBus = this.$gmapDefaultResizeBus;
+    } else {
+      this.$data._actualResizeBus = this.resizeBus;
+    }
+  },
+  methods: {
+    _resizeCallback: function _resizeCallback() {
+      this.resize();
+    },
+    _delayedResizeCallback: function _delayedResizeCallback() {
+      var _this = this;
+      this.$nextTick(function () {
+        return _this._resizeCallback();
+      });
+    }
+  },
+  watch: {
+    resizeBus: function resizeBus(newVal) {
+      // eslint-disable-line no-unused-vars
+      this.$data._actualResizeBus = newVal;
+    },
+    '$data._actualResizeBus': function $data_actualResizeBus(newVal, oldVal) {
+      if (oldVal) {
+        oldVal.$off('resize', this._delayedResizeCallback);
+      }
+      if (newVal) {
+        newVal.$on('resize', this._delayedResizeCallback);
+      }
+    }
+  },
+  destroyed: function destroyed() {
+    if (this.$data._actualResizeBus) {
+      this.$data._actualResizeBus.$off('resize', this._delayedResizeCallback);
+    }
+  }
+};
+
+/***/ }),
+
+/***/ 4731:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+// This piece of code was orignally written by amirnissim and can be seen here
+// http://stackoverflow.com/a/11703018/2694653
+// This has been ported to Vanilla.js by GuillaumeLeclerc
+exports["default"] = function (input) {
+  var _addEventListener = input.addEventListener ? input.addEventListener : input.attachEvent;
+  function addEventListenerWrapper(type, listener) {
+    // Simulate a 'down arrow' keypress on hitting 'return' when no pac suggestion is selected,
+    // and then trigger the original listener.
+    if (type === 'keydown') {
+      var origListener = listener;
+      listener = function (event) {
+        var suggestionSelected = document.getElementsByClassName('pac-item-selected').length > 0;
+        if (event.which === 13 && !suggestionSelected) {
+          var simulatedEvent = document.createEvent('Event');
+          simulatedEvent.keyCode = 40;
+          simulatedEvent.which = 40;
+          origListener.apply(input, [simulatedEvent]);
+        }
+        origListener.apply(input, [event]);
+      };
+    }
+    _addEventListener.apply(input, [type, listener]);
+  }
+  input.addEventListener = addEventListenerWrapper;
+  input.attachEvent = addEventListenerWrapper;
+};
+
+/***/ }),
+
 /***/ 1033:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
@@ -12310,6 +14673,54 @@ module.exports = function whichTypedArray(value) {
   } // unknown engine
   return tryTypedArrays(value);
 };
+
+/***/ }),
+
+/***/ 3707:
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1601);
+/* harmony import */ var _css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6314);
+/* harmony import */ var _css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
+// Imports
+
+
+var ___CSS_LOADER_EXPORT___ = _css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, `.vue-map-container{position:relative}.vue-map-container .vue-map{left:0;right:0;top:0;bottom:0;position:absolute}.vue-map-hidden{display:none}`, ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ 946:
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1601);
+/* harmony import */ var _css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6314);
+/* harmony import */ var _css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
+// Imports
+
+
+var ___CSS_LOADER_EXPORT___ = _css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, `.vue-street-view-pano-container{position:relative}.vue-street-view-pano-container .vue-street-view-pano{left:0;right:0;top:0;bottom:0;position:absolute}`, ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
 
 /***/ }),
 
@@ -12646,7 +15057,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.chalky.tv-videotheater{margin:0 auto;
 
 /***/ }),
 
-/***/ 4293:
+/***/ 5299:
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -12694,7 +15105,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.chalky.venue-list{--thumbnail-size:10
 
 /***/ }),
 
-/***/ 7810:
+/***/ 4337:
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -12711,7 +15122,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ``, ""]);
+___CSS_LOADER_EXPORT___.push([module.id, `.chalky.venue-map{height:512px;width:512px}.chalky.venue-map a[href^="http://maps.google.com/maps"],.chalky.venue-map a[href^="https://maps.google.com/maps"]{display:none!important}.chalky.venue-map .gm-style-cc,.chalky.venue-map .gmnoprint a,.chalky.venue-map .gmnoprint span{display:none}`, ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -12852,6 +15263,142 @@ module.exports = function (url, options) {
 module.exports = function (i) {
   return i[1];
 };
+
+/***/ }),
+
+/***/ 68:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "B", ({
+  value: true
+}));
+var _bindProps = __webpack_require__(8479);
+var _simulateArrowDown = __webpack_require__(4731);
+var _simulateArrowDown2 = _interopRequireDefault(_simulateArrowDown);
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {
+    default: obj
+  };
+}
+function _objectWithoutProperties(obj, keys) {
+  var target = {};
+  for (var i in obj) {
+    if (keys.indexOf(i) >= 0) continue;
+    if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+    target[i] = obj[i];
+  }
+  return target;
+}
+var props = {
+  bounds: {
+    type: Object
+  },
+  defaultPlace: {
+    type: String,
+    default: ''
+  },
+  componentRestrictions: {
+    type: Object,
+    default: null
+  },
+  types: {
+    type: Array,
+    default: function _default() {
+      return [];
+    }
+  },
+  placeholder: {
+    required: false,
+    type: String
+  },
+  className: {
+    required: false,
+    type: String
+  },
+  label: {
+    required: false,
+    type: String,
+    default: null
+  },
+  selectFirstOnEnter: {
+    require: false,
+    type: Boolean,
+    default: false
+  }
+};
+exports.A = {
+  mounted: function mounted() {
+    var _this = this;
+    var input = this.$refs.input;
+
+    // Allow default place to be set
+    input.value = this.defaultPlace;
+    this.$watch('defaultPlace', function () {
+      input.value = _this.defaultPlace;
+    });
+    this.$gmapApiPromiseLazy().then(function () {
+      var options = (0, _bindProps.getPropsValues)(_this, props);
+      if (_this.selectFirstOnEnter) {
+        (0, _simulateArrowDown2.default)(_this.$refs.input);
+      }
+      if (typeof google.maps.places.Autocomplete !== 'function') {
+        throw new Error('google.maps.places.Autocomplete is undefined. Did you add \'places\' to libraries when loading Google Maps?');
+      }
+      _this.autoCompleter = new google.maps.places.Autocomplete(_this.$refs.input, options);
+      var placeholder = props.placeholder,
+        place = props.place,
+        defaultPlace = props.defaultPlace,
+        className = props.className,
+        label = props.label,
+        selectFirstOnEnter = props.selectFirstOnEnter,
+        rest = _objectWithoutProperties(props, ['placeholder', 'place', 'defaultPlace', 'className', 'label', 'selectFirstOnEnter']); // eslint-disable-line
+
+      (0, _bindProps.bindProps)(_this, _this.autoCompleter, rest);
+      _this.autoCompleter.addListener('place_changed', function () {
+        _this.$emit('place_changed', _this.autoCompleter.getPlace());
+      });
+    });
+  },
+  created: function created() {
+    console.warn('The PlaceInput class is deprecated! Please consider using the Autocomplete input instead'); // eslint-disable-line no-console
+  },
+  props: props
+};
+
+/***/ }),
+
+/***/ 21:
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(3707);
+if(content.__esModule) content = content.default;
+if(typeof content === 'string') content = [[module.id, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var add = (__webpack_require__(9045)/* ["default"] */ .A)
+var update = add("80531cba", content, true, {"sourceMap":false,"shadowMode":false});
+
+/***/ }),
+
+/***/ 2716:
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(946);
+if(content.__esModule) content = content.default;
+if(typeof content === 'string') content = [[module.id, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var add = (__webpack_require__(9045)/* ["default"] */ .A)
+var update = add("089a9467", content, true, {"sourceMap":false,"shadowMode":false});
 
 /***/ }),
 
@@ -13015,19 +15562,19 @@ var update = add("10be8bb9", content, true, {"sourceMap":false,"shadowMode":fals
 
 /***/ }),
 
-/***/ 9140:
+/***/ 262:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(4293);
+var content = __webpack_require__(5299);
 if(content.__esModule) content = content.default;
 if(typeof content === 'string') content = [[module.id, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
 var add = (__webpack_require__(9045)/* ["default"] */ .A)
-var update = add("74f70334", content, true, {"sourceMap":false,"shadowMode":false});
+var update = add("beef74fc", content, true, {"sourceMap":false,"shadowMode":false});
 
 /***/ }),
 
@@ -13047,19 +15594,19 @@ var update = add("66916f9a", content, true, {"sourceMap":false,"shadowMode":fals
 
 /***/ }),
 
-/***/ 3665:
+/***/ 8434:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(7810);
+var content = __webpack_require__(4337);
 if(content.__esModule) content = content.default;
 if(typeof content === 'string') content = [[module.id, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
 var add = (__webpack_require__(9045)/* ["default"] */ .A)
-var update = add("6f0ef5f3", content, true, {"sourceMap":false,"shadowMode":false});
+var update = add("a34b6c2c", content, true, {"sourceMap":false,"shadowMode":false});
 
 /***/ }),
 
@@ -13520,6 +16067,14 @@ module.exports = __webpack_require__.p + "img/fa-regular-400.ee37fbcc.svg";
 
 "use strict";
 module.exports = __webpack_require__.p + "img/fa-solid-900.cd7322bf.svg";
+
+/***/ }),
+
+/***/ 9866:
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+module.exports = __webpack_require__.p + "img/pin-0.97be4ddd.svg";
 
 /***/ }),
 
@@ -17598,14 +20153,77 @@ __webpack_require__.d(Exception_namespaceObject, {
   Unauthorized: () => (Unauthorized)
 });
 
+// NAMESPACE OBJECT: ./node_modules/@chalkysticks/sdk-core/build/esm/Utility/Analytics.js
+var Analytics_namespaceObject = {};
+__webpack_require__.r(Analytics_namespaceObject);
+__webpack_require__.d(Analytics_namespaceObject, {
+  embedGoogleAnalytics: () => (embedGoogleAnalytics),
+  embedMetaPixel: () => (embedMetaPixel),
+  embedRedditPixel: () => (embedRedditPixel)
+});
+
+// NAMESPACE OBJECT: ./node_modules/@chalkysticks/sdk-core/build/esm/Utility/Format.js
+var Format_namespaceObject = {};
+__webpack_require__.r(Format_namespaceObject);
+__webpack_require__.d(Format_namespaceObject, {
+  bytesToSize: () => (bytesToSize),
+  daysBetweenDates: () => (daysBetweenDates),
+  secondsToTime: () => (secondsToTime),
+  timeAgo: () => (timeAgo),
+  timeToHuman: () => (timeToHuman),
+  timeToSeconds: () => (timeToSeconds)
+});
+
+// NAMESPACE OBJECT: ./node_modules/@chalkysticks/sdk-core/build/esm/Utility/Math.js
+var Math_namespaceObject = {};
+__webpack_require__.r(Math_namespaceObject);
+__webpack_require__.d(Math_namespaceObject, {
+  angle: () => (angle),
+  angleAsDegrees: () => (angleAsDegrees),
+  angleDifference: () => (angleDifference),
+  angleDifferenceAsDegrees: () => (angleDifferenceAsDegrees),
+  clamp: () => (clamp),
+  denormalize: () => (denormalize),
+  distance: () => (distance),
+  inverseLerp: () => (inverseLerp),
+  lerp: () => (lerp),
+  normalize: () => (normalize),
+  randomInt: () => (randomInt),
+  randomRange: () => (randomRange),
+  randomSign: () => (randomSign),
+  remap: () => (remap),
+  rotate: () => (rotate),
+  rotateDeg: () => (rotateDeg),
+  round: () => (round),
+  roundToDecimal: () => (roundToDecimal),
+  roundToNearest: () => (roundToNearest),
+  roundToNearestFraction: () => (roundToNearestFraction),
+  smootherstep: () => (smootherstep),
+  smoothstep: () => (smoothstep),
+  toDegrees: () => (toDegrees),
+  toRadians: () => (toRadians),
+  transformRatio: () => (transformRatio)
+});
+
 // NAMESPACE OBJECT: ./node_modules/@chalkysticks/sdk-core/build/esm/Utility/index.js
 var Utility_namespaceObject = {};
 __webpack_require__.r(Utility_namespaceObject);
 __webpack_require__.d(Utility_namespaceObject, {
+  Analytics: () => (Analytics_namespaceObject),
   Cache: () => (Cache),
   Debounce: () => (Debounce),
+  Easing: () => (Easing),
+  EasingFunction: () => (EasingFunction),
+  Format: () => (Format_namespaceObject),
   Interval: () => (Interval),
+  Math: () => (Math_namespaceObject),
   String: () => (Utility_String),
+  documentHeight: () => (documentHeight),
+  getEasingMethod: () => (getEasingMethod),
+  offsetHeight: () => (offsetHeight),
+  offsetLeft: () => (offsetLeft),
+  offsetTop: () => (offsetTop),
+  offsetWidth: () => (offsetWidth),
   sleep: () => (sleep)
 });
 
@@ -17780,52 +20398,8 @@ if (typeof window !== 'undefined') {
 // Indicate to webpack that this file can be concatenated
 /* harmony default export */ const setPublicPath = (null);
 
-// EXTERNAL MODULE: ./node_modules/@chalkysticks/sass/build/app.css
-var app = __webpack_require__(6089);
-// EXTERNAL MODULE: ./node_modules/@fortawesome/fontawesome-free/css/all.css
-var css_all = __webpack_require__(6176);
-;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js??clonedRuleSet-85.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/templateLoader.js??ruleSet[1].rules[4]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Authentication/AuthPanel.vue?vue&type=template&id=6be5d99a
-var render = function render() {
-  var _vm = this,
-    _c = _vm._self._c,
-    _setup = _vm._self._setupProxy;
-  return _c('div', {
-    staticClass: "chalky authentication-authpanel",
-    on: {
-      "click": _vm.Handle_OnClick
-    }
-  }, [_c('header', {
-    staticClass: "text-center"
-  }, [_c('BrandingBadge', {
-    attrs: {
-      "size": "md"
-    }
-  })], 1), _c('section', [_c('AuthenticationBasicLogin', {
-    attrs: {
-      "authModel": _vm.authModel
-    }
-  }), _c('hr'), _c('AuthenticationSocialLogin', {
-    attrs: {
-      "authModel": _vm.authModel
-    }
-  }), _vm._m(0)], 1)]);
-};
-var staticRenderFns = [function () {
-  var _vm = this,
-    _c = _vm._self._c,
-    _setup = _vm._self._setupProxy;
-  return _c('div', {
-    staticClass: "text-center"
-  }, [_c('a', {
-    attrs: {
-      "href": "/forgot-password",
-      "title": "Forgot Password"
-    }
-  }, [_c('span', [_vm._v("Forgot Password?")])])]);
-}];
-
-;// CONCATENATED MODULE: ./src/Authentication/AuthPanel.vue?vue&type=template&id=6be5d99a
-
+// EXTERNAL MODULE: ./node_modules/vue2-google-maps/dist/main.js
+var main = __webpack_require__(2957);
 ;// CONCATENATED MODULE: ./node_modules/@chalkysticks/sdk-core/build/esm/Common/Constants.js
 /* harmony default export */ const Constants = ({
   API_URL: 'https://api.chalkysticks.com/v3',
@@ -17956,6 +20530,7 @@ class Store {
 // EXTERNAL MODULE: ./node_modules/restmc/build/cjs/index.js
 var cjs = __webpack_require__(2835);
 ;// CONCATENATED MODULE: ./node_modules/@chalkysticks/sdk-core/build/esm/Common/Environment.js
+var _Environment;
 class Environment {
   static isLocal() {
     return Environment.env === 'local' || Environment.env === 'development';
@@ -17971,18 +20546,20 @@ class Environment {
     return output;
   }
 }
-Environment.app = Environment.getVariable('app', {
-  api_url: 'http://localhost:8000/api/v1',
+_Environment = Environment;
+_Environment.app = _Environment.getVariable('app', {
+  api_url: '',
   limit: 32
 });
-Environment.debug = Environment.getVariable('debug', false);
-Environment.env = Environment.getVariable('env', 'development');
-Environment.google = Environment.getVariable('google', {
+_Environment.debug = _Environment.getVariable('debug', false);
+_Environment.env = _Environment.getVariable('env', 'development');
+_Environment.google = _Environment.getVariable('google', {
   analytics: {
-    id: 'UA-189...'
+    id: ''
   },
-  api_key: 'AIzaSy...'
+  api_key: ''
 });
+_Environment.id = Math.random().toString(36).substr(2, 9);
 ;// CONCATENATED MODULE: ./node_modules/@chalkysticks/sdk-core/build/esm/Collection/Base.js
 
 
@@ -18294,6 +20871,396 @@ class Unauthorized extends Error {}
 
 
 
+;// CONCATENATED MODULE: ./node_modules/@chalkysticks/sdk-core/build/esm/Utility/Analytics.js
+function embedGoogleAnalytics(id) {
+  if (window.gtag) {
+    console.warn('Analytics is already embedded');
+    return;
+  }
+  const script = document.createElement('script');
+  script.async = true;
+  script.src = 'https://www.googletagmanager.com/gtag/js?id=' + id;
+  document.head.appendChild(script);
+  window.dataLayer = window.dataLayer || [];
+  console.log('GA:', id);
+  window.gtag = function gtag() {
+    window.dataLayer.push(arguments);
+  };
+  gtag('js', new Date());
+  gtag('config', id);
+}
+function embedRedditPixel(pixelId, options = {}) {
+  if (window.rdt) {
+    console.warn('Reddit pixel is already embedded');
+    return;
+  }
+  const script = document.createElement('script');
+  script.async = true;
+  script.src = 'https://www.redditstatic.com/ads/pixel.js';
+  const firstScript = document.getElementsByTagName('script')[0];
+  firstScript.parentNode.insertBefore(script, firstScript);
+  window.rdt = function rdt() {
+    window.rdt.sendEvent ? window.rdt.sendEvent(...arguments) : window.rdt.callQueue.push(arguments);
+  };
+  window.rdt.callQueue = [];
+  console.log('RP:', pixelId);
+  rdt('init', pixelId, options);
+  rdt('track', 'PageVisit');
+}
+function embedMetaPixel(pixelId) {
+  if (window.fbq) {
+    console.warn('Facebook pixel is already embedded');
+    return;
+  }
+  const script = document.createElement('script');
+  script.async = true;
+  script.src = 'https://connect.facebook.net/en_US/fbevents.js';
+  const firstScript = document.getElementsByTagName('script')[0];
+  firstScript.parentNode.insertBefore(script, firstScript);
+  window.fbq = function fbq() {
+    window.fbq.callMethod ? window.fbq.callMethod(...arguments) : window.fbq.queue.push(arguments);
+  };
+  if (!window._fbq) {
+    window._fbq = window.fbq;
+  }
+  window.fbq.push = window.fbq;
+  window.fbq.queue = [];
+  window.fbq.loaded = true;
+  window.fbq.version = '2.0';
+  console.log('MP:', pixelId);
+  fbq('init', pixelId);
+  fbq('track', 'PageView');
+}
+;// CONCATENATED MODULE: ./node_modules/@chalkysticks/sdk-core/build/esm/Utility/Format.js
+function bytesToSize(bytes) {
+  let sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+  if (bytes == 0) return '0 Byte';
+  let i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)).toString());
+  return Math.round(bytes / Math.pow(1024, i)) + ' ' + sizes[i];
+}
+function daysBetweenDates(date1, date2) {
+  const timeDiff = Math.abs(date2.getTime() - date1.getTime());
+  return Math.ceil(timeDiff / (1000 * 3600 * 24));
+}
+function secondsToTime(seconds, format = '00:00:00') {
+  let date = new Date(0);
+  date.setSeconds(seconds);
+  switch (format) {
+    case '00:00:00':
+      return date.toISOString().substr(11, 8);
+    case '00:00':
+      return date.toISOString().substr(14, 5);
+    case '00':
+      return date.toISOString().substr(17, 2);
+  }
+  return date.toISOString().substr(11, 8);
+}
+function timeToSeconds(time) {
+  let [hours, minutes, seconds] = time.split(':').map(Number);
+  return hours * 3600 + minutes * 60 + seconds;
+}
+function timeToHuman(time) {
+  let [hours, minutes, seconds] = time.split(':').map(Number);
+  return `${hours}h ${minutes}m ${seconds}s`;
+}
+function timeAgo(date) {
+  let seconds = Math.floor((new Date().getTime() - date.getTime()) / 1000);
+  let interval = seconds / 31536000;
+  if (interval > 1) {
+    return Math.floor(interval) + ' years ago';
+  }
+  interval = seconds / 2592000;
+  if (interval > 1) {
+    return Math.floor(interval) + ' months ago';
+  }
+  interval = seconds / 86400;
+  if (interval > 1) {
+    return Math.floor(interval) + ' days ago';
+  }
+  interval = seconds / 3600;
+  if (interval > 1) {
+    return Math.floor(interval) + ' hours ago';
+  }
+  interval = seconds / 60;
+  if (interval > 1) {
+    return Math.floor(interval) + ' minutes ago';
+  }
+  return Math.floor(seconds) + ' seconds ago';
+}
+;// CONCATENATED MODULE: ./node_modules/@chalkysticks/sdk-core/build/esm/Utility/Easing.js
+class EasingFunction {
+  static linear(t) {
+    return t;
+  }
+  static easeInQuad(t) {
+    return t * t;
+  }
+  static easeOutQuad(t) {
+    return t * (2 - t);
+  }
+  static easeInOutQuad(t) {
+    return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+  }
+  static easeInCubic(t) {
+    return t * t * t;
+  }
+  static easeOutCubic(t) {
+    return --t * t * t + 1;
+  }
+  static easeInOutCubic(t) {
+    return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+  }
+  static easeInQuart(t) {
+    return t * t * t * t;
+  }
+  static easeOutQuart(t) {
+    return 1 - --t * t * t * t;
+  }
+  static easeInOutQuart(t) {
+    return t < 0.5 ? 8 * t * t * t * t : 1 - 8 * --t * t * t * t;
+  }
+  static easeInQuint(t) {
+    return t * t * t * t * t;
+  }
+  static easeOutQuint(t) {
+    return 1 + --t * t * t * t * t;
+  }
+  static easeInOutQuint(t) {
+    return t < 0.5 ? 16 * t * t * t * t * t : 1 + 16 * --t * t * t * t * t;
+  }
+  static easeInSine(t) {
+    return 1 - Math.cos(t * Math.PI / 2);
+  }
+  static easeOutSine(t) {
+    return Math.sin(t * Math.PI / 2);
+  }
+  static easeInOutSine(t) {
+    return -(Math.cos(Math.PI * t) - 1) / 2;
+  }
+  static easeInExpo(t) {
+    return t === 0 ? 0 : Math.pow(2, 10 * (t - 1));
+  }
+  static easeOutExpo(t) {
+    return t === 1 ? 1 : -Math.pow(2, -10 * t) + 1;
+  }
+  static easeInOutExpo(t) {
+    if (t === 0) return 0;
+    if (t === 1) return 1;
+    if ((t *= 2) < 1) return 0.5 * Math.pow(2, 10 * (t - 1));
+    return 0.5 * (-Math.pow(2, -10 * --t) + 2);
+  }
+  static easeInCirc(t) {
+    return -(Math.sqrt(1 - t * t) - 1);
+  }
+  static easeOutCirc(t) {
+    return Math.sqrt(1 - --t * t);
+  }
+  static easeInOutCirc(t) {
+    if ((t /= 0.5) < 1) return -0.5 * (Math.sqrt(1 - t * t) - 1);
+    return 0.5 * (Math.sqrt(1 - (t -= 2) * t) + 1);
+  }
+  static easeInBack(t, s = 1.70158) {
+    return t * t * ((s + 1) * t - s);
+  }
+  static easeOutBack(t, s = 1.70158) {
+    return --t * t * ((s + 1) * t + s) + 1;
+  }
+  static easeInOutBack(t, s = 1.70158) {
+    if ((t /= 0.5) < 1) return 0.5 * (t * t * (((s *= 1.525) + 1) * t - s));
+    return 0.5 * ((t -= 2) * t * (((s *= 1.525) + 1) * t + s) + 2);
+  }
+}
+class Easing {
+  static linear(value, min = 0, max = 1, clamp = true) {
+    return Easing.normalize(value, min, max, EasingFunction.linear, clamp);
+  }
+  static easeInQuad(value, min = 0, max = 1, clamp = true) {
+    return Easing.normalize(value, min, max, EasingFunction.easeInQuad, clamp);
+  }
+  static easeOutQuad(value, min = 0, max = 1, clamp = true) {
+    return Easing.normalize(value, min, max, EasingFunction.easeOutQuad, clamp);
+  }
+  static easeInOutQuad(value, min = 0, max = 1, clamp = true) {
+    return Easing.normalize(value, min, max, EasingFunction.easeInOutQuad, clamp);
+  }
+  static easeInQuart(value, min = 0, max = 1, clamp = true) {
+    return Easing.normalize(value, min, max, EasingFunction.easeInQuart, clamp);
+  }
+  static easeOutQuart(value, min = 0, max = 1, clamp = true) {
+    return Easing.normalize(value, min, max, EasingFunction.easeOutQuart, clamp);
+  }
+  static easeInOutQuart(value, min = 0, max = 1, clamp = true) {
+    return Easing.normalize(value, min, max, EasingFunction.easeInOutQuart, clamp);
+  }
+  static easeInQuint(value, min = 0, max = 1, clamp = true) {
+    return Easing.normalize(value, min, max, EasingFunction.easeInQuint, clamp);
+  }
+  static easeOutQuint(value, min = 0, max = 1, clamp = true) {
+    return Easing.normalize(value, min, max, EasingFunction.easeOutQuint, clamp);
+  }
+  static easeInOutQuint(value, min = 0, max = 1, clamp = true) {
+    return Easing.normalize(value, min, max, EasingFunction.easeInOutQuint, clamp);
+  }
+  static easeInCubic(value, min = 0, max = 1, clamp = true) {
+    return Easing.normalize(value, min, max, EasingFunction.easeInCubic, clamp);
+  }
+  static easeOutCubic(value, min = 0, max = 1, clamp = true) {
+    return Easing.normalize(value, min, max, EasingFunction.easeOutCubic, clamp);
+  }
+  static easeInOutCubic(value, min = 0, max = 1, clamp = true) {
+    return Easing.normalize(value, min, max, EasingFunction.easeInOutCubic, clamp);
+  }
+  static easeInSine(value, min = 0, max = 1, clamp = true) {
+    return Easing.normalize(value, min, max, EasingFunction.easeInSine, clamp);
+  }
+  static easeOutSine(value, min = 0, max = 1, clamp = true) {
+    return Easing.normalize(value, min, max, EasingFunction.easeOutSine, clamp);
+  }
+  static easeInOutSine(value, min = 0, max = 1, clamp = true) {
+    return Easing.normalize(value, min, max, EasingFunction.easeInOutSine, clamp);
+  }
+  static easeInExpo(value, min = 0, max = 1, clamp = true) {
+    return Easing.normalize(value, min, max, EasingFunction.easeInExpo, clamp);
+  }
+  static easeOutExpo(value, min = 0, max = 1, clamp = true) {
+    return Easing.normalize(value, min, max, EasingFunction.easeOutExpo, clamp);
+  }
+  static easeInOutExpo(value, min = 0, max = 1, clamp = true) {
+    return Easing.normalize(value, min, max, EasingFunction.easeInOutExpo, clamp);
+  }
+  static easeInCirc(value, min = 0, max = 1, clamp = true) {
+    return Easing.normalize(value, min, max, EasingFunction.easeInCirc, clamp);
+  }
+  static easeOutCirc(value, min = 0, max = 1, clamp = true) {
+    return Easing.normalize(value, min, max, EasingFunction.easeOutCirc, clamp);
+  }
+  static easeInOutCirc(value, min = 0, max = 1, clamp = true) {
+    return Easing.normalize(value, min, max, EasingFunction.easeInOutCirc, clamp);
+  }
+  static easeInBack(value, min = 0, max = 1, clamp = true) {
+    return Easing.normalize(value, min, max, EasingFunction.easeInBack, clamp);
+  }
+  static easeOutBack(value, min = 0, max = 1, clamp = true) {
+    return Easing.normalize(value, min, max, EasingFunction.easeOutBack, clamp);
+  }
+  static easeInOutBack(value, min = 0, max = 1, clamp = true) {
+    return Easing.normalize(value, min, max, EasingFunction.easeInOutBack, clamp);
+  }
+  static normalize(value, min = 0, max = 1, easingFn, clamp = true) {
+    let t = Easing.clamp((value - min) / (max - min), 0, 1);
+    let output = clamp ? easingFn(t) : min + (max - min) * easingFn(t);
+    return output;
+  }
+  static clamp(value, min = 0, max = 1) {
+    return Math.min(Math.max(value, min), max);
+  }
+}
+function getEasingMethod(type) {
+  if (Easing.hasOwnProperty(type)) {
+    return Easing[type];
+  }
+  return Easing.easeInOutQuad;
+}
+;// CONCATENATED MODULE: ./node_modules/@chalkysticks/sdk-core/build/esm/Utility/Math.js
+
+function angle(x1, y1, x2, y2) {
+  return Math.atan2(y2 - y1, x2 - x1);
+}
+function angleAsDegrees(x1, y1, x2, y2) {
+  return angle(x1, y1, x2, y2) * 180 / Math.PI;
+}
+function angleDifference(a, b) {
+  return Math.atan2(Math.sin(b - a), Math.cos(b - a));
+}
+function angleDifferenceAsDegrees(a, b) {
+  return angleDifference(a, b) * 180 / Math.PI;
+}
+function normalize(value, min, max, useClamp = false) {
+  let output = (value - min) / (max - min);
+  if (useClamp) {
+    output = clamp(output, min, max);
+  }
+  return output;
+}
+function denormalize(value, min, max, useClamp = false) {
+  let output = value * (max - min) + min;
+  if (useClamp) {
+    output = clamp(output, min, max);
+  }
+  return output;
+}
+function distance(x1, y1, x2, y2) {
+  return Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
+}
+function clamp(value, min, max) {
+  return Math.min(Math.max(value, min), max);
+}
+function lerp(a, b, t) {
+  return a + (b - a) * t;
+}
+function smoothstep(min, max, value) {
+  const x = clamp((value - min) / (max - min), 0, 1);
+  return x * x * (3 - 2 * x);
+}
+function smootherstep(min, max, value) {
+  const x = clamp((value - min) / (max - min), 0, 1);
+  return x * x * x * (x * (x * 6 - 15) + 10);
+}
+function inverseLerp(a, b, value) {
+  return (value - a) / (b - a);
+}
+function remap(value, a, b, c, d) {
+  return c + (d - c) * inverseLerp(a, b, value);
+}
+function randomRange(min, max) {
+  return lerp(min, max, Math.random());
+}
+function randomInt(min, max) {
+  return Math.floor(randomRange(min, max + 1));
+}
+function randomSign() {
+  return Math.random() < 0.5 ? -1 : 1;
+}
+function rotate(x, y, angle) {
+  const s = Math.sin(angle);
+  const c = Math.cos(angle);
+  return [x * c - y * s, x * s + y * c];
+}
+function rotateDeg(x, y, angle) {
+  return rotate(x, y, angle * Math.PI / 180);
+}
+function round(value, decimals = 2) {
+  return Number(value.toFixed(decimals));
+}
+function roundToNearest(value, nearest) {
+  return Math.round(value / nearest) * nearest;
+}
+function roundToNearestFraction(value, fraction) {
+  return Math.round(value * fraction) / fraction;
+}
+function roundToDecimal(value, decimals) {
+  return Math.round(value * 10 ** decimals) / 10 ** decimals;
+}
+function toRadians(degrees) {
+  return degrees * Math.PI / 180;
+}
+function toDegrees(radians) {
+  return radians * 180 / Math.PI;
+}
+function transformRatio(ratio, by = 4, easeInFunction = 'linear', easeOutFunction = '') {
+  if (!easeOutFunction) {
+    easeOutFunction = easeInFunction;
+  }
+  const easeInMethod = getEasingMethod(easeInFunction);
+  const easeOutMethod = getEasingMethod(easeOutFunction);
+  if (ratio <= 1 / by) {
+    return easeInMethod(ratio / (1 / by));
+  } else if (ratio <= 1 - 1 / by) {
+    return 1;
+  } else {
+    return easeOutMethod((1 - ratio) / (1 / by));
+  }
+}
 ;// CONCATENATED MODULE: ./node_modules/@chalkysticks/sdk-core/build/esm/Utility/Cache.js
 class Cache {
   constructor(ttl = -1) {
@@ -18362,54 +21329,103 @@ class Cache {
   }
 }
 ;// CONCATENATED MODULE: ./node_modules/@chalkysticks/sdk-core/build/esm/Utility/Debounce.js
+var _Debounce;
 class Debounce {
   static exec(reference, callable, timeout = 1000, inclusive = false, args = []) {
     if (!this.instances[reference]) {
-      const instance = new Debounce(callable, timeout, inclusive);
+      const instance = new Debounce(callable, timeout, true, inclusive);
       this.instances[reference] = instance.run;
     }
     this.instances[reference](...args);
   }
-  constructor(callback, threshold = 200, inclusive = false) {
+  constructor(callback, threshold = 200, immediate = false, inclusive = false) {
+    this.inclusive = false;
     this.lastTrigger = 0;
     this.timeout = 0;
     this.callback = callback;
+    this.inclusive = inclusive;
     this.threshold = threshold;
     if (!inclusive) {
       this.lastTrigger = Date.now();
     }
     this.run = this.run.bind(this);
   }
-  run() {
+  run(wasInclusive = false) {
     const now = Date.now();
     const diff = now - this.lastTrigger;
     if (diff > this.threshold) {
       this.lastTrigger = now;
-      this.callback();
+      this.callback.apply(null, arguments);
     }
     if (this.timeout !== 0) {
       clearTimeout(this.timeout);
       this.timeout = 0;
     }
-    this.timeout = setTimeout(this.callback, this.threshold);
+    if (this.inclusive && !wasInclusive) {
+      this.timeout = setTimeout(() => this.run(true), this.threshold);
+    }
   }
 }
-Debounce.instances = {};
+_Debounce = Debounce;
+_Debounce.instances = {};
 ;// CONCATENATED MODULE: ./node_modules/@chalkysticks/sdk-core/build/esm/Utility/General.js
+function documentHeight() {
+  return Math.max(document.body.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight);
+}
+function offsetLeft(element) {
+  let offset = 0;
+  do {
+    offset += element.offsetLeft;
+    element = element.offsetParent;
+  } while (element);
+  return offset;
+}
+function offsetHeight(element) {
+  return element.offsetHeight;
+}
+function offsetTop(element) {
+  let offset = 0;
+  do {
+    offset += element.offsetTop;
+    element = element.offsetParent;
+  } while (element);
+  return offset;
+}
+function offsetWidth(element) {
+  return element.offsetWidth;
+}
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
+;// CONCATENATED MODULE: ./node_modules/@chalkysticks/sdk-core/build/esm/Common/Functions.js
+const entry_lib_requestAnimationFrame = typeof window !== 'undefined' && window.requestAnimationFrame ? window.requestAnimationFrame.bind(window) : callback => setTimeout(() => callback(Date.now()), 16);
 ;// CONCATENATED MODULE: ./node_modules/@chalkysticks/sdk-core/build/esm/Utility/Interval.js
+
 class Interval {
-  static add(func, fps = 16, name = '') {
+  static add(optionsOrFunc, fps = 16, name = '') {
+    let func,
+      executions = 0,
+      lastTick = 0,
+      stopAfter = 0;
     name || (name = Math.random().toString(32).substr(2, 6));
+    if (optionsOrFunc.hasOwnProperty('callback')) {
+      fps = optionsOrFunc.fps || fps;
+      func = optionsOrFunc.callback;
+      name = optionsOrFunc.name || name;
+      stopAfter = optionsOrFunc.stopAfter || 0;
+    } else {
+      func = optionsOrFunc;
+    }
     if (!this.instance) {
       Interval.start();
     }
     this.instance.intervals.push({
+      executions,
       fps,
       func,
-      name
+      lastTick,
+      name,
+      stopAfter
     });
     return name;
   }
@@ -18461,12 +21477,17 @@ class Interval {
     this.intervals.forEach(interval => {
       const diff = now - (interval.lastTick || 0);
       if (diff > interval.fps) {
+        if (interval.stopAfter && interval.executions >= interval.stopAfter) {
+          Interval.remove(interval.name);
+          return;
+        }
         interval.func({});
         interval.lastTick = now;
+        interval.executions++;
       }
     });
     this.lastFrameTime = Date.now();
-    requestAnimationFrame(this.Handle_OnRequestAnimationFrame);
+    entry_lib_requestAnimationFrame(this.Handle_OnRequestAnimationFrame);
   }
 }
 ;// CONCATENATED MODULE: ./node_modules/@chalkysticks/sdk-core/build/esm/Utility/String.js
@@ -18497,6 +21518,10 @@ class String_String {
 }
 /* harmony default export */ const Utility_String = (new String_String());
 ;// CONCATENATED MODULE: ./node_modules/@chalkysticks/sdk-core/build/esm/Utility/index.js
+
+
+
+
 
 
 
@@ -19109,6 +22134,52 @@ var esm_ChalkySticks;
   ChalkySticks.Wallet = sdk_wallet_build_esm_namespaceObject;
 })(esm_ChalkySticks || (esm_ChalkySticks = {}));
 /* harmony default export */ const esm = (esm_ChalkySticks);
+// EXTERNAL MODULE: ./node_modules/@chalkysticks/sass/build/app.css
+var app = __webpack_require__(6089);
+// EXTERNAL MODULE: ./node_modules/@fortawesome/fontawesome-free/css/all.css
+var css_all = __webpack_require__(6176);
+;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js??clonedRuleSet-85.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/templateLoader.js??ruleSet[1].rules[4]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Authentication/AuthPanel.vue?vue&type=template&id=6be5d99a
+var render = function render() {
+  var _vm = this,
+    _c = _vm._self._c,
+    _setup = _vm._self._setupProxy;
+  return _c('div', {
+    staticClass: "chalky authentication-authpanel",
+    on: {
+      "click": _vm.Handle_OnClick
+    }
+  }, [_c('header', {
+    staticClass: "text-center"
+  }, [_c('BrandingBadge', {
+    attrs: {
+      "size": "md"
+    }
+  })], 1), _c('section', [_c('AuthenticationBasicLogin', {
+    attrs: {
+      "authModel": _vm.authModel
+    }
+  }), _c('hr'), _c('AuthenticationSocialLogin', {
+    attrs: {
+      "authModel": _vm.authModel
+    }
+  }), _vm._m(0)], 1)]);
+};
+var staticRenderFns = [function () {
+  var _vm = this,
+    _c = _vm._self._c,
+    _setup = _vm._self._setupProxy;
+  return _c('div', {
+    staticClass: "text-center"
+  }, [_c('a', {
+    attrs: {
+      "href": "/forgot-password",
+      "title": "Forgot Password"
+    }
+  }, [_c('span', [_vm._v("Forgot Password?")])])]);
+}];
+
+;// CONCATENATED MODULE: ./src/Authentication/AuthPanel.vue?vue&type=template&id=6be5d99a
+
 ;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js??clonedRuleSet-85.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/templateLoader.js??ruleSet[1].rules[4]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Authentication/BasicLogin.vue?vue&type=template&id=16e5988a
 var BasicLoginvue_type_template_id_16e5988a_render = function render() {
   var _vm = this,
@@ -19318,6 +22389,7 @@ class ViewBase extends index_umd.Vue {
     this.style = {};
     // Cid
     this.cid = Math.random().toString(32).substr(2, 6);
+    this.symbol = Symbol(this.cid);
   }
   /**
    * When mounted to document
@@ -19902,104 +22974,8 @@ AuthenticationBasicLogin = __decorate([index_umd.Component], AuthenticationBasic
 var BasicLoginvue_type_style_index_0_id_16e5988a_prod_lang_scss = __webpack_require__(2754);
 ;// CONCATENATED MODULE: ./src/Authentication/BasicLogin.vue?vue&type=style&index=0&id=16e5988a&prod&lang=scss
 
-;// CONCATENATED MODULE: ./node_modules/@vue/vue-loader-v15/lib/runtime/componentNormalizer.js
-/* globals __VUE_SSR_CONTEXT__ */
-
-// IMPORTANT: Do NOT use ES2015 features in this file (except for modules).
-// This module is a runtime utility for cleaner component module output and will
-// be included in the final webpack user bundle.
-
-function normalizeComponent(
-  scriptExports,
-  render,
-  staticRenderFns,
-  functionalTemplate,
-  injectStyles,
-  scopeId,
-  moduleIdentifier /* server only */,
-  shadowMode /* vue-cli only */
-) {
-  // Vue.extend constructor export interop
-  var options =
-    typeof scriptExports === 'function' ? scriptExports.options : scriptExports
-
-  // render functions
-  if (render) {
-    options.render = render
-    options.staticRenderFns = staticRenderFns
-    options._compiled = true
-  }
-
-  // functional template
-  if (functionalTemplate) {
-    options.functional = true
-  }
-
-  // scopedId
-  if (scopeId) {
-    options._scopeId = 'data-v-' + scopeId
-  }
-
-  var hook
-  if (moduleIdentifier) {
-    // server build
-    hook = function (context) {
-      // 2.3 injection
-      context =
-        context || // cached call
-        (this.$vnode && this.$vnode.ssrContext) || // stateful
-        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
-      // 2.2 with runInNewContext: true
-      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
-        context = __VUE_SSR_CONTEXT__
-      }
-      // inject component styles
-      if (injectStyles) {
-        injectStyles.call(this, context)
-      }
-      // register component module identifier for async chunk inferrence
-      if (context && context._registeredComponents) {
-        context._registeredComponents.add(moduleIdentifier)
-      }
-    }
-    // used by ssr in case component is cached and beforeCreate
-    // never gets called
-    options._ssrRegister = hook
-  } else if (injectStyles) {
-    hook = shadowMode
-      ? function () {
-          injectStyles.call(
-            this,
-            (options.functional ? this.parent : this).$root.$options.shadowRoot
-          )
-        }
-      : injectStyles
-  }
-
-  if (hook) {
-    if (options.functional) {
-      // for template-only hot-reload because in that case the render fn doesn't
-      // go through the normalizer
-      options._injectStyles = hook
-      // register for functional component in vue file
-      var originalRender = options.render
-      options.render = function renderWithStyleInjection(h, context) {
-        hook.call(context)
-        return originalRender(h, context)
-      }
-    } else {
-      // inject component registration as beforeCreate hook
-      var existing = options.beforeCreate
-      options.beforeCreate = existing ? [].concat(existing, hook) : [hook]
-    }
-  }
-
-  return {
-    exports: scriptExports,
-    options: options
-  }
-}
-
+// EXTERNAL MODULE: ./node_modules/@vue/vue-loader-v15/lib/runtime/componentNormalizer.js
+var componentNormalizer = __webpack_require__(1656);
 ;// CONCATENATED MODULE: ./src/Authentication/BasicLogin.vue
 
 
@@ -20009,7 +22985,7 @@ function normalizeComponent(
 
 /* normalize component */
 
-var component = normalizeComponent(
+var component = (0,componentNormalizer/* default */.A)(
   Authentication_BasicLoginvue_type_script_lang_ts,
   BasicLoginvue_type_template_id_16e5988a_render,
   BasicLoginvue_type_template_id_16e5988a_staticRenderFns,
@@ -20137,7 +23113,7 @@ var SocialLoginvue_type_style_index_0_id_604b6250_prod_lang_scss = __webpack_req
 
 /* normalize component */
 
-var SocialLogin_component = normalizeComponent(
+var SocialLogin_component = (0,componentNormalizer/* default */.A)(
   Authentication_SocialLoginvue_type_script_lang_ts,
   SocialLoginvue_type_template_id_604b6250_render,
   SocialLoginvue_type_template_id_604b6250_staticRenderFns,
@@ -20201,7 +23177,7 @@ BrandingBadge = Badgevue_type_script_lang_ts_decorate([index_umd.Component], Bra
 
 /* normalize component */
 ;
-var Badge_component = normalizeComponent(
+var Badge_component = (0,componentNormalizer/* default */.A)(
   Branding_Badgevue_type_script_lang_ts,
   Badgevue_type_template_id_4fcfce52_render,
   Badgevue_type_template_id_4fcfce52_staticRenderFns,
@@ -20265,7 +23241,7 @@ BrandingStandard = Standardvue_type_script_lang_ts_decorate([index_umd.Component
 
 /* normalize component */
 ;
-var Standard_component = normalizeComponent(
+var Standard_component = (0,componentNormalizer/* default */.A)(
   Branding_Standardvue_type_script_lang_ts,
   Standardvue_type_template_id_d0d3f732_render,
   Standardvue_type_template_id_d0d3f732_staticRenderFns,
@@ -20375,7 +23351,7 @@ var AuthPanelvue_type_style_index_0_id_6be5d99a_prod_lang_scss = __webpack_requi
 
 /* normalize component */
 
-var AuthPanel_component = normalizeComponent(
+var AuthPanel_component = (0,componentNormalizer/* default */.A)(
   Authentication_AuthPanelvue_type_script_lang_ts,
   render,
   staticRenderFns,
@@ -20444,7 +23420,7 @@ var ForgotPasswordvue_type_style_index_0_id_236c512e_prod_lang_scss = __webpack_
 
 /* normalize component */
 
-var ForgotPassword_component = normalizeComponent(
+var ForgotPassword_component = (0,componentNormalizer/* default */.A)(
   Authentication_ForgotPasswordvue_type_script_lang_ts,
   ForgotPasswordvue_type_template_id_236c512e_render,
   ForgotPasswordvue_type_template_id_236c512e_staticRenderFns,
@@ -20638,7 +23614,7 @@ var Navigationvue_type_style_index_0_id_2c50603e_prod_lang_scss = __webpack_requ
 
 /* normalize component */
 
-var Navigation_component = normalizeComponent(
+var Navigation_component = (0,componentNormalizer/* default */.A)(
   Authentication_Navigationvue_type_script_lang_ts,
   Navigationvue_type_template_id_2c50603e_render,
   Navigationvue_type_template_id_2c50603e_staticRenderFns,
@@ -20710,7 +23686,7 @@ var ResetPasswordvue_type_style_index_0_id_5e761aaa_prod_lang_scss = __webpack_r
 
 /* normalize component */
 
-var ResetPassword_component = normalizeComponent(
+var ResetPassword_component = (0,componentNormalizer/* default */.A)(
   Authentication_ResetPasswordvue_type_script_lang_ts,
   ResetPasswordvue_type_template_id_5e761aaa_render,
   ResetPasswordvue_type_template_id_5e761aaa_staticRenderFns,
@@ -20779,7 +23755,7 @@ var Loginvue_type_style_index_0_id_a9b87bca_prod_lang_scss = __webpack_require__
 
 /* normalize component */
 
-var Login_component = normalizeComponent(
+var Login_component = (0,componentNormalizer/* default */.A)(
   Button_Loginvue_type_script_lang_ts,
   Loginvue_type_template_id_a9b87bca_render,
   Loginvue_type_template_id_a9b87bca_staticRenderFns,
@@ -21230,7 +24206,7 @@ var VideoTheatervue_type_style_index_0_id_a8580dc0_prod_lang_scss = __webpack_re
 
 /* normalize component */
 
-var VideoTheater_component = normalizeComponent(
+var VideoTheater_component = (0,componentNormalizer/* default */.A)(
   TV_VideoTheatervue_type_script_lang_ts,
   VideoTheatervue_type_template_id_a8580dc0_render,
   VideoTheatervue_type_template_id_a8580dc0_staticRenderFns,
@@ -21242,8 +24218,8 @@ var VideoTheater_component = normalizeComponent(
 )
 
 /* harmony default export */ const TV_VideoTheater = (VideoTheater_component.exports);
-;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js??clonedRuleSet-85.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/templateLoader.js??ruleSet[1].rules[4]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Venue/Card.vue?vue&type=template&id=49b28bcc
-var Cardvue_type_template_id_49b28bcc_render = function render() {
+;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js??clonedRuleSet-85.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/templateLoader.js??ruleSet[1].rules[4]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Venue/Card.vue?vue&type=template&id=1bf21c20
+var Cardvue_type_template_id_1bf21c20_render = function render() {
   var _vm = this,
     _c = _vm._self._c,
     _setup = _vm._self._setupProxy;
@@ -21322,7 +24298,7 @@ var Cardvue_type_template_id_49b28bcc_render = function render() {
     staticClass: "address"
   }, [_vm._v(_vm._s(_vm.venueModel.getAddress()))])])]);
 };
-var Cardvue_type_template_id_49b28bcc_staticRenderFns = [];
+var Cardvue_type_template_id_1bf21c20_staticRenderFns = [];
 
 ;// CONCATENATED MODULE: ./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib/index.js!./node_modules/ts-loader/index.js??clonedRuleSet-86.use[2]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Venue/Card.vue?vue&type=script&lang=ts
 var Cardvue_type_script_lang_ts_decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
@@ -21341,13 +24317,6 @@ var Cardvue_type_script_lang_ts_decorate = undefined && undefined.__decorate || 
  * @project ChalkySticks SDK Vue2.0 Components
  */
 let VenueCard = class VenueCard extends ViewBase {
-  constructor() {
-    super(...arguments);
-    /**
-     * @type ChalkySticks/Collection/Venue
-     */
-    this.venueCollection = new esm.Collection.Venue();
-  }
   /**
    * @return string
    */
@@ -21367,9 +24336,9 @@ VenueCard = Cardvue_type_script_lang_ts_decorate([index_umd.Component], VenueCar
 /* harmony default export */ const Cardvue_type_script_lang_ts = (VenueCard);
 ;// CONCATENATED MODULE: ./src/Venue/Card.vue?vue&type=script&lang=ts
  /* harmony default export */ const Venue_Cardvue_type_script_lang_ts = (Cardvue_type_script_lang_ts); 
-// EXTERNAL MODULE: ./node_modules/vue-style-loader/index.js??clonedRuleSet-67.use[0]!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-67.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-67.use[2]!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-67.use[3]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-67.use[4]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Venue/Card.vue?vue&type=style&index=0&id=49b28bcc&prod&lang=scss
-var Cardvue_type_style_index_0_id_49b28bcc_prod_lang_scss = __webpack_require__(9140);
-;// CONCATENATED MODULE: ./src/Venue/Card.vue?vue&type=style&index=0&id=49b28bcc&prod&lang=scss
+// EXTERNAL MODULE: ./node_modules/vue-style-loader/index.js??clonedRuleSet-67.use[0]!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-67.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-67.use[2]!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-67.use[3]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-67.use[4]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Venue/Card.vue?vue&type=style&index=0&id=1bf21c20&prod&lang=scss
+var Cardvue_type_style_index_0_id_1bf21c20_prod_lang_scss = __webpack_require__(262);
+;// CONCATENATED MODULE: ./src/Venue/Card.vue?vue&type=style&index=0&id=1bf21c20&prod&lang=scss
 
 ;// CONCATENATED MODULE: ./src/Venue/Card.vue
 
@@ -21380,10 +24349,10 @@ var Cardvue_type_style_index_0_id_49b28bcc_prod_lang_scss = __webpack_require__(
 
 /* normalize component */
 
-var Card_component = normalizeComponent(
+var Card_component = (0,componentNormalizer/* default */.A)(
   Venue_Cardvue_type_script_lang_ts,
-  Cardvue_type_template_id_49b28bcc_render,
-  Cardvue_type_template_id_49b28bcc_staticRenderFns,
+  Cardvue_type_template_id_1bf21c20_render,
+  Cardvue_type_template_id_1bf21c20_staticRenderFns,
   false,
   null,
   null,
@@ -21496,7 +24465,7 @@ var Listvue_type_style_index_0_id_a4c35546_prod_lang_scss = __webpack_require__(
 
 /* normalize component */
 
-var List_component = normalizeComponent(
+var List_component = (0,componentNormalizer/* default */.A)(
   Venue_Listvue_type_script_lang_ts,
   Listvue_type_template_id_a4c35546_render,
   Listvue_type_template_id_a4c35546_staticRenderFns,
@@ -21508,17 +24477,179 @@ var List_component = normalizeComponent(
 )
 
 /* harmony default export */ const List = (List_component.exports);
-;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js??clonedRuleSet-85.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/templateLoader.js??ruleSet[1].rules[4]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Venue/Map.vue?vue&type=template&id=3a3146fd
-var Mapvue_type_template_id_3a3146fd_render = function render() {
+;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js??clonedRuleSet-85.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/templateLoader.js??ruleSet[1].rules[4]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Venue/Map.vue?vue&type=template&id=6e73229c
+var Mapvue_type_template_id_6e73229c_render = function render() {
   var _vm = this,
     _c = _vm._self._c,
     _setup = _vm._self._setupProxy;
   return _c('div', {
     staticClass: "chalky venue-map"
-  }, [_vm._v("venue map")]);
+  }, [_c('GmapMap', {
+    ref: "map",
+    staticStyle: {
+      "width": "100%",
+      "height": "100%"
+    },
+    attrs: {
+      "map-type-id": "terrain",
+      "center": {
+        lat: _vm.latitude,
+        lng: _vm.longitude
+      },
+      "zoom": _vm.zoom,
+      "options": {
+        disableDefaultUi: true,
+        fullscreenControl: false,
+        mapTypeControl: false,
+        rotateControl: false,
+        scaleControl: false,
+        streetViewControl: true,
+        zoomControl: true
+      }
+    },
+    on: {
+      "bounds_changed": _vm.Handle_OnBoundsChanged
+    }
+  }, _vm._l(_vm.markers, function (marker, index) {
+    return _c('GmapMarker', {
+      key: index,
+      attrs: {
+        "clickable": true,
+        "draggable": false,
+        "icon": _vm.defaultIcon,
+        "position": marker.position
+      },
+      on: {
+        "click": function ($event) {
+          return _vm.Handle_OnClickMarker($event, marker);
+        }
+      }
+    });
+  }), 1)], 1);
 };
-var Mapvue_type_template_id_3a3146fd_staticRenderFns = [];
+var Mapvue_type_template_id_6e73229c_staticRenderFns = [];
 
+// EXTERNAL MODULE: ./node_modules/vue-class-component/dist/vue-class-component.common.js
+var vue_class_component_common = __webpack_require__(7625);
+;// CONCATENATED MODULE: ./src/Utility/Decorators.ts
+
+// Helpers
+// ---------------------------------------------------------------------------
+/**
+ * @param string methodName
+ * @return Function
+ */
+function methodDecorator(methodName) {
+  return (0,vue_class_component_common.createDecorator)((options, key) => {
+    const original = options[methodName];
+    const method = options.methods[key];
+    options[methodName] = function () {
+      original && original.call(this);
+      method && method.call(this);
+    };
+  });
+}
+// Export
+// ---------------------------------------------------------------------------
+const beforeCreate = methodDecorator('beforeCreate');
+const created = methodDecorator('created');
+const beforeDestroy = methodDecorator('beforeDestroy');
+const beforeMount = methodDecorator('beforeMount');
+const mounted = methodDecorator('mounted');
+const beforeUpdate = methodDecorator('beforeUpdate');
+const updated = methodDecorator('updated');
+const beforeUnmount = methodDecorator('beforeUnmount');
+const unmounted = methodDecorator('unmounted');
+const errorCaptured = methodDecorator('errorCaptured');
+const renderTracked = methodDecorator('renderTracked');
+const renderTriggered = methodDecorator('renderTriggered');
+const activated = methodDecorator('activated');
+const deactivated = methodDecorator('deactivated');
+const serverPrefetch = methodDecorator('serverPrefetch');
+// Special
+// ---------------------------------------------------------------------------
+/**
+ * decorator of a watch function
+ * @param  path the path or the expression to observe
+ * @param  watchOptions
+ */
+const routeChange = function () {
+  const path = '$route';
+  const watchOptions = {
+    immediate: true
+  };
+  return (0,vue_class_component_common.createDecorator)((componentOptions, handler) => {
+    componentOptions.watch ||= Object.create(null);
+    const watch = componentOptions.watch;
+    if (typeof watch[path] === 'object' && !Array.isArray(watch[path])) {
+      watch[path] = [watch[path]];
+    } else if (typeof watch[path] === 'undefined') {
+      watch[path] = [];
+    }
+    watch[path].push({
+      handler,
+      ...watchOptions
+    });
+  });
+}();
+/**
+ * It's setup this way specifically because if we override
+ * the prototype method or something, we'll lose access to
+ * any extended protected methods.
+ *
+ * An example would be that Event.Dispatcher would no longer
+ * work if we bound an event listener.
+ *
+ * It will work with this approach.
+ *
+ * @param any target
+ * @param string propertyKey
+ * @param PropertyDescriptor descriptor
+ * @return PropertyDescriptor
+ */
+function bind(target, propertyKey, descriptor) {
+  const configurable = true;
+  const enumerable = false;
+  return {
+    configurable,
+    enumerable,
+    /**
+     * @return object
+     */
+    get() {
+      const bound = descriptor.value.bind(this);
+      Object.defineProperty(this, propertyKey, {
+        configurable: true,
+        value: bound,
+        writable: true
+      });
+      return bound;
+    }
+  };
+}
+/**
+ * Create a decorator that will .trigger('event') on the
+ * class.
+ */
+function trigger(event, params = {}, triggerBefore = true) {
+  return function (target, propertyKey, descriptor) {
+    // @ts-ignore
+    // descriptor.enumerable = event;
+    const originalValue = descriptor.value;
+    descriptor.value = function (...args) {
+      // Before event
+      if (triggerBefore) {
+        // @ts-ignore
+        this.trigger(event + ':before', params);
+      }
+      // Trigger original function
+      originalValue.apply(this, args);
+      // After event
+      // @ts-ignore
+      this.trigger(event, params);
+    };
+  };
+}
 ;// CONCATENATED MODULE: ./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib/index.js!./node_modules/ts-loader/index.js??clonedRuleSet-86.use[2]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Venue/Map.vue?vue&type=script&lang=ts
 var Mapvue_type_script_lang_ts_decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
   var c = arguments.length,
@@ -21530,22 +24661,133 @@ var Mapvue_type_script_lang_ts_decorate = undefined && undefined.__decorate || f
 
 
 
+
 /**
  * @class VenueMap
  * @package Venue
  * @project ChalkySticks SDK Vue2.0 Components
  */
-let VenueMap = class VenueMap extends ViewBase {};
+let VenueMap = class VenueMap extends ViewBase {
+  /**
+   * @constructor
+   */
+  constructor() {
+    super();
+    /**
+     * @type string
+     */
+    this.defaultIcon = __webpack_require__(9866);
+    /**
+     * @type IGoogleMapMarker[]
+     */
+    this.markers = [];
+    // Check if we need to load data
+    if (!this.venueCollection.length) {
+      this.venueCollection.fetch();
+    } else {
+      this.populateMarkers();
+    }
+  }
+  /**
+   * @return void
+   */
+  attachEvents() {
+    this.venueCollection.on('add', this.Handle_OnAddVenue);
+  }
+  /**
+   * @return void
+   */
+  detachEvents() {
+    this.venueCollection.off('add', this.Handle_OnAddVenue);
+  }
+  /**
+   * @return void
+   */
+  populateMarkers() {
+    this.markers = [];
+    for (const venueModel of this.venueCollection) {
+      this.markers.push({
+        model: venueModel,
+        name: venueModel.getName(),
+        position: {
+          lat: venueModel.getLatitude(),
+          lng: venueModel.getLongitude()
+        }
+      });
+    }
+  }
+  /**
+   * @return Promise<void>
+   */
+  async Handle_OnAddVenue() {
+    this.populateMarkers();
+  }
+  /**
+   * @param Event e
+   * @return Promise<void>
+   */
+  async Handle_OnClickMarker(e, marker) {
+    this.$emit('marker:click', marker.model);
+  }
+  /**
+   * @return Promise<void>
+   */
+  async Handle_OnBoundsChanged() {
+    esm.Core.Utility.Debounce.exec(this.symbol, () => {
+      const mapRef = this.$refs.map;
+      const center = mapRef.$mapObject.getCenter();
+      const lat = center.lat();
+      const lng = center.lng();
+      this.$emit('map:move', {
+        latitude: lat,
+        longitude: lng
+      });
+      this.Handle_OnMapMove({
+        latitude: lat,
+        longitude: lng
+      });
+    }, 1000, true);
+  }
+  /**
+   * @param object e
+   * @return Promise<void>
+   */
+  async Handle_OnMapMove(e) {
+    if (this.autoFetch) {
+      this.venueCollection.setQueryParams({
+        lat: e.latitude,
+        lon: e.longitude
+      }).fetch();
+    }
+  }
+};
+Mapvue_type_script_lang_ts_decorate([(0,index_umd.Ref)('map')], VenueMap.prototype, "map", void 0);
 Mapvue_type_script_lang_ts_decorate([(0,index_umd.Prop)({
-  default: () => new esm.Collection.Venue()
+  default: true
+})], VenueMap.prototype, "autoFetch", void 0);
+Mapvue_type_script_lang_ts_decorate([(0,index_umd.Prop)({
+  default: 10
+})], VenueMap.prototype, "latitude", void 0);
+Mapvue_type_script_lang_ts_decorate([(0,index_umd.Prop)({
+  default: 10
+})], VenueMap.prototype, "longitude", void 0);
+Mapvue_type_script_lang_ts_decorate([(0,index_umd.Prop)({
+  default: () => new esm.Collection.Venue({
+    baseUrl: esm.Core.Constants.API_URL_V1
+  })
 })], VenueMap.prototype, "venueCollection", void 0);
+Mapvue_type_script_lang_ts_decorate([(0,index_umd.Prop)({
+  default: 7
+})], VenueMap.prototype, "zoom", void 0);
+Mapvue_type_script_lang_ts_decorate([mounted], VenueMap.prototype, "attachEvents", null);
+Mapvue_type_script_lang_ts_decorate([beforeDestroy], VenueMap.prototype, "detachEvents", null);
 VenueMap = Mapvue_type_script_lang_ts_decorate([index_umd.Component], VenueMap);
 /* harmony default export */ const Mapvue_type_script_lang_ts = (VenueMap);
 ;// CONCATENATED MODULE: ./src/Venue/Map.vue?vue&type=script&lang=ts
  /* harmony default export */ const Venue_Mapvue_type_script_lang_ts = (Mapvue_type_script_lang_ts); 
-// EXTERNAL MODULE: ./node_modules/vue-style-loader/index.js??clonedRuleSet-67.use[0]!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-67.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-67.use[2]!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-67.use[3]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-67.use[4]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Venue/Map.vue?vue&type=style&index=0&id=3a3146fd&prod&lang=scss
-var Mapvue_type_style_index_0_id_3a3146fd_prod_lang_scss = __webpack_require__(3665);
-;// CONCATENATED MODULE: ./src/Venue/Map.vue?vue&type=style&index=0&id=3a3146fd&prod&lang=scss
+// EXTERNAL MODULE: ./node_modules/vue-style-loader/index.js??clonedRuleSet-67.use[0]!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-67.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-67.use[2]!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-67.use[3]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-67.use[4]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Venue/Map.vue?vue&type=style&index=0&id=6e73229c&prod&lang=scss
+var Mapvue_type_style_index_0_id_6e73229c_prod_lang_scss = __webpack_require__(8434);
+;// CONCATENATED MODULE: ./src/Venue/Map.vue?vue&type=style&index=0&id=6e73229c&prod&lang=scss
 
 ;// CONCATENATED MODULE: ./src/Venue/Map.vue
 
@@ -21556,10 +24798,10 @@ var Mapvue_type_style_index_0_id_3a3146fd_prod_lang_scss = __webpack_require__(3
 
 /* normalize component */
 
-var Map_component = normalizeComponent(
+var Map_component = (0,componentNormalizer/* default */.A)(
   Venue_Mapvue_type_script_lang_ts,
-  Mapvue_type_template_id_3a3146fd_render,
-  Mapvue_type_template_id_3a3146fd_staticRenderFns,
+  Mapvue_type_template_id_6e73229c_render,
+  Mapvue_type_template_id_6e73229c_staticRenderFns,
   false,
   null,
   null,
@@ -21569,6 +24811,8 @@ var Map_component = normalizeComponent(
 
 /* harmony default export */ const entry_lib_Map = (Map_component.exports);
 ;// CONCATENATED MODULE: ./src/index.ts
+
+
 // Theme
 // ---------------------------------------------------------------------------
 
@@ -21604,16 +24848,25 @@ const components = {
   VenueList: List,
   VenueMap: entry_lib_Map
 };
-const src_ChalkySticks = {
+const ChalkySticksVue = {
   /**
    * Install ChalkySticks Vue2
    */
-  install: (Vue, options) => {
+  install: (Vue, options = {}) => {
     // Provide an API through Vue’s provide/inject API
     Vue.prototype.$chalky = {
       log: () => console.log('ChalkySticks v3', options),
       options: options
     };
+    // Configure ChalkySticks
+    esm.Core.ChalkySticks.configure(options.sdk || {});
+    // Configure Google Maps
+    Vue.use(main, {
+      load: {
+        key: options.google?.maps?.api_key,
+        libraries: 'places'
+      }
+    });
     // Directives (like v-model, v-show)
     // @see https://v3.vuejs.org/guide/custom-directive.html#intro
     Object.keys(components).forEach(name => {
@@ -21624,7 +24877,7 @@ const src_ChalkySticks = {
 };
 // Export individual components for selective importing
 
-/* harmony default export */ const src_0 = (src_ChalkySticks);
+/* harmony default export */ const src_0 = (ChalkySticksVue);
 ;// CONCATENATED MODULE: ./node_modules/@vue/cli-service/lib/commands/build/entry-lib.js
 
 

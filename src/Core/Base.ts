@@ -114,6 +114,11 @@ export default class ViewBase extends Vue {
 	public defaultAnimation: string = 'fade';
 
 	/**
+	 * @type symbol
+	 */
+	public symbol: symbol;
+
+	/**
 	 * Reference to a custom animator, if we're using one
 	 *
 	 * @type any
@@ -135,6 +140,7 @@ export default class ViewBase extends Vue {
 
 		// Cid
 		this.cid = Math.random().toString(32).substr(2, 6);
+		this.symbol = Symbol(this.cid);
 	}
 
 	/**

@@ -72,11 +72,6 @@
 		public venueModel!: ChalkySticks.Model.Venue;
 
 		/**
-		 * @type ChalkySticks/Collection/Venue
-		 */
-		protected venueCollection = new ChalkySticks.Collection.Venue();
-
-		/**
 		 * @return string
 		 */
 		protected getMapUrl(): string {

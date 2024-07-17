@@ -8,7 +8,8 @@
         "@chalkysticks/sdk": "github:chalkysticks/sdk",
         "@fortawesome/fontawesome-free": "^5.15.3",
         "colorconsole": "github:mattkenefick/colorconsole",
-        "gsap": "^3.7.0"
+        "gsap": "^3.7.0",
+        "vue2-google-maps": "^0.10.7"
     },
     "description": "ChalkySticks components made for Vue2",
     "devDependencies": {
@@ -75,5 +76,5 @@
         "serve": "vue-cli-service serve ./src/app.ts",
         "test": "vue-cli-service test:unit"
     },
-    "version": "1.4.3"
+    "version": "1.6.0"
 }
