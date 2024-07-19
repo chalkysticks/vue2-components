@@ -84,6 +84,17 @@
 		public longitude!: number;
 
 		/**
+		 * @type ChalkySticks/Collection/Beacon
+		 */
+		@Prop({
+			default: () =>
+				new ChalkySticks.Collection.Beacon({
+					baseUrl: ChalkySticks.Core.Constants.API_URL_V1,
+				}),
+		})
+		public beaconCollection!: ChalkySticks.Collection.Beacon;
+
+		/**
 		 * @type ChalkySticks/Collection/Venue
 		 */
 		@Prop({
@@ -147,8 +158,16 @@
 		constructor() {
 			super();
 
+			// Set query parameters
+			this.beaconCollection.setQueryParams({
+				d: 9999,
+				lat: this.latitude,
+				lon: this.longitude,
+			});
+
 			// Check if we need to load data
 			if (!this.venueCollection.length) {
+				this.beaconCollection.fetch();
 				this.venueCollection.fetch();
 			} else {
 				this.populateMarkers();
@@ -254,6 +273,13 @@
 		protected async Handle_OnMapMove(e: { latitude: number; longitude: number }): Promise<void> {
 			if (this.autoFetch) {
 				this.venueCollection
+					.setQueryParams({
+						lat: e.latitude,
+						lon: e.longitude,
+					})
+					.fetch();
+
+				this.beaconCollection
 					.setQueryParams({
 						lat: e.latitude,
 						lon: e.longitude,

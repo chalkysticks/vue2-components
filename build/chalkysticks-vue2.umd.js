@@ -11385,8 +11385,8 @@ exports.deprecate = function (fn, msg) {
 };
 var debugs = {};
 var debugEnvRegex = /^$/;
-if (({"NODE_ENV":"production","VUE_APP_GOOGLE_MAP_API":"AIzaSyD9_wCYmN1dEk8LgO42RbrkfnurD1GPQ7s","VUE_APP_VERSION":"1.7.0","BASE_URL":"/"}).NODE_DEBUG) {
-  var debugEnv = ({"NODE_ENV":"production","VUE_APP_GOOGLE_MAP_API":"AIzaSyD9_wCYmN1dEk8LgO42RbrkfnurD1GPQ7s","VUE_APP_VERSION":"1.7.0","BASE_URL":"/"}).NODE_DEBUG;
+if (({"NODE_ENV":"production","VUE_APP_GOOGLE_MAP_API":"AIzaSyD9_wCYmN1dEk8LgO42RbrkfnurD1GPQ7s","VUE_APP_VERSION":"1.8.0","BASE_URL":"/"}).NODE_DEBUG) {
+  var debugEnv = ({"NODE_ENV":"production","VUE_APP_GOOGLE_MAP_API":"AIzaSyD9_wCYmN1dEk8LgO42RbrkfnurD1GPQ7s","VUE_APP_VERSION":"1.8.0","BASE_URL":"/"}).NODE_DEBUG;
   debugEnv = debugEnv.replace(/[|\\{}()[\]^$+?.]/g, '\\$&').replace(/\*/g, '.*').replace(/,/g, '$|^').toUpperCase();
   debugEnvRegex = new RegExp('^' + debugEnv + '$', 'i');
 }
@@ -15105,7 +15105,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.chalky.venue-list{--thumbnail-size:10
 
 /***/ }),
 
-/***/ 6076:
+/***/ 1999:
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -15594,19 +15594,19 @@ var update = add("66916f9a", content, true, {"sourceMap":false,"shadowMode":fals
 
 /***/ }),
 
-/***/ 2595:
+/***/ 1504:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(6076);
+var content = __webpack_require__(1999);
 if(content.__esModule) content = content.default;
 if(typeof content === 'string') content = [[module.id, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
 var add = (__webpack_require__(9045)/* ["default"] */ .A)
-var update = add("d17ab1ea", content, true, {"sourceMap":false,"shadowMode":false});
+var update = add("28206dd8", content, true, {"sourceMap":false,"shadowMode":false});
 
 /***/ }),
 
@@ -20291,12 +20291,17 @@ __webpack_require__.d(sdk_pad_build_esm_namespaceObject, {
 var sdk_players_build_esm_Model_namespaceObject = {};
 __webpack_require__.r(sdk_players_build_esm_Model_namespaceObject);
 __webpack_require__.d(sdk_players_build_esm_Model_namespaceObject, {
+  Beacon: () => (Beacon_Beacon),
   Player: () => (Player_Player)
 });
 
 // NAMESPACE OBJECT: ./node_modules/@chalkysticks/sdk-players/build/esm/Collection/index.js
 var build_esm_Collection_namespaceObject = {};
 __webpack_require__.r(build_esm_Collection_namespaceObject);
+__webpack_require__.d(build_esm_Collection_namespaceObject, {
+  Beacon: () => (Beacon),
+  Player: () => (Player)
+});
 
 // NAMESPACE OBJECT: ./node_modules/@chalkysticks/sdk-players/build/esm/index.js
 var sdk_players_build_esm_namespaceObject = {};
@@ -21816,6 +21821,36 @@ class Diagram extends Base {
 
 
 
+;// CONCATENATED MODULE: ./node_modules/@chalkysticks/sdk-players/build/esm/Model/Beacon.js
+
+class Beacon_Beacon extends Base_Base {
+  constructor() {
+    super(...arguments);
+    this.endpoint = 'beacons';
+    this.fields = ['id', 'lat', 'lon', 'distance', 'time_ago', 'status', 'keepalive', 'created_at', 'updated_at'];
+  }
+  getDistance() {
+    return parseFloat(this.attr('distance'));
+  }
+  getKeepAlive() {
+    return parseFloat(this.attr('keepalive'));
+  }
+  getLatitude() {
+    return parseFloat(this.attr('latitude'));
+  }
+  getLongitude() {
+    return parseFloat(this.attr('longitude'));
+  }
+  getStatus() {
+    return this.attr('status');
+  }
+  getTimeAgo() {
+    return this.attr('time_ago');
+  }
+  get user() {
+    return this.hasOne('user', User_User);
+  }
+}
 ;// CONCATENATED MODULE: ./node_modules/@chalkysticks/sdk-players/build/esm/Model/Player.js
 
 class Player_Player extends Base_Base {
@@ -21830,6 +21865,26 @@ class Player_Player extends Base_Base {
 }
 ;// CONCATENATED MODULE: ./node_modules/@chalkysticks/sdk-players/build/esm/Model/index.js
 
+
+;// CONCATENATED MODULE: ./node_modules/@chalkysticks/sdk-players/build/esm/Collection/Beacon.js
+
+
+class Beacon extends Base {
+  constructor() {
+    super(...arguments);
+    this.endpoint = 'beacons';
+    this.model = new Beacon_Beacon();
+  }
+  static async search(latitude, longitude, distance = 9999) {
+    const collection = new Beacon();
+    const response = await collection.fetch({}, {
+      lat: latitude,
+      lon: longitude,
+      d: distance
+    });
+    return collection;
+  }
+}
 ;// CONCATENATED MODULE: ./node_modules/@chalkysticks/sdk-players/build/esm/Collection/Player.js
 
 
@@ -21841,6 +21896,7 @@ class Player extends Base {
   }
 }
 ;// CONCATENATED MODULE: ./node_modules/@chalkysticks/sdk-players/build/esm/Collection/index.js
+
 
 ;// CONCATENATED MODULE: ./node_modules/@chalkysticks/sdk-players/build/esm/index.js
 
@@ -22181,6 +22237,7 @@ var esm_ChalkySticks;
 (function (ChalkySticks) {
   let Collection;
   (function (Collection) {
+    Collection.Beacon = Beacon;
     Collection.Diagram = Diagram;
     Collection.Schedule = Schedule;
     Collection.Venue = Venue;
@@ -22193,6 +22250,7 @@ var esm_ChalkySticks;
   (function (Model) {
     Model.Authentication = Authentication;
     Model.Base = Base_Base;
+    Model.Beacon = Beacon_Beacon;
     Model.Diagram = Diagram_Diagram;
     Model.Geocode = Geocode;
     Model.Jwt = Jwt;
@@ -24558,8 +24616,8 @@ var List_component = (0,componentNormalizer/* default */.A)(
 )
 
 /* harmony default export */ const List = (List_component.exports);
-;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js??clonedRuleSet-85.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/templateLoader.js??ruleSet[1].rules[4]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Venue/Map.vue?vue&type=template&id=075bbb66
-var Mapvue_type_template_id_075bbb66_render = function render() {
+;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js??clonedRuleSet-85.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/templateLoader.js??ruleSet[1].rules[4]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Venue/Map.vue?vue&type=template&id=2e7ae267
+var Mapvue_type_template_id_2e7ae267_render = function render() {
   var _vm = this,
     _c = _vm._self._c,
     _setup = _vm._self._setupProxy;
@@ -24615,7 +24673,7 @@ var Mapvue_type_template_id_075bbb66_render = function render() {
     })], 1);
   }), 0)], 1);
 };
-var Mapvue_type_template_id_075bbb66_staticRenderFns = [];
+var Mapvue_type_template_id_2e7ae267_staticRenderFns = [];
 
 // EXTERNAL MODULE: ./node_modules/vue-class-component/dist/vue-class-component.common.js
 var vue_class_component_common = __webpack_require__(7625);
@@ -24808,8 +24866,15 @@ let VenueMap = class VenueMap extends ViewBase {
         visibility: 'off'
       }]
     }];
+    // Set query parameters
+    this.beaconCollection.setQueryParams({
+      d: 9999,
+      lat: this.latitude,
+      lon: this.longitude
+    });
     // Check if we need to load data
     if (!this.venueCollection.length) {
+      this.beaconCollection.fetch();
       this.venueCollection.fetch();
     } else {
       this.populateMarkers();
@@ -24899,6 +24964,10 @@ let VenueMap = class VenueMap extends ViewBase {
         lat: e.latitude,
         lon: e.longitude
       }).fetch();
+      this.beaconCollection.setQueryParams({
+        lat: e.latitude,
+        lon: e.longitude
+      }).fetch();
     }
   }
 };
@@ -24913,6 +24982,11 @@ Mapvue_type_script_lang_ts_decorate([(0,index_umd.Prop)({
   default: 10
 })], VenueMap.prototype, "longitude", void 0);
 Mapvue_type_script_lang_ts_decorate([(0,index_umd.Prop)({
+  default: () => new esm.Collection.Beacon({
+    baseUrl: esm.Core.Constants.API_URL_V1
+  })
+})], VenueMap.prototype, "beaconCollection", void 0);
+Mapvue_type_script_lang_ts_decorate([(0,index_umd.Prop)({
   default: () => new esm.Collection.Venue({
     baseUrl: esm.Core.Constants.API_URL_V1
   })
@@ -24926,9 +25000,9 @@ VenueMap = Mapvue_type_script_lang_ts_decorate([index_umd.Component], VenueMap);
 /* harmony default export */ const Mapvue_type_script_lang_ts = (VenueMap);
 ;// CONCATENATED MODULE: ./src/Venue/Map.vue?vue&type=script&lang=ts
  /* harmony default export */ const Venue_Mapvue_type_script_lang_ts = (Mapvue_type_script_lang_ts); 
-// EXTERNAL MODULE: ./node_modules/vue-style-loader/index.js??clonedRuleSet-67.use[0]!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-67.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-67.use[2]!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-67.use[3]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-67.use[4]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Venue/Map.vue?vue&type=style&index=0&id=075bbb66&prod&lang=scss
-var Mapvue_type_style_index_0_id_075bbb66_prod_lang_scss = __webpack_require__(2595);
-;// CONCATENATED MODULE: ./src/Venue/Map.vue?vue&type=style&index=0&id=075bbb66&prod&lang=scss
+// EXTERNAL MODULE: ./node_modules/vue-style-loader/index.js??clonedRuleSet-67.use[0]!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-67.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-67.use[2]!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-67.use[3]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-67.use[4]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/Venue/Map.vue?vue&type=style&index=0&id=2e7ae267&prod&lang=scss
+var Mapvue_type_style_index_0_id_2e7ae267_prod_lang_scss = __webpack_require__(1504);
+;// CONCATENATED MODULE: ./src/Venue/Map.vue?vue&type=style&index=0&id=2e7ae267&prod&lang=scss
 
 ;// CONCATENATED MODULE: ./src/Venue/Map.vue
 
@@ -24941,8 +25015,8 @@ var Mapvue_type_style_index_0_id_075bbb66_prod_lang_scss = __webpack_require__(2
 
 var Map_component = (0,componentNormalizer/* default */.A)(
   Venue_Mapvue_type_script_lang_ts,
-  Mapvue_type_template_id_075bbb66_render,
-  Mapvue_type_template_id_075bbb66_staticRenderFns,
+  Mapvue_type_template_id_2e7ae267_render,
+  Mapvue_type_template_id_2e7ae267_staticRenderFns,
   false,
   null,
   null,
