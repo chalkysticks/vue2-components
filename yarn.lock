@@ -1070,10 +1070,11 @@
     "@chalkysticks/sdk-core" "github:chalkysticks/sdk-core"
 
 "@chalkysticks/sdk-core@github:chalkysticks/sdk-core":
-  version "1.8.0"
-  resolved "https://codeload.github.com/chalkysticks/sdk-core/tar.gz/ac67ccf16f6077b476fb8481c14e63e2bc27e148"
+  version "1.9.0"
+  resolved "https://codeload.github.com/chalkysticks/sdk-core/tar.gz/2582dd8ca2bf2983e65595c32b8a4cff58304ac1"
   dependencies:
     "@chalkysticks/mrm-preset" "github:chalkysticks/mrm-preset"
+    "@types/googlemaps" "^3.43.3"
     restmc "git+https://github.com/mattkenefick/restmc.git"
 
 "@chalkysticks/sdk-pad@github:chalkysticks/sdk-pad#v2":
@@ -1112,8 +1113,8 @@
     "@chalkysticks/sdk-core" "github:chalkysticks/sdk-core"
 
 "@chalkysticks/sdk@github:chalkysticks/sdk":
-  version "1.8.2"
-  resolved "https://codeload.github.com/chalkysticks/sdk/tar.gz/a9275d61e2eb538cfe7b92c96708c87f4bd2c60f"
+  version "1.10.0"
+  resolved "https://codeload.github.com/chalkysticks/sdk/tar.gz/b058b15cfa7aa2136d921fd3440e874df692967d"
   dependencies:
     "@chalkysticks/sdk-authentication" "github:chalkysticks/sdk-authentication"
     "@chalkysticks/sdk-core" "github:chalkysticks/sdk-core"
@@ -1371,6 +1372,11 @@
     "@types/express-serve-static-core" "^4.17.33"
     "@types/qs" "*"
     "@types/serve-static" "*"
+
+"@types/googlemaps@^3.43.3":
+  version "3.43.3"
+  resolved "https://registry.yarnpkg.com/@types/googlemaps/-/googlemaps-3.43.3.tgz#70cf962154a160fe78bcd69d6ccc296dd9175b1f"
+  integrity sha512-ZWNoz/O8MPEpiajvj7QiqCY8tTLFNqNZ/a+s+zTV58wFVNAvvqV4bdGfnsjTb5Cs4V6wEsLrX8XRhmnyYJ2Tdg==
 
 "@types/html-minifier-terser@^6.0.0":
   version "6.1.0"
