@@ -22,13 +22,25 @@
 			v-bind:zoom="zoom"
 			v-on:click="Handle_OnClickMap"
 		>
-			<div class="marker-container" v-bind:key="index" v-for="(marker, index) in markers" v-on:click="Handle_OnClickMarkerContainer">
+			<div class="marker-container" v-bind:key="index" v-for="(marker, index) in markers.map" v-on:click="Handle_OnClickMarkerContainer">
 				<GmapMarker
+					class="icon icon-marker"
 					v-bind:clickable="true"
 					v-bind:draggable="false"
-					v-bind:icon="defaultIcon"
+					v-bind:icon="getMarkerIcon(marker)"
 					v-bind:position="marker.position"
 					v-on:click="Handle_OnClickMarker($event, marker)"
+				/>
+			</div>
+
+			<div class="beacon-container" v-bind:key="index" v-for="(beacon, index) in markers.beacon" v-on:click="Handle_OnClickMarkerContainer">
+				<GmapMarker
+					class="icon icon-beacon"
+					v-bind:clickable="true"
+					v-bind:draggable="false"
+					v-bind:icon="getMarkerIcon(beacon)"
+					v-bind:position="beacon.position"
+					v-on:click="Handle_OnClickBeacon($event, beacon)"
 				/>
 			</div>
 		</GmapMap>
@@ -49,6 +61,11 @@
 	@Component
 	export default class VenueMap extends ViewBase {
 		/**
+		 * @type number
+		 */
+		public static MARKER_SIZE: number = 40;
+
+		/**
 		 * @type GmapMap
 		 */
 		@Ref('map')
@@ -65,7 +82,13 @@
 		/**
 		 * @type string
 		 */
-		public defaultIcon: string = require('../Assets/image/markers/pin-0.svg');
+		public icons: Record<string, string> = {
+			beacon: require('../Assets/image/markers/pool-player-2.png'),
+			default: require('../Assets/image/markers/pin-0.svg'),
+			one: require('../Assets/image/markers/pin-1.svg'),
+			three: require('../Assets/image/markers/pin-3.svg'),
+			two: require('../Assets/image/markers/pin-2.svg'),
+		};
 
 		/**
 		 * @type number
@@ -114,9 +137,12 @@
 		public zoom!: number;
 
 		/**
-		 * @type IGoogleMapMarker[]
+		 * @type Record<stirng, IGoogleMapMarker[]>
 		 */
-		protected markers: IGoogleMapMarker[] = [];
+		protected markers: Record<string, IGoogleMapMarker[]> = {
+			beacon: [],
+			map: [],
+		};
 
 		/**
 		 * @type IGoogleMapOption[]
@@ -158,9 +184,9 @@
 		constructor() {
 			super();
 
-			// Set query parameters
+			// Set range for the beacon search
 			this.beaconCollection.setQueryParams({
-				d: 9999,
+				d: 1000 * 5,
 				lat: this.latitude,
 				lon: this.longitude,
 			});
@@ -179,6 +205,7 @@
 		 */
 		@mounted
 		public attachEvents(): void {
+			this.beaconCollection.on('add', this.Handle_OnAddBeacon);
 			this.venueCollection.on('add', this.Handle_OnAddVenue);
 		}
 
@@ -187,17 +214,70 @@
 		 */
 		@beforeDestroy
 		public detachEvents(): void {
+			this.beaconCollection.off('add', this.Handle_OnAddBeacon);
 			this.venueCollection.off('add', this.Handle_OnAddVenue);
+		}
+
+		/**
+		 * @param IGoogleMapMarker marker
+		 * @return IGoogleMapMarkerIcon
+		 */
+		protected getMarkerIcon(marker: IGoogleMapMarker): IGoogleMapMarkerIcon {
+			let url: string = this.icons.default;
+
+			if (marker.model instanceof ChalkySticks.Model.Beacon) {
+				url = this.icons.beacon;
+			} else {
+				switch (marker.model.getType()) {
+					case 'bar':
+						url = this.icons.one;
+						break;
+
+					case 'hall':
+						url = this.icons.two;
+						break;
+
+					case 'hotel':
+						url = this.icons.three;
+						break;
+				}
+			}
+
+			return {
+				scaledSize: {
+					height: VenueMap.MARKER_SIZE,
+					width: VenueMap.MARKER_SIZE,
+				},
+				url: url,
+			};
+		}
+
+		/**
+		 * @return void
+		 */
+		protected populateBeacons(): void {
+			this.markers.beacon = [];
+
+			for (const beaconModel of this.beaconCollection) {
+				this.markers.beacon.push({
+					model: beaconModel,
+					name: beaconModel.user.getName(),
+					position: {
+						lat: beaconModel.getLatitude(),
+						lng: beaconModel.getLongitude(),
+					},
+				});
+			}
 		}
 
 		/**
 		 * @return void
 		 */
 		protected populateMarkers(): void {
-			this.markers = [];
+			this.markers.map = [];
 
 			for (const venueModel of this.venueCollection) {
-				this.markers.push({
+				this.markers.map.push({
 					model: venueModel,
 					name: venueModel.getName(),
 					position: {
@@ -206,6 +286,13 @@
 					},
 				});
 			}
+		}
+
+		/**
+		 * @return Promise<void>
+		 */
+		protected async Handle_OnAddBeacon(): Promise<void> {
+			this.populateBeacons();
 		}
 
 		/**
@@ -252,6 +339,16 @@
 
 		/**
 		 * @param Event e
+		 * @param IGoogleMapMarker marker
+		 * @return Promise<void>
+		 */
+		protected async Handle_OnClickBeacon(e: any, marker: IGoogleMapMarker): Promise<void> {
+			this.$emit('beacon:click', marker.model);
+		}
+
+		/**
+		 * @param Event e
+		 * @param IGoogleMapMarker marker
 		 * @return Promise<void>
 		 */
 		protected async Handle_OnClickMarker(e: any, marker: IGoogleMapMarker): Promise<void> {
@@ -267,22 +364,22 @@
 		}
 
 		/**
-		 * @param object e
+		 * @param IMapPosition e
 		 * @return Promise<void>
 		 */
-		protected async Handle_OnMapMove(e: { latitude: number; longitude: number }): Promise<void> {
+		protected async Handle_OnMapMove(position: IMapPosition): Promise<void> {
 			if (this.autoFetch) {
 				this.venueCollection
 					.setQueryParams({
-						lat: e.latitude,
-						lon: e.longitude,
+						lat: position.latitude || 0,
+						lon: position.longitude || 0,
 					})
 					.fetch();
 
 				this.beaconCollection
 					.setQueryParams({
-						lat: e.latitude,
-						lon: e.longitude,
+						lat: position.latitude || 0,
+						lon: position.longitude || 0,
 					})
 					.fetch();
 			}
@@ -294,6 +391,12 @@
 	.chalky.venue-map {
 		height: 512px;
 		width: 512px;
+
+		.icon-marker,
+		.icon-beacon {
+			height: 32px;
+			width: 32px;
+		}
 
 		a[href^="http://maps.google.com/maps"],
 		a[href^="https://maps.google.com/maps"]

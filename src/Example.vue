@@ -184,6 +184,7 @@
 						v-bind:latitude="mapLatitude"
 						v-bind:longitude="mapLongitude"
 						v-bind:zoom="mapZoom"
+						v-on:beacon:click="Handle_OnClickMapBeacon"
 						v-on:marker:click="Handle_OnClickMapMarker"
 						v-on:map:move="Handle_OnMoveMap"
 					/>
@@ -298,11 +299,19 @@
 		 * @param Event e
 		 * @return Promise<void>
 		 */
+		protected async Handle_OnClickMapBeacon(beaconModel: ChalkySticks.Model.Beacon): Promise<void> {
+			console.log('Beacon Model', beaconModel);
+		}
+
+		/**
+		 * @param Event e
+		 * @return Promise<void>
+		 */
 		protected async Handle_OnClickMapMarker(venueModel: ChalkySticks.Model.Venue): Promise<void> {
 			console.log('Clicked marker', venueModel);
 
+			// this.mapLongitude = 1;
 			this.mapZoom = 10;
-			this.mapLongitude = 0;
 		}
 
 		/**

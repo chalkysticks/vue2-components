@@ -9,6 +9,14 @@ interface IGoogleMapMarker {
 	position: IGoogleMapPosition;
 }
 
+interface IGoogleMapMarkerIcon {
+	scaledSize: {
+		height: number;
+		width: number;
+	};
+	url: string;
+}
+
 interface IGoogleMapOption {
 	featureType: string;
 	stylers: any;
