@@ -12,7 +12,7 @@
 	/**
 	 * @author ChalkySticks LLC
 	 * @package Button
-	 * @project @chalkysticks/vue2-components
+	 * @project ChalkySticks SDK Vue2.0 Components
 	 */
 	@Component
 	export default class ButtonLogin extends ViewBase {

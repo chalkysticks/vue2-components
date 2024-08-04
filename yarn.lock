@@ -1057,21 +1057,21 @@
   resolved "https://codeload.github.com/chalkysticks/mrm-preset/tar.gz/ffb5de89f32263360d52934953a34fd823f0e841"
 
 "@chalkysticks/sass@github:chalkysticks/sass-theme":
-  version "1.1.18"
-  resolved "https://codeload.github.com/chalkysticks/sass-theme/tar.gz/3c3ab60b082f64d4e960e6246dd28f32bd0cbda6"
+  version "1.2.12"
+  resolved "https://codeload.github.com/chalkysticks/sass-theme/tar.gz/4dee38198b703cc3feff68112ae954c122048327"
   dependencies:
     bootstrap "^5.0.1"
 
 "@chalkysticks/sdk-authentication@github:chalkysticks/sdk-authentication":
-  version "1.5.0"
-  resolved "https://codeload.github.com/chalkysticks/sdk-authentication/tar.gz/94f3a00bcba5f203c4821310191ef0a9b2516699"
+  version "1.5.1"
+  resolved "https://codeload.github.com/chalkysticks/sdk-authentication/tar.gz/bd75cb13901255a7905710dc287ec031429f7ce4"
   dependencies:
     "@chalkysticks/mrm-preset" "github:chalkysticks/mrm-preset"
     "@chalkysticks/sdk-core" "github:chalkysticks/sdk-core"
 
 "@chalkysticks/sdk-core@github:chalkysticks/sdk-core":
-  version "1.9.0"
-  resolved "https://codeload.github.com/chalkysticks/sdk-core/tar.gz/2582dd8ca2bf2983e65595c32b8a4cff58304ac1"
+  version "1.10.2"
+  resolved "https://codeload.github.com/chalkysticks/sdk-core/tar.gz/c789c97a0a5aaaf778101988e5a7aefe2dea7d7c"
   dependencies:
     "@chalkysticks/mrm-preset" "github:chalkysticks/mrm-preset"
     "@types/googlemaps" "^3.43.3"
@@ -1113,8 +1113,8 @@
     "@chalkysticks/sdk-core" "github:chalkysticks/sdk-core"
 
 "@chalkysticks/sdk@github:chalkysticks/sdk":
-  version "1.11.1"
-  resolved "https://codeload.github.com/chalkysticks/sdk/tar.gz/a26ca2b0f7274e7c016cbfa5fda8ea4b0633260a"
+  version "1.12.1"
+  resolved "https://codeload.github.com/chalkysticks/sdk/tar.gz/a6c0049d93e4bb1b5733725e743649513d98d31f"
   dependencies:
     "@chalkysticks/sdk-authentication" "github:chalkysticks/sdk-authentication"
     "@chalkysticks/sdk-core" "github:chalkysticks/sdk-core"

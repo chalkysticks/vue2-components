@@ -4,13 +4,11 @@
 			<fieldset>
 				<legend>Login via Social</legend>
 
-				<button class="btn-social type-google" v-on:click="Handle_OnClickLoginWithGoogle">
-					<i class="fab fa-google"></i>
+				<button class="btn-social type-google button-secondary" v-on:click="Handle_OnClickLoginWithGoogle">
 					<span>Login with Google</span>
 				</button>
 
-				<button class="btn-social type-facebook" v-on:click="Handle_OnClickLoginWithFacebook">
-					<i class="fab fa-facebook-f"></i>
+				<button class="btn-social type-facebook button-secondary" v-on:click="Handle_OnClickLoginWithFacebook">
 					<span>Login with Facebook</span>
 				</button>
 			</fieldset>

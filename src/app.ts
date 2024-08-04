@@ -1,5 +1,6 @@
 import ChalkySticks from './index';
 import Example from './Example.vue';
+import Store from './Store';
 import Vue from 'vue';
 
 Vue.config.silent = true;
@@ -18,4 +19,5 @@ Vue.use(ChalkySticks, {
 
 new Vue({
 	render: (h) => h(Example),
+	store: Store,
 }).$mount('#app');

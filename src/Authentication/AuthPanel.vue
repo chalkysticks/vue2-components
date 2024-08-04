@@ -1,29 +1,23 @@
 <template>
 	<div class="chalky authentication-authpanel" v-on:click="Handle_OnClick">
 		<header class="text-center">
-			<BrandingBadge size="md" />
+			<BrandingBadge size="lg" mode="light" />
 		</header>
 
 		<section>
-			<AuthenticationBasicLogin v-bind:authModel="authModel" />
-			<hr />
-			<AuthenticationSocialLogin v-bind:authModel="authModel" />
-
-			<div class="text-center">
-				<a href="/forgot-password" title="Forgot Password">
-					<span>Forgot Password?</span>
-				</a>
-			</div>
+			<AuthenticationBasicLogin v-bind:authModel="authModel" v-if="includeBasic" />
+			<hr v-if="includeBasic && includeSocial" />
+			<AuthenticationSocialLogin v-bind:authModel="authModel" v-if="includeSocial" />
 		</section>
 	</div>
 </template>
 
 <script lang="ts">
-	import ChalkySticks from '@chalkysticks/sdk';
 	import AuthenticationBasicLogin from './BasicLogin.vue';
 	import AuthenticationSocialLogin from './SocialLogin.vue';
 	import BrandingBadge from '../Branding/Badge.vue';
 	import BrandingStandard from '../Branding/Standard.vue';
+	import ChalkySticks from '@chalkysticks/sdk';
 	import ViewBase from '../Core/Base';
 	import gsap from 'gsap';
 	import { Component, Prop } from 'vue-property-decorator';
@@ -53,6 +47,26 @@
 		})
 		public authModel!: ChalkySticks.Model.Authentication;
 
+		/**
+		 * Whether or not to include basic login form
+		 *
+		 * @type boolean
+		 */
+		@Prop({
+			default: true,
+		})
+		public includeBasic!: boolean;
+
+		/**
+		 * Whether or not to include social media buttons
+		 *
+		 * @type boolean
+		 */
+		@Prop({
+			default: false,
+		})
+		public includeSocial!: boolean;
+
 		// region: Event Handlers
 		// ---------------------------------------------------------------------------
 
@@ -71,8 +85,6 @@
 		// ---------------------------------------------------------------------------
 
 		/**
-		 * Initial position for animation
-		 *
 		 * @return void
 		 */
 		public animateInStart(): void {
@@ -83,8 +95,6 @@
 		}
 
 		/**
-		 * Animate in action
-		 *
 		 * @return void
 		 */
 		public animateIn(): void {
@@ -95,8 +105,6 @@
 		}
 
 		/**
-		 * Animate out action
-		 *
 		 * @return void
 		 */
 		public animateOut(): void {
@@ -114,13 +122,31 @@
 
 <style lang="scss">
 	.chalky.authentication-authpanel {
+		--chalky-authpanel-content-width: 400px;
+		--chalky-authpanel-padding: 2rem;
+		--chalky-authpanel-graphic-width: 400px;
+
 		background: linear-gradient(#fdfdfd, #f9f9f9);
 		border-radius: 6px;
 		box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.02), 0 6.7px 5.3px rgba(0, 0, 0, 0.028), 0 12.5px 10px rgba(0, 0, 0, 0.035),
 			0 22.3px 17.9px rgba(0, 0, 0, 0.042), 0 41.8px 33.4px rgba(0, 0, 0, 0.05), 0 100px 80px rgba(0, 0, 0, 0.07);
+		color: var(--chalky-blue);
 		margin: 0 auto;
-		padding: 2rem 3rem 3rem 3rem;
-		width: 480px;
+		padding: 1rem var(--chalky-authpanel-padding) var(--chalky-authpanel-padding) var(--chalky-authpanel-padding);
+		position: relative;
+		outline: 5px solid rgba(255, 255, 255, 0.15);
+		padding-left: calc(var(--chalky-authpanel-graphic-width) + var(--chalky-authpanel-padding));
+		width: calc(var(--chalky-authpanel-graphic-width) + var(--chalky-authpanel-content-width));
+
+		&:before {
+			background: url('@/Assets/image/graphic/sf-00.png') center center / cover no-repeat;
+			content: ' ';
+			height: 100%;
+			left: 0;
+			position: absolute;
+			top: 0;
+			width: var(--chalky-authpanel-graphic-width);
+		}
 
 		> header {
 			.chalky.branding-badge {
@@ -129,7 +155,10 @@
 		}
 
 		hr {
-			margin: 0.5rem 0 !important;
+			border-top: 1px solid #ccc;
+			background: transparent;
+			height: 1px;
+			margin: 1.5rem 0 !important;
 		}
 
 		.chalky.authentication-basiclogin button {

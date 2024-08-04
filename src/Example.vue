@@ -62,6 +62,11 @@
 				<header>
 					<h3>Standard Login</h3>
 					<p>
+						<strong>Logged In:</strong>
+						&nbsp;
+						<span>{{ $store.getters['authentication/authenticated'] }}</span>
+					</p>
+					<p>
 						<small>
 							Submit won't work here because
 							<br />
@@ -104,6 +109,29 @@
 				<div>
 					<ChalkyAuthenticationAuthPanel
 						v-bind:authModel="authModel"
+						v-on:success="Handle_OnLoginSuccess"
+						v-on:error="Handle_OnLoginError"
+					/>
+				</div>
+
+				<hr />
+
+				<div>
+					<ChalkyAuthenticationAuthPanel
+						v-bind:authModel="authModel"
+						v-bind:includeSocial="true"
+						v-on:success="Handle_OnLoginSuccess"
+						v-on:error="Handle_OnLoginError"
+					/>
+				</div>
+
+				<hr />
+
+				<div>
+					<ChalkyAuthenticationAuthPanel
+						v-bind:authModel="authModel"
+						v-bind:includeBasic="false"
+						v-bind:includeSocial="true"
 						v-on:success="Handle_OnLoginSuccess"
 						v-on:error="Handle_OnLoginError"
 					/>

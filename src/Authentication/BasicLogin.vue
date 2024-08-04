@@ -12,7 +12,7 @@
 				<legend>Login</legend>
 
 				<label>
-					<h3>Email Address</h3>
+					<h6>Email Address</h6>
 					<input
 						minlength="6"
 						name="email"
@@ -24,41 +24,63 @@
 				</label>
 
 				<label>
-					<h3>Password</h3>
+					<h6>Password</h6>
 					<input minlength="6" name="password" type="password" v-model="password" v-on:keydown="Handle_OnKeydownInput" />
 				</label>
 
-				<footer>
+				<p class="text-right pull-top-lg push-bottom-lg">
+					<a class="type-small" href="/forgot-password" title="Forgot Password">
+						<span>Forget password?</span>
+					</a>
+				</p>
+
+				<div class="action-container">
 					<div class="alert alert-success" v-if="this.authModel.isLoggedIn()">
 						<i class="fa fa-check-circle"></i>
 						&nbsp;
 						<span>Welcome {{ this.authModel.user.getName() }}</span>
 					</div>
 
-					<ButtonLogin v-else />
-				</footer>
+					<ButtonLogin v-else-if="!this.loginFailed" />
 
-				<div class="alert alert-danger" v-if="this.loginFailed">
-					<i class="fa fa-exclamation-triangle"></i>
-					&nbsp;
-					<span>{{ message }}</span>
+					<div class="alert alert-danger" v-if="this.loginFailed">
+						<i class="fa fa-exclamation-triangle"></i>
+						&nbsp;
+						<span>{{ message }}</span>
+					</div>
 				</div>
 			</fieldset>
+
+			<footer>
+				<p class="text-center">
+					Don't have an account?
+					<a href="/sign-up" title="Sign up">
+						<span>Sign up.</span>
+					</a>
+				</p>
+			</footer>
 		</form>
 	</div>
 </template>
 
 <script lang="ts">
+	import ButtonLogin from '../Button/Login.vue';
 	import ChalkySticks from '@chalkysticks/sdk';
+	import Store from '../Store';
 	import ViewBase from '../Core/Base';
 	import { Component, Prop } from 'vue-property-decorator';
+	import { beforeDestroy, mounted } from '../Utility/Decorators';
 
 	/**
 	 * @class AuthenticationBasicLogin
 	 * @package Authentication
 	 * @project ChalkySticks SDK Vue2.0 Components
 	 */
-	@Component
+	@Component({
+		components: {
+			ButtonLogin,
+		},
+	})
 	export default class AuthenticationBasicLogin extends ViewBase {
 		/**
 		 * @type ChalkySticks/Model/Authentication
@@ -94,6 +116,7 @@
 		/**
 		 * @return void
 		 */
+		@mounted
 		public attachEvents(): void {
 			this.authModel.on('error', this.Handle_OnFailure);
 			this.authModel.on('success', this.Handle_OnSuccess);
@@ -102,6 +125,7 @@
 		/**
 		 * @return void
 		 */
+		@beforeDestroy
 		public detachEvents(): void {
 			this.authModel.off('error', this.Handle_OnFailure);
 			this.authModel.off('success', this.Handle_OnSuccess);
@@ -148,7 +172,7 @@
 
 			setTimeout(() => {
 				this.loginFailed = false;
-			}, 1000);
+			}, 1000 * 2);
 		}
 
 		/**
@@ -179,9 +203,12 @@
 		max-width: 500px;
 		transition: opacity 0.15s ease-in-out;
 
-		button {
-			margin-bottom: 1rem;
-			transition: background-color 1s ease-in-out;
+		.action-container {
+			height: 50px;
+		}
+
+		footer {
+			margin-top: 1.5rem;
 		}
 
 		// State
@@ -203,22 +230,10 @@
 			}
 		}
 
-		&.state-login-failed {
-			button {
-				background-color: var(--chalky-red);
-				transition: background-color 0s ease-in-out;
-			}
-		}
-
 		&.state-login-success {
 			label {
 				opacity: 0.75;
 				pointer-events: none;
-			}
-
-			button {
-				background-color: var(--chalky-green);
-				transition: background-color 0s ease-in-out;
 			}
 		}
 	}

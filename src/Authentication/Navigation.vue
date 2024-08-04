@@ -1,5 +1,5 @@
 <template>
-	<div class="chalky authentication-navigation" v-bind:class="{ 'state-logged-in': authModel.isLoggedIn() }">
+	<div class="chalky authentication-navigation" v-bind:class="{ 'state-logged-in': store.getters['authentication/authenticated'] }">
 		<!-- When we're logged out -->
 		<section class="logged-out">
 			<button class="type-light" v-on:click="Handle_OnClickSignIn">
@@ -9,12 +9,8 @@
 
 		<!-- When we're logged in -->
 		<section class="logged-in">
-			<button class="btn btn-plain no-hover" style="overflow: visible">
-				<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">12</span>
-				<i class="fa fa-bell"></i>
-			</button>
 			<button class="btn btn-plain no-hover">
-				<img src="https://randomuser.me/api/portraits/men/85.jpg" class="rounded-circle" width="50" height="50" />
+				<UserAvatar size="lg" v-bind:userModel="store.getters['authentication/user']" />
 			</button>
 		</section>
 
@@ -26,11 +22,13 @@
 </template>
 
 <script lang="ts">
-	import ChalkySticks from '@chalkysticks/sdk';
 	import AuthenticationAuthPanel from './AuthPanel.vue';
+	import ChalkySticks from '@chalkysticks/sdk';
 	import Environment from '../Core/Environment';
+	import UserAvatar from '../User/Avatar.vue';
 	import ViewBase from '../Core/Base';
 	import { Component, Prop, Ref } from 'vue-property-decorator';
+	import { beforeDestroy, mounted } from '../Utility/Decorators';
 
 	/**
 	 * @class AuthenticationNavigation
@@ -40,6 +38,7 @@
 	@Component({
 		components: {
 			AuthenticationAuthPanel,
+			UserAvatar,
 		},
 	})
 	export default class AuthenticationNavigation extends ViewBase {
@@ -48,6 +47,13 @@
 		 */
 		public get authPanel(): AuthenticationAuthPanel {
 			return this.$refs.authPanel as AuthenticationAuthPanel;
+		}
+
+		/**
+		 * @return Store
+		 */
+		public get store(): any {
+			return ChalkySticks.Core.Provider.Store.get();
 		}
 
 		/**
@@ -69,17 +75,19 @@
 		/**
 		 * @return void
 		 */
+		@mounted
 		public attachEvents(): void {
 			document.addEventListener('click', this.Handle_OnClickDocument);
-			this.authModel.on('login:success', this.Handle_OnLogin);
+			this.authModel.on('login', this.Handle_OnLogin);
 		}
 
 		/**
 		 * @return void
 		 */
+		@beforeDestroy
 		public detachEvents(): void {
 			document.removeEventListener('click', this.Handle_OnClickDocument);
-			this.authModel.off('login:success', this.Handle_OnLogin);
+			this.authModel.off('login', this.Handle_OnLogin);
 		}
 
 		/**
@@ -110,21 +118,20 @@
 
 		/**
 		 * @param MouseEvent e
-		 * @return void
+		 * @return Promise<void>
 		 */
-		protected Handle_OnClickDocument(e: MouseEvent): void {
+		protected async Handle_OnClickDocument(e: MouseEvent): Promise<void> {
 			if (this.showLogin) {
 				e.preventDefault();
-
 				this.hide();
 			}
 		}
 
 		/**
 		 * @param MouseEvent e
-		 * @return void
+		 * @return Promise<void>
 		 */
-		protected Handle_OnClickSignIn(e: MouseEvent): void {
+		protected async Handle_OnClickSignIn(e: MouseEvent): Promise<void> {
 			e.preventDefault();
 			e.stopPropagation();
 			e.stopImmediatePropagation();
@@ -134,9 +141,9 @@
 		}
 
 		/**
-		 * @return void
+		 * @return Promise<void>
 		 */
-		protected Handle_OnLogin(): void {
+		protected async Handle_OnLogin(): Promise<void> {
 			this.$forceUpdate();
 
 			// Hide the modal

@@ -24,6 +24,7 @@ import VenueCard from './Venue/Card.vue';
 import VenueList from './Venue/List.vue';
 import VenueMap from './Venue/Map.vue';
 import ViewBase from './Core/Base';
+import Store from './Store';
 
 const components = {
 	AuthenticationAuthPanel,
@@ -45,15 +46,20 @@ const ChalkySticksVue = {
 	/**
 	 * Install ChalkySticks Vue2
 	 */
-	install: (Vue: any, options: any = {}) => {
+	install: (Vue: any, options: IVueInstallationOptions = {}) => {
 		// Provide an API through Vue’s provide/inject API
 		Vue.prototype.$chalky = {
 			log: () => console.log('ChalkySticks v3', options),
 			options: options,
 		};
 
-		// Configure ChalkySticks
-		ChalkySticks.Core.ChalkySticks.configure(options.sdk || {});
+		// Provide a Vuex store to ChalkySticks
+		ChalkySticks.Core.Provider.Store.register(options.provide?.store || Store);
+
+		// Configure ChalkySticks (I don't think this works yet)
+		if (options.sdk) {
+			ChalkySticks.Core.ChalkySticks.configure(options.sdk || {});
+		}
 
 		// Configure Google Maps
 		Vue.use(VueGoogleMaps, {

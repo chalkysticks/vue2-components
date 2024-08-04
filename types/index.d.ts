@@ -1,3 +1,9 @@
+// @todo replace with actual objects
+interface IAuthResponse {
+	token?: string;
+	user?: any;
+}
+
 interface IGoogleMapPosition {
 	lat: number;
 	lng: number;
@@ -22,9 +28,27 @@ interface IGoogleMapOption {
 	stylers: any;
 }
 
+interface IKeyValue {
+	[key: string]: any;
+}
+
 interface IMapPosition {
 	latitude: number;
 	longitude: number;
+}
+
+interface IVueInstallationOptions {
+	google?: {
+		maps?: {
+			api_key: string;
+		};
+	};
+	provide?: {
+		store: any;
+	};
+	sdk?: {
+		api_url: string;
+	};
 }
 
 declare module 'vue2-google-maps' {
