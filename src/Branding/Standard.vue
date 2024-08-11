@@ -1,9 +1,10 @@
 <template>
 	<div
-		class="chalky branding-standard branding-logo-text"
+		class="chalky branding-standard branding-chalky-wordmark"
 		v-bind:class="{
-			'on-light': mode === 'light',
+			'no-icon': !useIcon,
 			'on-dark': mode === 'dark',
+			'on-light': mode === 'light',
 		}"
 		v-bind:mode="mode"
 		v-bind:size="size"
@@ -41,5 +42,13 @@
 			default: 'sm',
 		})
 		public size!: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+
+		/**
+		 * @type boolean
+		 */
+		@Prop({
+			default: true,
+		})
+		public useIcon!: boolean;
 	}
 </script>

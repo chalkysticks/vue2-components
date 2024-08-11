@@ -6,6 +6,7 @@ import ChalkySticks from '@chalkysticks/sdk';
 
 import '@chalkysticks/sass/build/app.css';
 import '@fortawesome/fontawesome-free/css/all.css';
+import './Theme/Main.scss';
 
 // Components
 // ---------------------------------------------------------------------------
@@ -19,6 +20,12 @@ import AuthenticationSocialLogin from './Authentication/SocialLogin.vue';
 import BrandingBadge from './Branding/Badge.vue';
 import BrandingStandard from './Branding/Standard.vue';
 import ButtonLogin from './Button/Login.vue';
+import TvLowerThird from './TV/LowerThird.vue';
+import TvNowPlaying from './TV/NowPlaying.vue';
+import TvSchedule from './TV/Schedule.vue';
+import TvScheduleItem from './TV/ScheduleItem.vue';
+import TvScheduleList from './TV/ScheduleList.vue';
+import TvTimeline from './TV/Timeline.vue';
 import TvVideoTheater from './TV/VideoTheater.vue';
 import VenueCard from './Venue/Card.vue';
 import VenueList from './Venue/List.vue';
@@ -36,6 +43,12 @@ const components = {
 	BrandingBadge,
 	BrandingStandard,
 	ButtonLogin,
+	TvLowerThird,
+	TvNowPlaying,
+	TvSchedule,
+	TvScheduleItem,
+	TvScheduleList,
+	TvTimeline,
 	TvVideoTheater,
 	VenueCard,
 	VenueList,
@@ -90,6 +103,12 @@ export {
 	BrandingBadge,
 	BrandingStandard,
 	ButtonLogin,
+	TvLowerThird,
+	TvNowPlaying,
+	TvSchedule,
+	TvScheduleItem,
+	TvScheduleList,
+	TvTimeline,
 	TvVideoTheater,
 	VenueCard,
 	VenueList,

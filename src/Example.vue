@@ -51,6 +51,10 @@
 					<ChalkyBrandingStandard class="background-chalky-white p-3" mode="light" />
 					<ChalkyBrandingStandard class="background-chalky-blue p-3" mode="dark" />
 				</div>
+				<div class="d-flex">
+					<ChalkyBrandingStandard class="background-chalky-white p-3" mode="light" v-bind:useIcon="false" />
+					<ChalkyBrandingStandard class="background-chalky-blue p-3" mode="dark" v-bind:useIcon="false" />
+				</div>
 			</section>
 		</section>
 
@@ -58,6 +62,7 @@
 			<header>
 				<h2>Authentication</h2>
 			</header>
+
 			<section class="level-1">
 				<header>
 					<h3>Standard Login</h3>
@@ -82,6 +87,7 @@
 					/>
 				</div>
 			</section>
+
 			<section class="level-1">
 				<header>
 					<h3>Social Login</h3>
@@ -90,6 +96,7 @@
 					<ChalkyAuthenticationSocialLogin />
 				</div>
 			</section>
+
 			<section class="level-1">
 				<header>
 					<h3>Login Header</h3>
@@ -102,6 +109,7 @@
 					/>
 				</div>
 			</section>
+
 			<section class="level-1">
 				<header>
 					<h3>Auth Panel</h3>
@@ -146,6 +154,96 @@
 
 			<section class="level-1">
 				<header>
+					<h3>Now Playing</h3>
+				</header>
+
+				<div class="layout-horizontal">
+					<div class="icon-channel-all"></div>
+					<ChalkyTvNowPlaying v-bind:scheduleCollection="scheduleCollection" />
+				</div>
+
+				<div class="layout-horizontal">
+					<div class="icon-channel-8ball"></div>
+					<ChalkyTvNowPlaying v-bind:gameType="ChalkySticks.Enum.GameType.EightBall" />
+				</div>
+
+				<div class="layout-horizontal">
+					<div class="icon-channel-9ball"></div>
+					<ChalkyTvNowPlaying v-bind:gameType="ChalkySticks.Enum.GameType.NineBall" />
+				</div>
+
+				<div class="layout-horizontal">
+					<div class="icon-channel-10ball"></div>
+					<ChalkyTvNowPlaying v-bind:gameType="ChalkySticks.Enum.GameType.TenBall" />
+				</div>
+
+				<div class="layout-horizontal">
+					<div class="icon-channel-1pocket"></div>
+					<ChalkyTvNowPlaying v-bind:gameType="ChalkySticks.Enum.GameType.OnePocket" />
+				</div>
+
+				<div class="layout-horizontal">
+					<div class="icon-channel-straight"></div>
+					<ChalkyTvNowPlaying v-bind:gameType="ChalkySticks.Enum.GameType.StraightPool" />
+				</div>
+
+				<div class="layout-horizontal">
+					<div class="icon-channel-billiards"></div>
+					<ChalkyTvNowPlaying v-bind:gameType="ChalkySticks.Enum.GameType.Billiards" />
+				</div>
+
+				<div class="layout-horizontal">
+					<div class="icon-channel-trick"></div>
+					<ChalkyTvNowPlaying v-bind:gameType="ChalkySticks.Enum.GameType.TrickShots" />
+				</div>
+
+				<div class="layout-horizontal">
+					<div class="icon-channel-snooker"></div>
+					<ChalkyTvNowPlaying v-bind:gameType="ChalkySticks.Enum.GameType.Snooker" />
+				</div>
+			</section>
+
+			<hr />
+
+			<section class="level-1">
+				<header>
+					<h3>Schedule Item</h3>
+				</header>
+
+				<div>
+					<ChalkyTvScheduleItem title="Shane van Beoning vs Earl Strickland" subtitle="2018 9-ball" />
+				</div>
+			</section>
+
+			<hr />
+
+			<section class="level-1">
+				<header>
+					<h3>Schedule List</h3>
+				</header>
+
+				<div class="layout-horizontal" style="align-items: flex-start; max-height: 500px; overflow: auto">
+					<ChalkyTvTimeline />
+					<ChalkyTvScheduleList v-bind:scheduleCollection="scheduleCollection" />
+				</div>
+			</section>
+
+			<hr />
+
+			<section class="level-1">
+				<header>
+					<h3>Schedule</h3>
+				</header>
+
+				<div>
+					<ChalkyTvSchedule />
+				</div>
+			</section>
+
+			<hr />
+
+			<section class="level-1">
+				<header>
 					<h3>VideoTheater</h3>
 
 					<p>
@@ -157,6 +255,7 @@
 						Also create a new schedule view like Hulu / YTTV.
 					</p>
 				</header>
+
 				<div>
 					<ChalkyTvVideoTheater ref="videoTheater" channel="billiards" />
 
@@ -189,16 +288,22 @@
 					<p><small>@todo add location</small></p>
 				</header>
 				<div>
-					<ChalkyVenueList />
+					<ChalkyVenueList v-bind:venueCollection="venueCollection" />
 				</div>
 			</section>
 
 			<section class="level-1">
 				<header>
 					<h3>Venue Card</h3>
+
+					<p>1. No model</p>
+					<p>2. With model</p>
 				</header>
-				<div>
+				<div class="push-bottom">
 					<ChalkyVenueCard />
+				</div>
+				<div>
+					<ChalkyVenueCard v-bind:venueModel="venueCollection.at(0)" />
 				</div>
 			</section>
 
@@ -242,6 +347,13 @@
 	})
 	export default class Example extends Vue {
 		/**
+		 * @type ChalkySticks
+		 */
+		public get ChalkySticks(): typeof ChalkySticks {
+			return ChalkySticks;
+		}
+
+		/**
 		 * @type ChalkyVideoTheater
 		 */
 		@Ref('videoTheater')
@@ -257,6 +369,17 @@
 				}),
 		})
 		public authModel!: ChalkySticks.Model.Authentication;
+
+		/**
+		 * @type ChalkySticks/Collection/Schedule
+		 */
+		@Prop({
+			default: () =>
+				new ChalkySticks.Collection.Schedule({
+					baseUrl: ChalkySticks.Core.Constants.API_URL_V1,
+				}),
+		})
+		public scheduleCollection!: ChalkySticks.Collection.Schedule;
 
 		/**
 		 * @type ChalkySticks/Collection/Venue
@@ -288,9 +411,11 @@
 		 * @return void
 		 */
 		public mounted(): void {
-			console.log('Collection', this.venueCollection);
+			console.log('Schedule Collection', this.scheduleCollection);
+			console.log('Venue Collection', this.venueCollection);
 
 			// this.venueCollection.fetch();
+			this.scheduleCollection.fetch();
 		}
 
 		// region: Event Handlers
@@ -379,7 +504,7 @@
 			}
 		}
 
-		h2 {
+		.level-0 > header > h2 {
 			color: #d1d1d1;
 			font-size: 1.75rem;
 			font-weight: 700;
@@ -387,10 +512,16 @@
 			text-transform: uppercase;
 		}
 
-		h3 {
+		.level-1 > header > h3 {
 			font-size: 1.5rem;
 			font-weight: 500;
 			letter-spacing: -0.05rem;
+		}
+	}
+
+	.app {
+		.chalky.venue-list {
+			height: 450px;
 		}
 	}
 </style>

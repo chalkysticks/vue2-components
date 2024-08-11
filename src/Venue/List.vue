@@ -1,6 +1,8 @@
 <template>
-	<div class="chalky venue-list" v-bind:class="{}">
-		<VenueCard v-bind:key="venueModel.id" v-for="venueModel in venueCollection" v-bind:venueModel="venueModel" />
+	<div class="chalky venue-list">
+		<section class="list">
+			<VenueCard class="list-item" v-bind:key="venueModel.id" v-bind:venueModel="venueModel" v-for="venueModel in venueCollection" />
+		</section>
 
 		<footer class="actions">
 			<button v-on:click="Handle_OnClickPrevious">Previous</button>
@@ -11,6 +13,7 @@
 
 <script lang="ts">
 	import ChalkySticks from '@chalkysticks/sdk';
+	import VenueCard from './Card.vue';
 	import ViewBase from '../Core/Base';
 	import { Component, Prop } from 'vue-property-decorator';
 
@@ -23,7 +26,11 @@
 	 * @package Venue
 	 * @project ChalkySticks SDK Vue2.0 Components
 	 */
-	@Component
+	@Component({
+		components: {
+			VenueCard,
+		},
+	})
 	export default class VenueList extends ViewBase {
 		/**
 		 * @type ChalkySticks/Collection/Venue
@@ -81,6 +88,9 @@
 <style lang="scss">
 	.chalky.venue-list {
 		--thumbnail-size: 100px;
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
 
 		&.size-sm {
 			--thumbnail-size: 75px;
@@ -90,6 +100,10 @@
 			.address {
 				display: none;
 			}
+		}
+
+		.list {
+			overflow: auto;
 		}
 
 		.venue-card {
@@ -103,14 +117,22 @@
 			.gallery {
 				grid-area: 1 / 1 / 4 / 2;
 			}
+
 			.title {
 				grid-area: 1 / 2 / 2 / 3;
 			}
+
 			.address {
 				grid-area: 2 / 2 / 3 / 3;
 			}
+
 			.actions {
 				grid-area: 3 / 2 / 4 / 3;
+			}
+
+			.description {
+				display: none;
+				grid-column: 1 / -1; /* Span all columns */
 			}
 
 			.gallery {
@@ -135,6 +157,16 @@
 				.icon + .caption {
 					display: none;
 				}
+			}
+		}
+
+		> .actions {
+			display: flex;
+			gap: 1rem;
+			justify-content: center;
+
+			button {
+				flex: 1;
 			}
 		}
 	}

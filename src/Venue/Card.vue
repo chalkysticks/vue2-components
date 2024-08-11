@@ -1,5 +1,5 @@
 <template>
-	<div class="chalky venue-card" v-bind:class="'type-' + venueModel.getType()">
+	<div class="chalky venue-card glass-panel" v-bind:class="'type-' + venueModel.getType()">
 		<section class="gallery">
 			<picture v-bind:key="index" v-for="(media, index) in venueModel.media">
 				<source v-bind:srcset="media.getUrl()" />
@@ -11,43 +11,45 @@
 			</picture>
 		</section>
 
-		<header class="title">
-			<h1 class="name">{{ venueModel.getName() }}</h1>
-		</header>
+		<section class="content" v-if="venueModel.getName()">
+			<header class="title">
+				<h3 class="name">{{ venueModel.getName() }}</h3>
+			</header>
 
-		<section class="details">
-			<span
-				class="detail tag"
-				v-bind:class="venueDetailModel.getKey()"
-				v-bind:key="venueDetailModel.getKey()"
-				v-for="venueDetailModel in venueModel.detail"
-			>
-				{{ venueDetailModel.getValue() }}
-			</span>
+			<address class="address">
+				<span class="address">{{ venueModel.getAddress() }}</span>
+			</address>
+
+			<section class="details">
+				<span
+					class="detail tag badge"
+					v-bind:class="venueDetailModel.getKey()"
+					v-bind:key="venueDetailModel.getKey()"
+					v-for="venueDetailModel in venueModel.detail"
+				>
+					{{ venueDetailModel.getValue() }}
+				</span>
+			</section>
+
+			<section class="description">
+				<p>{{ venueModel.getDescription() }}</p>
+			</section>
+
+			<section class="actions">
+				<a class="btn action" target="_blank" v-bind:href="'tel:' + venueModel.getPhone()" v-if="venueModel.getPhone()">
+					<i class="icon fa fa-phone"></i>
+					<span class="caption">{{ venueModel.getPhone() }}</span>
+				</a>
+				<a class="btn action" target="_blank" v-bind:href="venueModel.getWebsite()" v-if="venueModel.getWebsite()">
+					<i class="icon fa fa-globe"></i>
+					<span class="caption">Website</span>
+				</a>
+				<a class="btn action" target="_blank" v-bind:href="getMapUrl()" v-if="venueModel.getAddress()">
+					<i class="icon fa fa-map-marker"></i>
+					<span class="caption">Map</span>
+				</a>
+			</section>
 		</section>
-
-		<section class="description">
-			<p>{{ venueModel.getDescription() }}</p>
-		</section>
-
-		<section class="actions">
-			<a class="action" target="_blank" v-bind:href="'tel:' + venueModel.getPhone()" v-if="venueModel.getPhone()">
-				<i class="icon fa fa-phone"></i>
-				<span class="caption">{{ venueModel.getPhone() }}</span>
-			</a>
-			<a class="action" target="_blank" v-bind:href="venueModel.getWebsite()" v-if="venueModel.getWebsite()">
-				<i class="icon fa fa-globe"></i>
-				<span class="caption">Website</span>
-			</a>
-			<a class="action" target="_blank" v-bind:href="getMapUrl()" v-if="venueModel.getAddress()">
-				<i class="icon fa fa-map-marker"></i>
-				<span class="caption">View Map</span>
-			</a>
-		</section>
-
-		<address class="address">
-			<span class="address">{{ venueModel.getAddress() }}</span>
-		</address>
 	</div>
 </template>
 
@@ -90,6 +92,9 @@
 
 <style lang="scss">
 	.chalky.venue-card {
+		border-radius: var(--rounded-corner-outer);
+		padding: 0.5rem;
+		position: relative;
 		max-width: 480px;
 
 		header {
@@ -99,6 +104,9 @@
 		}
 
 		.gallery {
+			border-radius: var(--rounded-corner);
+			overflow: hidden;
+
 			picture {
 				aspect-ratio: 16 / 9;
 				display: none;
@@ -114,25 +122,47 @@
 					}
 				}
 			}
+
+			&:not(:last-child) {
+				border-bottom-left-radius: 0;
+				border-bottom-right-radius: 0;
+			}
 		}
 
-		.details {
-			.tag {
-				border-radius: 0.25em;
-				font-size: 0.75em;
-				padding: 0.25em 0.5em;
-				margin: 0.25em;
+		.gallery + .content {
+			background: rgba(255, 255, 255, 0.75);
+			color: var(--chalky-blue);
+			padding: 1rem;
+		}
 
-				&:first-child {
-					margin-left: 0;
-				}
+		.content {
+			border-radius: var(--rounded-corner-outer);
+			border-top-left-radius: 0;
+			border-top-right-radius: 0;
+
+			&:empty {
+				display: none;
 			}
+		}
+
+		.address {
+			margin-bottom: 1.5rem;
 		}
 
 		.actions {
+			align-items: center;
+			display: flex;
+			gap: 0.5rem;
+			justify-content: space-between;
+
 			.action {
 				display: inline-block;
+				// flex: 1;
+				flex-grow: 1;
 			}
 		}
+	}
+
+	.chalky.venue-card:not(.list-item) {
 	}
 </style>
