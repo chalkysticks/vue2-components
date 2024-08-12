@@ -127,19 +127,21 @@
 		--chalky-authpanel-graphic-width: 400px;
 
 		background: linear-gradient(#fdfdfd, #f9f9f9);
-		border-radius: 6px;
+		border-radius: var(--border-radius-inner);
 		box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.02), 0 6.7px 5.3px rgba(0, 0, 0, 0.028), 0 12.5px 10px rgba(0, 0, 0, 0.035),
 			0 22.3px 17.9px rgba(0, 0, 0, 0.042), 0 41.8px 33.4px rgba(0, 0, 0, 0.05), 0 100px 80px rgba(0, 0, 0, 0.07);
 		color: var(--chalky-blue);
 		margin: 0 auto;
 		padding: 1rem var(--chalky-authpanel-padding) var(--chalky-authpanel-padding) var(--chalky-authpanel-padding);
 		position: relative;
-		outline: 5px solid rgba(255, 255, 255, 0.15);
+		outline: 6px solid rgba(255, 255, 255, 0.15);
 		padding-left: calc(var(--chalky-authpanel-graphic-width) + var(--chalky-authpanel-padding));
 		width: calc(var(--chalky-authpanel-graphic-width) + var(--chalky-authpanel-content-width));
 
 		&:before {
 			background: url('../Assets/image/graphic/sf-00.png') center center / cover no-repeat;
+			border-top-left-radius: var(--border-radius-inner);
+			border-bottom-left-radius: var(--border-radius-inner);
 			content: ' ';
 			height: 100%;
 			left: 0;
