@@ -515,10 +515,11 @@
 
 		/**
 		 * @param ChalkySticks.Model.Schedule scheduleModel
+		 * @param ChalkySticks.Enum.GameType channel
 		 * @return Promise<void>
 		 */
-		protected async Handle_OnSelectSchedule(scheduleModel: ChalkySticks.Model.Schedule): Promise<void> {
-			console.log('Selected Schedule', scheduleModel);
+		protected async Handle_OnSelectSchedule(scheduleModel: ChalkySticks.Model.Schedule, channel: ChalkySticks.Enum.GameType): Promise<void> {
+			console.log('Selected Schedule', scheduleModel, channel);
 		}
 
 		// endregion: Event Handlers

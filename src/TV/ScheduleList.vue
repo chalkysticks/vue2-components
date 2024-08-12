@@ -4,6 +4,7 @@
 			v-bind:class="{
 				'state-active': currentVideo && currentVideo.getVideoId() == scheduleModel.getVideoId(),
 			}"
+			v-bind:channel="channel"
 			v-bind:data-minutes="scheduleModel.getDuration() / 60"
 			v-bind:key="index"
 			v-bind:subtitle="scheduleModel.getDescription()"
@@ -76,15 +77,10 @@
 		/**
 		 * @param PointerEvent e
 		 * @param ChalkySticks.Model.Schedule model
-		 * @param ChalkySticks.Enum.GameType channel
 		 * @return Promise<void>
 		 */
-		protected async Handle_OnClickItem(
-			e: PointerEvent,
-			scheduleModel: ChalkySticks.Model.Schedule,
-			channel: ChalkySticks.Enum.GameType,
-		): Promise<void> {
-			this.$emit('select', scheduleModel, channel);
+		protected async Handle_OnClickItem(e: PointerEvent, scheduleModel: ChalkySticks.Model.Schedule): Promise<void> {
+			this.$emit('select', scheduleModel, this.channel);
 		}
 
 		// endregion: Event Handlers

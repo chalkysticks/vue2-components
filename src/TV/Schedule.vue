@@ -251,11 +251,12 @@
 		}
 
 		/**
-		 * @param Event e
+		 * @param ChalkySticks.Model.Schedule scheduleModel
+		 * @param ChalkySticks.Enum.GameType channel
 		 * @return Promise<void>
 		 */
-		protected async Handle_OnChannelItemClick(scheduleModel: ChalkySticks.Model.Schedule): Promise<void> {
-			this.$emit('select:schedule', scheduleModel);
+		protected async Handle_OnChannelItemClick(scheduleModel: ChalkySticks.Model.Schedule, channel: ChalkySticks.Enum.GameType): Promise<void> {
+			this.$emit('select:schedule', scheduleModel, channel);
 		}
 
 		// endregion: Event Handlers
