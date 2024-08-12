@@ -1,8 +1,12 @@
 <template>
 	<section class="chalky tv-schedulelist">
 		<ChalkyTvScheduleItem
+			v-bind:class="{
+				'state-active': currentVideo && currentVideo.getVideoId() == model.getVideoId(),
+			}"
+			v-bind:data-minutes="model.getDuration() / 60"
 			v-bind:style="{
-				height: `calc(var(--chalky-tv-hour-height) * (${model.getDuration()} / 3600) - var(--scheduleitem-margin))`,
+				height: `calc(var(--chalky-tv-hour-height) * (${model.getDuration()} / 3600) - 4px)`,
 			}"
 			v-bind:key="index"
 			v-bind:subtitle="model.getDescription()"
@@ -30,12 +34,19 @@
 		 * @return ChalkySticks/Collection/Schedule
 		 */
 		public get filteredScheduleCollection(): ChalkySticks.Collection.Schedule {
-			const currentModel: ChalkySticks.Model.Schedule = this.scheduleCollection.getCurrentVideo();
-			const indexOfCurrent: number = this.scheduleCollection.models.indexOf(currentModel);
-			const models: ChalkySticks.Model.Schedule[] = this.scheduleCollection.slice(indexOfCurrent);
-			const collection: ChalkySticks.Collection.Schedule = ChalkySticks.Collection.Schedule.hydrate(models);
+			// const currentModel: ChalkySticks.Model.Schedule = this.scheduleCollection.getCurrentVideo();
+			// const indexOfCurrent: number = this.scheduleCollection.models.indexOf(currentModel);
+			// const models: ChalkySticks.Model.Schedule[] = this.scheduleCollection.slice(indexOfCurrent);
+			// const collection: ChalkySticks.Collection.Schedule = ChalkySticks.Collection.Schedule.hydrate(models);
 
-			return collection;
+			return this.scheduleCollection;
+		}
+
+		/**
+		 * @return ChalkySticks.Model.Schedule
+		 */
+		private get currentVideo(): ChalkySticks.Model.Schedule {
+			return this.scheduleCollection.getCurrentVideo();
 		}
 
 		/**
@@ -56,7 +67,7 @@
 	.tv-schedulelist {
 		.tv-scheduleitem {
 			margin: var(--chalky-tv-schedule-item-margin);
-			min-width: var(--chalky-tv-schedule-item-width);
+			width: var(--chalky-tv-schedule-item-width);
 		}
 	}
 </style>

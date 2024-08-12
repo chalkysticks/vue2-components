@@ -24,7 +24,7 @@
 		 * @type number
 		 */
 		protected get lastHour(): number {
-			return Math.max(0, new Date().getHours() * 60 - 60);
+			return 0; // Math.max(0, new Date().getHours() * 60 - 60);
 		}
 
 		/**
@@ -60,8 +60,14 @@
 	.tv-timeline {
 		position: relative;
 
+		.times {
+		}
+
 		.time {
+			background-color: var(--chalky-blue-4);
+			border-bottom: 2px solid var(--chalky-blue);
 			height: var(--chalky-tv-hour-height);
+			// margin: 2px 0;
 		}
 	}
 </style>

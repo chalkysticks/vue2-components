@@ -64,14 +64,24 @@
 
 		.glass-panel {
 			background-color: color-mix(in srgb, var(--chalky-blue-4) 70%, transparent);
-			height: 100%;
-			outline: 1px solid var(--chalky-blue);
+			height: calc(100% - 4px);
+			margin-left: 2px;
+			outline: 2px solid var(--chalky-blue-4);
 			padding: 1.25rem;
-			width: 100%;
+			width: calc(100% - 4px);
 		}
 
 		.title {
 			margin-bottom: 0.5rem;
 		}
+	}
+
+	// State
+	// -------------------------------------------------------------------------
+
+	// Active List + Active Item
+	.state-active .tv-scheduleitem.state-active .glass-panel {
+		background-color: var(--chalky-red-2);
+		outline: 2px solid var(--chalky-red);
 	}
 </style>

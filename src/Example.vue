@@ -236,7 +236,7 @@
 				</header>
 
 				<div>
-					<ChalkyTvSchedule />
+					<ChalkyTvSchedule v-bind:activeChannel="activeChannel" />
 				</div>
 			</section>
 
@@ -257,10 +257,10 @@
 				</header>
 
 				<div>
-					<ChalkyTvVideoTheater ref="videoTheater" channel="billiards" />
+					<ChalkyTvVideoTheater ref="videoTheater" v-bind:allowControl="true" channel="" />
 
 					<form>
-						<select v-on:change="Handle_OnChangeTvChannel">
+						<select v-on:change="Handle_OnChangeTvChannel" v-model="activeChannel">
 							<option value="">Chalky</option>
 							<option value="1-pocket">1-pocket</option>
 							<option value="8-ball">8-ball</option>
@@ -391,6 +391,11 @@
 				}),
 		})
 		public venueCollection!: ChalkySticks.Collection.Venue;
+
+		/**
+		 * @type ChalkySticks.Enum.GameType
+		 */
+		protected activeChannel: ChalkySticks.Enum.GameType = ChalkySticks.Enum.GameType.All;
 
 		/**
 		 * @type number

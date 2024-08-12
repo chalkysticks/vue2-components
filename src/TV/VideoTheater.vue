@@ -44,7 +44,8 @@
 		/**
 		 * @type boolean
 		 */
-		public allowControl: boolean = false;
+		@Prop({ default: false })
+		public allowControl!: boolean;
 
 		/**
 		 * @type YTPlayer
