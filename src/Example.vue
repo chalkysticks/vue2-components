@@ -1,5 +1,5 @@
 <template>
-	<div class="app" style="background: var(--chalky-blue); color: #fff">
+	<div class="app theme-dark">
 		<section class="level-0">
 			<header>
 				<h2>Branding</h2>
@@ -508,7 +508,6 @@
 	.app {
 		-moz-osx-font-smoothing: grayscale;
 		-webkit-font-smoothing: antialiased;
-		color: #2c3e50;
 		font-family: Avenir, Helvetica, Arial, sans-serif;
 		margin: 0 auto;
 		padding: 2rem;
