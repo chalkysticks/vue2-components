@@ -175,33 +175,37 @@
 				return;
 			}
 
-			// If player already exists, change the video
-			if (this.api) {
-				this.api.loadVideoById({
-					startSeconds: time,
-					videoId: code,
-				});
-			} else {
-				this.api = new ViewBase.window.YT.Player(this.playerId, {
-					events: {
-						onError: () => this.Handle_OnPlayerError(),
-						onReady: (e: any) => this.Handle_OnPlayerReady(e),
-						onStateChange: (e: any) => this.Handle_OnPlayerStateChange(e),
-					},
-					playerVars: {
-						autoplay: this.autoplay,
-						cc_load_policy: 0,
-						controls: 0,
-						disablekb: 1,
-						iv_load_policy: 3,
-						loop: 0,
-						modestbranding: 1,
-						mute: this.mute,
-						playsinline: 1,
-						start: time,
-					},
-					videoId: code,
-				});
+			try {
+				// If player already exists, change the video
+				if (this.api) {
+					this.api.loadVideoById({
+						startSeconds: time,
+						videoId: code,
+					});
+				} else {
+					this.api = new ViewBase.window.YT.Player(this.playerId, {
+						events: {
+							onError: () => this.Handle_OnPlayerError(),
+							onReady: (e: any) => this.Handle_OnPlayerReady(e),
+							onStateChange: (e: any) => this.Handle_OnPlayerStateChange(e),
+						},
+						playerVars: {
+							autoplay: this.autoplay,
+							cc_load_policy: 0,
+							controls: 0,
+							disablekb: 1,
+							iv_load_policy: 3,
+							loop: 0,
+							modestbranding: 1,
+							mute: this.mute,
+							playsinline: 1,
+							start: time,
+						},
+						videoId: code,
+					});
+				}
+			} catch (e) {
+				console.warn('Tried to create a player but failed. We may have destroyed it early.', e);
 			}
 		}
 
