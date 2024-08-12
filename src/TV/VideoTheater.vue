@@ -108,9 +108,10 @@
 		/**
 		 * @type CollectionSchedule
 		 */
-		public scheduleCollection: ChalkySticks.Collection.Schedule = new ChalkySticks.Collection.Schedule({
-			baseUrl: ChalkySticks.Core.Constants.API_URL_V1,
-		});
+		@Prop({
+			default: () => ChalkySticks.Factory.Schedule.collection(),
+		})
+		public scheduleCollection!: ChalkySticks.Collection.Schedule;
 
 		/**
 		 * @type string
