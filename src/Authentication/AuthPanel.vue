@@ -139,7 +139,7 @@
 		width: calc(var(--chalky-authpanel-graphic-width) + var(--chalky-authpanel-content-width));
 
 		&:before {
-			background: url('@/Assets/image/graphic/sf-00.png') center center / cover no-repeat;
+			background: url('../Assets/image/graphic/sf-00.png') center center / cover no-repeat;
 			content: ' ';
 			height: 100%;
 			left: 0;
