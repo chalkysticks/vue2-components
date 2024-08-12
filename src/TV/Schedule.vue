@@ -204,9 +204,13 @@
 		}
 
 		/**
+		 * mk: @todo we should trigger this when the schedule is opened
+		 * but not by default. In our Example.vue, this will make the whole
+		 * page come down which is pretty annoying. The alternative is to
+		 * use scrollTop to handle it.
+		 *
 		 * @return void
 		 */
-		@mounted
 		public async centerNowMarker(): Promise<void> {
 			// Wait 500ms
 			await ChalkySticks.Core.Utility.sleep(500);
@@ -214,7 +218,7 @@
 			// Scroll to the "NOW" marker
 			this.nowMarker.scrollIntoView({
 				behavior: 'auto',
-				block: 'nearest',
+				block: 'center',
 				inline: 'center',
 			});
 
