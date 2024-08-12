@@ -71,7 +71,10 @@
 			background-color: var(--chalky-blue-4);
 			border-bottom: 2px solid var(--chalky-blue);
 			height: var(--chalky-tv-hour-height);
-			// margin: 2px 0;
+
+			p {
+				font-size: 0.875em;
+			}
 		}
 	}
 </style>

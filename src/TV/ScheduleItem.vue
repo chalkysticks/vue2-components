@@ -60,19 +60,33 @@
 
 <style lang="scss">
 	.tv-scheduleitem {
+		cursor: pointer;
+		overflow: hidden;
 		position: relative;
 
 		.glass-panel {
 			background-color: color-mix(in srgb, var(--chalky-blue-4) 70%, transparent);
 			height: calc(100% - 4px);
 			margin-left: 2px;
+			margin-top: 2px;
 			outline: 2px solid var(--chalky-blue-4);
 			padding: 1.25rem;
+			transition: background-color 0.2s, outline 0.2s;
 			width: calc(100% - 4px);
 		}
 
 		.title {
 			margin-bottom: 0.5rem;
+		}
+	}
+
+	// User Interaction
+	// -------------------------------------------------------------------------
+
+	.tv-scheduleitem:hover {
+		.glass-panel {
+			background-color: color-mix(in srgb, var(--chalky-blue-2) 80%, transparent);
+			outline: 2px solid var(--chalky-blue-3);
 		}
 	}
 

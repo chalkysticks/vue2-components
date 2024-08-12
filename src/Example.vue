@@ -256,7 +256,12 @@
 				</header>
 
 				<div>
-					<ChalkyTvSchedule v-bind:activeChannel="activeChannel" />
+					<ChalkyTvSchedule
+						style="max-height: 500px"
+						v-bind:activeChannel="activeChannel"
+						v-on:select:channel="Handle_OnSelectChannel"
+						v-on:select:schedule="Handle_OnSelectSchedule"
+					/>
 				</div>
 			</section>
 
@@ -498,6 +503,22 @@
 		 */
 		protected async Handle_OnMoveMap(position: IMapPosition): Promise<void> {
 			console.log('Map moved', position);
+		}
+
+		/**
+		 * @param string channel
+		 * @return Promise<void>
+		 */
+		protected async Handle_OnSelectChannel(channel: string): Promise<void> {
+			console.log('Selected Channel', channel);
+		}
+
+		/**
+		 * @param ChalkySticks.Model.Schedule scheduleModel
+		 * @return Promise<void>
+		 */
+		protected async Handle_OnSelectSchedule(scheduleModel: ChalkySticks.Model.Schedule): Promise<void> {
+			console.log('Selected Schedule', scheduleModel);
 		}
 
 		// endregion: Event Handlers

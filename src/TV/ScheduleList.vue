@@ -2,16 +2,17 @@
 	<section class="chalky tv-schedulelist">
 		<ChalkyTvScheduleItem
 			v-bind:class="{
-				'state-active': currentVideo && currentVideo.getVideoId() == model.getVideoId(),
+				'state-active': currentVideo && currentVideo.getVideoId() == scheduleModel.getVideoId(),
 			}"
-			v-bind:data-minutes="model.getDuration() / 60"
+			v-bind:data-minutes="scheduleModel.getDuration() / 60"
 			v-bind:key="index"
-			v-bind:subtitle="model.getDescription()"
-			v-bind:title="model.getTitle()"
+			v-bind:subtitle="scheduleModel.getDescription()"
+			v-bind:title="scheduleModel.getTitle()"
 			v-bind:style="{
-				height: `calc(var(--chalky-tv-hour-height) * (${model.getDuration()} / 3600) - 8px)`,
+				height: `calc(var(--chalky-tv-hour-height) * (${scheduleModel.getDuration()} / 3600) - 8px)`,
 			}"
-			v-for="(model, index) in filteredScheduleCollection"
+			v-for="(scheduleModel, index) in filteredScheduleCollection"
+			v-on:click.native="Handle_OnClickItem($event, scheduleModel)"
 		/>
 	</section>
 </template>
@@ -60,6 +61,20 @@
 			},
 		})
 		public scheduleCollection!: ChalkySticks.Collection.Schedule;
+
+		// region: Event Handlers
+		// ---------------------------------------------------------------------------
+
+		/**
+		 * @param PointerEvent e
+		 * @param ChalkySticks.Model.Schedule model
+		 * @return Promise<void>
+		 */
+		protected async Handle_OnClickItem(e: PointerEvent, scheduleModel: ChalkySticks.Model.Schedule): Promise<void> {
+			this.$emit('select', scheduleModel);
+		}
+
+		// endregion: Event Handlers
 	}
 </script>
 

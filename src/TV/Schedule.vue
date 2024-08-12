@@ -1,5 +1,10 @@
 <template>
-	<section class="chalky tv-schedule">
+	<section
+		class="chalky tv-schedule"
+		v-bind:style="{
+			'--chalky-tv-channel-count': channels.length,
+		}"
+	>
 		<ChalkyTvTimeline v-bind:showNow="true" />
 
 		<div
@@ -13,62 +18,22 @@
 		</div>
 
 		<section class="headers layout-horizontal distributed">
-			<div class="icon-channel-8ball"></div>
-			<div class="icon-channel-9ball"></div>
-			<div class="icon-channel-10ball"></div>
-			<div class="icon-channel-all"></div>
-			<div class="icon-channel-bank"></div>
-			<div class="icon-channel-billiards"></div>
-			<div class="icon-channel-snooker"></div>
-			<div class="icon-channel-straight"></div>
-			<div class="icon-channel-trick"></div>
-			<div class="icon-channel-1pocket"></div>
+			<div
+				v-bind:aria-label="channel"
+				v-bind:key="index"
+				v-bind:class="'channel-header icon-channel-' + channel"
+				v-for="(channel, index) in channels"
+				v-on:click="Handle_OnChannelClick($event, channel)"
+			></div>
 		</section>
 
 		<section class="lists">
 			<ChalkyTvScheduleList
-				v-bind:class="{ 'state-active': activeChannel == ChalkySticks.Enum.GameType.All }"
-				v-bind:scheduleCollection="scheduleCollectionAll"
-			/>
-
-			<ChalkyTvScheduleList
-				v-bind:class="{ 'state-active': activeChannel == ChalkySticks.Enum.GameType.EightBall }"
-				v-bind:scheduleCollection="scheduleCollection8Ball"
-			/>
-
-			<ChalkyTvScheduleList
-				v-bind:class="{ 'state-active': activeChannel == ChalkySticks.Enum.GameType.NineBall }"
-				v-bind:scheduleCollection="scheduleCollection9Ball"
-			/>
-
-			<ChalkyTvScheduleList
-				v-bind:class="{ 'state-active': activeChannel == ChalkySticks.Enum.GameType.TenBall }"
-				v-bind:scheduleCollection="scheduleCollection10Ball"
-			/>
-
-			<ChalkyTvScheduleList
-				v-bind:class="{ 'state-active': activeChannel == ChalkySticks.Enum.GameType.StraightPool }"
-				v-bind:scheduleCollection="scheduleCollectionStraight"
-			/>
-
-			<ChalkyTvScheduleList
-				v-bind:class="{ 'state-active': activeChannel == ChalkySticks.Enum.GameType.Snooker }"
-				v-bind:scheduleCollection="scheduleCollectionSnooker"
-			/>
-
-			<ChalkyTvScheduleList
-				v-bind:class="{ 'state-active': activeChannel == ChalkySticks.Enum.GameType.Billiards }"
-				v-bind:scheduleCollection="scheduleCollectionBilliards"
-			/>
-
-			<ChalkyTvScheduleList
-				v-bind:class="{ 'state-active': activeChannel == ChalkySticks.Enum.GameType.OnePocket }"
-				v-bind:scheduleCollection="scheduleCollection1Pocket"
-			/>
-
-			<ChalkyTvScheduleList
-				v-bind:class="{ 'state-active': activeChannel == ChalkySticks.Enum.GameType.TrickShots }"
-				v-bind:scheduleCollection="scheduleCollectionTrick"
+				v-bind:class="{ 'state-active': activeChannel == channel }"
+				v-bind:key="index"
+				v-bind:scheduleCollection="channelMap[channel]"
+				v-for="(channel, index) in channels"
+				v-on:select="Handle_OnChannelItemClick"
 			/>
 		</section>
 	</section>
@@ -92,6 +57,41 @@
 		 */
 		@Ref('nowMarker')
 		protected readonly nowMarker!: HTMLElement;
+
+		/**
+		 * @return ChalkySticks.Enum.GameType[]
+		 */
+		protected get channels(): ChalkySticks.Enum.GameType[] {
+			return [
+				ChalkySticks.Enum.GameType.All,
+				ChalkySticks.Enum.GameType.EightBall,
+				ChalkySticks.Enum.GameType.NineBall,
+				ChalkySticks.Enum.GameType.TenBall,
+				ChalkySticks.Enum.GameType.StraightPool,
+
+				// ChalkySticks.Enum.GameType.Snooker,
+				// ChalkySticks.Enum.GameType.Billiards,
+				// ChalkySticks.Enum.GameType.TrickShots,
+				// ChalkySticks.Enum.GameType.OnePocket,
+			];
+		}
+
+		/**
+		 * @return Record<ChalkySticks.Enum.GameType, ChalkySticks.Collection.Schedule>
+		 */
+		protected get channelMap(): Record<ChalkySticks.Enum.GameType, ChalkySticks.Collection.Schedule> {
+			return {
+				[ChalkySticks.Enum.GameType.All]: this.scheduleCollectionAll,
+				[ChalkySticks.Enum.GameType.EightBall]: this.scheduleCollection8Ball,
+				[ChalkySticks.Enum.GameType.NineBall]: this.scheduleCollection9Ball,
+				[ChalkySticks.Enum.GameType.TenBall]: this.scheduleCollection10Ball,
+				[ChalkySticks.Enum.GameType.StraightPool]: this.scheduleCollectionStraight,
+				[ChalkySticks.Enum.GameType.Snooker]: this.scheduleCollectionSnooker,
+				[ChalkySticks.Enum.GameType.Billiards]: this.scheduleCollectionBilliards,
+				[ChalkySticks.Enum.GameType.TrickShots]: this.scheduleCollectionTrick,
+				[ChalkySticks.Enum.GameType.OnePocket]: this.scheduleCollection1Pocket,
+			};
+		}
 
 		/**
 		 * @return typeof ChalkySticks
@@ -237,6 +237,27 @@
 
 			this.nowPositionY = hourDiff / 60;
 		}
+
+		// region: Event Handlers
+		// ---------------------------------------------------------------------------
+
+		/**
+		 * @param PointerEvent e
+		 * @return Promise<void>
+		 */
+		protected async Handle_OnChannelClick(e: PointerEvent, channel: string): Promise<void> {
+			this.$emit('select:channel', channel);
+		}
+
+		/**
+		 * @param Event e
+		 * @return Promise<void>
+		 */
+		protected async Handle_OnChannelItemClick(scheduleModel: ChalkySticks.Model.Schedule): Promise<void> {
+			this.$emit('select:schedule', scheduleModel);
+		}
+
+		// endregion: Event Handlers
 	}
 </script>
 
@@ -245,14 +266,12 @@
 		--schedule-header-size: 60px;
 		--schedule-sidebar-size: 140px;
 
-		max-height: 500px;
-		overflow: auto;
-		position: relative;
-
 		display: grid;
 		gap: 2px;
 		grid-template-columns: var(--schedule-sidebar-size) 1fr;
 		grid-template-rows: var(--schedule-header-size) 1fr;
+		overflow: auto;
+		position: relative;
 
 		&::before {
 			background-color: var(--chalky-blue-4);
@@ -275,12 +294,14 @@
 			top: 0;
 			z-index: var(--z-header-bottom);
 
-			> * {
+			.channel-header {
 				background-color: var(--chalky-blue-4);
 				background-position: center;
 				background-size: auto 70%;
+				cursor: pointer;
 				height: 100%;
 				margin: 0 2px;
+				transition: background-color 0.2s;
 				width: var(--chalky-tv-schedule-item-width);
 			}
 		}
@@ -320,5 +341,12 @@
 				width: 500%;
 			}
 		}
+	}
+
+	// User Interaction
+	// -------------------------------------------------------------------------
+
+	.tv-schedule .headers .channel-header:hover {
+		background-color: var(--chalky-blue-2);
 	}
 </style>
