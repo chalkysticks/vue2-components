@@ -91,7 +91,7 @@
 		 * @type HTMLElement
 		 */
 		@Ref('nowMarker')
-		protected readonly nowMarker: HTMLElement;
+		protected readonly nowMarker!: HTMLElement;
 
 		/**
 		 * @return typeof ChalkySticks
