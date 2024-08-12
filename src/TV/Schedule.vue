@@ -219,7 +219,7 @@
 			});
 
 			// Make sure we stay left
-			// this.$el.scrollLeft = 0;
+			this.$el.scrollLeft = 0;
 		}
 
 		/**
@@ -238,14 +238,17 @@
 
 <style lang="scss">
 	.tv-schedule {
+		--schedule-header-size: 60px;
+		--schedule-sidebar-size: 140px;
+
 		max-height: 500px;
 		overflow: auto;
 		position: relative;
 
 		display: grid;
 		gap: 2px;
-		grid-template-columns: auto 1fr;
-		grid-template-rows: 60px 1fr;
+		grid-template-columns: var(--schedule-sidebar-size) 1fr;
+		grid-template-rows: var(--schedule-header-size) 1fr;
 
 		&::before {
 			background-color: var(--chalky-blue-4);
@@ -293,20 +296,20 @@
 		}
 
 		.now {
-			left: 1rem;
+			left: var(--schedule-sidebar-size);
 			position: absolute;
 			top: 0;
 			width: 100%;
-			z-index: var(--z-header-bottom);
+			z-index: var(--z-header-mid);
 
 			.badge {
-				transform: translate(0, -50%);
+				transform: translate(-120%, -50%);
 			}
 
 			&:before {
 				border-top: 1px solid var(--chalky-red);
 				content: ' ';
-				left: 70px;
+				left: 0;
 				margin-top: 4px;
 				max-width: calc(var(--chalky-tv-schedule-item-width) * var(--chalky-tv-channel-count));
 				position: absolute;

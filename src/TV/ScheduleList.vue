@@ -6,7 +6,7 @@
 			}"
 			v-bind:data-minutes="model.getDuration() / 60"
 			v-bind:style="{
-				height: `calc(var(--chalky-tv-hour-height) * (${model.getDuration()} / 3600) - 4px)`,
+				height: `calc(var(--chalky-tv-hour-height) * (${model.getDuration()} / 3600) - 8px)`,
 			}"
 			v-bind:key="index"
 			v-bind:subtitle="model.getDescription()"

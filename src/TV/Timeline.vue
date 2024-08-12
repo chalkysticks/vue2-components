@@ -40,7 +40,11 @@
 				const hour: string = hours.toString().padStart(2, '0');
 				const minute: string = minutes.toString().padStart(2, '0');
 
-				times.push(`${hour}:${minute}`);
+				// Format as 12 hour time with am/pm
+				const h: string = (hours % 12 || 12).toString().padStart(2, '0');
+				const ampm: string = hours < 12 ? 'am' : 'pm';
+
+				times.push(`${h}:${minute} ${ampm}`);
 				time += 60;
 			}
 
