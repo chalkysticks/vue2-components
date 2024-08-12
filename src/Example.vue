@@ -152,6 +152,26 @@
 				<h2>Television</h2>
 			</header>
 
+			<hr />
+
+			<section class="level-1">
+				<header>
+					<h3>Lower Third</h3>
+				</header>
+
+				<div class="theme-light padded">
+					<ChalkyTvLowerThird title="Shane van Boening vs Earl Strickland" subtitle="2018 9-ball" />
+				</div>
+
+				<hr />
+
+				<div class="padded">
+					<ChalkyTvLowerThird v-bind:scheduleModel="scheduleCollection.at(0)" />
+				</div>
+			</section>
+
+			<hr />
+
 			<section class="level-1">
 				<header>
 					<h3>Now Playing</h3>
@@ -211,7 +231,7 @@
 				</header>
 
 				<div>
-					<ChalkyTvScheduleItem title="Shane van Beoning vs Earl Strickland" subtitle="2018 9-ball" />
+					<ChalkyTvScheduleItem title="Shane van Boening vs Earl Strickland" subtitle="2018 9-ball" />
 				</div>
 			</section>
 

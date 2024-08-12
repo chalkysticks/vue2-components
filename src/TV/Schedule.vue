@@ -6,7 +6,7 @@
 			class="now"
 			ref="nowMarker"
 			v-bind:style="{
-				top: `calc(var(--chalky-tv-hour-height) * ${nowPositionY})`,
+				top: `calc((60px + var(--chalky-tv-hour-height) * ${nowPositionY}) )`,
 			}"
 		>
 			<span class="badge bg-danger">Now</span>
@@ -214,7 +214,7 @@
 			// Scroll to the "NOW" marker
 			this.nowMarker.scrollIntoView({
 				behavior: 'auto',
-				block: 'center',
+				block: 'nearest',
 				inline: 'center',
 			});
 
