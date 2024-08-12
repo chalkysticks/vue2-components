@@ -12,7 +12,7 @@
 				height: `calc(var(--chalky-tv-hour-height) * (${scheduleModel.getDuration()} / 3600) - 8px)`,
 			}"
 			v-for="(scheduleModel, index) in filteredScheduleCollection"
-			v-on:click.native="Handle_OnClickItem($event, scheduleModel)"
+			v-on:click.native="Handle_OnClickItem($event, scheduleModel, channel)"
 		/>
 	</section>
 </template>
@@ -51,6 +51,14 @@
 		}
 
 		/**
+		 * @type ChalkySticks.Enum.GameType
+		 */
+		@Prop({
+			default: ChalkySticks.Enum.GameType.All,
+		})
+		public channel!: ChalkySticks.Enum.GameType;
+
+		/**
 		 * @type ChalkySticks/Collection/Schedule
 		 */
 		@Prop({
@@ -68,10 +76,15 @@
 		/**
 		 * @param PointerEvent e
 		 * @param ChalkySticks.Model.Schedule model
+		 * @param ChalkySticks.Enum.GameType channel
 		 * @return Promise<void>
 		 */
-		protected async Handle_OnClickItem(e: PointerEvent, scheduleModel: ChalkySticks.Model.Schedule): Promise<void> {
-			this.$emit('select', scheduleModel);
+		protected async Handle_OnClickItem(
+			e: PointerEvent,
+			scheduleModel: ChalkySticks.Model.Schedule,
+			channel: ChalkySticks.Enum.GameType,
+		): Promise<void> {
+			this.$emit('select', scheduleModel, channel);
 		}
 
 		// endregion: Event Handlers
