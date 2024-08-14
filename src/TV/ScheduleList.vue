@@ -2,11 +2,11 @@
 	<section class="chalky tv-schedulelist">
 		<ChalkyTvScheduleItem
 			v-bind:class="{
-				'state-active': currentVideo && currentVideo.getVideoId() == scheduleModel.getVideoId(),
+				'state-active': activeVideoId == scheduleModel.getVideoId(),
 			}"
 			v-bind:channel="channel"
 			v-bind:data-minutes="scheduleModel.getDuration() / 60"
-			v-bind:key="index"
+			v-bind:key="index + activeVideoId"
 			v-bind:subtitle="scheduleModel.getDescription()"
 			v-bind:title="scheduleModel.getTitle()"
 			v-bind:style="{
@@ -22,6 +22,7 @@
 	import ChalkySticks from '@chalkysticks/sdk';
 	import ViewBase from '../Core/Base';
 	import { Component, Prop } from 'vue-property-decorator';
+	import { beforeDestroy, mounted } from '@/Utility/Decorators';
 
 	/**
 	 * @author ChalkySticks LLC
@@ -71,6 +72,27 @@
 		})
 		public scheduleCollection!: ChalkySticks.Collection.Schedule;
 
+		/**
+		 * @type string
+		 */
+		private activeVideoId: string = '';
+
+		/**
+		 * @return void
+		 */
+		@mounted
+		public attachEvents(): void {
+			ChalkySticks.Core.Utility.Interval.add(() => this.Handle_OnInterval(), 1000, this.cid);
+		}
+
+		/**
+		 * @return void
+		 */
+		@beforeDestroy
+		public detachEvents(): void {
+			ChalkySticks.Core.Utility.Interval.remove(this.cid);
+		}
+
 		// region: Event Handlers
 		// ---------------------------------------------------------------------------
 
@@ -81,6 +103,13 @@
 		 */
 		protected async Handle_OnClickItem(e: PointerEvent, scheduleModel: ChalkySticks.Model.Schedule): Promise<void> {
 			this.$emit('select', scheduleModel, this.channel);
+		}
+
+		/**
+		 * @return Promise<void>
+		 */
+		protected async Handle_OnInterval(): Promise<void> {
+			this.activeVideoId = this.currentVideo?.getVideoId() || '0';
 		}
 
 		// endregion: Event Handlers
