@@ -1,5 +1,5 @@
 <template>
-	<section class="chalky tv-schedulelist" v-bind:key="activeVideoId">
+	<section class="chalky tv-schedulelist" v-bind:class="{ 'state-active': active }" v-bind:key="activeVideoId">
 		<ChalkyTvScheduleItem
 			v-bind:class="{
 				'state-active': activeVideoId == scheduleModel.getVideoId(),
@@ -46,6 +46,16 @@
 		}
 
 		/**
+		 * If this list is in an active channel. This helps with refreshing the content.
+		 *
+		 * @type boolean
+		 */
+		@Prop({
+			default: false,
+		})
+		public active!: boolean;
+
+		/**
 		 * @type ChalkySticks.Enum.GameType
 		 */
 		@Prop({
@@ -69,6 +79,11 @@
 		 * @type string
 		 */
 		private activeVideoId: string = '';
+
+		/**
+		 * @type string
+		 */
+		private lastActiveVideoId: string = '';
 
 		/**
 		 * @return void
@@ -102,7 +117,19 @@
 		 * @return Promise<void>
 		 */
 		protected async Handle_OnInterval(): Promise<void> {
+			if (!this.active) {
+				return;
+			}
+
+			// Set active video id
 			this.activeVideoId = this.scheduleCollection.getCurrentVideo()?.getVideoId() || '0';
+
+			// Update and trigger changes
+			if (this.activeVideoId !== this.lastActiveVideoId) {
+				this.lastActiveVideoId = this.activeVideoId;
+				this.$emit('change', this.scheduleCollection.getCurrentVideo(), this.channel);
+				this.$forceUpdate();
+			}
 		}
 
 		// endregion: Event Handlers

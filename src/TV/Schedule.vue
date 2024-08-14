@@ -29,7 +29,7 @@
 
 		<section class="lists">
 			<ChalkyTvScheduleList
-				v-bind:class="{ 'state-active': activeChannel == channel }"
+				v-bind:active="activeChannel == channel"
 				v-bind:channel="channel"
 				v-bind:key="index"
 				v-bind:scheduleCollection="channelMap[channel]"
