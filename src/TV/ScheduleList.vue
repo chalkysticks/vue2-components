@@ -1,12 +1,12 @@
 <template>
-	<section class="chalky tv-schedulelist">
+	<section class="chalky tv-schedulelist" v-bind:key="activeVideoId">
 		<ChalkyTvScheduleItem
 			v-bind:class="{
 				'state-active': activeVideoId == scheduleModel.getVideoId(),
 			}"
 			v-bind:channel="channel"
 			v-bind:data-minutes="scheduleModel.getDuration() / 60"
-			v-bind:key="index + activeVideoId"
+			v-bind:key="index"
 			v-bind:subtitle="scheduleModel.getDescription()"
 			v-bind:title="scheduleModel.getTitle()"
 			v-bind:style="{
