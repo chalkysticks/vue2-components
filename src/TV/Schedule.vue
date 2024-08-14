@@ -352,4 +352,14 @@
 	.tv-schedule .headers .channel-header:hover {
 		background-color: var(--chalky-blue-2);
 	}
+
+	// Media Queries
+	// -------------------------------------------------------------------------
+
+	@media (max-width: 768px) {
+		.tv-schedule {
+			--schedule-header-size: 70px;
+			--schedule-sidebar-size: 80px;
+		}
+	}
 </style>
