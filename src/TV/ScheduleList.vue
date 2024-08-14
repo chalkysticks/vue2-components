@@ -10,7 +10,7 @@
 			v-bind:subtitle="scheduleModel.getDescription()"
 			v-bind:title="scheduleModel.getTitle()"
 			v-bind:style="{
-				height: `calc(var(--chalky-tv-hour-height) * (${scheduleModel.getDuration()} / 3600) - 8px)`,
+				height: `calc(var(--chalky-tv-hour-height) * (${scheduleModel.getDuration()} / 3600))`,
 			}"
 			v-for="(scheduleModel, index) in filteredScheduleCollection"
 			v-on:click.native="Handle_OnClickItem($event, scheduleModel, channel)"
@@ -90,7 +90,6 @@
 <style lang="scss">
 	.tv-schedulelist {
 		.tv-scheduleitem {
-			margin: var(--chalky-tv-schedule-item-margin);
 			width: var(--chalky-tv-schedule-item-width);
 		}
 	}
