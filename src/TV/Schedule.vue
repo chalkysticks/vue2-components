@@ -231,7 +231,7 @@
 		 */
 		protected setNowPosition(): void {
 			const lastHour = 0;
-			const date = new Date();
+			const date = ChalkySticks.Core.Utility.getDate();
 			const minutes = date.getHours() * 60 + date.getMinutes();
 			const hourDiff = minutes - lastHour;
 

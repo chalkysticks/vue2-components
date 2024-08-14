@@ -211,6 +211,7 @@
 							modestbranding: 1,
 							mute: this.mute,
 							playsinline: 1,
+							rel: 0,
 							start: time,
 						},
 						videoId: code,
@@ -252,7 +253,7 @@
 		 */
 		public seekBackward(interval: number = 30): void {
 			const seconds: number = Math.max(0, this.currentTime - interval);
-			this.api.seekTo(seconds, true);
+			this.seekTo(seconds);
 		}
 
 		/**
@@ -261,7 +262,7 @@
 		 */
 		public seekForward(interval: number = 30): void {
 			const seconds: number = Math.min(this.duration, this.currentTime + interval);
-			this.api.seekTo(seconds, true);
+			this.seekTo(seconds);
 		}
 
 		/**
@@ -269,7 +270,11 @@
 		 * @return void
 		 */
 		public seekTo(seconds: number = 30): void {
-			this.api.seekTo(seconds, true);
+			try {
+				this.api.seekTo(seconds, true);
+			} catch (e) {
+				console.warn('Could not seek to', seconds);
+			}
 		}
 
 		/**

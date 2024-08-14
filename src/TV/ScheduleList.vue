@@ -46,13 +46,6 @@
 		}
 
 		/**
-		 * @return ChalkySticks.Model.Schedule
-		 */
-		private get currentVideo(): ChalkySticks.Model.Schedule {
-			return this.scheduleCollection.getCurrentVideo();
-		}
-
-		/**
 		 * @type ChalkySticks.Enum.GameType
 		 */
 		@Prop({
@@ -109,7 +102,7 @@
 		 * @return Promise<void>
 		 */
 		protected async Handle_OnInterval(): Promise<void> {
-			this.activeVideoId = this.currentVideo?.getVideoId() || '0';
+			this.activeVideoId = this.scheduleCollection.getCurrentVideo()?.getVideoId() || '0';
 		}
 
 		// endregion: Event Handlers
