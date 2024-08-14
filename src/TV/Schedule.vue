@@ -324,6 +324,7 @@
 
 		.now {
 			left: var(--schedule-sidebar-size);
+			pointer-events: none;
 			position: absolute;
 			top: 0;
 			width: 100%;
