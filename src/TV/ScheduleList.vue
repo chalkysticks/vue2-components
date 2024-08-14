@@ -90,6 +90,7 @@
 <style lang="scss">
 	.tv-schedulelist {
 		.tv-scheduleitem {
+			margin: 0 2px;
 			width: var(--chalky-tv-schedule-item-width);
 		}
 	}

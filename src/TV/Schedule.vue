@@ -69,11 +69,10 @@
 				ChalkySticks.Enum.GameType.NineBall,
 				ChalkySticks.Enum.GameType.TenBall,
 				ChalkySticks.Enum.GameType.StraightPool,
-
-				// ChalkySticks.Enum.GameType.Snooker,
-				// ChalkySticks.Enum.GameType.Billiards,
-				// ChalkySticks.Enum.GameType.TrickShots,
-				// ChalkySticks.Enum.GameType.OnePocket,
+				ChalkySticks.Enum.GameType.Snooker,
+				ChalkySticks.Enum.GameType.Billiards,
+				ChalkySticks.Enum.GameType.TrickShots,
+				ChalkySticks.Enum.GameType.OnePocket,
 			];
 		}
 
