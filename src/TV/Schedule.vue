@@ -326,6 +326,7 @@
 			pointer-events: none;
 			position: absolute;
 			top: 0;
+			transform: translate(0, -5px);
 			width: 100%;
 			z-index: var(--z-header-mid);
 

@@ -9,6 +9,7 @@
 	import Environment from '../Core/Environment';
 	import ViewBase from '../Core/Base';
 	import { Component, Prop } from 'vue-property-decorator';
+	import { beforeDestroy, mounted } from '@/Utility/Decorators';
 
 	/**
 	 * @type Enum
@@ -60,7 +61,13 @@
 		/**
 		 * @type string[]
 		 */
-		public bindings: string[] = ['Handle_OnInterval', 'Handle_OnPlayerStateChange', 'Handle_OnPlayerReady', 'Handle_OnYouTubeReady'];
+		public bindings: string[] = [
+			'Handle_OnInterval',
+			'Handle_OnPlayerStateChange',
+			'Handle_OnPlayerReady',
+			'Handle_OnVisibilityChange',
+			'Handle_OnYouTubeReady',
+		];
 
 		/**
 		 * @type string
@@ -145,14 +152,19 @@
 		/**
 		 * @return void
 		 */
+		@mounted
 		public attachEvents(): void {
+			document.addEventListener('visibilitychange', this.Handle_OnVisibilityChange);
 			this.interval = setInterval(this.Handle_OnInterval, 250);
 		}
 
 		/**
 		 * @return void
 		 */
+		@beforeDestroy
 		public detachEvents(): void {
+			document.removeEventListener('visibilitychange', this.Handle_OnVisibilityChange);
+
 			clearInterval(this.interval);
 			this.interval = 0;
 		}
@@ -258,6 +270,16 @@
 		 */
 		public seekTo(seconds: number = 30): void {
 			this.api.seekTo(seconds, true);
+		}
+
+		/**
+		 * @return void
+		 */
+		public seekToCurrentTime(collection: ChalkySticks.Collection.Schedule): void {
+			const model = collection.getCurrentVideo();
+			const time = ~~collection.getTimeForCurrentVideo() || 0;
+
+			this.seekTo(time);
 		}
 
 		/**
@@ -440,6 +462,15 @@
 			// Check if ended
 			if (e.data == ViewBase.window.YT.PlayerState.ENDED) {
 				this.Handle_OnPlayerEnded();
+			}
+		}
+
+		/**
+		 * @return void
+		 */
+		protected Handle_OnVisibilityChange(): void {
+			if (document.visibilityState === 'visible') {
+				this.seekToCurrentTime(this.scheduleCollection);
 			}
 		}
 
