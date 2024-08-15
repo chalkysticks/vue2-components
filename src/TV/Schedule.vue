@@ -276,13 +276,20 @@
 
 		&::before {
 			background-color: var(--chalky-blue-4);
+			border-bottom: 2px solid var(--chalky-blue);
+			border-right: 2px solid var(--chalky-blue);
 			content: ' ';
 			grid-area: 1 / 1 / 2 / 2;
 			height: 100%;
+			left: 0;
+			position: sticky;
+			top: 0;
 			width: 100%;
+			z-index: var(--z-header-top);
 		}
 
 		.tv-timeline {
+			border-right: 2px solid var(--chalky-blue);
 			grid-area: 2 / 1 / 3 / 2;
 			left: 0;
 			position: sticky;
@@ -290,10 +297,11 @@
 		}
 
 		.headers {
+			border-bottom: 2px solid var(--chalky-blue);
 			grid-area: 1 / 2 / 2 / 3;
 			position: sticky;
 			top: 0;
-			z-index: var(--z-header-bottom);
+			z-index: var(--z-header-mid);
 
 			.channel-header {
 				background-color: var(--chalky-blue-4);
@@ -302,6 +310,7 @@
 				cursor: pointer;
 				height: 100%;
 				margin: 0 var(--chalky-tv-schedule-gap);
+				outline: 2px solid var(--chalky-blue);
 				transition: background-color 0.2s;
 				width: var(--chalky-tv-schedule-item-width);
 			}
