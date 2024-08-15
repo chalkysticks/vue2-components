@@ -268,7 +268,7 @@
 		--schedule-sidebar-size: 140px;
 
 		display: grid;
-		gap: 2px;
+		gap: var(--chalky-tv-schedule-gap);
 		grid-template-columns: var(--schedule-sidebar-size) 1fr;
 		grid-template-rows: var(--schedule-header-size) 1fr;
 		overflow: auto;
@@ -301,7 +301,7 @@
 				background-size: auto 70%;
 				cursor: pointer;
 				height: 100%;
-				margin: 0 2px;
+				margin: 0 var(--chalky-tv-schedule-gap);
 				transition: background-color 0.2s;
 				width: var(--chalky-tv-schedule-item-width);
 			}
@@ -356,10 +356,33 @@
 	// Media Queries
 	// -------------------------------------------------------------------------
 
-	@media (max-width: 768px) {
+	@media only screen and (max-height: 500px) and (orientation: landscape) {
 		.tv-schedule {
 			--schedule-header-size: 70px;
 			--schedule-sidebar-size: 80px;
+			--chalky-tv-schedule-item-width: 200px;
+
+			font-size: 0.875rem;
+
+			.headers .channel-header {
+				background-size: auto 50%;
+			}
+		}
+	}
+
+	@media only screen and (max-width: 500px) and (orientation: portrait) {
+		.tv-schedule {
+			--schedule-header-size: 70px;
+			--schedule-sidebar-size: 60px;
+			--chalky-tv-schedule-item-width: 160px;
+			--chalky-tv-hour-height: 140px;
+			--chalky-tv-schedule-gap: 0px;
+
+			font-size: 0.66rem;
+
+			.headers .channel-header {
+				background-size: auto 50%;
+			}
 		}
 	}
 </style>

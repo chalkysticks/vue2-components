@@ -139,7 +139,7 @@
 <style lang="scss">
 	.tv-schedulelist {
 		.tv-scheduleitem {
-			margin: 0 2px;
+			margin: 0 var(--chalky-tv-schedule-gap);
 			width: var(--chalky-tv-schedule-item-width);
 		}
 	}

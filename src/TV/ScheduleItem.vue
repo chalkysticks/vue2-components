@@ -78,7 +78,7 @@
 			margin-left: 2px;
 			margin-top: 2px;
 			outline: 2px solid var(--chalky-blue-4);
-			padding: 1.25rem;
+			padding: 1.25em;
 			pointer-events: none;
 			transition: background-color 0.2s, outline 0.2s;
 			width: calc(100% - 4px);
