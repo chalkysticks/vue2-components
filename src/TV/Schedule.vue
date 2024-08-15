@@ -264,8 +264,8 @@
 
 <style lang="scss">
 	.tv-schedule {
-		--schedule-header-size: 60px;
-		--schedule-sidebar-size: 140px;
+		--schedule-header-size: 80px;
+		--schedule-sidebar-size: 120px;
 
 		display: grid;
 		gap: var(--chalky-tv-schedule-gap);
@@ -306,7 +306,7 @@
 			.channel-header {
 				background-color: var(--chalky-blue-4);
 				background-position: center;
-				background-size: auto 70%;
+				background-size: auto 50%;
 				cursor: pointer;
 				height: 100%;
 				margin: 0 var(--chalky-tv-schedule-gap);
@@ -372,10 +372,6 @@
 			--chalky-tv-schedule-item-width: 200px;
 
 			font-size: 0.875rem;
-
-			.headers .channel-header {
-				background-size: auto 50%;
-			}
 		}
 	}
 

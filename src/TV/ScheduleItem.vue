@@ -73,8 +73,9 @@
 		position: relative;
 
 		.glass-panel {
-			background-color: color-mix(in srgb, var(--chalky-blue-4) 70%, transparent);
-			height: calc(100% - 4px);
+			background-color: color-mix(in srgb, var(--chalky-blue-4) 75%, transparent);
+			backdrop-filter: none;
+			height: calc(100% - 6px);
 			margin-left: 2px;
 			margin-top: 2px;
 			outline: 2px solid var(--chalky-blue-4);

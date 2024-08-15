@@ -138,9 +138,21 @@
 
 <style lang="scss">
 	.tv-schedulelist {
+		position: relative;
+
 		.tv-scheduleitem {
 			margin: 0 var(--chalky-tv-schedule-gap);
 			width: var(--chalky-tv-schedule-item-width);
+		}
+
+		&::after {
+			background: var(--chalky-blue-4);
+			content: ' ';
+			height: 100%;
+			margin: 0 1px;
+			opacity: 0.8;
+			position: absolute;
+			width: calc(100% - 2px);
 		}
 	}
 </style>
