@@ -11,7 +11,7 @@
 			class="now"
 			ref="nowMarker"
 			v-bind:style="{
-				top: `calc((60px + var(--chalky-tv-hour-height) * ${nowPositionY}) )`,
+				top: `calc((var(--chalky-tv-schedule-header-size) + var(--chalky-tv-hour-height) * ${nowPositionY}) )`,
 			}"
 		>
 			<span class="badge bg-danger">Now</span>
@@ -264,13 +264,10 @@
 
 <style lang="scss">
 	.tv-schedule {
-		--schedule-header-size: 80px;
-		--schedule-sidebar-size: 120px;
-
 		display: grid;
 		gap: var(--chalky-tv-schedule-gap);
-		grid-template-columns: var(--schedule-sidebar-size) 1fr;
-		grid-template-rows: var(--schedule-header-size) 1fr;
+		grid-template-columns: var(--chalky-tv-schedule-sidebar-size) 1fr;
+		grid-template-rows: var(--chalky-tv-schedule-header-size) 1fr;
 		overflow: auto;
 		position: relative;
 
@@ -331,7 +328,7 @@
 		}
 
 		.now {
-			left: var(--schedule-sidebar-size);
+			left: var(--chalky-tv-schedule-sidebar-size);
 			pointer-events: none;
 			position: absolute;
 			top: 0;
@@ -367,8 +364,8 @@
 
 	@media only screen and (max-height: 500px) and (orientation: landscape) {
 		.tv-schedule {
-			--schedule-header-size: 70px;
-			--schedule-sidebar-size: 80px;
+			--chalky-tv-schedule-header-size: 70px;
+			--chalky-tv-schedule-sidebar-size: 80px;
 			--chalky-tv-schedule-item-width: 200px;
 
 			font-size: 0.875rem;
@@ -377,8 +374,8 @@
 
 	@media only screen and (max-width: 500px) and (orientation: portrait) {
 		.tv-schedule {
-			--schedule-header-size: 70px;
-			--schedule-sidebar-size: 60px;
+			--chalky-tv-schedule-header-size: 70px;
+			--chalky-tv-schedule-sidebar-size: 60px;
 			--chalky-tv-schedule-item-width: 160px;
 			--chalky-tv-hour-height: 140px;
 			--chalky-tv-schedule-gap: 0px;
