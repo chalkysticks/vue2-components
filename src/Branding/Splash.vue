@@ -96,7 +96,7 @@
 			opacity: 0;
 
 			h2 {
-				background-position: 100% 66%;
+				background-position: 90% 66%;
 			}
 		}
 	}
@@ -116,7 +116,6 @@
 			animation: chalky-bs-fadeOut 1s var(--ease-in-out-quad) 2.25s forwards;
 
 			.branding-badge {
-				// animation: chalky-bs-scaleIn 0.5s cubic-bezier(0.04, 0.94, 0.285, 1.065) forwards 0.65s;
 				animation: chalky-bs-scaleIn 1.25s cubic-bezier(0.04, 0.94, 0.285, 1.065) forwards 0.75s,
 					chalky-bs-slideLeft 1.5s cubic-bezier(0.04, 0.94, 0.285, 1.065) forwards 1.2s;
 			}
@@ -124,6 +123,21 @@
 
 		.part-3 {
 			animation: chalky-bs-fadeIn 0.75s var(--ease-out-quad) 1.2s forwards, chalky-bs-fadeOut 1s var(--ease-in-out-quad) 2s forwards;
+		}
+	}
+
+	// Mobile Queries
+	// -------------------------------------------------------------------------
+
+	@media only screen and (max-width: 500px) and (orientation: portrait) {
+		.branding-splash {
+			.part-2,
+			.part-3 {
+				transform-origin: center center;
+				transform: scale(0.75);
+				left: 0;
+				top: 0;
+			}
 		}
 	}
 
@@ -180,7 +194,7 @@
 		}
 
 		100% {
-			transform: translateX(-150px);
+			transform: translateX(-160px);
 		}
 	}
 

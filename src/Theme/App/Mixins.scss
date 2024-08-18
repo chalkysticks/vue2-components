@@ -1,0 +1,40 @@
+// Media Queries
+// ---------------------------------------------------------------------------
+
+@mixin media-query($device) {
+	@if $device == 'tablet' {
+		@media (min-width: 768px) and (max-width: 1024px) {
+			@content;
+		}
+	}
+
+	@if $device == '>= tablet' {
+		@media (min-width: 768px) {
+			@content;
+		}
+	}
+
+	@if $device == '<= tablet' {
+		@media (max-width: 1024px) {
+			@content;
+		}
+	}
+
+	@if $device == 'mobile' {
+		@media only screen and (max-width: 500px) and (orientation: portrait), only screen and (max-height: 500px) and (orientation: landscape) {
+			@content;
+		}
+	}
+
+	@if $device == 'mobile-portrait' {
+		@media only screen and (max-width: 500px) and (orientation: portrait) {
+			@content;
+		}
+	}
+
+	@if $device == 'mobile-landscape' {
+		@media only screen and (max-height: 500px) and (orientation: landscape) {
+			@content;
+		}
+	}
+}
