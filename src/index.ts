@@ -18,6 +18,7 @@ import AuthenticationNavigation from './Authentication/Navigation.vue';
 import AuthenticationResetPassword from './Authentication/ResetPassword.vue';
 import AuthenticationSocialLogin from './Authentication/SocialLogin.vue';
 import BrandingBadge from './Branding/Badge.vue';
+import BrandingSplash from './Branding/Splash.vue';
 import BrandingStandard from './Branding/Standard.vue';
 import ButtonLogin from './Button/Login.vue';
 import TvLowerThird from './TV/LowerThird.vue';
@@ -41,6 +42,7 @@ const components = {
 	AuthenticationResetPassword,
 	AuthenticationSocialLogin,
 	BrandingBadge,
+	BrandingSplash,
 	BrandingStandard,
 	ButtonLogin,
 	TvLowerThird,
@@ -101,6 +103,7 @@ export {
 	AuthenticationResetPassword,
 	AuthenticationSocialLogin,
 	BrandingBadge,
+	BrandingSplash,
 	BrandingStandard,
 	ButtonLogin,
 	TvLowerThird,

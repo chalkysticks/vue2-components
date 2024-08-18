@@ -4,6 +4,7 @@
 		v-bind:class="{
 			'on-light': mode === 'light',
 			'on-dark': mode === 'dark',
+			'on-deep': mode === 'deep',
 		}"
 		v-bind:mode="mode"
 		v-bind:size="size"
@@ -27,7 +28,7 @@
 		@Prop({
 			default: 'dark',
 		})
-		public mode!: 'dark' | 'light';
+		public mode!: 'deep' | 'dark' | 'light';
 
 		/**
 		 * Size of badge

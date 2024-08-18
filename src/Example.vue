@@ -18,14 +18,17 @@
 					</dl>
 				</header>
 				<div>
+					<ChalkyBrandingBadge size="sm" mode="deep" />
 					<ChalkyBrandingBadge size="sm" mode="dark" />
 					<ChalkyBrandingBadge size="sm" mode="light" />
 				</div>
 				<div>
+					<ChalkyBrandingBadge size="md" mode="deep" />
 					<ChalkyBrandingBadge size="md" mode="dark" />
 					<ChalkyBrandingBadge size="md" mode="light" />
 				</div>
 				<div>
+					<ChalkyBrandingBadge size="lg" mode="deep" />
 					<ChalkyBrandingBadge size="lg" mode="dark" />
 					<ChalkyBrandingBadge size="lg" mode="light" />
 				</div>
@@ -54,6 +57,15 @@
 				<div class="d-flex">
 					<ChalkyBrandingStandard class="background-chalky-white p-3" mode="light" v-bind:useIcon="false" />
 					<ChalkyBrandingStandard class="background-chalky-blue p-3" mode="dark" v-bind:useIcon="false" />
+				</div>
+			</section>
+
+			<section class="level-1">
+				<header>
+					<h3>Splash</h3>
+				</header>
+				<div style="position: relative">
+					<ChalkyBrandingSplash v-bind:fullscreen="false" />
 				</div>
 			</section>
 		</section>
