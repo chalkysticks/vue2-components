@@ -221,6 +221,10 @@
 			// Find element
 			this.scrollToNowMarker();
 			this.scrollToActiveChannel();
+
+			await ChalkySticks.Core.Utility.sleep(100);
+
+			this.scrollToNowMarker();
 		}
 
 		/**
@@ -260,10 +264,11 @@
 		 */
 		private scrollToNowMarker(): void {
 			const element = this.$refs.nowMarker as HTMLElement;
-			const bbox = element.getBoundingClientRect();
-			const offset = bbox.top;
+			const bboxA = this.$el.getBoundingClientRect();
+			const bboxB = element.getBoundingClientRect();
+			const offset = bboxB.top + this.$el.scrollTop;
 
-			this.$el.scrollTop = offset;
+			this.$el.scrollTop = offset - bboxA.height / 2;
 		}
 
 		// region: Event Handlers
