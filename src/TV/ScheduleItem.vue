@@ -79,6 +79,7 @@
 			margin-left: 2px;
 			margin-top: 2px;
 			outline: 2px solid var(--chalky-blue-4);
+			overflow: hidden;
 			padding: 1.25em;
 			pointer-events: none;
 			transition: background-color 0.2s, outline 0.2s;
