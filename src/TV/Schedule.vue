@@ -239,8 +239,13 @@
 		 * @return void
 		 */
 		private scrollToActiveChannel(): void {
-			// const activeList = this.$el.querySelector(`[channel="snooker"]`);
 			const activeList = this.$el.querySelector(`[channel="${this.activeChannel}"]`);
+
+			// No list available
+			if (!activeList) {
+				return;
+			}
+
 			const bboxA = this.$el.getBoundingClientRect();
 			const bboxB = activeList.getBoundingClientRect();
 			const offsetB = bboxB.left - bboxA.left + this.$el.scrollLeft;
