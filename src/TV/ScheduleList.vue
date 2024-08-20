@@ -1,5 +1,5 @@
 <template>
-	<section class="chalky tv-schedulelist" v-bind:class="{ 'state-active': active }" v-bind:key="activeVideoId">
+	<section class="chalky tv-schedulelist" v-bind:channel="channel" v-bind:class="{ 'state-active': active }" v-bind:key="activeVideoId">
 		<ChalkyTvScheduleItem
 			v-bind:class="{
 				'state-active': activeVideoId == scheduleModel.getVideoId(),

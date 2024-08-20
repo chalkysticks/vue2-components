@@ -1,10 +1,5 @@
 <template>
-	<section
-		class="chalky tv-schedule"
-		v-bind:style="{
-			'--chalky-tv-channel-count': channels.length,
-		}"
-	>
+	<section class="chalky tv-schedule" v-bind:style="{ '--chalky-tv-channel-count': channels.length }">
 		<ChalkyTvTimeline v-bind:showNow="true" />
 
 		<div
@@ -175,16 +170,8 @@
 			this.scheduleCollectionTrick = ChalkySticks.Factory.Schedule.collection(ChalkySticks.Enum.GameType.TrickShots);
 			this.scheduleCollection1Pocket = ChalkySticks.Factory.Schedule.collection(ChalkySticks.Enum.GameType.OnePocket);
 
-			// Fetch
-			this.scheduleCollectionAll.fetch();
-			this.scheduleCollection8Ball.fetch();
-			this.scheduleCollection9Ball.fetch();
-			this.scheduleCollection10Ball.fetch();
-			this.scheduleCollectionStraight.fetch();
-			this.scheduleCollectionSnooker.fetch();
-			this.scheduleCollectionBilliards.fetch();
-			this.scheduleCollectionTrick.fetch();
-			this.scheduleCollection1Pocket.fetch();
+			// Fetch all schedules
+			setTimeout(() => this.fetch(), 1);
 		}
 
 		/**
@@ -204,6 +191,21 @@
 		}
 
 		/**
+		 * @return void
+		 */
+		public fetch(): void {
+			this.scheduleCollectionAll.fetch();
+			this.scheduleCollection8Ball.fetch();
+			this.scheduleCollection9Ball.fetch();
+			this.scheduleCollection10Ball.fetch();
+			this.scheduleCollectionStraight.fetch();
+			this.scheduleCollectionSnooker.fetch();
+			this.scheduleCollectionBilliards.fetch();
+			this.scheduleCollectionTrick.fetch();
+			this.scheduleCollection1Pocket.fetch();
+		}
+
+		/**
 		 * mk: @todo we should trigger this when the schedule is opened
 		 * but not by default. In our Example.vue, this will make the whole
 		 * page come down which is pretty annoying. The alternative is to
@@ -211,19 +213,14 @@
 		 *
 		 * @return void
 		 */
+		@mounted
 		public async centerNowMarker(): Promise<void> {
 			// Wait 500ms
 			await ChalkySticks.Core.Utility.sleep(500);
 
-			// Scroll to the "NOW" marker
-			this.nowMarker.scrollIntoView({
-				behavior: 'auto',
-				block: 'center',
-				inline: 'center',
-			});
-
-			// Make sure we stay left
-			this.$el.scrollLeft = 0;
+			// Find element
+			this.scrollToNowMarker();
+			this.scrollToActiveChannel();
 		}
 
 		/**
@@ -236,6 +233,32 @@
 			const hourDiff = minutes - lastHour;
 
 			this.nowPositionY = hourDiff / 60;
+		}
+
+		/**
+		 * @return void
+		 */
+		private scrollToActiveChannel(): void {
+			// const activeList = this.$el.querySelector(`[channel="snooker"]`);
+			const activeList = this.$el.querySelector(`[channel="${this.activeChannel}"]`);
+			const bboxA = this.$el.getBoundingClientRect();
+			const bboxB = activeList.getBoundingClientRect();
+			const offsetB = bboxB.left - bboxA.left + this.$el.scrollLeft;
+
+			// Scroll to the active list (120 is the timeline width)
+			// this.$el.scrollLeft = offsetB - 120;
+			this.$el.scrollLeft = offsetB - bboxA.width / 2 + 120;
+		}
+
+		/**
+		 * @return void
+		 */
+		private scrollToNowMarker(): void {
+			const element = this.$refs.nowMarker as HTMLElement;
+			const bbox = element.getBoundingClientRect();
+			const offset = bbox.top;
+
+			this.$el.scrollTop = offset;
 		}
 
 		// region: Event Handlers
