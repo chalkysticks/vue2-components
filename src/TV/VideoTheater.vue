@@ -1,6 +1,16 @@
 <template>
-	<div class="chalky tv-videotheater ratio ratio-16x9" v-bind:class="{ 'state-controls': allowControl }">
+	<div
+		class="chalky tv-videotheater ratio ratio-16x9"
+		v-bind:class="{
+			'state-bumper': showBumper,
+			'state-controls': allowControl,
+		}"
+	>
 		<div v-bind:id="playerId"></div>
+
+		<video class="chalky-bumper" muted playsInline ref="bumper" v-on:ended="Handle_OnBumperEnded">
+			<source src="https://chalkysticks.s3.amazonaws.com/video/chalky-5s.mp4" type="video/mp4" />
+		</video>
 	</div>
 </template>
 
@@ -8,7 +18,7 @@
 	import ChalkySticks from '@chalkysticks/sdk';
 	import Environment from '../Core/Environment';
 	import ViewBase from '../Core/Base';
-	import { Component, Prop } from 'vue-property-decorator';
+	import { Component, Prop, Ref } from 'vue-property-decorator';
 	import { beforeDestroy, mounted } from '@/Utility/Decorators';
 
 	/**
@@ -33,6 +43,12 @@
 	 */
 	@Component
 	export default class VideoTheater extends ViewBase {
+		/**
+		 * @type HTMLVideoElement
+		 */
+		@Ref('bumper')
+		public viewBumper!: HTMLVideoElement;
+
 		/**
 		 * Determine if we're using the schedule
 		 *
@@ -129,6 +145,11 @@
 		 * @type ReturnType<typeof setInterval>
 		 */
 		protected interval: any = 0;
+
+		/**
+		 * @type boolean
+		 */
+		protected showBumper: boolean = false;
 
 		/**
 		 * @param object options
@@ -245,6 +266,15 @@
 		 */
 		public play(): void {
 			this.api.playVideo();
+		}
+
+		/**
+		 * @return void
+		 */
+		public playBumper(): void {
+			this.viewBumper.currentTime = 0;
+			this.viewBumper.play();
+			this.showBumper = true;
 		}
 
 		/**
@@ -394,12 +424,26 @@
 		/**
 		 * @return void
 		 */
+		protected Handle_OnBumperEnded(): void {
+			this.showBumper = false;
+		}
+
+		/**
+		 * @return void
+		 */
 		protected Handle_OnInterval(): void {
 			try {
 				this.currentTime = this.api.getCurrentTime();
 				this.duration = this.api.getDuration(); // cache me
 			} catch (e) {
 				// console.log('VTYT Err', e);
+			}
+
+			const timeDifference = this.duration - this.currentTime;
+
+			// Show bumper in last second
+			if (timeDifference < 1 && timeDifference > 0 && !this.showBumper) {
+				this.playBumper();
 			}
 		}
 
@@ -533,13 +577,19 @@
 		pointer-events: none;
 		position: relative;
 
+		.chalky-bumper,
 		iframe {
 			border: 0;
 			height: 100%;
 			left: 0;
 			position: absolute;
 			top: 0;
+			transition: opacity 0.5s ease-in-out;
 			width: 100%;
+		}
+
+		.chalky-bumper {
+			opacity: 0;
 		}
 
 		// State
@@ -547,6 +597,12 @@
 
 		&.state-controls {
 			pointer-events: all;
+		}
+
+		&.state-bumper {
+			.chalky-bumper {
+				opacity: 1;
+			}
 		}
 	}
 </style>
