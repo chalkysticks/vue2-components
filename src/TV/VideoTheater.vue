@@ -589,6 +589,7 @@
 		}
 
 		.chalky-bumper {
+			background: var(--chalky-black);
 			opacity: 0;
 		}
 
