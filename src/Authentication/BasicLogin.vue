@@ -14,6 +14,7 @@
 				<label>
 					<h6>Email Address</h6>
 					<input
+						autocomplete="email"
 						minlength="6"
 						name="email"
 						placeholder="john@example.com"
@@ -25,7 +26,14 @@
 
 				<label>
 					<h6>Password</h6>
-					<input minlength="6" name="password" type="password" v-model="password" v-on:keydown="Handle_OnKeydownInput" />
+					<input
+						autocomplete="current-password"
+						minlength="6"
+						name="password"
+						type="password"
+						v-model="password"
+						v-on:keydown="Handle_OnKeydownInput"
+					/>
 				</label>
 
 				<p class="text-right pull-top-lg push-bottom-lg">
