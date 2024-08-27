@@ -211,12 +211,15 @@
 		 * page come down which is pretty annoying. The alternative is to
 		 * use scrollTop to handle it.
 		 *
+		 * @param boolean withDelay
 		 * @return void
 		 */
 		@mounted
-		public async centerNowMarker(): Promise<void> {
+		public async centerNowMarker(withDelay: boolean = true): Promise<void> {
 			// Wait 500ms
-			await ChalkySticks.Core.Utility.sleep(500);
+			if (withDelay) {
+				await ChalkySticks.Core.Utility.sleep(500);
+			}
 
 			// Find element
 			this.scrollToNowMarker();
