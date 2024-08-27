@@ -3,9 +3,10 @@
 		<section class="list" v-if="scheduleCollection.length">
 			<ChalkyTvVideoPreview
 				class="item"
-				v-for="scheduleModel in scheduleCollection.models"
 				v-bind:key="scheduleModel.cid"
 				v-bind:scheduleModel="scheduleModel"
+				v-for="scheduleModel in scheduleCollection.models"
+				v-on:click.native="Handle_OnVideoPreviewClick(scheduleModel)"
 			/>
 		</section>
 
@@ -77,6 +78,14 @@
 			// Do nothing
 		}
 
+		/**
+		 * @param ChalkySticks.Model.Schedule scheduleModel
+		 * @return void
+		 */
+		protected async Handle_OnVideoPreviewClick(scheduleModel: ChalkySticks.Model.Schedule): Promise<void> {
+			this.$emit('click', scheduleModel);
+		}
+
 		// endregion: Event Handlers
 	}
 </script>
@@ -95,6 +104,22 @@
 			.item {
 				display: inline-block;
 			}
+
+			.tv-videopreview {
+				cursor: pointer;
+
+				.thumbnail {
+					transform-origin: center center;
+					transition: transform 0.15s ease-in-out;
+				}
+			}
 		}
+	}
+
+	// User Interaction
+	// ---------------------------------------------------------------------------
+
+	.tv-livelist .tv-videopreview:hover .thumbnail {
+		transform: scale(0.98);
 	}
 </style>

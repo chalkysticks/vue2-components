@@ -1,8 +1,8 @@
 <template>
 	<section class="chalky tv-videopreview">
 		<figure>
-			<img v-bind:src="scheduleModel.getThumbnail()" />
-			<figcaption>{{ scheduleModel.getTitle() }}</figcaption>
+			<img class="thumbnail" v-bind:src="scheduleModel.getThumbnail()" />
+			<figcaption class="title">{{ scheduleModel.getTitle() }}</figcaption>
 		</figure>
 	</section>
 </template>

@@ -206,7 +206,7 @@
 				</header>
 
 				<div class="theme-light padded">
-					<ChalkyTvLiveList v-bind:scheduleCollection="liveScheduleCollection" />
+					<ChalkyTvLiveList v-bind:scheduleCollection="liveScheduleCollection" v-on:click="Handle_OnClickLiveListItem" />
 				</div>
 			</section>
 
@@ -542,6 +542,16 @@
 			const gameType: string = target.value;
 
 			this.videoTheater.setByGame(gameType);
+		}
+
+		/**
+		 * @param ChalkySticks.Model.Schedule scheduleModel
+		 * @return Promise<void>
+		 */
+		protected async Handle_OnClickLiveListItem(scheduleModel: ChalkySticks.Model.Schedule): Promise<void> {
+			console.log('Model', scheduleModel);
+
+			this.liveScheduleModel = scheduleModel;
 		}
 
 		/**
