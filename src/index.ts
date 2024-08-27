@@ -21,12 +21,14 @@ import BrandingBadge from './Branding/Badge.vue';
 import BrandingSplash from './Branding/Splash.vue';
 import BrandingStandard from './Branding/Standard.vue';
 import ButtonLogin from './Button/Login.vue';
+import TvLiveList from './TV/LiveList.vue';
 import TvLowerThird from './TV/LowerThird.vue';
 import TvNowPlaying from './TV/NowPlaying.vue';
 import TvSchedule from './TV/Schedule.vue';
 import TvScheduleItem from './TV/ScheduleItem.vue';
 import TvScheduleList from './TV/ScheduleList.vue';
 import TvTimeline from './TV/Timeline.vue';
+import TvVideoPreview from './TV/VideoPreview.vue';
 import TvVideoTheater from './TV/VideoTheater.vue';
 import VenueCard from './Venue/Card.vue';
 import VenueList from './Venue/List.vue';
@@ -45,12 +47,14 @@ const components = {
 	BrandingSplash,
 	BrandingStandard,
 	ButtonLogin,
+	TvLiveList,
 	TvLowerThird,
 	TvNowPlaying,
 	TvSchedule,
 	TvScheduleItem,
 	TvScheduleList,
 	TvTimeline,
+	TvVideoPreview,
 	TvVideoTheater,
 	VenueCard,
 	VenueList,
@@ -106,12 +110,14 @@ export {
 	BrandingSplash,
 	BrandingStandard,
 	ButtonLogin,
+	TvLiveList,
 	TvLowerThird,
 	TvNowPlaying,
 	TvSchedule,
 	TvScheduleItem,
 	TvScheduleList,
 	TvTimeline,
+	TvVideoPreview,
 	TvVideoTheater,
 	VenueCard,
 	VenueList,

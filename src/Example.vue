@@ -186,6 +186,34 @@
 
 			<section class="level-1">
 				<header>
+					<h3>Video Preview</h3>
+				</header>
+
+				<div class="theme-light padded">
+					<ChalkyTvVideoPreview v-bind:scheduleModel="scheduleCollection.at(0)" />
+				</div>
+
+				<div class="theme-light padded">
+					<ChalkyTvVideoPreview v-bind:scheduleModel="liveScheduleCollection.at(0)" />
+				</div>
+			</section>
+
+			<hr />
+
+			<section class="level-1">
+				<header>
+					<h3>Live List</h3>
+				</header>
+
+				<div class="theme-light padded">
+					<ChalkyTvLiveList v-bind:scheduleCollection="liveScheduleCollection" />
+				</div>
+			</section>
+
+			<hr />
+
+			<section class="level-1">
+				<header>
 					<h3>Now Playing</h3>
 				</header>
 
@@ -294,9 +322,9 @@
 				</header>
 
 				<div>
-					<ChalkyTvVideoTheater ref="videoTheater" v-bind:allowControl="true" channel="" />
+					<ChalkyTvVideoTheater channel="" ref="videoTheater" v-bind:allowControl="true" v-bind:scheduleModel="liveScheduleModel" />
 
-					<form>
+					<form v-on:submit="Handle_OnSubmitVideoForm">
 						<select v-on:change="Handle_OnChangeTvChannel" v-model="activeChannel">
 							<option value="">Chalky</option>
 							<option value="1-pocket">1-pocket</option>
@@ -308,6 +336,9 @@
 							<option value="straight">straight</option>
 							<option value="trickshot">trickshot</option>
 						</select>
+
+						<button value="setLive">Set Live</button>
+						<button value="removeLive">Remove Live</button>
 					</form>
 				</div>
 			</section>
@@ -408,6 +439,28 @@
 		public authModel!: ChalkySticks.Model.Authentication;
 
 		/**
+		 * @type ChalkySticks/TV/Collection/Live
+		 */
+		@Prop({
+			default: () =>
+				new ChalkySticks.TV.Collection.Live({
+					baseUrl: ChalkySticks.Core.Constants.API_URL_DEV_V1,
+				}),
+		})
+		public liveScheduleCollection!: ChalkySticks.TV.Collection.Live;
+
+		/**
+		 * @type ChalkySticks/Model/Schedule
+		 */
+		@Prop({
+			default: () =>
+				new ChalkySticks.Model.Schedule({
+					baseUrl: ChalkySticks.Core.Constants.API_URL_V1,
+				}),
+		})
+		public liveScheduleModel!: ChalkySticks.Model.Schedule;
+
+		/**
 		 * @type ChalkySticks/Collection/Schedule
 		 */
 		@Prop({
@@ -457,6 +510,7 @@
 			console.log('Venue Collection', this.venueCollection);
 
 			// this.venueCollection.fetch();
+			this.liveScheduleCollection.fetch();
 			this.scheduleCollection.fetch();
 		}
 
@@ -532,6 +586,23 @@
 		 */
 		protected async Handle_OnSelectSchedule(scheduleModel: ChalkySticks.Model.Schedule, channel: ChalkySticks.Enum.GameType): Promise<void> {
 			console.log('Selected Schedule', scheduleModel, channel);
+		}
+
+		/**
+		 * @param SubmitEvent e
+		 * @return Promise<void>
+		 */
+		protected async Handle_OnSubmitVideoForm(e: SubmitEvent): Promise<void> {
+			e.preventDefault();
+
+			// @ts-ignore
+			const value: string = e.submitter?.value;
+
+			if (value === 'setLive') {
+				this.liveScheduleModel = this.liveScheduleCollection.at(0);
+			} else if (value === 'removeLive') {
+				this.liveScheduleModel = null;
+			}
 		}
 
 		// endregion: Event Handlers

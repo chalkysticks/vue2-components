@@ -18,7 +18,7 @@
 	import ChalkySticks from '@chalkysticks/sdk';
 	import Environment from '../Core/Environment';
 	import ViewBase from '../Core/Base';
-	import { Component, Prop, Ref } from 'vue-property-decorator';
+	import { Component, Prop, Ref, Watch } from 'vue-property-decorator';
 	import { beforeDestroy, mounted } from '@/Utility/Decorators';
 
 	/**
@@ -50,15 +50,24 @@
 		public viewBumper!: HTMLVideoElement;
 
 		/**
-		 * Determine if we're using the schedule
+		 * @return boolean
+		 */
+		public get isUsingModel(): boolean {
+			return !!this.scheduleModel && !!this.scheduleModel.id;
+		}
+
+		/**
+		 * Determine if we're using the scheduleCollection
 		 *
 		 * @return boolean
 		 */
 		public get isUsingSchedule(): boolean {
-			return this.scheduleCollection && this.scheduleCollection.length > 0;
+			return !this.isUsingModel && !!this.scheduleCollection && this.scheduleCollection.length > 0;
 		}
 
 		/**
+		 * Show YouTube controls
+		 *
 		 * @type boolean
 		 */
 		@Prop({ default: false })
@@ -92,8 +101,6 @@
 		public channel!: string;
 
 		/**
-		 * Current time of the video
-		 *
 		 * @type number
 		 */
 		public currentTime: number = 0;
@@ -129,12 +136,24 @@
 		public playerId: string = Math.random().toString(16).substr(2, 8);
 
 		/**
-		 * @type CollectionSchedule
+		 * @type ChalkySticks.Collection.Schedule
 		 */
 		@Prop({
 			default: () => ChalkySticks.Factory.Schedule.collection(),
 		})
 		public scheduleCollection!: ChalkySticks.Collection.Schedule;
+
+		/**
+		 * @type ChalkySticks/Model/Schedule
+		 */
+		@Prop({
+			default: () => {
+				return new ChalkySticks.Model.Schedule({
+					baseUrl: ChalkySticks.Core.Constants.API_URL_V1,
+				});
+			},
+		})
+		public scheduleModel!: ChalkySticks.Model.Schedule;
 
 		/**
 		 * @type string
@@ -161,13 +180,6 @@
 			if (this.requiresScript()) {
 				this.embedScript();
 			}
-
-			// Set by schedule default
-			if (this.autoplay) {
-				setTimeout(() => {
-					this.setByGame(this.channel);
-				}, 1);
-			}
 		}
 
 		/**
@@ -192,6 +204,24 @@
 
 		// region: Actions
 		// ---------------------------------------------------------------------------
+
+		/**
+		 * @return Promise<void>
+		 */
+		@mounted
+		public async beginAutoplay(): Promise<void> {
+			// Wait
+			await ChalkySticks.Core.Utility.sleep(10);
+
+			// Load model
+			if (this.isUsingModel) {
+				this.setByModel(this.scheduleModel);
+			} else if (this.isUsingSchedule) {
+				this.setBySchedule(this.scheduleCollection);
+			} else {
+				this.setByGame(this.channel);
+			}
+		}
 
 		/**
 		 * @param string code
@@ -247,6 +277,10 @@
 		 * @return void
 		 */
 		public flagAndSkip(): void {
+			if (!this.scheduleCollection || !this.scheduleCollection.getCurrentVideo()) {
+				return;
+			}
+
 			// Flag video that failed
 			this.scheduleCollection.flagCurrentVideo();
 
@@ -320,7 +354,9 @@
 		/**
 		 * Pass a YouTube ID to the object
 		 *
-		 * @return string
+		 * @param string videoId
+		 * @param number time
+		 * @return void
 		 */
 		public setById(videoId: string, time: number = 0): void {
 			this.createPlayer(videoId, time);
@@ -340,9 +376,20 @@
 		}
 
 		/**
+		 * Accept a ModelSchedule and start playing
+		 *
+		 * @param ModelSchedule model
+		 * @return void
+		 */
+		public setByModel(model: ChalkySticks.Model.Schedule): void {
+			this.setUrl(model.getEmbedUrl());
+		}
+
+		/**
 		 * Accept a CollectionSchedule and automatically determine
 		 * what to play.
 		 *
+		 * @param ChalkySticks.Collection.Schedule collection
 		 * @return void
 		 */
 		public setBySchedule(collection: ChalkySticks.Collection.Schedule): void {
@@ -355,16 +402,6 @@
 
 			// Show title
 			this.setUrl(embedUrl, time);
-		}
-
-		/**
-		 * Accept a ModelSchedule and start playing
-		 *
-		 * @param ModelSchedule model
-		 * @return void
-		 */
-		public setByModel(model: ChalkySticks.Model.Schedule): void {
-			this.setUrl(model.getEmbedUrl());
 		}
 
 		/**
@@ -426,6 +463,27 @@
 		 */
 		protected Handle_OnBumperEnded(): void {
 			this.showBumper = false;
+		}
+
+		/**
+		 * @param ChalkySticks.Model.Schedule newModel
+		 * @param ChalkySticks.Model.Schedule oldModel
+		 * @return void
+		 */
+		@Watch('scheduleModel', {
+			deep: true,
+			immediate: true,
+		})
+		protected Handle_OnScheduleModelChange(newModel: ChalkySticks.Model.Schedule, oldModel: ChalkySticks.Model.Schedule) {
+			// Model exists and has an ID
+			if (newModel && newModel.id) {
+				this.beginAutoplay();
+			}
+
+			// No model, but we have a collection
+			else if (!newModel && this.isUsingSchedule) {
+				this.beginAutoplay();
+			}
 		}
 
 		/**
@@ -519,7 +577,9 @@
 		 */
 		protected Handle_OnVisibilityChange(): void {
 			if (document.visibilityState === 'visible') {
-				this.seekToCurrentTime(this.scheduleCollection);
+				if (this.isUsingSchedule) {
+					this.seekToCurrentTime(this.scheduleCollection);
+				}
 			}
 		}
 
