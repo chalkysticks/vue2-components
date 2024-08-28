@@ -160,7 +160,7 @@
 	// Animation
 	// -------------------------------------------------------------------------
 
-	.tv-lowerthird:not(.animate-in) {
+	.tv-lowerthird {
 		opacity: 0;
 		transition: opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 		transition-delay: 0.5s;
