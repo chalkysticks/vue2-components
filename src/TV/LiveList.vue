@@ -36,7 +36,7 @@
 			default: () => {
 				return new ChalkySticks.TV.Collection.Live({
 					// ChalkySticks.Core.Constants.API_URL_DEV_V1,
-					baseUrl: ChalkySticks.Core.Constants.API_URL_V1,
+					baseUrl: ChalkySticks.Core.Constants.API_URL_V3,
 				});
 			},
 		})
