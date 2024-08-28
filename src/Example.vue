@@ -178,7 +178,7 @@
 				<hr />
 
 				<div class="padded">
-					<ChalkyTvLowerThird v-bind:scheduleModel="scheduleCollection.at(0)" />
+					<ChalkyTvLowerThird class="animate-in" v-bind:scheduleModel="scheduleCollection.at(0)" />
 				</div>
 			</section>
 

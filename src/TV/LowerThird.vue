@@ -72,24 +72,25 @@
 		transition: opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
 		.content {
-			height: 6em;
+			display: grid;
+			grid-template-columns: max-content 1fr;
+			grid-template-rows: 1fr auto;
 			position: relative;
 			z-index: 2;
 
 			.title {
+				align-items: center;
 				background-color: rgba(255, 255, 255, 0.85);
-				border-radius: 0.5em;
 				border-bottom-left-radius: 0;
+				border-radius: 0.5em;
 				box-shadow: inset 2px 2px 7px rgba(0, 0, 0, 0.15);
 				color: var(--chalky-blue-4);
+				display: flex;
+				grid-area: 1 / 1 / 2 / 3;
 				margin-bottom: 2px;
 				min-width: 30em;
 				padding: 0.25em 1em 0 1em;
 				position: relative;
-
-				height: 70px;
-				display: flex;
-				align-items: center;
 
 				&:before {
 					background: var(--chalky-red);
@@ -114,6 +115,7 @@
 				border-top-right-radius: 0;
 				color: var(--chalky-white);
 				display: inline-block;
+				grid-area: 2 / 1 / 3 / 2;
 				padding: 0.25em 1em;
 				position: relative;
 				z-index: 2;
@@ -136,7 +138,7 @@
 			font-size: 14px;
 
 			.content .title {
-				height: 60px;
+				// height: 60px;
 			}
 
 			.chalky.branding-badge {
@@ -151,7 +153,7 @@
 			font-size: 10px;
 
 			.content .title {
-				height: 45px;
+				// height: 45px;
 			}
 
 			.content .title::before {
