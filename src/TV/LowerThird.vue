@@ -81,8 +81,8 @@
 			.title {
 				align-items: center;
 				background-color: rgba(255, 255, 255, 0.85);
-				border-bottom-left-radius: 0;
 				border-radius: 0.5em;
+				border-bottom-left-radius: 0;
 				box-shadow: inset 2px 2px 7px rgba(0, 0, 0, 0.15);
 				color: var(--chalky-blue-4);
 				display: flex;
@@ -137,10 +137,6 @@
 		.tv-lowerthird {
 			font-size: 14px;
 
-			.content .title {
-				// height: 60px;
-			}
-
 			.chalky.branding-badge {
 				height: 6.25em;
 				width: 6.25em;
@@ -151,10 +147,6 @@
 	@media only screen and (max-width: 500px) and (orientation: portrait) {
 		.tv-lowerthird {
 			font-size: 10px;
-
-			.content .title {
-				// height: 45px;
-			}
 
 			.content .title::before {
 				bottom: -7px;
