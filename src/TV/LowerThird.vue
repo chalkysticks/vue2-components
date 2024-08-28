@@ -208,8 +208,8 @@
 		}
 	}
 
-	// .tv-lowerthird.animate-in {
-	.tv-lowerthird:hover {
+	// .tv-lowerthird:hover {
+	.tv-lowerthird.animate-in {
 		opacity: 1;
 		transition-delay: 0s;
 
