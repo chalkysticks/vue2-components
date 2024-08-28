@@ -65,31 +65,38 @@
 
 <style lang="scss">
 	.tv-lowerthird {
+		--base-animation-duration: 0.25s;
+
 		display: flex;
 		gap: 1em;
 		transition: opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
 		.content {
-			height: 6.25em;
+			height: 6em;
 			position: relative;
 			z-index: 2;
 
 			.title {
-				backdrop-filter: blur(1rem);
 				background-color: rgba(255, 255, 255, 0.85);
-				border-radius: 1em;
+				border-radius: 0.5em;
 				border-bottom-left-radius: 0;
+				box-shadow: inset 2px 2px 7px rgba(0, 0, 0, 0.15);
 				color: var(--chalky-blue-4);
 				margin-bottom: 2px;
 				min-width: 30em;
-				padding: 1em;
+				padding: 0.25em 1em 0 1em;
 				position: relative;
+
+				height: 70px;
+				display: flex;
+				align-items: center;
 
 				&:before {
 					background: var(--chalky-red);
-					border-bottom-left-radius: 0.5em;
-					border-bottom-right-radius: 0.5em;
-					bottom: -9px;
+					border-bottom: 1px solid var(--chalky-red-2);
+					border-bottom-left-radius: 0.25em;
+					border-bottom-right-radius: 0.25em;
+					bottom: -10px;
 					content: ' ';
 					height: 0.5em;
 					left: 0;
@@ -101,18 +108,21 @@
 			}
 
 			.subtitle {
-				backdrop-filter: blur(1rem);
 				background-color: var(--chalky-red);
-				border-radius: 1em;
+				border-radius: 0.5em;
 				border-top-left-radius: 0;
 				border-top-right-radius: 0;
 				color: var(--chalky-white);
 				display: inline-block;
-				padding: 0.5em 1.25em;
+				padding: 0.25em 1em;
 				position: relative;
+				z-index: 2;
 
 				p {
+					font-size: var(--font-size-small);
+					font-weight: var(--font-weight-medium);
 					margin: 0;
+					text-transform: uppercase;
 				}
 			}
 		}
@@ -152,37 +162,86 @@
 
 	.tv-lowerthird:not(.animate-in) {
 		opacity: 0;
-	}
-
-	.tv-lowerthird.animate-in {
-		--base-animation-duration: 0.25s;
-
-		opacity: 1;
+		transition: opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+		transition-delay: 0.5s;
 
 		.chalky.branding-badge {
-			animation: scale-in-center 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+			transform: scale(0);
+			transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+			transition-delay: 1s;
 		}
 
 		.content .title {
-			animation: scale-in-hor-left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-			animation-delay: calc(var(--base-animation-duration));
+			transform-origin: 0% 0%;
+			transform: scaleX(0);
+			transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+			transition-delay: calc(var(--base-animation-duration));
 
 			> * {
-				animation: fade-in-left 0.6s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+				opacity: 0;
+				transform: translateX(-50px);
+				transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+				transition-delay: 1s;
 			}
 		}
 
 		.content .title::before {
-			animation: scale-in-ver-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-			animation-delay: calc(var(--base-animation-duration) + 0.25s);
+			transform-origin: 100% 0%;
+			transform: scaleY(0);
+			transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+			transition-delay: calc(var(--base-animation-duration) + 0.25s);
 		}
 
 		.content .subtitle {
-			animation: scale-in-hor-left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-			animation-delay: calc(var(--base-animation-duration) + 0.5s);
+			overflow: hidden;
+			transform-origin: 0% 0%;
+			transform: scaleX(0);
+			transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+			transition-delay: calc(var(--base-animation-duration));
 
 			> * {
-				animation: fade-in-left 0.6s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+				opacity: 0;
+				transform: translateX(-50px);
+				transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+				transition-delay: 1s;
+			}
+		}
+	}
+
+	// .tv-lowerthird.animate-in {
+	.tv-lowerthird:hover {
+		opacity: 1;
+		transition-delay: 0s;
+
+		.chalky.branding-badge {
+			transform: scale(1);
+			transition-delay: 0s;
+		}
+
+		.content .title {
+			transform: scaleX(1);
+			transition-delay: 0s;
+
+			> * {
+				opacity: 1;
+				transform: translateX(0);
+				transition-delay: 0.2s;
+			}
+		}
+
+		.content .title::before {
+			transform: scaleY(1);
+			transition-delay: 0.3s;
+		}
+
+		.content .subtitle {
+			transform: scaleX(1);
+			transition-delay: 0.3s;
+
+			> * {
+				opacity: 1;
+				transform: translateX(0);
+				transition-delay: 0.4s;
 			}
 		}
 	}
