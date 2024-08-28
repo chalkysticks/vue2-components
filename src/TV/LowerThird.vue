@@ -135,6 +135,10 @@
 		.tv-lowerthird {
 			font-size: 14px;
 
+			.content .title {
+				height: 60px;
+			}
+
 			.chalky.branding-badge {
 				height: 6.25em;
 				width: 6.25em;
@@ -145,6 +149,10 @@
 	@media only screen and (max-width: 500px) and (orientation: portrait) {
 		.tv-lowerthird {
 			font-size: 10px;
+
+			.content .title {
+				height: 45px;
+			}
 
 			.content .title::before {
 				bottom: -7px;
