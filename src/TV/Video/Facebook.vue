@@ -37,6 +37,28 @@
 		public player!: HTMLElement;
 
 		/**
+		 * @type string[]
+		 */
+		public bindings: string[] = ['Handle_OnInterval'];
+
+		/**
+		 * @return void
+		 */
+		@mounted
+		public attachEvents(): void {
+			this.interval = setInterval(this.Handle_OnInterval, 250);
+		}
+
+		/**
+		 * @return void
+		 */
+		@beforeDestroy
+		public detachEvents(): void {
+			clearInterval(this.interval);
+			this.interval = 0;
+		}
+
+		/**
 		 * @param string code
 		 * @param number time
 		 * @return void
@@ -188,6 +210,26 @@
 		}
 
 		/**
+		 * @return void
+		 */
+		protected Handle_OnInterval(): void {
+			try {
+				this.currentTime = this.getCurrentTime();
+				this.duration = this.getDuration(); // cache me
+			} catch (e) {
+				// console.log('VTYT Err', e);
+			}
+
+			const timeDifference = this.duration - this.currentTime;
+
+			// Show bumper in last second
+			if (timeDifference < 1.5 && timeDifference > 0) {
+				this.trigger('bumper:start');
+				this.$emit('bumper:start');
+			}
+		}
+
+		/**
 		 * @param string state
 		 * @return void
 		 */
@@ -214,10 +256,13 @@
 			TVVideoShared.window.FB.Event.unsubscribe('xfbml.ready', this.Handle_OnFacebookReady);
 
 			const xfbmlElements = document.querySelectorAll('.fb-video, .fb-like, .fb-comments');
-			xfbmlElements.forEach((el) => el.parentNode.removeChild(el));
-
 			const fbScript = document.querySelector('script[src*="connect.facebook.net"]');
-			fbScript && fbScript.parentNode.removeChild(fbScript);
+
+			// @ts-ignore
+			xfbmlElements.forEach((el) => el.parentNode?.removeChild(el));
+
+			// @ts-ignore
+			fbScript && fbScript.parentNode?.removeChild(fbScript);
 
 			delete TVVideoShared.window.FB;
 

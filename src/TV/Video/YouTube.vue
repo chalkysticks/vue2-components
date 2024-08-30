@@ -18,6 +18,28 @@
 	@Component
 	export default class TVVideoYouTube extends TVVideoShared {
 		/**
+		 * @type string[]
+		 */
+		public bindings: string[] = ['Handle_OnInterval'];
+
+		/**
+		 * @return void
+		 */
+		@mounted
+		public attachEvents(): void {
+			this.interval = setInterval(this.Handle_OnInterval, 250);
+		}
+
+		/**
+		 * @return void
+		 */
+		@beforeDestroy
+		public detachEvents(): void {
+			clearInterval(this.interval);
+			this.interval = 0;
+		}
+
+		/**
 		 * @param string code
 		 * @param number time
 		 * @return Promise<void>
@@ -177,6 +199,26 @@
 		 */
 		protected requiresScript(): boolean {
 			return typeof TVVideoShared.window != 'undefined' && !(TVVideoShared.window as any).YT;
+		}
+
+		/**
+		 * @return void
+		 */
+		protected Handle_OnInterval(): void {
+			try {
+				this.currentTime = this.getCurrentTime();
+				this.duration = this.getDuration(); // cache me
+			} catch (e) {
+				// console.log('VTYT Err', e);
+			}
+
+			const timeDifference = this.duration - this.currentTime;
+
+			// Show bumper in last second
+			if (timeDifference < 1.5 && timeDifference > 0) {
+				this.trigger('bumper:start');
+				this.$emit('bumper:start');
+			}
 		}
 
 		/**
