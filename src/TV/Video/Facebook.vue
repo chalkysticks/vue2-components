@@ -292,7 +292,7 @@
 		 */
 		private Handle_OnFacebookReady(msg: any): void {
 			if (msg.type === 'video' && msg.id === this.playerId) {
-				this.resolvePlayerReady(msg.instance);
+				this.resolvePlayerReady && this.resolvePlayerReady(msg.instance);
 			}
 		}
 	}
