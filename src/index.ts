@@ -27,6 +27,8 @@ import TvNowPlaying from './TV/NowPlaying.vue';
 import TvSchedule from './TV/Schedule.vue';
 import TvScheduleItem from './TV/ScheduleItem.vue';
 import TvScheduleList from './TV/ScheduleList.vue';
+import TvVideoFacebook from './TV/Video/Facebook.vue';
+import TvVideoYouTube from './TV/Video/YouTube.vue';
 import TvTimeline from './TV/Timeline.vue';
 import TvVideoPreview from './TV/VideoPreview.vue';
 import TvVideoTheater from './TV/VideoTheater.vue';
@@ -54,8 +56,10 @@ const components = {
 	TvScheduleItem,
 	TvScheduleList,
 	TvTimeline,
+	TvVideoFacebook,
 	TvVideoPreview,
 	TvVideoTheater,
+	TvVideoYouTube,
 	VenueCard,
 	VenueList,
 	VenueMap,
@@ -117,8 +121,10 @@ export {
 	TvScheduleItem,
 	TvScheduleList,
 	TvTimeline,
+	TvVideoFacebook,
 	TvVideoPreview,
 	TvVideoTheater,
+	TvVideoYouTube,
 	VenueCard,
 	VenueList,
 	VenueMap,

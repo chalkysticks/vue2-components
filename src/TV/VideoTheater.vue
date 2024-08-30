@@ -6,9 +6,35 @@
 			'state-controls': allowControl,
 		}"
 	>
-		<div v-bind:id="playerId"></div>
+		<ChalkyTvVideoYouTube
+			v-bind:allowControl="allowControl"
+			v-bind:channel="channel"
+			v-bind:muted="mute"
+			v-bind:startTime="startTime"
+			v-bind:url="url"
+			v-if="isVideoFromYouTube"
+			v-on:bumper:start="Handle_OnBumperStart"
+			v-on:player:ended="Handle_OnPlayerEnded"
+			v-on:player:error="Handle_OnPlayerError"
+			v-on:player:ready="Handle_OnPlayerReady"
+		/>
 
-		<video class="chalky-bumper" muted playsInline ref="bumper" v-on:ended="Handle_OnBumperEnded">
+		<ChalkyTvVideoFacebook
+			v-bind:allowControl="allowControl"
+			v-bind:channel="channel"
+			v-bind:muted="mute"
+			v-bind:startTime="startTime"
+			v-bind:url="url"
+			v-else-if="isVideoFromFacebook"
+			v-on:bumper:start="Handle_OnBumperStart"
+			v-on:player:ended="Handle_OnPlayerEnded"
+			v-on:player:error="Handle_OnPlayerError"
+			v-on:player:ready="Handle_OnPlayerReady"
+		/>
+
+		<div v-else>Unknown video player requested</div>
+
+		<video class="chalky-bumper" muted playsInline ref="bumper" v-on:ended="Handle_OnBumperEnd">
 			<source src="https://chalkysticks.s3.amazonaws.com/video/chalky-5s.mp4" type="video/mp4" />
 		</video>
 	</div>
@@ -16,7 +42,6 @@
 
 <script lang="ts">
 	import ChalkySticks from '@chalkysticks/sdk';
-	import Environment from '../Core/Environment';
 	import ViewBase from '../Core/Base';
 	import { Component, Prop, Ref, Watch } from 'vue-property-decorator';
 	import { beforeDestroy, mounted } from '@/Utility/Decorators';
@@ -44,15 +69,16 @@
 	@Component
 	export default class VideoTheater extends ViewBase {
 		/**
-		 * @type HTMLVideoElement
+		 * @type ChalkySticks.Model.Schedule
 		 */
-		@Ref('bumper')
-		public viewBumper!: HTMLVideoElement;
+		protected get currentVideo(): ChalkySticks.Model.Schedule {
+			return this.isUsingModel ? this.scheduleModel : this.scheduleCollection.getCurrentVideo();
+		}
 
 		/**
 		 * @return boolean
 		 */
-		public get isUsingModel(): boolean {
+		protected get isUsingModel(): boolean {
 			return !!this.scheduleModel && !!this.scheduleModel.id;
 		}
 
@@ -61,38 +87,37 @@
 		 *
 		 * @return boolean
 		 */
-		public get isUsingSchedule(): boolean {
+		protected get isUsingSchedule(): boolean {
 			return !this.isUsingModel && !!this.scheduleCollection && this.scheduleCollection.length > 0;
 		}
 
 		/**
-		 * Show YouTube controls
+		 * @return boolean
+		 */
+		protected get isVideoFromFacebook(): boolean {
+			return this.currentVideo?.getEmbedUrl().includes('facebook');
+		}
+
+		/**
+		 * @return boolean
+		 */
+		protected get isVideoFromYouTube(): boolean {
+			return this.currentVideo?.getEmbedUrl().includes('youtube');
+		}
+
+		/**
+		 * @type HTMLVideoElement
+		 */
+		@Ref('bumper')
+		public viewBumper!: HTMLVideoElement;
+
+		/**
+		 * Show video controls
 		 *
 		 * @type boolean
 		 */
 		@Prop({ default: false })
 		public allowControl!: boolean;
-
-		/**
-		 * @type YTPlayer
-		 */
-		public api: any;
-
-		/**
-		 * @type boolean
-		 */
-		public autoplay: boolean = true;
-
-		/**
-		 * @type string[]
-		 */
-		public bindings: string[] = [
-			'Handle_OnInterval',
-			'Handle_OnPlayerStateChange',
-			'Handle_OnPlayerReady',
-			'Handle_OnVisibilityChange',
-			'Handle_OnYouTubeReady',
-		];
 
 		/**
 		 * @type string
@@ -101,39 +126,10 @@
 		public channel!: string;
 
 		/**
-		 * @type number
-		 */
-		public currentTime: number = 0;
-
-		/**
-		 * If we run out of videos or get an unresolvable error, show this video
-		 *
-		 * @type string
-		 */
-		public defaultVideoUrl: string = 'https://www.youtube.com/watch?v=5dKlZ8DYUpA';
-
-		/**
-		 * Duration of the video
-		 *
-		 * @type number
-		 */
-		public duration: number = 0;
-
-		/**
-		 * @type boolean
-		 */
-		public isPlaying: boolean = false;
-
-		/**
 		 * @type boolean
 		 */
 		@Prop({ default: true })
 		public mute!: boolean;
-
-		/**
-		 * @type string
-		 */
-		public playerId: string = Math.random().toString(16).substr(2, 8);
 
 		/**
 		 * @type ChalkySticks.Collection.Schedule
@@ -156,14 +152,16 @@
 		public scheduleModel!: ChalkySticks.Model.Schedule;
 
 		/**
-		 * @type string
+		 * @type string[]
 		 */
-		public url: string = '';
+		public bindings: string[] = ['Handle_OnPlayerEnded', 'Handle_OnPlayerError', 'Handle_OnVisibilityChange'];
 
 		/**
-		 * @type ReturnType<typeof setInterval>
+		 * If we run out of videos or get an unresolvable error, show this video
+		 *
+		 * @type string
 		 */
-		protected interval: any = 0;
+		protected defaultVideoUrl: string = 'https://www.youtube.com/watch?v=5dKlZ8DYUpA';
 
 		/**
 		 * @type boolean
@@ -171,16 +169,14 @@
 		protected showBumper: boolean = false;
 
 		/**
-		 * @param object options
-		 **/
-		constructor(options: Record<string, any> = {}) {
-			super(options);
+		 * @type boolean
+		 */
+		protected startTime: number = 0;
 
-			// Embed script
-			if (this.requiresScript()) {
-				this.embedScript();
-			}
-		}
+		/**
+		 * @type string
+		 */
+		protected url: string = '';
 
 		/**
 		 * @return void
@@ -188,7 +184,6 @@
 		@mounted
 		public attachEvents(): void {
 			document.addEventListener('visibilitychange', this.Handle_OnVisibilityChange);
-			this.interval = setInterval(this.Handle_OnInterval, 250);
 		}
 
 		/**
@@ -197,13 +192,7 @@
 		@beforeDestroy
 		public detachEvents(): void {
 			document.removeEventListener('visibilitychange', this.Handle_OnVisibilityChange);
-
-			clearInterval(this.interval);
-			this.interval = 0;
 		}
-
-		// region: Actions
-		// ---------------------------------------------------------------------------
 
 		/**
 		 * @return Promise<void>
@@ -220,56 +209,6 @@
 				this.setBySchedule(this.scheduleCollection);
 			} else {
 				this.setByGame(this.channel);
-			}
-		}
-
-		/**
-		 * @param string code
-		 * @param number time
-		 * @return void
-		 */
-		public createPlayer(code: string, time: number = 0) {
-			// YT not loaded
-			if (!ViewBase.window.YT || !ViewBase.window.YT.Player) {
-				setTimeout(() => {
-					this.createPlayer(code, time);
-				}, 250);
-
-				return;
-			}
-
-			try {
-				// If player already exists, change the video
-				if (this.api) {
-					this.api.loadVideoById({
-						startSeconds: time,
-						videoId: code,
-					});
-				} else {
-					this.api = new ViewBase.window.YT.Player(this.playerId, {
-						events: {
-							onError: () => this.Handle_OnPlayerError(),
-							onReady: (e: any) => this.Handle_OnPlayerReady(e),
-							onStateChange: (e: any) => this.Handle_OnPlayerStateChange(e),
-						},
-						playerVars: {
-							autoplay: this.autoplay,
-							cc_load_policy: 0,
-							controls: 0,
-							disablekb: 1,
-							iv_load_policy: 3,
-							loop: 0,
-							modestbranding: 1,
-							mute: this.mute,
-							playsinline: 1,
-							rel: 0,
-							start: time,
-						},
-						videoId: code,
-					});
-				}
-			} catch (e) {
-				console.warn('Tried to create a player but failed. We may have destroyed it early.', e);
 			}
 		}
 
@@ -291,20 +230,6 @@
 		/**
 		 * @return void
 		 */
-		public pause(): void {
-			this.api.pauseVideo();
-		}
-
-		/**
-		 * @return void
-		 */
-		public play(): void {
-			this.api.playVideo();
-		}
-
-		/**
-		 * @return void
-		 */
 		public playBumper(): void {
 			this.viewBumper.currentTime = 0;
 			this.viewBumper.play();
@@ -312,54 +237,16 @@
 		}
 
 		/**
-		 * @param number seconds
-		 * @return void
-		 */
-		public seekBackward(interval: number = 30): void {
-			const seconds: number = Math.max(0, this.currentTime - interval);
-			this.seekTo(seconds);
-		}
-
-		/**
-		 * @param number seconds
-		 * @return void
-		 */
-		public seekForward(interval: number = 30): void {
-			const seconds: number = Math.min(this.duration, this.currentTime + interval);
-			this.seekTo(seconds);
-		}
-
-		/**
-		 * @param number seconds
-		 * @return void
-		 */
-		public seekTo(seconds: number = 30): void {
-			try {
-				this.api.seekTo(seconds, true);
-			} catch (e) {
-				console.warn('Could not seek to', seconds);
-			}
-		}
-
-		/**
+		 * @param ChalkySticks.Collection.Schedule collection
 		 * @return void
 		 */
 		public seekToCurrentTime(collection: ChalkySticks.Collection.Schedule): void {
 			const model = collection.getCurrentVideo();
 			const time = ~~collection.getTimeForCurrentVideo() || 0;
 
-			this.seekTo(time);
-		}
-
-		/**
-		 * Pass a YouTube ID to the object
-		 *
-		 * @param string videoId
-		 * @param number time
-		 * @return void
-		 */
-		public setById(videoId: string, time: number = 0): void {
-			this.createPlayer(videoId, time);
+			// Order matters
+			this.url = model?.getEmbedUrl() || this.defaultVideoUrl;
+			this.startTime = time;
 		}
 
 		/**
@@ -412,57 +299,67 @@
 		 * @return void
 		 */
 		public setUrl(url: string, time: number = 0): void {
-			const videoId: string = this.parseVideoID(url);
-
-			this.createPlayer(videoId, time);
+			// Order matters
+			this.url = url;
+			this.startTime = time;
 		}
 
 		/**
 		 * @return void
 		 */
-		public toggle(): void {
-			if (this.isPlaying) {
-				this.pause();
-			} else {
-				this.play();
-			}
+		public stopBumper(): void {
+			this.showBumper = false;
 		}
-
-		/**
-		 * @return void
-		 */
-		public toggleMute(): void {
-			if (this.api.isMuted()) {
-				this.api.unMute();
-			} else {
-				this.api.mute();
-			}
-		}
-
-		// endregion: Actions
-
-		// region: Getters
-		// ---------------------------------------------------------------------------
-
-		/**
-		 * Check if we should be embedding the YT script
-		 *
-		 * @return boolean
-		 */
-		public requiresScript(): boolean {
-			return typeof window != 'undefined' && !(window as any).YT;
-		}
-
-		// endregion: Getters
 
 		// region: Event Handlers
 		// ---------------------------------------------------------------------------
 
 		/**
+		 * @return Promise<void>
+		 */
+		protected async Handle_OnBumperEnd(): Promise<void> {
+			this.stopBumper();
+		}
+
+		/**
+		 * @return Promise<void>
+		 */
+		protected async Handle_OnBumperStart(): Promise<void> {
+			if (!this.showBumper) {
+				this.playBumper();
+			}
+		}
+
+		/**
 		 * @return void
 		 */
-		protected Handle_OnBumperEnded(): void {
-			this.showBumper = false;
+		protected Handle_OnPlayerEnded(): void {
+			if (this.isUsingSchedule) {
+				setTimeout(() => {
+					this.setBySchedule(this.scheduleCollection);
+				}, 500);
+			}
+		}
+
+		/**
+		 * Flag and skip if we're using a schedule
+		 *
+		 * @return void
+		 */
+		protected Handle_OnPlayerError(): void {
+			if (this.isUsingSchedule) {
+				setTimeout(() => this.flagAndSkip());
+			}
+		}
+
+		/**
+		 * Autoplay once the player is loaded and ready
+		 *
+		 * @return void
+		 */
+		protected Handle_OnPlayerReady(): void {
+			// this.beginAutoplay();
+			// Autoplay is taken care of by the player
 		}
 
 		/**
@@ -489,92 +386,6 @@
 		/**
 		 * @return void
 		 */
-		protected Handle_OnInterval(): void {
-			try {
-				this.currentTime = this.api.getCurrentTime();
-				this.duration = this.api.getDuration(); // cache me
-			} catch (e) {
-				// console.log('VTYT Err', e);
-			}
-
-			const timeDifference = this.duration - this.currentTime;
-
-			// Show bumper in last second
-			if (timeDifference < 1 && timeDifference > 0 && !this.showBumper) {
-				this.playBumper();
-			}
-		}
-
-		/**
-		 * @return void
-		 */
-		protected Handle_OnPlayerEnded(): void {
-			if (this.isUsingSchedule) {
-				setTimeout(() => {
-					this.setBySchedule(this.scheduleCollection);
-				}, 500);
-			}
-
-			// Trigger end
-			this.dispatch('player:ended');
-		}
-
-		/**
-		 * @return void
-		 */
-		protected Handle_OnPlayerError(): void {
-			// Flag and skip if we're using a schedule
-			if (this.isUsingSchedule) {
-				setTimeout(() => this.flagAndSkip());
-			}
-
-			// Trigger error
-			this.dispatch('player:error');
-		}
-
-		/**
-		 * @return void
-		 */
-		protected Handle_OnPlayerReady(e: any): void {
-			if (this.autoplay) {
-				e.target.playVideo();
-			}
-
-			this.trigger('player:ready', {
-				duration: this.api.getDuration(),
-				url: this.api.getVideoUrl(),
-			});
-
-			// console.log('Duration', this.api.getDuration());
-			// console.log('Current Time', this.api.getCurrentTime());
-			// console.log('URL', this.api.getVideoUrl());
-		}
-
-		/**
-		 * YT.PlayerState.ENDED
-		 * YT.PlayerState.PLAYING
-		 * YT.PlayerState.PAUSED
-		 * YT.PlayerState.BUFFERING
-		 * YT.PlayerState.CUED
-		 *
-		 * @param Event e
-		 * @return void
-		 */
-		protected Handle_OnPlayerStateChange(e: any): void {
-			let state = e.data;
-
-			// Flag playing state
-			this.isPlaying = e.data == ViewBase.window.YT.PlayerState.PLAYING;
-
-			// Check if ended
-			if (e.data == ViewBase.window.YT.PlayerState.ENDED) {
-				this.Handle_OnPlayerEnded();
-			}
-		}
-
-		/**
-		 * @return void
-		 */
 		protected Handle_OnVisibilityChange(): void {
 			if (document.visibilityState === 'visible') {
 				if (this.isUsingSchedule) {
@@ -583,51 +394,7 @@
 			}
 		}
 
-		/**
-		 * @return void
-		 */
-		protected Handle_OnYouTubeReady(): void {
-			console.log('YouTube Ready');
-		}
-
 		// endregion: Event Handlers
-
-		// region: Helpers
-		// ---------------------------------------------------------------------------
-
-		/**
-		 * @return void
-		 */
-		protected embedScript(): void {
-			const tag = document.createElement('script');
-			tag.src = 'https://www.youtube.com/iframe_api';
-
-			const firstScriptTag = document.getElementsByTagName('script')[0];
-			firstScriptTag?.parentNode?.insertBefore(tag, firstScriptTag);
-
-			ViewBase.window.onYouTubeIframeAPIReady = () => {
-				return this.Handle_OnYouTubeReady();
-			};
-		}
-
-		/**
-		 * Parse out video URL
-		 *
-		 * @param string url
-		 * @return string
-		 */
-		protected parseVideoID(url: string): string {
-			const regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??(?:v=)?([^#\&\?]*).*/;
-			const match = url.match(regExp);
-
-			if (match && match[7].length == 11) {
-				return match[7];
-			}
-
-			return '';
-		}
-
-		// endregion: Helpers
 	}
 </script>
 

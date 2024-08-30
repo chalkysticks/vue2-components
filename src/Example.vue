@@ -444,7 +444,7 @@
 		@Prop({
 			default: () =>
 				new ChalkySticks.TV.Collection.Live({
-					baseUrl: ChalkySticks.Core.Constants.API_URL_DEV_V1,
+					baseUrl: ChalkySticks.Core.Constants.API_URL_V3,
 				}),
 		})
 		public liveScheduleCollection!: ChalkySticks.TV.Collection.Live;
@@ -506,8 +506,8 @@
 		 * @return void
 		 */
 		public mounted(): void {
-			console.log('Schedule Collection', this.scheduleCollection);
-			console.log('Venue Collection', this.venueCollection);
+			// console.log('Schedule Collection', this.scheduleCollection);
+			// console.log('Venue Collection', this.venueCollection);
 
 			// this.venueCollection.fetch();
 			this.liveScheduleCollection.fetch();
@@ -578,7 +578,7 @@
 		 * @return Promise<void>
 		 */
 		protected async Handle_OnMoveMap(position: IMapPosition): Promise<void> {
-			console.log('Map moved', position);
+			// console.log('Map moved', position);
 		}
 
 		/**
@@ -606,7 +606,7 @@
 			e.preventDefault();
 
 			// @ts-ignore
-			const value: string = e.submitter?.value;
+			const value = e.submitter?.value;
 
 			if (value === 'setLive') {
 				this.liveScheduleModel = this.liveScheduleCollection.at(0);

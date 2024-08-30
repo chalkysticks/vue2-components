@@ -39,6 +39,7 @@
 
 		figure {
 			display: inline-block;
+			max-width: 320px;
 			position: relative;
 			padding-bottom: 5em;
 			width: fit-content;
@@ -47,6 +48,8 @@
 		figure img {
 			border-radius: var(--rounded-corner);
 			display: block;
+			max-width: 100%;
+			width: 100%;
 		}
 
 		figcaption {
