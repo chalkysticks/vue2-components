@@ -1,4 +1,8 @@
-// @todo replace with actual objects
+interface BeforeInstallPromptEvent extends Event {
+	prompt: () => Promise<void>;
+	userChoice: Promise<{ outcome: 'accepted' | 'dismissed' }>;
+}
+
 interface IAuthResponse {
 	token?: string;
 	user?: any;

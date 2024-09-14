@@ -5,7 +5,6 @@
 <script lang="ts">
 	import ChalkySticks from '@chalkysticks/sdk';
 	import ViewBase from '../Core/Base';
-	import Environment from '../Core/Environment';
 	import { Component, Prop } from 'vue-property-decorator';
 
 	/**

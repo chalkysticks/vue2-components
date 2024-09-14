@@ -1,5 +1,5 @@
 <template>
-	<button class="button-login" name="btnLogin" type="submit">
+	<button class="chalky button-login" name="btnLogin" type="submit">
 		<i class="fa fa-user icon"></i>
 		<span>Login</span>
 	</button>
@@ -21,7 +21,7 @@
 </script>
 
 <style lang="scss">
-	.button-login {
+	.chalky.button-login {
 		// Not implemented
 	}
 </style>

@@ -1,5 +1,5 @@
 <template>
-	<section class="user-avatar">
+	<section class="chalky user-avatar">
 		<span class="notification badge rounded-pill bg-danger" v-if="notificataionCount">{{ notificataionCount }}</span>
 
 		<picture class="avatar" v-bind:class="'size-' + size">

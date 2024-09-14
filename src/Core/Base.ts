@@ -1,4 +1,4 @@
-import Environment from './Environment';
+import * as Environment from './Environment';
 import gsap from 'gsap';
 import { Component, Prop, Vue } from 'vue-property-decorator';
 

@@ -32,6 +32,9 @@ import TvVideoYouTube from './TV/Video/YouTube.vue';
 import TvTimeline from './TV/Timeline.vue';
 import TvVideoPreview from './TV/VideoPreview.vue';
 import TvVideoTheater from './TV/VideoTheater.vue';
+import UtilityForceLandscape from './Utility/ForceLandscape.vue';
+import UtilityPortraitOverlay from './Utility/PortraitOverlay.vue';
+import UtilityScrollToBegin from './Utility/ScrollToBegin.vue';
 import VenueCard from './Venue/Card.vue';
 import VenueList from './Venue/List.vue';
 import VenueMap from './Venue/Map.vue';
@@ -60,6 +63,9 @@ const components = {
 	TvVideoPreview,
 	TvVideoTheater,
 	TvVideoYouTube,
+	UtilityForceLandscape,
+	UtilityPortraitOverlay,
+	UtilityScrollToBegin,
 	VenueCard,
 	VenueList,
 	VenueMap,
@@ -125,6 +131,9 @@ export {
 	TvVideoPreview,
 	TvVideoTheater,
 	TvVideoYouTube,
+	UtilityForceLandscape,
+	UtilityPortraitOverlay,
+	UtilityScrollToBegin,
 	VenueCard,
 	VenueList,
 	VenueMap,

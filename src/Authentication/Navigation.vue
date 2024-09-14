@@ -24,7 +24,6 @@
 <script lang="ts">
 	import AuthenticationAuthPanel from './AuthPanel.vue';
 	import ChalkySticks from '@chalkysticks/sdk';
-	import Environment from '../Core/Environment';
 	import UserAvatar from '../User/Avatar.vue';
 	import ViewBase from '../Core/Base';
 	import { Component, Prop, Ref } from 'vue-property-decorator';
