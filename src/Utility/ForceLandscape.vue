@@ -7,7 +7,7 @@
 
 <script lang="ts">
 	import ChalkySticks from '@chalkysticks/sdk';
-	import * as Environment from '@/Core/Environment';
+	import * as Environment from '../Core/Environment';
 	import ViewBase from '../Core/Base';
 	import { Component } from 'vue-property-decorator';
 	import { waitForSwipeOnLandscape } from 'swipetobegin';
