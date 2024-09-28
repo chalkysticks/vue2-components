@@ -546,10 +546,22 @@
 			// console.log('Schedule Collection', this.scheduleCollection);
 			// console.log('Venue Collection', this.venueCollection);
 
+			// Fetch geolocation
+			setTimeout(() => {
+				ChalkySticks.Utility.Geolocation.getLocation();
+			}, 1000);
+
+			// ChalkySticks.Utility.Geolocation.watchLocation(undefined, undefined, {
+			// 	enableHighAccuracy: true,
+			// 	maximumAge: 0,
+			// 	timeout: 5000,
+			// });
+
 			// this.venueCollection.fetch();
 			this.liveScheduleCollection.fetch();
 			this.scheduleCollection.fetch();
 
+			// Listeners
 			window.addEventListener('hashchange', this.Handle_OnHashChange);
 		}
 

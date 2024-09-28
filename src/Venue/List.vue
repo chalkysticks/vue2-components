@@ -6,6 +6,7 @@
 				v-bind:key="venueModel.id"
 				v-bind:venueModel="venueModel"
 				v-for="venueModel in venueCollection"
+				v-on:click.native="Handle_OnClickVenue($event, venueModel)"
 			/>
 		</section>
 
@@ -23,10 +24,6 @@
 	import { Component, Prop } from 'vue-property-decorator';
 
 	/**
-	 * We can use the following modifiers as classes:
-	 *
-	 * size-sm
-	 *
 	 * @class VenueList
 	 * @package Venue
 	 * @project ChalkySticks SDK Vue2.0 Components
@@ -37,6 +34,19 @@
 		},
 	})
 	export default class VenueList extends ViewBase {
+		/**
+		 * Function names to bind to class, typically used for event handlers
+		 *
+		 * @type string[]
+		 */
+		public bindings: string[] = ['Handle_OnLocationChange'];
+
+		/**
+		 * @type number
+		 */
+		@Prop({ default: 10 })
+		public listSize: number;
+
 		/**
 		 * @type ChalkySticks/Collection/Venue
 		 */
@@ -53,13 +63,30 @@
 
 			// Set query parameters
 			this.venueCollection.setQueryParams({
-				limit: 5,
+				limit: this.listSize || this.venueCollection.limit,
 			});
 
 			// Check if we need to load data
 			if (!this.venueCollection.length) {
 				this.venueCollection.fetch();
 			}
+
+			// Attach events
+			this.attachEvents();
+		}
+
+		/**
+		 * @return void
+		 */
+		public attachEvents(): void {
+			ChalkySticks.Core.Event.Bus.on('location:change', this.Handle_OnLocationChange);
+		}
+
+		/**
+		 * @return void
+		 */
+		public detachEvents(): void {
+			ChalkySticks.Core.Event.Bus.off('location:change', this.Handle_OnLocationChange);
 		}
 
 		// region: Event Handlers
@@ -73,6 +100,8 @@
 			e.preventDefault();
 
 			this.venueCollection.fetchNext();
+
+			this.$emit('next');
 		}
 
 		/**
@@ -83,6 +112,34 @@
 			e.preventDefault();
 
 			this.venueCollection.fetchPrevious();
+
+			this.$emit('previous');
+		}
+
+		/**
+		 * @param PointerEvent e
+		 * @param ChalkySticks.Model.Venue venueModel
+		 * @return Promise<void>
+		 */
+		protected async Handle_OnClickVenue(e: PointerEvent, venueModel: ChalkySticks.Model.Venue): Promise<void> {
+			e.preventDefault();
+
+			this.$emit('venue:select', venueModel);
+		}
+
+		/**
+		 * @param MouseEvent e
+		 * @return Promise<void>
+		 */
+		protected async Handle_OnLocationChange(e: ChalkySticks.Core.Event.IDispatcherEvent<GeolocationPosition>): Promise<void> {
+			this.$store.dispatch('location/position', e.data);
+
+			this.venueCollection.setQueryParams({
+				lat: e.data.coords.latitude,
+				lon: e.data.coords.longitude,
+			});
+
+			this.venueCollection.fetch();
 		}
 
 		// endregion: Event Handlers

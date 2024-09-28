@@ -63,7 +63,7 @@
 				<span class="detail tag badge type-dark">Open Now</span>
 			</section>
 
-			<section class="distance">
+			<section class="distance" v-if="$store.getters['location/hasPosition']">
 				<svg width="16" height="16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 438.536 438.536">
 					<g>
 						<path
@@ -94,7 +94,13 @@
 		 * @return string
 		 */
 		public get distance(): string {
-			return '1.2';
+			const myLatitude = this.$store.getters['location/latitude'];
+			const myLongitude = this.$store.getters['location/longitude'];
+			const venueLatitude = this.venueModel.getLatitude();
+			const venueLongitude = this.venueModel.getLongitude();
+			const distance = ChalkySticks.Utility.Geolocation.distanceBetween(myLatitude, myLongitude, venueLatitude, venueLongitude);
+
+			return distance.toFixed(2);
 		}
 
 		/**

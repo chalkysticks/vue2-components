@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import authentication from './Module/Authentication';
+import location from './Module/Location';
 
 // Attach Vuex
 // -----------------------------------------------------------------------------
@@ -13,6 +14,7 @@ Vue.use(Vuex);
 const store = new Vuex.Store<any>({
 	modules: {
 		authentication,
+		location,
 	},
 	plugins: [],
 });
