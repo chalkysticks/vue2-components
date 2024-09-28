@@ -22,6 +22,7 @@
 	import VenueCard from './Card.vue';
 	import ViewBase from '../Core/Base';
 	import { Component, Prop } from 'vue-property-decorator';
+	import { created } from '../Utility/Decorators';
 
 	/**
 	 * @class VenueList
@@ -45,7 +46,7 @@
 		 * @type number
 		 */
 		@Prop({ default: 10 })
-		public listSize: number;
+		public listSize!: number;
 
 		/**
 		 * @type ChalkySticks/Collection/Venue
@@ -58,9 +59,8 @@
 		/**
 		 * @constructor
 		 */
-		constructor() {
-			super();
-
+		@created
+		public afterCreate() {
 			// Set query parameters
 			this.venueCollection.setQueryParams({
 				limit: this.listSize || this.venueCollection.limit,

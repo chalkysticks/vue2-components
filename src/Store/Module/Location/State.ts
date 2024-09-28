@@ -2,7 +2,7 @@
  * @type interface
  */
 export interface IStoreState {
-	position: GeolocationPosition;
+	position: GeolocationPosition | undefined;
 }
 
 /**
