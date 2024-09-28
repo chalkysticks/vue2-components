@@ -1,6 +1,17 @@
 <template>
 	<main class="styleguide theme-dark">
-		<section class="level-0">
+		<header>
+			<nav>
+				<a href="#authentication">Authentication</a>
+				<a href="#branding">Branding</a>
+				<a href="#tv">TV</a>
+				<a href="#utility">Utility</a>
+				<a href="#venues">Venues</a>
+				<a href="#wallet">Wallet</a>
+			</nav>
+		</header>
+
+		<section class="level-0" v-if="tab == 'utility'">
 			<header>
 				<h2>Utility</h2>
 			</header>
@@ -33,7 +44,7 @@
 			</section>
 		</section>
 
-		<section class="level-0">
+		<section class="level-0" v-if="tab == 'branding'">
 			<header>
 				<h2>Branding</h2>
 			</header>
@@ -103,7 +114,7 @@
 			</section>
 		</section>
 
-		<section class="level-0">
+		<section class="level-0" v-if="tab == 'authentication'">
 			<header>
 				<h2>Authentication</h2>
 			</header>
@@ -192,7 +203,7 @@
 			</section>
 		</section>
 
-		<section class="level-0">
+		<section class="level-0" v-if="tab == 'tv'">
 			<header>
 				<h2>Television</h2>
 			</header>
@@ -377,7 +388,7 @@
 			</section>
 		</section>
 
-		<section class="level-0">
+		<section class="level-0" v-if="tab == 'venues'">
 			<header>
 				<h2>Venues</h2>
 			</header>
@@ -426,7 +437,7 @@
 			</section>
 		</section>
 
-		<section class="level-0">
+		<section class="level-0" v-if="tab == 'wallet'">
 			<header>
 				<h2>Wallet</h2>
 			</header>
@@ -438,7 +449,7 @@
 	import AuthenticationAuthPanel from '@/Authentication/AuthPanel.vue';
 	import ChalkySticks from '@chalkysticks/sdk';
 	import ChalkyVideoTheater from '@/TV/TvVideoTheater.vue';
-	import { Component, Prop, Ref, Vue } from 'vue-property-decorator';
+	import { Component, Prop, Ref, Watch, Vue } from 'vue-property-decorator';
 	import { VideoTheaterChannel } from '@/TV/VideoTheater.vue';
 
 	@Component({
@@ -464,10 +475,7 @@
 		 * @type ChalkySticks/Model/Authentication
 		 */
 		@Prop({
-			default: () =>
-				new ChalkySticks.Model.Authentication(undefined, {
-					baseUrl: ChalkySticks.Core.Constants.API_URL_V1,
-				}),
+			default: () => ChalkySticks.Factory.Authentication.model(),
 		})
 		public authModel!: ChalkySticks.Model.Authentication;
 
@@ -475,10 +483,7 @@
 		 * @type ChalkySticks/TV/Collection/Live
 		 */
 		@Prop({
-			default: () =>
-				new ChalkySticks.TV.Collection.Live({
-					baseUrl: ChalkySticks.Core.Constants.API_URL_V3,
-				}),
+			default: () => ChalkySticks.Factory.Live.collection(),
 		})
 		public liveScheduleCollection!: ChalkySticks.TV.Collection.Live;
 
@@ -486,10 +491,7 @@
 		 * @type ChalkySticks/Model/Schedule
 		 */
 		@Prop({
-			default: () =>
-				new ChalkySticks.Model.Schedule({
-					baseUrl: ChalkySticks.Core.Constants.API_URL_V1,
-				}),
+			default: () => ChalkySticks.Factory.Schedule.model(),
 		})
 		public liveScheduleModel!: ChalkySticks.Model.Schedule;
 
@@ -497,10 +499,7 @@
 		 * @type ChalkySticks/Collection/Schedule
 		 */
 		@Prop({
-			default: () =>
-				new ChalkySticks.Collection.Schedule({
-					baseUrl: ChalkySticks.Core.Constants.API_URL_V1,
-				}),
+			default: () => ChalkySticks.Factory.Schedule.collection(),
 		})
 		public scheduleCollection!: ChalkySticks.Collection.Schedule;
 
@@ -508,10 +507,7 @@
 		 * @type ChalkySticks/Collection/Venue
 		 */
 		@Prop({
-			default: () =>
-				new ChalkySticks.Collection.Venue({
-					baseUrl: ChalkySticks.Core.Constants.API_URL_V1,
-				}),
+			default: () => ChalkySticks.Factory.Venue.collection(),
 		})
 		public venueCollection!: ChalkySticks.Collection.Venue;
 
@@ -536,33 +532,29 @@
 		protected mapZoom: number = 13;
 
 		/**
+		 * @type string
+		 */
+		protected tab: string = location.hash.substr(1) || 'branding';
+
+		/**
 		 * @return void
 		 */
 		public mounted(): void {
+			// Bindings
+			this.Handle_OnHashChange = this.Handle_OnHashChange.bind(this);
+
 			// console.log('Schedule Collection', this.scheduleCollection);
 			// console.log('Venue Collection', this.venueCollection);
 
 			// this.venueCollection.fetch();
 			this.liveScheduleCollection.fetch();
 			this.scheduleCollection.fetch();
+
+			window.addEventListener('hashchange', this.Handle_OnHashChange);
 		}
 
 		// region: Event Handlers
 		// ---------------------------------------------------------------------------
-
-		/**
-		 * @return Promise<void>
-		 */
-		protected async Handle_OnLoginError(): Promise<void> {
-			console.log('Login error');
-		}
-
-		/**
-		 * @return Promise<void>
-		 */
-		protected async Handle_OnLoginSuccess(): Promise<void> {
-			console.log('Login success');
-		}
 
 		/**
 		 * @param Event e
@@ -575,6 +567,14 @@
 			const gameType: string = target.value;
 
 			this.videoTheater.setByGame(gameType);
+		}
+
+		/**
+		 * @param Event e
+		 * @return Promise<void>
+		 */
+		protected async Handle_OnHashChange(e: Event): Promise<void> {
+			this.tab = location.hash.substr(1);
 		}
 
 		/**
@@ -604,6 +604,20 @@
 
 			// this.mapLongitude = 1;
 			this.mapZoom = 10;
+		}
+
+		/**
+		 * @return Promise<void>
+		 */
+		protected async Handle_OnLoginError(): Promise<void> {
+			console.log('Login error');
+		}
+
+		/**
+		 * @return Promise<void>
+		 */
+		protected async Handle_OnLoginSuccess(): Promise<void> {
+			console.log('Login success');
 		}
 
 		/**
@@ -658,8 +672,19 @@
 		-webkit-font-smoothing: antialiased;
 		font-family: Avenir, Helvetica, Arial, sans-serif;
 		margin: 0 auto;
+		min-height: 100vh;
+		overflow-x: hidden;
 		padding: 2rem;
 		text-align: left;
+
+		header > nav {
+			align-items: center;
+			display: flex;
+			gap: 1rem;
+			justify-content: space-around;
+			margin: 0 auto;
+			max-width: 800px;
+		}
 
 		.level-0 {
 			margin: 2rem 0;
