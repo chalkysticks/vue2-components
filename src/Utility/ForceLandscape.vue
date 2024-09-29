@@ -36,10 +36,16 @@
 
 <style lang="scss">
 	.utility-forcelandscape {
-		// Not implemented
+		height: 100vh;
+		left: 0;
+		position: fixed;
+		top: 0;
+		touch-action: manipulation; // Prevents double-tap zoom
+		width: 100vw;
 	}
 
 	// mk: Warning this is globalized
+	/*
 	.layout-primary {
 		height: 100vh;
 		left: 0;
@@ -48,4 +54,5 @@
 		touch-action: manipulation; // Prevents double-tap zoom
 		width: 100vw;
 	}
+	*/
 </style>
