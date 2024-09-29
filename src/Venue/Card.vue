@@ -140,7 +140,6 @@
 		border-radius: var(--rounded-corner-outer);
 		padding: 0.5rem;
 		position: relative;
-		max-width: 480px;
 
 		.title {
 			float: left;
@@ -207,6 +206,10 @@
 		.address {
 			clear: both;
 			margin-bottom: 1.5rem;
+		}
+
+		.description {
+			margin-top: 0.5rem;
 		}
 
 		.actions {
