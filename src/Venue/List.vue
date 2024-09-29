@@ -3,6 +3,7 @@
 		<section class="list">
 			<VenueCard
 				class="list-item type-minimal"
+				v-bind:class="{ 'state-selected': venueModel.id == selectedVenueId }"
 				v-bind:key="venueModel.id"
 				v-bind:venueModel="venueModel"
 				v-for="venueModel in venueCollection"
@@ -47,6 +48,12 @@
 		 */
 		@Prop({ default: 10 })
 		public listSize!: number;
+
+		/**
+		 * @type number
+		 */
+		@Prop({ default: 0 })
+		public selectedVenueId!: number;
 
 		/**
 		 * @type ChalkySticks/Collection/Venue
