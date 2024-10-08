@@ -107,6 +107,7 @@
 		background: var(--chalky-blue-4);
 		padding: 2rem;
 		text-align: center;
+		z-index: var(--chalky-utilityscreen-zindex);
 
 		header,
 		footer {

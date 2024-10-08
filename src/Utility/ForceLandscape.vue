@@ -42,6 +42,14 @@
 		top: 0;
 		touch-action: manipulation; // Prevents double-tap zoom
 		width: 100vw;
+		z-index: var(--chalky-utilityscreen-zindex);
+	}
+
+	// State
+	// ---------------------------------------------------------------------------
+
+	.state-fullscreen.fullscreen-ready .utility-forcelandscape {
+		display: none;
 	}
 
 	// mk: Warning this is globalized
