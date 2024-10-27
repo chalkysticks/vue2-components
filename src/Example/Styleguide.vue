@@ -366,7 +366,13 @@
 				</header>
 
 				<div>
-					<ChalkyTvVideoTheater channel="" ref="videoTheater" v-bind:allowControl="true" v-bind:scheduleModel="liveScheduleModel" />
+					<ChalkyTvVideoTheater
+						channel=""
+						ref="videoTheater"
+						v-bind:mute="muteVideo"
+						v-bind:allowControl="true"
+						v-bind:scheduleModel="liveScheduleModel"
+					/>
 
 					<form v-on:submit="Handle_OnSubmitVideoForm">
 						<select v-on:change="Handle_OnChangeTvChannel" v-model="activeChannel">
@@ -384,6 +390,11 @@
 						<button value="setLive">Set Live</button>
 						<button value="removeLive">Remove Live</button>
 					</form>
+
+					<section>
+						<button v-on:click="muteVideo = true">Mute</button>
+						<button v-on:click="muteVideo = false">Unmute</button>
+					</section>
 				</div>
 			</section>
 		</section>
@@ -530,6 +541,11 @@
 		 * @type number
 		 */
 		protected mapZoom: number = 13;
+
+		/**
+		 * @type boolean
+		 */
+		protected muteVideo: boolean = true;
 
 		/**
 		 * @type string

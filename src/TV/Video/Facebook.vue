@@ -42,6 +42,12 @@
 		public bindings: string[] = ['Handle_OnInterval'];
 
 		/**
+		 * @type boolean
+		 */
+		@Prop({ default: true })
+		public muted!: boolean;
+
+		/**
 		 * @return void
 		 */
 		@mounted
@@ -293,6 +299,18 @@
 		private Handle_OnFacebookReady(msg: any): void {
 			if (msg.type === 'video' && msg.id === this.playerId) {
 				this.resolvePlayerReady && this.resolvePlayerReady(msg.instance);
+			}
+		}
+
+		/**
+		 * @return Promise<void>
+		 */
+		@Watch('muted')
+		protected async Handle_OnChangeMute(): Promise<void> {
+			if (this.muted) {
+				this.mute();
+			} else {
+				this.unmute();
 			}
 		}
 	}

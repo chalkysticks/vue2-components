@@ -23,6 +23,12 @@
 		public bindings: string[] = ['Handle_OnInterval'];
 
 		/**
+		 * @type boolean
+		 */
+		@Prop({ default: true })
+		public muted!: boolean;
+
+		/**
 		 * @return void
 		 */
 		@mounted
@@ -199,6 +205,18 @@
 		 */
 		protected requiresScript(): boolean {
 			return typeof TVVideoShared.window != 'undefined' && !(TVVideoShared.window as any).YT;
+		}
+
+		/**
+		 * @return Promise<void>
+		 */
+		@Watch('muted')
+		protected async Handle_OnChangeMute(): Promise<void> {
+			if (this.muted) {
+				this.mute();
+			} else {
+				this.unmute();
+			}
 		}
 
 		/**
