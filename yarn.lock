@@ -1092,8 +1092,8 @@
     "@chalkysticks/sdk-core" "github:chalkysticks/sdk-core"
 
 "@chalkysticks/sdk-tv@github:chalkysticks/sdk-tv#v1":
-  version "1.7.3"
-  resolved "https://codeload.github.com/chalkysticks/sdk-tv/tar.gz/c88e50ba14a23430992a592c54e15a70bb28baf3"
+  version "1.8.0"
+  resolved "https://codeload.github.com/chalkysticks/sdk-tv/tar.gz/bf6ea78c00dcd05601bb5dd92a44148dedfcbfce"
   dependencies:
     "@chalkysticks/mrm-preset" "github:chalkysticks/mrm-preset"
     "@chalkysticks/sdk-core" "github:chalkysticks/sdk-core"
@@ -1113,8 +1113,8 @@
     "@chalkysticks/sdk-core" "github:chalkysticks/sdk-core"
 
 "@chalkysticks/sdk@github:chalkysticks/sdk":
-  version "1.20.7"
-  resolved "https://codeload.github.com/chalkysticks/sdk/tar.gz/286cfc817f69b0d26697b6588f038ebaab61c29e"
+  version "1.21.0"
+  resolved "https://codeload.github.com/chalkysticks/sdk/tar.gz/68e0da06852640ab6e54fabba4327fa105b5eedb"
   dependencies:
     "@chalkysticks/sdk-authentication" "github:chalkysticks/sdk-authentication"
     "@chalkysticks/sdk-core" "github:chalkysticks/sdk-core"
@@ -1426,11 +1426,11 @@
     "@types/node" "*"
 
 "@types/node@*":
-  version "22.7.5"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-22.7.5.tgz#cfde981727a7ab3611a481510b473ae54442b92b"
-  integrity sha512-jML7s2NAzMWc//QSJ1a3prpk78cOPchGvXJsC3C6R6PSMoooztvRVQEz89gmBTBY1SPMaqo5teB4uNHPdetShQ==
+  version "22.8.1"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-22.8.1.tgz#b39d4b98165e2ae792ce213f610c7c6108ccfa16"
+  integrity sha512-k6Gi8Yyo8EtrNtkHXutUu2corfDf9su95VYVP10aGYMMROM6SAItZi0w1XszA6RtWTHSVp5OeFof37w0IEqCQg==
   dependencies:
-    undici-types "~6.19.2"
+    undici-types "~6.19.8"
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.4"
@@ -3728,9 +3728,9 @@ fork-ts-checker-webpack-plugin@^6.4.0:
     tapable "^1.0.0"
 
 form-data@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/form-data/-/form-data-4.0.0.tgz#93919daeaf361ee529584b9b31664dc12c9fa452"
-  integrity sha512-ETEklSGi5t0QMZuiXoA/Q6vcnxcLQP5vdugSpuAyi6SVGi2clPPp+xgEhuMaHC+zGgn31Kd235W35f7Hykkaww==
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/form-data/-/form-data-4.0.1.tgz#ba1076daaaa5bfd7e99c1a6cb02aa0a5cff90d48"
+  integrity sha512-tzN8e4TX8+kkxGPK8D5u0FNmjPUjw3lwC9lSLxxoB/+GtsJG91CO8bSWy73APlgAZzZbXEYZJuxjkHH2w+Ezhw==
   dependencies:
     asynckit "^0.4.0"
     combined-stream "^1.0.8"
@@ -5679,8 +5679,8 @@ resolve@^1.10.0, resolve@^1.14.2:
     supports-preserve-symlinks-flag "^1.0.0"
 
 "restmc@git+https://github.com/mattkenefick/restmc.git":
-  version "0.14.2"
-  resolved "git+https://github.com/mattkenefick/restmc.git#54b2d3e360a0a1251621246ab4c61388e417feae"
+  version "0.15.0"
+  resolved "git+https://github.com/mattkenefick/restmc.git#ab447d375b02bd0887d08cfbf2b6ebf18d69ff9b"
   dependencies:
     "@types/node-fetch" "^2.5.7"
     axios "^0.21.4"
@@ -6374,7 +6374,7 @@ typescript@5.1.6:
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.1.6.tgz#02f8ac202b6dad2c0dd5e0913745b47a37998274"
   integrity sha512-zaWCozRZ6DLEWAWFrVDz1H6FVXzUSfTy5FUMWsQlU8Ym5JP9eO4xkTIROFCQvhQf61z6O/G6ugw3SgAnvvm+HA==
 
-undici-types@~6.19.2:
+undici-types@~6.19.8:
   version "6.19.8"
   resolved "https://registry.yarnpkg.com/undici-types/-/undici-types-6.19.8.tgz#35111c9d1437ab83a7cdc0abae2f26d88eda0a02"
   integrity sha512-ve2KP6f/JnbPBFyobGHuerC9g1FYGn/F8n1LWTwNxCEzd6IfqTwUQcNXgEtmmQ6DlRrC1hrSrBnCZPokRrDHjw==
