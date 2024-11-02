@@ -100,6 +100,8 @@
 			display: flex;
 			flex-direction: column;
 			gap: 0.5em;
+			position: relative;
+			z-index: 2;
 		}
 
 		.glass-panel {
@@ -125,6 +127,43 @@
 		.tags {
 			display: none;
 		}
+
+		.gallery {
+			position: relative;
+			z-index: 1;
+
+			picture {
+				display: block;
+				height: 100%;
+				overflow: hidden;
+				z-index: 1;
+
+				img {
+					filter: blur(1px);
+				}
+			}
+
+			&:after,
+			&:before {
+				background-color: var(--chalky-blue-4);
+				bottom: 0;
+				content: ' ';
+				left: 0;
+				opacity: 0.35;
+				position: absolute;
+				right: 0;
+				top: 0;
+				z-index: 1;
+			}
+
+			&:after {
+				background: linear-gradient(207deg, rgba(255, 0, 0, 0) 38%, rgba(255, 0, 0, 1) 100%);
+				// background: linear-gradient(207deg, var(--chalky-blue-4) 47%, var(--chalky-blue) 62%);
+				opacity: 0.4;
+				mix-blend-mode: soft-light;
+				z-index: 2;
+			}
+		}
 	}
 
 	// Variations
@@ -138,11 +177,16 @@
 			grid-area: 1 / 1;
 		}
 
+		.glass-panel {
+			background-color: transparent;
+		}
+
 		.content {
 			height: 100%;
 			justify-content: center;
 			margin: 0;
 			outline: 0;
+			text-shadow: 0 0 2px var(--chalky-blue-4);
 			width: 100%;
 
 			> * {
