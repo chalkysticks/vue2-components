@@ -133,7 +133,6 @@
 	.stacked > .tv-scheduleitem,
 	.tv-scheduleitem.stacked {
 		display: grid;
-		place-content: center;
 
 		> * {
 			grid-area: 1 / 1;
