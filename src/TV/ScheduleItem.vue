@@ -140,6 +140,8 @@
 
 				img {
 					filter: blur(1px);
+					height: 100%;
+					object-fit: cover;
 				}
 			}
 
