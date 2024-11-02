@@ -1,6 +1,16 @@
 <template>
 	<section class="chalky tv-scheduleitem">
-		<div class="glass-panel">
+		<div class="gallery">
+			<picture>
+				<img v-bind:src="thumbnailUrl" width="100%" />
+			</picture>
+		</div>
+
+		<div class="glass-panel content">
+			<div class="tags">
+				<div class="tag is-live" v-if="scheduleModel && scheduleModel.isLive()">Live</div>
+				<div class="tag game-type">{{ formattedGameType }}</div>
+			</div>
 			<h3 class="color-chalky-white title">{{ formattedTitle }}</h3>
 			<p class="color-chalky-grey subtitle">{{ formattedSubtitle }}</p>
 			<slot></slot>
@@ -23,6 +33,13 @@
 		/**
 		 * @return string
 		 */
+		private get formattedGameType(): string {
+			return this.scheduleModel ? this.scheduleModel.getMeta()?.game_type : 'Pool';
+		}
+
+		/**
+		 * @return string
+		 */
 		private get formattedSubtitle(): string {
 			return this.scheduleModel ? this.scheduleModel.getDescription() : this.subtitle;
 		}
@@ -32,6 +49,13 @@
 		 */
 		private get formattedTitle(): string {
 			return this.scheduleModel ? this.scheduleModel.getTitle() : this.title;
+		}
+
+		/**
+		 * @return string
+		 */
+		private get thumbnailUrl(): string {
+			return this.scheduleModel ? this.scheduleModel?.getThumbnail() : '';
 		}
 
 		/**
@@ -72,6 +96,12 @@
 		overflow: hidden;
 		position: relative;
 
+		.content {
+			display: flex;
+			flex-direction: column;
+			gap: 0.5em;
+		}
+
 		.glass-panel {
 			background-color: var(--chalky-blue-4-75); // for safari 14
 			// background-color: color-mix(in srgb, var(--chalky-blue-4) 75%, transparent);
@@ -87,8 +117,39 @@
 			width: calc(100% - 4px);
 		}
 
-		.title {
-			margin-bottom: 0.5rem;
+		.subtitle {
+			margin: 0;
+		}
+
+		.gallery,
+		.tags {
+			display: none;
+		}
+	}
+
+	// Variations
+	// -------------------------------------------------------------------------
+
+	.stacked > .tv-scheduleitem,
+	.tv-scheduleitem.stacked {
+		display: grid;
+		place-content: center;
+
+		> * {
+			grid-area: 1 / 1;
+		}
+
+		.content {
+			height: 100%;
+			justify-content: center;
+			margin: 0;
+			outline: 0;
+			width: 100%;
+
+			> * {
+				min-width: 200px;
+				width: 70%;
+			}
 		}
 	}
 
@@ -105,6 +166,13 @@
 
 	// State
 	// -------------------------------------------------------------------------
+
+	.show-image > .tv-scheduleitem .gallery,
+	.tv-scheduleitem.show-image .gallery,
+	.show-tags > .tv-scheduleitem .tags,
+	.tv-scheduleitem.show-tags .tags {
+		display: block;
+	}
 
 	// Active List + Active Item
 	.state-active .tv-scheduleitem.state-active .glass-panel {

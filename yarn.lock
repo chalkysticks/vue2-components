@@ -1057,8 +1057,8 @@
   resolved "https://codeload.github.com/chalkysticks/mrm-preset/tar.gz/ffb5de89f32263360d52934953a34fd823f0e841"
 
 "@chalkysticks/sass@github:chalkysticks/sass-theme":
-  version "1.9.6"
-  resolved "https://codeload.github.com/chalkysticks/sass-theme/tar.gz/7111ac31dd53037ca09d7ec52a1b86ba88d78a6a"
+  version "1.9.7"
+  resolved "https://codeload.github.com/chalkysticks/sass-theme/tar.gz/c443e17df83018a2adf7b7d55f46d3d80e006638"
   dependencies:
     bootstrap "^5.0.1"
 
@@ -1070,8 +1070,8 @@
     "@chalkysticks/sdk-core" "github:chalkysticks/sdk-core"
 
 "@chalkysticks/sdk-core@github:chalkysticks/sdk-core":
-  version "1.20.0"
-  resolved "https://codeload.github.com/chalkysticks/sdk-core/tar.gz/7f48151f72f9c2e74f2865ed4af54d4002bd3b25"
+  version "1.20.1"
+  resolved "https://codeload.github.com/chalkysticks/sdk-core/tar.gz/c7888b565c224f59a48575c931bed11a98615aca"
   dependencies:
     "@chalkysticks/mrm-preset" "github:chalkysticks/mrm-preset"
     "@types/googlemaps" "^3.43.3"
@@ -1113,8 +1113,8 @@
     "@chalkysticks/sdk-core" "github:chalkysticks/sdk-core"
 
 "@chalkysticks/sdk@github:chalkysticks/sdk":
-  version "1.21.0"
-  resolved "https://codeload.github.com/chalkysticks/sdk/tar.gz/68e0da06852640ab6e54fabba4327fa105b5eedb"
+  version "1.21.1"
+  resolved "https://codeload.github.com/chalkysticks/sdk/tar.gz/dfcaf9432e2a56c5202a023d9f2a6b7a8979899e"
   dependencies:
     "@chalkysticks/sdk-authentication" "github:chalkysticks/sdk-authentication"
     "@chalkysticks/sdk-core" "github:chalkysticks/sdk-core"
@@ -1426,9 +1426,9 @@
     "@types/node" "*"
 
 "@types/node@*":
-  version "22.8.1"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-22.8.1.tgz#b39d4b98165e2ae792ce213f610c7c6108ccfa16"
-  integrity sha512-k6Gi8Yyo8EtrNtkHXutUu2corfDf9su95VYVP10aGYMMROM6SAItZi0w1XszA6RtWTHSVp5OeFof37w0IEqCQg==
+  version "22.8.6"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-22.8.6.tgz#e8a0c0871623283d8b3ef7d7b9b1bfdfd3028e22"
+  integrity sha512-tosuJYKrIqjQIlVCM4PEGxOmyg3FCPa/fViuJChnGeEIhjA46oy8FMVoF9su1/v8PNs2a8Q0iFNyOx0uOF91nw==
   dependencies:
     undici-types "~6.19.8"
 

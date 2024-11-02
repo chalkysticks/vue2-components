@@ -276,34 +276,70 @@
 					<ChalkyTvNowPlaying v-bind:gameType="ChalkySticks.Enum.GameType.NineBall" />
 				</div>
 
+				<hr />
+
 				<div class="layout-horizontal">
 					<div class="icon-channel-10ball"></div>
-					<ChalkyTvNowPlaying v-bind:gameType="ChalkySticks.Enum.GameType.TenBall" />
+					<ChalkyTvNowPlaying class="show-tags" v-bind:gameType="ChalkySticks.Enum.GameType.TenBall" />
 				</div>
 
 				<div class="layout-horizontal">
 					<div class="icon-channel-1pocket"></div>
-					<ChalkyTvNowPlaying v-bind:gameType="ChalkySticks.Enum.GameType.OnePocket" />
+					<ChalkyTvNowPlaying class="show-tags" v-bind:gameType="ChalkySticks.Enum.GameType.OnePocket" />
 				</div>
 
 				<div class="layout-horizontal">
 					<div class="icon-channel-straight"></div>
-					<ChalkyTvNowPlaying v-bind:gameType="ChalkySticks.Enum.GameType.StraightPool" />
+					<ChalkyTvNowPlaying class="show-tags" v-bind:gameType="ChalkySticks.Enum.GameType.StraightPool" />
 				</div>
+
+				<hr />
 
 				<div class="layout-horizontal">
 					<div class="icon-channel-billiards"></div>
-					<ChalkyTvNowPlaying v-bind:gameType="ChalkySticks.Enum.GameType.Billiards" />
+					<ChalkyTvNowPlaying class="show-image show-tags" v-bind:gameType="ChalkySticks.Enum.GameType.Billiards" />
 				</div>
 
 				<div class="layout-horizontal">
 					<div class="icon-channel-trick"></div>
-					<ChalkyTvNowPlaying v-bind:gameType="ChalkySticks.Enum.GameType.TrickShots" />
+					<ChalkyTvNowPlaying class="show-image show-tags" v-bind:gameType="ChalkySticks.Enum.GameType.TrickShots" />
 				</div>
 
 				<div class="layout-horizontal">
 					<div class="icon-channel-snooker"></div>
-					<ChalkyTvNowPlaying v-bind:gameType="ChalkySticks.Enum.GameType.Snooker" />
+					<ChalkyTvNowPlaying class="show-image show-tags" v-bind:gameType="ChalkySticks.Enum.GameType.Snooker" />
+				</div>
+
+				<hr />
+
+				<div class="layout-horizontal">
+					<div class="icon-channel-all"></div>
+					<ChalkyTvNowPlaying class="show-image show-tags stacked" v-bind:scheduleCollection="scheduleCollection" />
+				</div>
+
+				<div class="layout-horizontal">
+					<div class="icon-channel-8ball"></div>
+					<ChalkyTvNowPlaying class="show-image show-tags stacked" v-bind:gameType="ChalkySticks.Enum.GameType.EightBall" />
+				</div>
+
+				<div class="layout-horizontal">
+					<div class="icon-channel-9ball"></div>
+					<ChalkyTvNowPlaying class="show-image show-tags stacked" v-bind:gameType="ChalkySticks.Enum.GameType.NineBall" />
+				</div>
+
+				<hr />
+
+				<div class="layout-horizontal">
+					<div class="icon-channel-9ball"></div>
+					<ChalkyTvNowPlaying class="show-image show-tags stacked" v-bind:gameType="ChalkySticks.Enum.GameType.NineBall">
+						<template v-slot:before>
+							<p>Before Slot</p>
+						</template>
+
+						<template v-slot:after>
+							<p>After Slot</p>
+						</template>
+					</ChalkyTvNowPlaying>
 				</div>
 			</section>
 
@@ -316,6 +352,20 @@
 
 				<div>
 					<ChalkyTvScheduleItem title="Shane van Boening vs Earl Strickland" subtitle="2018 9-ball" />
+				</div>
+			</section>
+
+			<hr />
+
+			<section class="level-1">
+				<header>
+					<h3>Schedule Item (with slot)</h3>
+				</header>
+
+				<div>
+					<ChalkyTvScheduleItem title="Shane van Boening vs Earl Strickland" subtitle="2018 9-ball">
+						<p>With Slot Content</p>
+					</ChalkyTvScheduleItem>
 				</div>
 			</section>
 
@@ -564,7 +614,7 @@
 
 			// Fetch geolocation
 			setTimeout(() => {
-				ChalkySticks.Utility.Geolocation.getLocation();
+				// ChalkySticks.Utility.Geolocation.getLocation();
 			}, 1000);
 
 			// ChalkySticks.Utility.Geolocation.watchLocation(undefined, undefined, {

@@ -5,9 +5,15 @@
 			'state-has-video': hasVideo,
 		}"
 	>
-		<ChalkyTvScheduleItem v-if="hasVideo" v-bind:scheduleModel="currentVideo" />
+		<slot name="before"></slot>
+
+		<ChalkyTvScheduleItem v-if="hasVideo" v-bind:scheduleModel="currentVideo">
+			<slot></slot>
+		</ChalkyTvScheduleItem>
 
 		<ChalkyTvScheduleItem v-else title="" subtitle="Nothing Playing" />
+
+		<slot name="after"></slot>
 	</section>
 </template>
 
