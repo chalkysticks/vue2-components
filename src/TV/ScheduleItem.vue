@@ -1,6 +1,6 @@
 <template>
 	<section class="chalky tv-scheduleitem">
-		<div class="gallery" v-if="title">
+		<div class="gallery">
 			<picture>
 				<source v-bind:srcset="thumbnailUrlMaxRes" type="image/jpeg" />
 				<img alt="YouTube Thumbnail" width="100%" v-bind:src="thumbnailUrlDefault" />
