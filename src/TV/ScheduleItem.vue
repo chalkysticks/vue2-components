@@ -1,8 +1,9 @@
 <template>
 	<section class="chalky tv-scheduleitem">
-		<div class="gallery">
+		<div class="gallery" v-if="title">
 			<picture>
-				<img v-bind:src="thumbnailUrl" width="100%" />
+				<source v-bind:srcset="thumbnailUrlMaxRes" type="image/jpeg" />
+				<img alt="YouTube Thumbnail" width="100%" v-bind:src="thumbnailUrlDefault" />
 			</picture>
 		</div>
 
@@ -54,7 +55,14 @@
 		/**
 		 * @return string
 		 */
-		private get thumbnailUrl(): string {
+		private get thumbnailUrlMaxRes(): string {
+			return this.scheduleModel ? this.scheduleModel?.getThumbnail('maxres') : '';
+		}
+
+		/**
+		 * @return string
+		 */
+		private get thumbnailUrlDefault(): string {
 			return this.scheduleModel ? this.scheduleModel?.getThumbnail() : '';
 		}
 
