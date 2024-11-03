@@ -38,8 +38,71 @@
 				<div>
 					<p>Lipsum dolor sit amet, consectetur adipiscing elit. Nullam nec dui nec nunc.</p>
 
+					<p class="small">Lipsum dolor sit amet, consectetur adipiscing elit. Nullam nec dui nec nunc.</p>
+
 					<small>Lipsum dolor sit amet, consectetur adipiscing elit. Nullam nec dui nec nunc.</small>
 				</div>
+			</section>
+
+			<section class="level-1">
+				<header>
+					<h3>Tags</h3>
+				</header>
+				<div>
+					<ul class="tags">
+						<li class="tag">Tag</li>
+						<li class="tag">Tag</li>
+						<li class="tag">Tag</li>
+					</ul>
+				</div>
+			</section>
+
+			<section class="level-1">
+				<header>
+					<h3>Buttons</h3>
+				</header>
+
+				<section>
+					<button class="control type-up">Up</button>
+					<button class="control type-down">Down</button>
+					<button class="control type-left">Left</button>
+					<button class="control type-right">Right</button>
+					<button class="control type-zoomin">Zoom In</button>
+					<button class="control type-zoomout">Zoom Out</button>
+					<button class="control type-location">Location</button>
+					<button class="control type-plus">Plus</button>
+					<button class="control type-list">List</button>
+					<button class="control type-minus">Minus</button>
+					<button class="control type-menu">Menu</button>
+					<button class="control type-close">Close</button>
+					<button class="control type-fullscreen">Fullscreen</button>
+					<button class="control type-save">Save</button>
+					<button class="control type-volumeoff">Volume Off</button>
+					<button class="control type-volumeon">Volume On</button>
+					<button class="control type-information">Information</button>
+					<button class="control type-speech">Speech</button>
+				</section>
+
+				<section class="push-top">
+					<button class="control theme-dark type-up">Up</button>
+					<button class="control theme-dark type-down">Down</button>
+					<button class="control theme-dark type-left">Left</button>
+					<button class="control theme-dark type-right">Right</button>
+					<button class="control theme-dark type-zoomin">Zoom In</button>
+					<button class="control theme-dark type-zoomout">Zoom Out</button>
+					<button class="control theme-dark type-location">Location</button>
+					<button class="control theme-dark type-plus">Plus</button>
+					<button class="control theme-dark type-list">List</button>
+					<button class="control theme-dark type-minus">Minus</button>
+					<button class="control theme-dark type-menu">Menu</button>
+					<button class="control theme-dark type-close">Close</button>
+					<button class="control theme-dark type-fullscreen">Fullscreen</button>
+					<button class="control theme-dark type-save">Save</button>
+					<button class="control theme-dark type-volumeoff">Volume Off</button>
+					<button class="control theme-dark type-volumeon">Volume On</button>
+					<button class="control theme-dark type-information">Information</button>
+					<button class="control theme-dark type-speech">Speech</button>
+				</section>
 			</section>
 		</section>
 
