@@ -2,6 +2,7 @@
 	<main class="styleguide theme-dark">
 		<header>
 			<nav>
+				<a href="#general">General</a>
 				<a href="#authentication">Authentication</a>
 				<a href="#branding">Branding</a>
 				<a href="#tv">TV</a>
@@ -10,6 +11,37 @@
 				<a href="#wallet">Wallet</a>
 			</nav>
 		</header>
+
+		<section class="level-0" v-if="tab == 'general'">
+			<header>
+				<h2>General</h2>
+			</header>
+
+			<section class="level-1">
+				<header>
+					<h3>Headings</h3>
+				</header>
+				<div>
+					<h1>Heading One</h1>
+					<h2>Heading Two</h2>
+					<h3>Heading Three</h3>
+					<h4>Heading Four</h4>
+					<h5>Heading Five</h5>
+					<h6>Heading Six</h6>
+				</div>
+			</section>
+
+			<section class="level-1">
+				<header>
+					<h3>Body</h3>
+				</header>
+				<div>
+					<p>Lipsum dolor sit amet, consectetur adipiscing elit. Nullam nec dui nec nunc.</p>
+
+					<small>Lipsum dolor sit amet, consectetur adipiscing elit. Nullam nec dui nec nunc.</small>
+				</div>
+			</section>
+		</section>
 
 		<section class="level-0" v-if="tab == 'utility'">
 			<header>
