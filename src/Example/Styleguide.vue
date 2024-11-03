@@ -467,6 +467,24 @@
 
 			<section class="level-1">
 				<header>
+					<h3>Venue List (Horizontal)</h3>
+
+					<p><small>@todo add location</small></p>
+				</header>
+				<div>
+					<ChalkyVenueList class="horizontal" v-bind:venueCollection="venueCollection">
+						<template v-slot:before-list>
+							<p>Before List</p>
+						</template>
+						<template v-slot:after-list>
+							<p>After List</p>
+						</template>
+					</ChalkyVenueList>
+				</div>
+			</section>
+
+			<section class="level-1">
+				<header>
 					<h3>Venue Card</h3>
 
 					<p>1. No model</p>

@@ -1,6 +1,7 @@
 <template>
 	<div class="chalky venue-list">
 		<section class="list">
+			<slot name="before-list"></slot>
 			<VenueCard
 				class="list-item type-minimal"
 				v-bind:class="{ 'state-selected': venueModel.id == selectedVenueId }"
@@ -9,12 +10,15 @@
 				v-for="venueModel in venueCollection"
 				v-on:click.native="Handle_OnClickVenue($event, venueModel)"
 			/>
+			<slot name="after-list"></slot>
 		</section>
 
-		<footer class="actions">
-			<button v-on:click="Handle_OnClickPrevious">Previous</button>
-			<button v-on:click="Handle_OnClickNext">Next</button>
-		</footer>
+		<slot name="actions">
+			<footer class="actions" v-if="includeActions">
+				<button v-on:click="Handle_OnClickPrevious">Previous</button>
+				<button v-on:click="Handle_OnClickNext">Next</button>
+			</footer>
+		</slot>
 	</div>
 </template>
 
@@ -42,6 +46,12 @@
 		 * @type string[]
 		 */
 		public bindings: string[] = ['Handle_OnLocationChange'];
+
+		/**
+		 * @type boolean
+		 */
+		@Prop({ default: false })
+		public includeActions!: boolean;
 
 		/**
 		 * @type number
@@ -189,6 +199,77 @@
 			button {
 				flex: 1;
 			}
+		}
+	}
+
+	// Variations
+	// ---------------------------------------------------------------------------
+
+	.chalky.venue-list.horizontal {
+		.list {
+			-webkit-overflow-scrolling: touch;
+			align-items: center;
+			background-color: transparent;
+			display: flex;
+			gap: 0.5em;
+			overflow-x: auto;
+			padding: 0 var(--padding);
+			scrollbar-width: thin;
+
+			> * {
+				margin-bottom: 0;
+
+				&::after {
+					display: none;
+				}
+			}
+		}
+
+		.venue-card {
+			background: transparent;
+			display: flex;
+			flex-direction: column;
+			flex: 0 0 auto;
+			grid-template-columns: 1fr;
+			margin: 0;
+			white-space: nowrap;
+			width: 150px;
+
+			.gallery {
+				background-color: transparent;
+				margin: 0;
+
+				picture {
+					width: 100%;
+				}
+			}
+
+			.content {
+				background: transparent;
+				padding: 0;
+			}
+
+			.title {
+				padding: 0.5rem 0;
+
+				.name {
+					color: var(--chalky-grey-2);
+					font-size: var(--font-size-x-small);
+					overflow: hidden;
+					text-overflow: ellipsis;
+				}
+			}
+
+			.address,
+			.details,
+			.description,
+			.actions {
+				display: none;
+			}
+		}
+
+		.actions {
+			display: none;
 		}
 	}
 </style>
