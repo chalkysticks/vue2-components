@@ -125,6 +125,11 @@
 			pointer-events: none;
 			transition: background-color 0.2s, outline 0.2s;
 			width: calc(100% - 4px);
+
+			a,
+			button {
+				pointer-events: auto;
+			}
 		}
 
 		.subtitle {
@@ -160,6 +165,7 @@
 				content: ' ';
 				left: 0;
 				opacity: 0.35;
+				pointer-events: none;
 				position: absolute;
 				right: 0;
 				top: 0;
