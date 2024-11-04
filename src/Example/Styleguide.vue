@@ -157,6 +157,11 @@
 					</dl>
 				</header>
 				<div>
+					<ChalkyBrandingBadge size="xs" mode="deep" />
+					<ChalkyBrandingBadge size="xs" mode="dark" />
+					<ChalkyBrandingBadge size="xs" mode="light" />
+				</div>
+				<div>
 					<ChalkyBrandingBadge size="sm" mode="deep" />
 					<ChalkyBrandingBadge size="sm" mode="dark" />
 					<ChalkyBrandingBadge size="sm" mode="light" />
@@ -189,6 +194,10 @@
 						<dd>dark, light</dd>
 					</dl>
 				</header>
+				<div class="d-flex">
+					<ChalkyBrandingStandard class="background-chalky-white p-3" mode="light" size="xs" />
+					<ChalkyBrandingStandard class="background-chalky-blue p-3" mode="dark" size="xs" />
+				</div>
 				<div class="d-flex">
 					<ChalkyBrandingStandard class="background-chalky-white p-3" mode="light" />
 					<ChalkyBrandingStandard class="background-chalky-blue p-3" mode="dark" />
