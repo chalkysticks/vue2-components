@@ -225,6 +225,28 @@
 
 			<section class="level-1">
 				<header>
+					<h3>Navigation</h3>
+					<p>
+						<strong>Logged In:</strong>
+						&nbsp;
+						<span>{{ $store.getters['authentication/authenticated'] }}</span>
+					</p>
+				</header>
+				<div>
+					<div>
+						<h4>Icon</h4>
+						<ChalkyAuthenticationNavigation v-bind:authModel="authModel" />
+					</div>
+
+					<div>
+						<h4>Button</h4>
+						<ChalkyAuthenticationNavigation v-bind:authModel="authModel" v-bind:useButton="true" />
+					</div>
+				</div>
+			</section>
+
+			<section class="level-1">
+				<header>
 					<h3>Standard Login</h3>
 					<p>
 						<strong>Logged In:</strong>

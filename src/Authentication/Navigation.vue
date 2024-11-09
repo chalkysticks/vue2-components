@@ -1,9 +1,20 @@
 <template>
 	<div class="chalky authentication-navigation" v-bind:class="{ 'state-logged-in': store.getters['authentication/authenticated'] }">
-		<!-- When we're logged out -->
-		<section class="logged-out">
+		<!-- When we're logged out (using buttons) -->
+		<section class="logged-out" v-if="useButton">
 			<button class="type-light" v-on:click="Handle_OnClickSignIn">
 				<span>Sign In</span>
+			</button>
+		</section>
+
+		<!-- When we're logged out (using avatar icon) -->
+		<section class="logged-out" v-else>
+			<button class="icon-only" v-on:click="Handle_OnClickSignIn">
+				<picture class="avatar size-sm">
+					<img src="~@chalkysticks/sass/build/asset/image/icon/user-logged-out.svg" />
+
+					<!-- <img alt="User Avatar" v-bind:src="IconUserLoggedOut" /> -->
+				</picture>
 			</button>
 		</section>
 
@@ -70,6 +81,12 @@
 		 * @return boolean
 		 */
 		public showLogin: boolean = false;
+
+		/**
+		 * @return boolean
+		 */
+		@Prop({ default: false })
+		public useButton!: boolean;
 
 		/**
 		 * @return void
