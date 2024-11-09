@@ -11,9 +11,7 @@
 		<section class="logged-out" v-else>
 			<button class="icon-only" v-on:click="Handle_OnClickSignIn">
 				<picture class="avatar" v-bind:class="'size-' + size">
-					<img src="~@chalkysticks/sass/build/asset/image/icon/user-logged-out.svg" />
-
-					<!-- <img alt="User Avatar" v-bind:src="IconUserLoggedOut" /> -->
+					<img class="filter-invert" src="~@chalkysticks/sass/build/asset/image/icon/user-logged-out.svg" />
 				</picture>
 			</button>
 		</section>
