@@ -234,8 +234,13 @@
 				</header>
 				<div>
 					<div>
-						<h4>Icon</h4>
+						<h4>Icon (default: xs)</h4>
 						<ChalkyAuthenticationNavigation v-bind:authModel="authModel" />
+					</div>
+
+					<div>
+						<h4>Icon (size: lg)</h4>
+						<ChalkyAuthenticationNavigation size="lg" v-bind:authModel="authModel" />
 					</div>
 
 					<div>

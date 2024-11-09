@@ -10,7 +10,7 @@
 		<!-- When we're logged out (using avatar icon) -->
 		<section class="logged-out" v-else>
 			<button class="icon-only" v-on:click="Handle_OnClickSignIn">
-				<picture class="avatar size-sm">
+				<picture class="avatar" v-bind:class="'size-' + size">
 					<img src="~@chalkysticks/sass/build/asset/image/icon/user-logged-out.svg" />
 
 					<!-- <img alt="User Avatar" v-bind:src="IconUserLoggedOut" /> -->
@@ -81,6 +81,12 @@
 		 * @return boolean
 		 */
 		public showLogin: boolean = false;
+
+		/**
+		 * @return string
+		 */
+		@Prop({ default: 'xs' })
+		public size!: string;
 
 		/**
 		 * @return boolean
