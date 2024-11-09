@@ -165,7 +165,8 @@
 
 <style lang="scss">
 	.chalky.venue-list {
-		--thumbnail-size: 100px;
+		--thumbnail-size: 150px;
+
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
@@ -211,7 +212,7 @@
 			align-items: center;
 			background-color: transparent;
 			display: flex;
-			gap: 0.5em;
+			gap: 0.75em;
 			overflow-x: auto;
 			padding: 0 var(--padding);
 			scrollbar-width: thin;
@@ -233,7 +234,7 @@
 			grid-template-columns: 1fr;
 			margin: 0;
 			white-space: nowrap;
-			width: 150px;
+			width: calc(var(--thumbnail-size) * 1.5);
 
 			.gallery {
 				background-color: transparent;
@@ -250,11 +251,12 @@
 			}
 
 			.title {
+				margin-bottom: 0.5rem;
 				padding: 0.5rem 0;
 
 				.name {
 					color: var(--chalky-grey-2);
-					font-size: var(--font-size-x-small);
+					font-size: var(--font-size-small);
 					overflow: hidden;
 					text-overflow: ellipsis;
 				}
