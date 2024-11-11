@@ -1,10 +1,10 @@
 <template>
-	<div class="chalky authentication-authpanel" v-on:click="Handle_OnClick">
+	<div class="chalky authentication-authpanel shadow xl" v-on:click="Handle_OnClick">
 		<header class="text-center">
-			<BrandingBadge size="lg" mode="light" />
+			<BrandingBadge size="lg" mode="dark" />
 		</header>
 
-		<section>
+		<section class="login-container">
 			<AuthenticationBasicLogin v-bind:authModel="authModel" v-if="includeBasic" />
 			<hr v-if="includeBasic && includeSocial" />
 			<AuthenticationSocialLogin v-bind:authModel="authModel" v-if="includeSocial" />
@@ -126,34 +126,42 @@
 		--chalky-authpanel-padding: 2rem;
 		--chalky-authpanel-graphic-width: 400px;
 
-		background: linear-gradient(#fdfdfd, #f9f9f9);
+		background: var(--chalky-blue);
 		border-radius: var(--border-radius-inner);
-		box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.02), 0 6.7px 5.3px rgba(0, 0, 0, 0.028), 0 12.5px 10px rgba(0, 0, 0, 0.035),
-			0 22.3px 17.9px rgba(0, 0, 0, 0.042), 0 41.8px 33.4px rgba(0, 0, 0, 0.05), 0 100px 80px rgba(0, 0, 0, 0.07);
 		color: var(--chalky-blue);
+		display: flex;
+		flex-direction: row;
 		margin: 0 auto;
-		padding: 1rem var(--chalky-authpanel-padding) var(--chalky-authpanel-padding) var(--chalky-authpanel-padding);
-		position: relative;
 		outline: 6px solid rgba(255, 255, 255, 0.15);
-		padding-left: calc(var(--chalky-authpanel-graphic-width) + var(--chalky-authpanel-padding));
+		position: relative;
 		width: calc(var(--chalky-authpanel-graphic-width) + var(--chalky-authpanel-content-width));
+		z-index: var(--z-modal-mid);
 
-		&:before {
+		header {
+			align-items: center;
 			background: url('../Assets/image/graphic/sf-00.png') center center / cover no-repeat;
-			border-top-left-radius: var(--border-radius-inner);
 			border-bottom-left-radius: var(--border-radius-inner);
+			border-top-left-radius: var(--border-radius-inner);
 			content: ' ';
-			height: 100%;
-			left: 0;
-			position: absolute;
-			top: 0;
+			display: flex;
+			justify-content: center;
+			position: relative;
 			width: var(--chalky-authpanel-graphic-width);
+
+			&::before {
+				background: rgba(0, 0, 0, 0.75);
+				content: ' ';
+				height: 100%;
+				left: 0;
+				position: absolute;
+				top: 0;
+				width: 100%;
+			}
 		}
 
-		> header {
-			.chalky.branding-badge {
-				background-color: transparent;
-			}
+		.login-container {
+			flex: 1;
+			padding: 2rem;
 		}
 
 		hr {
@@ -165,6 +173,27 @@
 
 		.chalky.authentication-basiclogin button {
 			width: 100%;
+		}
+	}
+
+	// Media Queries
+	// ---------------------------------------------------------------------------
+
+	@media only screen and (orientation: portrait) {
+		.chalky.authentication-authpanel {
+			flex-direction: column;
+			width: 90%;
+
+			header {
+				border-bottom-left-radius: 0;
+				border-bottom-right-radius: 0;
+				height: 200px;
+				width: 100%;
+			}
+
+			.login-container {
+				padding: 1rem;
+			}
 		}
 	}
 
@@ -184,7 +213,7 @@
 		left: 50%;
 		position: fixed;
 		top: 50%;
-		transform: translate(-50%, -50%);
+		transform: translate(-50%, -50%) !important;
 		z-index: 999;
 	}
 </style>

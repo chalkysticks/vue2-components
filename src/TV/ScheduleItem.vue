@@ -2,8 +2,11 @@
 	<section class="chalky tv-scheduleitem">
 		<div class="gallery">
 			<picture>
-				<source v-bind:srcset="thumbnailUrlMaxRes" type="image/jpeg" />
-				<img alt="YouTube Thumbnail" width="100%" v-bind:src="thumbnailUrlDefault" />
+				<img v-if="activeImageUrl" v-bind:src="activeImageUrl" width="100%" />
+				<img v-else-if="this.imageBroken" src="../Assets/image/tv/no-thumbnail-available.jpg" width="100%" />
+				<div v-else class="loading-container">
+					<img class="filter-invert" src="~@chalkysticks/sass/build/asset/image/spacer.gif" />
+				</div>
 			</picture>
 		</div>
 
@@ -22,7 +25,8 @@
 <script lang="ts">
 	import ChalkySticks from '@chalkysticks/sdk';
 	import ViewBase from '../Core/Base';
-	import { Component, Prop } from 'vue-property-decorator';
+	import { Component, Prop, Watch } from 'vue-property-decorator';
+	import { mounted } from '@/Utility/Decorators';
 
 	/**
 	 * @author ChalkySticks LLC
@@ -67,6 +71,13 @@
 		}
 
 		/**
+		 * @return string[]
+		 */
+		private get urlList(): string[] {
+			return [this.thumbnailUrlMaxRes, this.thumbnailUrlDefault].filter((url) => !!url);
+		}
+
+		/**
 		 * @type ChalkySticks.Enum.GameType
 		 */
 		@Prop({
@@ -95,6 +106,64 @@
 		 */
 		@Prop()
 		public title!: string;
+
+		/**
+		 * @return string
+		 */
+		protected activeImageUrl!: string;
+
+		/**
+		 * @return boolean
+		 */
+		protected imageBroken: boolean = false;
+
+		/**
+		 * @return Promise<void>
+		 */
+		@mounted
+		protected async loadBestImage(): Promise<void> {
+			if (!this.urlList.length) return;
+
+			for (let i = 0; i < this.urlList.length; i++) {
+				const imageUrl = this.urlList[i];
+				if (!imageUrl) continue;
+
+				try {
+					await new Promise<void>((resolve, reject) => {
+						const img = new Image();
+						img.onload = () => {
+							if (img.width === 120) {
+								reject();
+								return;
+							}
+
+							this.activeImageUrl = imageUrl;
+							this.$forceUpdate();
+							resolve();
+						};
+						img.onerror = () => reject();
+						img.src = imageUrl;
+					});
+
+					return;
+				} catch {
+					console.log('fetch failed for', imageUrl);
+					continue;
+				}
+			}
+
+			if (!this.activeImageUrl) {
+				this.imageBroken = true;
+			}
+		}
+
+		/**
+		 * @return void
+		 */
+		@Watch('urlList', { immediate: true })
+		protected onUrlListChange(): void {
+			this.loadBestImage();
+		}
 	}
 </script>
 
@@ -150,12 +219,14 @@
 				height: 100%;
 				overflow: hidden;
 				z-index: 1;
+			}
 
-				img {
-					filter: blur(1px);
-					height: 100%;
-					object-fit: cover;
-				}
+			picture img {
+				aspect-ratio: 16 / 9;
+				background: transparent;
+				filter: blur(1px);
+				object-fit: cover;
+				width: 100%;
 			}
 
 			&:after,

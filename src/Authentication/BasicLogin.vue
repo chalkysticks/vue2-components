@@ -60,12 +60,9 @@
 			</fieldset>
 
 			<footer>
-				<p class="text-center">
-					Don't have an account?
-					<a href="/sign-up" title="Sign up">
-						<span>Sign up.</span>
-					</a>
-				</p>
+				<a href="/sign-up" title="Sign up">
+					<span>Sign up.</span>
+				</a>
 			</footer>
 		</form>
 	</div>
@@ -213,6 +210,11 @@
 
 		.action-container {
 			height: 50px;
+			text-align: center;
+
+			button {
+				max-width: 175px;
+			}
 		}
 
 		footer {

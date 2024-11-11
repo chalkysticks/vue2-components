@@ -82,6 +82,6 @@
 
 <style lang="scss">
 	.tv-nowplaying {
-		// Not implemented
+		width: 100%;
 	}
 </style>
