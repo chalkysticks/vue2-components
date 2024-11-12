@@ -281,6 +281,10 @@
 				width: 70%;
 			}
 		}
+
+		.gallery picture img {
+			height: 100%;
+		}
 	}
 
 	// User Interaction
