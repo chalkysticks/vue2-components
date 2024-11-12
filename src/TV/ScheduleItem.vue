@@ -286,11 +286,13 @@
 	// User Interaction
 	// -------------------------------------------------------------------------
 
-	.tv-scheduleitem:hover {
-		.glass-panel {
-			background-color: var(--chalky-blue-2-75); // safari 14
-			// background-color: color-mix(in srgb, var(--chalky-blue-2) 80%, transparent);
-			outline: 2px solid var(--chalky-blue-3);
+	@media (hover: hover) {
+		.tv-scheduleitem:hover {
+			.glass-panel {
+				background-color: var(--chalky-blue-2-75); // safari 14
+				// background-color: color-mix(in srgb, var(--chalky-blue-2) 80%, transparent);
+				outline: 2px solid var(--chalky-blue-3);
+			}
 		}
 	}
 
