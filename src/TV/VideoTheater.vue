@@ -315,6 +315,8 @@
 		 */
 		protected async Handle_OnBumperEnd(): Promise<void> {
 			this.stopBumper();
+
+			this.$emit('bumper:end');
 		}
 
 		/**
@@ -324,6 +326,8 @@
 			if (!this.showBumper) {
 				this.playBumper();
 			}
+
+			this.$emit('bumper:start');
 		}
 
 		/**
@@ -335,6 +339,8 @@
 					this.setBySchedule(this.scheduleCollection);
 				}, 500);
 			}
+
+			this.$emit('player:ended');
 		}
 
 		/**
@@ -346,6 +352,8 @@
 			if (this.isUsingSchedule) {
 				setTimeout(() => this.flagAndSkip());
 			}
+
+			this.$emit('player:error');
 		}
 
 		/**
@@ -356,6 +364,8 @@
 		protected Handle_OnPlayerReady(): void {
 			// this.beginAutoplay();
 			// Autoplay is taken care of by the player
+
+			this.$emit('player:ready');
 		}
 
 		/**
@@ -377,6 +387,8 @@
 			else if (!newModel && this.isUsingSchedule) {
 				this.beginAutoplay();
 			}
+
+			this.$emit('schedule:change');
 		}
 
 		/**
@@ -388,6 +400,8 @@
 					this.seekToCurrentTime(this.scheduleCollection);
 				}
 			}
+
+			this.$emit('visibility:change');
 		}
 
 		// endregion: Event Handlers
