@@ -1,15 +1,6 @@
 <template>
 	<div class="chalky venue-card glass-panel" v-bind:class="'type-' + venueModel.getType()">
-		<section class="gallery">
-			<picture v-bind:key="index" v-for="(media, index) in venueModel.media">
-				<source v-bind:srcset="media.getUrl()" />
-				<img src="https://map.chalkysticks.com/image/backgrounds/no-photos-venue.jpg" alt="" />
-			</picture>
-
-			<picture v-if="venueModel.media.length == 0">
-				<img src="https://map.chalkysticks.com/image/backgrounds/no-photos-venue.jpg" alt="" />
-			</picture>
-		</section>
+		<VenueGallery v-bind:venueModel="venueModel" />
 
 		<section class="content" v-if="venueModel.getName()">
 			<section class="title">
@@ -80,6 +71,7 @@
 
 <script lang="ts">
 	import ChalkySticks from '@chalkysticks/sdk';
+	import VenueGallery from './Gallery.vue';
 	import ViewBase from '../Core/Base';
 	import { Component, Prop } from 'vue-property-decorator';
 
@@ -88,7 +80,11 @@
 	 * @package Venue
 	 * @project ChalkySticks SDK Vue2.0 Components
 	 */
-	@Component
+	@Component({
+		components: {
+			VenueGallery,
+		},
+	})
 	export default class VenueCard extends ViewBase {
 		/**
 		 * @return string
@@ -160,7 +156,7 @@
 			transform: translate(0, 2px);
 		}
 
-		.gallery {
+		.venue-gallery {
 			background-color: rgba(255, 255, 255, 0.75);
 			border-radius: var(--rounded-corner);
 			overflow: hidden;
@@ -187,7 +183,7 @@
 			}
 		}
 
-		.gallery + .content {
+		.venue-gallery + .content {
 			background: rgba(255, 255, 255, 0.75);
 			color: var(--chalky-blue);
 			padding: 1rem;
@@ -263,7 +259,7 @@
 		max-width: 100%;
 		padding: 0;
 
-		.gallery {
+		.venue-gallery {
 			align-items: center;
 			display: flex;
 			padding: 0;
@@ -307,12 +303,12 @@
 			}
 		}
 
-		.gallery,
+		.venue-gallery,
 		.content {
 			border-radius: 0;
 		}
 
-		.gallery {
+		.venue-gallery {
 			border-top-left-radius: var(--rounded-corner);
 			border-bottom-left-radius: var(--rounded-corner);
 		}

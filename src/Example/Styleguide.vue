@@ -587,12 +587,10 @@
 
 			<section class="level-1">
 				<header>
-					<h3>Venue List</h3>
-
-					<p><small>@todo add location</small></p>
+					<h3>Venue Gallery</h3>
 				</header>
-				<div>
-					<ChalkyVenueList v-bind:venueCollection="venueCollection" />
+				<div class="push-bottom">
+					<ChalkyVenueGallery v-bind:venueModel="venueCollection.at(0)" />
 				</div>
 			</section>
 
@@ -635,6 +633,7 @@
 				</header>
 				<div>
 					<ChalkyVenueMap
+						class="hide-streetview"
 						v-bind:venueCollection="venueCollection"
 						v-bind:latitude="mapLatitude"
 						v-bind:longitude="mapLongitude"
@@ -643,6 +642,17 @@
 						v-on:marker:click="Handle_OnClickMapMarker"
 						v-on:map:move="Handle_OnMoveMap"
 					/>
+				</div>
+			</section>
+
+			<section class="level-1">
+				<header>
+					<h3>Venue List</h3>
+
+					<p><small>@todo add location</small></p>
+				</header>
+				<div>
+					<ChalkyVenueList v-bind:venueCollection="venueCollection" />
 				</div>
 			</section>
 		</section>

@@ -414,4 +414,11 @@
 			// background: none !important;
 		}
 	}
+
+	// Variations
+	// ---------------------------------------------------------------------------
+
+	.chalky.venue-map.hide-streetview button[title*='Street View'] {
+		display: none;
+	}
 </style>

@@ -36,6 +36,7 @@ import UtilityForceLandscape from './Utility/ForceLandscape.vue';
 import UtilityPortraitOverlay from './Utility/PortraitOverlay.vue';
 import UtilityScrollToBegin from './Utility/ScrollToBegin.vue';
 import VenueCard from './Venue/Card.vue';
+import VenueGallery from './Venue/Gallery.vue';
 import VenueList from './Venue/List.vue';
 import VenueMap from './Venue/Map.vue';
 import ViewBase from './Core/Base';
@@ -67,6 +68,7 @@ const components = {
 	UtilityPortraitOverlay,
 	UtilityScrollToBegin,
 	VenueCard,
+	VenueGallery,
 	VenueList,
 	VenueMap,
 };
