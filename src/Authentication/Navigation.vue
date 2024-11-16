@@ -25,7 +25,9 @@
 
 		<!-- Helpers -->
 		<section class="utility" v-bind:class="{ 'd-none': !showLogin }">
-			<AuthenticationAuthPanel v-bind:authModel="authModel" class="type-modal" ref="authPanel" />
+			<ChalkyUtilityModal>
+				<AuthenticationAuthPanel v-bind:authModel="authModel" class="type-modal" ref="authPanel" />
+			</ChalkyUtilityModal>
 		</section>
 	</div>
 </template>

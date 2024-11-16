@@ -34,6 +34,7 @@ import TvTimeline from './TV/Timeline.vue';
 import TvVideoPreview from './TV/VideoPreview.vue';
 import TvVideoTheater from './TV/VideoTheater.vue';
 import UtilityForceLandscape from './Utility/ForceLandscape.vue';
+import UtilityModal from './Utility/Modal.vue';
 import UtilityPortraitOverlay from './Utility/PortraitOverlay.vue';
 import UtilityScrollToBegin from './Utility/ScrollToBegin.vue';
 import VenueCard from './Venue/Card.vue';
@@ -67,6 +68,7 @@ const components = {
 	TvVideoTheater,
 	TvVideoYouTube,
 	UtilityForceLandscape,
+	UtilityModal,
 	UtilityPortraitOverlay,
 	UtilityScrollToBegin,
 	VenueCard,

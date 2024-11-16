@@ -1,7 +1,7 @@
 <template>
 	<div class="chalky authentication-authpanel shadow xl" v-on:click="Handle_OnClick">
 		<header class="text-center">
-			<BrandingBadge size="lg" mode="dark" />
+			<BrandingBadge size="md" mode="dark" />
 		</header>
 
 		<section class="login-container">
@@ -132,7 +132,7 @@
 		display: flex;
 		flex-direction: row;
 		margin: 0 auto;
-		outline: 6px solid rgba(255, 255, 255, 0.15);
+		outline: 1px solid var(--chalky-grey-4);
 		position: relative;
 		width: calc(var(--chalky-authpanel-graphic-width) + var(--chalky-authpanel-content-width));
 		z-index: var(--z-modal-mid);
@@ -140,19 +140,21 @@
 		header {
 			align-items: center;
 			background: url('../Assets/image/graphic/sf-00.png') center center / cover no-repeat;
-			border-bottom-left-radius: var(--border-radius-inner);
+			border-top-right-radius: var(--border-radius-inner);
 			border-top-left-radius: var(--border-radius-inner);
 			content: ' ';
 			display: flex;
 			justify-content: center;
+			overflow: hidden;
 			position: relative;
 			width: var(--chalky-authpanel-graphic-width);
 
 			&::before {
-				background: rgba(0, 0, 0, 0.75);
+				background-color: var(--chalky-blue);
 				content: ' ';
 				height: 100%;
 				left: 0;
+				opacity: 0.75;
 				position: absolute;
 				top: 0;
 				width: 100%;

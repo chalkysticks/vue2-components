@@ -309,7 +309,7 @@
 			ChalkySticks.Core.Utility.Debounce.exec(
 				this.symbol,
 				() => {
-					if (!this.$refs.map || !mapRef?.$mapObject) {
+					if (!this.$refs.map || !(this.$refs.map as any)?.$mapObject) {
 						return;
 					}
 
