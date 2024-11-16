@@ -26,11 +26,11 @@
 		<!-- Helpers -->
 		<section class="utility">
 			<UtilityModal ref="authModal" v-bind:class="{ 'd-none': !shouldShowLogin }">
-				<AuthenticationAuthPanel v-bind:authModel="authModel" class="type-modal" ref="authPanel" />
+				<AuthenticationAuthPanel v-on="$listeners" v-bind:authModel="authModel" class="type-modal" ref="authPanel" />
 			</UtilityModal>
 
 			<UtilityModal ref="settingsModal" v-bind:class="{ 'd-none': !shouldShowSettings }">
-				<UserMenu v-bind:authModel="authModel" class="type-modal" ref="settingsPanel" />
+				<UserMenu v-on="$listeners" v-bind:authModel="authModel" class="type-modal" ref="settingsPanel" />
 			</UtilityModal>
 		</section>
 	</div>
