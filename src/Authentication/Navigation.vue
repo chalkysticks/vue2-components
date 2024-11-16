@@ -196,9 +196,18 @@
 			display: none;
 		}
 
-		// State
-		// ---------------------------------------------------------------------
+		.logged-out {
+			align-items: center;
+			display: flex;
+			justify-content: center;
+			transform: scale(0.7);
+		}
+	}
 
+	// State
+	// ---------------------------------------------------------------------
+
+	.chalky.authentication-navigation {
 		&.state-logged-in .logged-in {
 			display: block;
 		}
