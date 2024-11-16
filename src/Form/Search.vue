@@ -40,7 +40,7 @@
 		/**
 		 * @type string
 		 */
-		public query: string;
+		public query: string = '';
 
 		/**
 		 * @type string
