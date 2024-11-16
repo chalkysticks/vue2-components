@@ -104,6 +104,18 @@
 					<button class="control theme-dark type-speech">Speech</button>
 				</section>
 			</section>
+
+			<section class="level-1">
+				<header>
+					<h3>Search Form</h3>
+				</header>
+				<div class="background-chalky-white padded">
+					<ChalkyFormSearch placeholder="New York, NY" type="location" v-on:search:location="Handle_OnSearchLocation" />
+				</div>
+				<div class="background-chalky-white padded">
+					<ChalkyFormSearch placeholder="Superfine" type="venue" v-on:search:venue="Handle_OnSearchVenue" />
+				</div>
+			</section>
 		</section>
 
 		<section class="level-0" v-if="tab == 'utility'">
@@ -863,6 +875,24 @@
 		 */
 		protected async Handle_OnMoveMap(position: IMapPosition): Promise<void> {
 			// console.log('Map moved', position);
+		}
+
+		/**
+		 * @param ChalkySticks.Model.Geocode geocodeModel
+		 * @return Promise<void>
+		 */
+		protected async Handle_OnSearchLocation(geocodeModel: ChalkySticks.Model.Geocode): Promise<void> {
+			console.log('Geocode location', geocodeModel);
+
+			console.log('Location', geocodeModel.getLocation());
+		}
+
+		/**
+		 * @param ChalkySticks.Collection.Venue venueCollection
+		 * @return Promise<void>
+		 */
+		protected async Handle_OnSearchVenue(venueCollection: ChalkySticks.Collection.Venue): Promise<void> {
+			console.log('Venue collection', venueCollection);
 		}
 
 		/**
