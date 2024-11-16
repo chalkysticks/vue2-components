@@ -18,15 +18,19 @@
 
 		<!-- When we're logged in -->
 		<section class="logged-in">
-			<button class="btn btn-plain no-hover">
-				<UserAvatar size="lg" v-bind:userModel="store.getters['authentication/user']" />
+			<button class="plain no-hover" v-on:click="Handle_OnClickUserMenu">
+				<UserAvatar v-bind:size="size" v-bind:userModel="store.getters['authentication/user']" />
 			</button>
 		</section>
 
 		<!-- Helpers -->
-		<section class="utility" v-bind:class="{ 'd-none': !showLogin }">
-			<UtilityModal ref="authModal">
+		<section class="utility">
+			<UtilityModal ref="authModal" v-bind:class="{ 'd-none': !shouldShowLogin }">
 				<AuthenticationAuthPanel v-bind:authModel="authModel" class="type-modal" ref="authPanel" />
+			</UtilityModal>
+
+			<UtilityModal ref="settingsModal" v-bind:class="{ 'd-none': !shouldShowSettings }">
+				<UserMenu v-bind:authModel="authModel" class="type-modal" ref="settingsPanel" />
 			</UtilityModal>
 		</section>
 	</div>
@@ -37,6 +41,7 @@
 	import ChalkySticks from '@chalkysticks/sdk';
 	import UserAvatar from '../User/Avatar.vue';
 	import UtilityModal from '../Utility/Modal.vue';
+	import UserMenu from '../User/Menu.vue';
 	import ViewBase from '../Core/Base';
 	import { Component, Prop, Ref } from 'vue-property-decorator';
 	import { beforeDestroy, mounted } from '../Utility/Decorators';
@@ -50,6 +55,7 @@
 		components: {
 			AuthenticationAuthPanel,
 			UserAvatar,
+			UserMenu,
 			UtilityModal,
 		},
 	})
@@ -66,6 +72,20 @@
 		 */
 		public get authPanel(): AuthenticationAuthPanel {
 			return this.$refs.authPanel as AuthenticationAuthPanel;
+		}
+
+		/**
+		 * @return UtilityModal
+		 */
+		public get settingsModal(): UtilityModal {
+			return this.$refs.settingsModal as UtilityModal;
+		}
+
+		/**
+		 * @return UserMenu
+		 */
+		public get settingsPanel(): UserMenu {
+			return this.$refs.settingsPanel as UserMenu;
 		}
 
 		/**
@@ -89,7 +109,12 @@
 		/**
 		 * @return boolean
 		 */
-		public showLogin: boolean = false;
+		public shouldShowLogin: boolean = false;
+
+		/**
+		 * @return boolean
+		 */
+		public shouldShowSettings: boolean = false;
 
 		/**
 		 * @return string
@@ -124,21 +149,21 @@
 		/**
 		 * @return Promise<void>
 		 */
-		public async hide(): Promise<void> {
+		public async hideLogin(): Promise<void> {
 			this.authModal.animateOut();
 			this.authPanel.animateOut();
 
 			await ChalkySticks.Core.Utility.sleep(500);
 
-			this.showLogin = false;
+			this.shouldShowLogin = false;
 		}
 
 		/**
 		 * @return Promise<void>
 		 */
-		public async show(): Promise<void> {
+		public async showLogin(): Promise<void> {
 			// Toggle appearance of auth panel
-			this.showLogin = true;
+			this.shouldShowLogin = true;
 
 			// Animate
 			this.authModal.animateInStart();
@@ -149,6 +174,36 @@
 			this.authPanel.animateIn();
 		}
 
+		/**
+		 * @return Promise<void>
+		 */
+		public async hideSettings(): Promise<void> {
+			this.settingsModal.animateOut();
+			this.settingsPanel.animateOut();
+
+			console.log('settings out');
+
+			await ChalkySticks.Core.Utility.sleep(500);
+
+			this.shouldShowSettings = false;
+		}
+
+		/**
+		 * @return Promise<void>
+		 */
+		public async showSettings(): Promise<void> {
+			// Toggle appearance of auth panel
+			this.shouldShowSettings = true;
+
+			// Animate
+			this.settingsModal.animateInStart();
+			this.settingsModal.animateIn();
+
+			// Animate
+			this.settingsPanel.animateInStart();
+			this.settingsPanel.animateIn();
+		}
+
 		// region: Event Handlers
 		// ---------------------------------------------------------------------------
 
@@ -157,9 +212,11 @@
 		 * @return Promise<void>
 		 */
 		protected async Handle_OnClickDocument(e: MouseEvent): Promise<void> {
-			if (this.showLogin) {
+			if (this.shouldShowSettings || this.shouldShowLogin) {
 				e.preventDefault();
-				this.hide();
+
+				this.hideLogin();
+				this.hideSettings();
 			}
 		}
 
@@ -173,7 +230,20 @@
 			e.stopImmediatePropagation();
 
 			// Animate
-			this.show();
+			this.showLogin();
+		}
+
+		/**
+		 * @param MouseEvent e
+		 * @return Promise<void>
+		 */
+		protected async Handle_OnClickUserMenu(e: MouseEvent): Promise<void> {
+			e.preventDefault();
+			e.stopPropagation();
+			e.stopImmediatePropagation();
+
+			// Animate
+			this.showSettings();
 		}
 
 		/**
@@ -183,7 +253,7 @@
 			this.$forceUpdate();
 
 			// Hide the modal
-			this.hide();
+			this.hideLogin();
 		}
 
 		// endregion: Event Handlers

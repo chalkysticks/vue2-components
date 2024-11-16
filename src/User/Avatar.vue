@@ -3,7 +3,8 @@
 		<span class="notification badge rounded-pill bg-danger" v-if="notificataionCount">{{ notificataionCount }}</span>
 
 		<picture class="avatar" v-bind:class="'size-' + size">
-			<img v-bind:src="avatarUrl" />
+			<source v-bind:srcset="avatarUrl" />
+			<img class="icon" src="~@chalkysticks/sass/build/asset/image/icon/user-profile.svg" />
 		</picture>
 	</section>
 </template>
@@ -61,6 +62,10 @@
 			right: 0;
 			top: 0;
 			z-index: 1;
+		}
+
+		img {
+			margin: 0;
 		}
 	}
 </style>

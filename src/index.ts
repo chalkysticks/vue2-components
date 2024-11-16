@@ -33,6 +33,7 @@ import TvVideoYouTube from './TV/Video/YouTube.vue';
 import TvTimeline from './TV/Timeline.vue';
 import TvVideoPreview from './TV/VideoPreview.vue';
 import TvVideoTheater from './TV/VideoTheater.vue';
+import UserMenu from './User/Menu.vue';
 import UtilityForceLandscape from './Utility/ForceLandscape.vue';
 import UtilityModal from './Utility/Modal.vue';
 import UtilityPortraitOverlay from './Utility/PortraitOverlay.vue';
@@ -67,6 +68,7 @@ const components = {
 	TvVideoPreview,
 	TvVideoTheater,
 	TvVideoYouTube,
+	UserMenu,
 	UtilityForceLandscape,
 	UtilityModal,
 	UtilityPortraitOverlay,
@@ -137,6 +139,7 @@ export {
 	TvVideoPreview,
 	TvVideoTheater,
 	TvVideoYouTube,
+	UserMenu,
 	UtilityForceLandscape,
 	UtilityPortraitOverlay,
 	UtilityScrollToBegin,
