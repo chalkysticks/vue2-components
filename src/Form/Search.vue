@@ -100,19 +100,19 @@
 
 <style lang="scss">
 	.form-search {
+		left: 0.5rem;
+		right: 0.5rem;
+		// position: absolute;
+		z-index: var(--z-page-mid);
+
 		form {
 			align-items: center;
 			border-radius: var(--rounded-corner);
 			border: 1px solid var(--chalky-grey);
-			bottom: calc(var(--global-header-size) + 1.5em);
 			display: flex;
 			gap: 0.25rem;
 			justify-content: center;
-			left: 0.5rem;
 			padding: 0.5em;
-			// position: absolute;
-			right: 0.5rem;
-			z-index: var(--z-page-mid);
 
 			label {
 				margin: 0;
