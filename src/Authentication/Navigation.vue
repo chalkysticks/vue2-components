@@ -181,8 +181,6 @@
 			this.settingsModal.animateOut();
 			this.settingsPanel.animateOut();
 
-			console.log('settings out');
-
 			await ChalkySticks.Core.Utility.sleep(500);
 
 			this.shouldShowSettings = false;
