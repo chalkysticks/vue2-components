@@ -309,6 +309,10 @@
 			ChalkySticks.Core.Utility.Debounce.exec(
 				this.symbol,
 				() => {
+					if (!this.$refs.map || !mapRef?.$mapObject) {
+						return;
+					}
+
 					const mapRef = this.$refs.map as any;
 					const center = mapRef.$mapObject.getCenter();
 					const lat = center.lat();
