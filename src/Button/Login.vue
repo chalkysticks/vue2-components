@@ -1,6 +1,6 @@
 <template>
 	<button class="chalky button-login" name="btnLogin" type="submit">
-		<i class="fa fa-user icon"></i>
+		<!-- <i class="fa fa-user icon"></i> -->
 		<span>Login</span>
 	</button>
 </template>

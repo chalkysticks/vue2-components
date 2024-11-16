@@ -24,7 +24,7 @@
 					/>
 				</label>
 
-				<label>
+				<label class="clearfix">
 					<h6>Password</h6>
 					<input
 						autocomplete="current-password"
@@ -34,13 +34,11 @@
 						v-model="password"
 						v-on:keydown="Handle_OnKeydownInput"
 					/>
-				</label>
 
-				<p class="text-right pull-top-lg push-bottom-lg">
 					<a class="type-small" href="/forgot-password" title="Forgot Password">
 						<span>Forget password?</span>
 					</a>
-				</p>
+				</label>
 
 				<div class="action-container">
 					<div class="alert alert-success" v-if="this.authModel.isLoggedIn()">
@@ -56,14 +54,14 @@
 						&nbsp;
 						<span>{{ message }}</span>
 					</div>
+
+					<label>
+						<a href="/sign-up" title="Sign up">
+							<span>Sign up</span>
+						</a>
+					</label>
 				</div>
 			</fieldset>
-
-			<footer>
-				<a href="/sign-up" title="Sign up">
-					<span>Sign up.</span>
-				</a>
-			</footer>
 		</form>
 	</div>
 </template>
@@ -209,7 +207,6 @@
 		transition: opacity 0.15s ease-in-out;
 
 		.action-container {
-			height: 50px;
 			text-align: center;
 
 			button {

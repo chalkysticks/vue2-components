@@ -25,9 +25,9 @@
 
 		<!-- Helpers -->
 		<section class="utility" v-bind:class="{ 'd-none': !showLogin }">
-			<ChalkyUtilityModal>
+			<UtilityModal ref="authModal">
 				<AuthenticationAuthPanel v-bind:authModel="authModel" class="type-modal" ref="authPanel" />
-			</ChalkyUtilityModal>
+			</UtilityModal>
 		</section>
 	</div>
 </template>
@@ -36,6 +36,7 @@
 	import AuthenticationAuthPanel from './AuthPanel.vue';
 	import ChalkySticks from '@chalkysticks/sdk';
 	import UserAvatar from '../User/Avatar.vue';
+	import UtilityModal from '../Utility/Modal.vue';
 	import ViewBase from '../Core/Base';
 	import { Component, Prop, Ref } from 'vue-property-decorator';
 	import { beforeDestroy, mounted } from '../Utility/Decorators';
@@ -49,9 +50,17 @@
 		components: {
 			AuthenticationAuthPanel,
 			UserAvatar,
+			UtilityModal,
 		},
 	})
 	export default class AuthenticationNavigation extends ViewBase {
+		/**
+		 * @return UtilityModal
+		 */
+		public get authModal(): UtilityModal {
+			return this.$refs.authModal as UtilityModal;
+		}
+
 		/**
 		 * @return AuthenticationAuthPanel
 		 */
@@ -113,22 +122,27 @@
 		}
 
 		/**
-		 * @return void
+		 * @return Promise<void>
 		 */
-		public hide(): void {
-			// Animate out
+		public async hide(): Promise<void> {
+			this.authModal.animateOut();
 			this.authPanel.animateOut();
 
-			// Hide login
-			setTimeout(() => (this.showLogin = false), 500);
+			await ChalkySticks.Core.Utility.sleep(500);
+
+			this.showLogin = false;
 		}
 
 		/**
-		 * @return void
+		 * @return Promise<void>
 		 */
-		public show(): void {
+		public async show(): Promise<void> {
 			// Toggle appearance of auth panel
 			this.showLogin = true;
+
+			// Animate
+			this.authModal.animateInStart();
+			this.authModal.animateIn();
 
 			// Animate
 			this.authPanel.animateInStart();
