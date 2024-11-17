@@ -66,6 +66,12 @@
 		public selectedVenueId!: number;
 
 		/**
+		 * @type boolean
+		 */
+		@Prop({ default: true })
+		public useLocation!: boolean;
+
+		/**
 		 * @type ChalkySticks/Collection/Venue
 		 */
 		@Prop({
@@ -149,6 +155,11 @@
 		 * @return Promise<void>
 		 */
 		protected async Handle_OnLocationChange(e: ChalkySticks.Core.Event.IDispatcherEvent<GeolocationPosition>): Promise<void> {
+			// Don't sync to global location
+			if (!this.useLocation) {
+				return;
+			}
+
 			this.$store.dispatch('location/position', e.data);
 
 			this.venueCollection.setQueryParams({
