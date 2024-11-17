@@ -21,6 +21,7 @@
 	import ChalkySticks from '@chalkysticks/sdk';
 	import ViewBase from '../Core/Base';
 	import { Component, Prop } from 'vue-property-decorator';
+	import { mounted } from '@/Utility/Decorators';
 
 	/**
 	 * @author ChalkySticks LLC
@@ -55,26 +56,21 @@
 		 * @type ChalkySticks/Collection/Schedule
 		 */
 		@Prop({
-			default: () => {
-				return new ChalkySticks.Collection.Schedule({
-					baseUrl: ChalkySticks.Core.Constants.API_URL_V1,
-				});
-			},
+			default: () => ChalkySticks.Factory.Schedule.collection(),
 		})
 		public scheduleCollection!: ChalkySticks.Collection.Schedule;
 
 		/**
-		 * @constructor
+		 * @return Promise<void>
 		 */
-		constructor() {
-			super();
-
+		@mounted
+		protected async setup(): Promise<void> {
 			// Set the query parameter for the game type
 			this.scheduleCollection.setChannel(this.gameType);
 
 			// Fetch the schedule
 			if (!this.scheduleCollection.hasFetched) {
-				this.scheduleCollection.fetch();
+				await this.scheduleCollection.fetch();
 			}
 		}
 	}
