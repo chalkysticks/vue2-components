@@ -84,7 +84,7 @@
 		 */
 		public icons: Record<string, string> = {
 			beacon: require('../Assets/image/markers/pool-player-2.png'),
-			default: require('../Assets/image/markers/pin-0.svg'),
+			default: require('../Assets/image/markers/marker.svg'),
 			one: require('../Assets/image/markers/pin-1.svg'),
 			three: require('../Assets/image/markers/pin-3.svg'),
 			two: require('../Assets/image/markers/pin-2.svg'),
@@ -228,19 +228,21 @@
 			if (marker.model instanceof ChalkySticks.Model.Beacon) {
 				url = this.icons.beacon;
 			} else {
-				switch (marker.model.getType()) {
-					case 'bar':
-						url = this.icons.one;
-						break;
+				// switch (marker.model.getType()) {
+				// 	case 'bar':
+				// 		url = this.icons.one;
+				// 		break;
 
-					case 'hall':
-						url = this.icons.two;
-						break;
+				// 	case 'hall':
+				// 		url = this.icons.two;
+				// 		break;
 
-					case 'hotel':
-						url = this.icons.three;
-						break;
-				}
+				// 	case 'hotel':
+				// 		url = this.icons.three;
+				// 		break;
+				// }
+
+				url = this.icons.default;
 			}
 
 			return {
