@@ -96,12 +96,47 @@
 		}
 
 		/**
+		 * @return number
+		 */
+		private get scheduleHeaderSize(): number {
+			const variable = ChalkySticks.Utility.getCSSVariable('--chalky-tv-schedule-header-size');
+			const value = parseFloat(variable);
+
+			return value;
+		}
+
+		/**
+		 * @return number
+		 */
+		private get scheduleHourHeight(): number {
+			const variable = ChalkySticks.Utility.getCSSVariable('--chalky-tv-hour-height');
+			const value = parseFloat(variable);
+
+			return value;
+		}
+
+		/**
 		 * @type ChalkySticks.Enum.GameType
 		 */
 		@Prop({
 			default: ChalkySticks.Enum.GameType.All,
 		})
 		public activeChannel!: ChalkySticks.Enum.GameType;
+
+		/**
+		 * Function names to bind to class, typically used for event handlers
+		 *
+		 * Example:
+		 *     ['Handle_OnEvent', 'Handle_On...']
+		 *
+		 * @type string[]
+		 */
+		public bindings: string[] = ['Handle_OnScroll'];
+
+		/**
+		 * @type boolean
+		 */
+		protected isCentering: boolean = true;
 
 		/**
 		 * @type number
@@ -169,17 +204,27 @@
 			this.scheduleCollectionBilliards = ChalkySticks.Factory.Schedule.collection(ChalkySticks.Enum.GameType.Billiards);
 			this.scheduleCollectionTrick = ChalkySticks.Factory.Schedule.collection(ChalkySticks.Enum.GameType.TrickShots);
 			this.scheduleCollection1Pocket = ChalkySticks.Factory.Schedule.collection(ChalkySticks.Enum.GameType.OnePocket);
-
-			// Fetch all schedules
-			setTimeout(() => this.fetch(), 1);
 		}
 
 		/**
 		 * @return void
 		 */
 		@mounted
-		public attachEvents(): void {
-			ChalkySticks.Core.Utility.Interval.add(() => this.setNowPosition(), 1000, this.cid);
+		public setup(): void {
+			this.fetch();
+		}
+
+		/**
+		 * @return void
+		 */
+		@mounted
+		public async ttachEvents(): Promise<void> {
+			ChalkySticks.Core.Utility.Interval.add(() => this.setNowPosition(), 250, `${this.cid}-now`);
+			ChalkySticks.Core.Utility.Interval.add(() => this.centerNowMarker(), 2000, `${this.cid}-center`);
+
+			await ChalkySticks.Utility.sleep(1000);
+
+			this.$el.addEventListener('scroll', this.Handle_OnScroll);
 		}
 
 		/**
@@ -187,7 +232,9 @@
 		 */
 		@beforeDestroy
 		public detachEvents(): void {
-			ChalkySticks.Core.Utility.Interval.remove(this.cid);
+			ChalkySticks.Core.Utility.Interval.remove(`${this.cid}-now`);
+			ChalkySticks.Core.Utility.Interval.remove(`${this.cid}-center`);
+			this.$el.removeEventListener('scroll', this.Handle_OnScroll);
 		}
 
 		/**
@@ -224,10 +271,15 @@
 			// Find element
 			this.scrollToNowMarker();
 			this.scrollToActiveChannel();
+		}
 
-			await ChalkySticks.Core.Utility.sleep(100);
+		/**
+		 * @return void
+		 */
+		protected detachCentering(): void {
+			ChalkySticks.Core.Utility.Interval.remove(`${this.cid}-center`);
 
-			this.scrollToNowMarker();
+			this.isCentering = false;
 		}
 
 		/**
@@ -268,10 +320,9 @@
 		private scrollToNowMarker(): void {
 			const element = this.$refs.nowMarker as HTMLElement;
 			const bboxA = this.$el.getBoundingClientRect();
-			const bboxB = element.getBoundingClientRect();
-			const offset = bboxB.top + this.$el.scrollTop;
+			const y = this.scheduleHeaderSize + this.scheduleHourHeight * this.nowPositionY - bboxA.height / 2;
 
-			this.$el.scrollTop = offset - bboxA.height / 2;
+			this.$el.scrollTop = y;
 		}
 
 		// region: Event Handlers
@@ -292,6 +343,16 @@
 		 */
 		protected async Handle_OnChannelItemClick(scheduleModel: ChalkySticks.Model.Schedule, channel: ChalkySticks.Enum.GameType): Promise<void> {
 			this.$emit('select:schedule', scheduleModel, channel);
+		}
+
+		/**
+		 * @param Event e
+		 * @return Promise<void>
+		 */
+		protected async Handle_OnScroll(e: Event): Promise<void> {
+			if (this.isCentering) {
+				this.detachCentering();
+			}
 		}
 
 		// endregion: Event Handlers
