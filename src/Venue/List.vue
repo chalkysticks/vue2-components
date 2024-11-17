@@ -228,6 +228,10 @@
 			padding: 0 var(--padding);
 			scrollbar-width: thin;
 
+			.venue-gallery {
+				border-radius: var(--rounded-corner);
+			}
+
 			> * {
 				margin-bottom: 0;
 

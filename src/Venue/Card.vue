@@ -156,33 +156,6 @@
 			transform: translate(0, 2px);
 		}
 
-		.venue-gallery {
-			background-color: rgba(255, 255, 255, 0.75);
-			border-radius: var(--rounded-corner);
-			overflow: hidden;
-
-			picture {
-				aspect-ratio: 16 / 9;
-				display: none;
-
-				&:first-child {
-					display: block;
-					width: 100%;
-
-					img {
-						height: 100%;
-						object-fit: cover;
-						width: 100%;
-					}
-				}
-			}
-
-			&:not(:last-child) {
-				border-bottom-left-radius: 0;
-				border-bottom-right-radius: 0;
-			}
-		}
-
 		.venue-gallery + .content {
 			background: rgba(255, 255, 255, 0.75);
 			color: var(--chalky-blue);
@@ -301,21 +274,6 @@
 				top: 50%;
 				transform: translate(0, -50%);
 			}
-		}
-
-		.venue-gallery,
-		.content {
-			border-radius: 0;
-		}
-
-		.venue-gallery {
-			border-top-left-radius: var(--rounded-corner);
-			border-bottom-left-radius: var(--rounded-corner);
-		}
-
-		.content {
-			border-top-right-radius: var(--rounded-corner);
-			border-bottom-right-radius: var(--rounded-corner);
 		}
 
 		.details,
