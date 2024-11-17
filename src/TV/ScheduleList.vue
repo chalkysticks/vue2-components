@@ -7,6 +7,7 @@
 			v-bind:channel="channel"
 			v-bind:data-minutes="scheduleModel.getDuration() / 60"
 			v-bind:key="index"
+			v-bind:parentOffsetY="nowPositionY"
 			v-bind:subtitle="scheduleModel.getDescription()"
 			v-bind:title="scheduleModel.getTitle()"
 			v-bind:style="{
@@ -14,7 +15,7 @@
 			}"
 			v-for="(scheduleModel, index) in filteredScheduleCollection"
 			v-on:click.native="Handle_OnClickItem($event, scheduleModel, channel)"
-		/>
+		></ChalkyTvScheduleItem>
 	</section>
 </template>
 
@@ -64,14 +65,16 @@
 		public channel!: ChalkySticks.Enum.GameType;
 
 		/**
+		 * @type number
+		 */
+		@Prop({ default: 0 })
+		public nowPositionY: number;
+
+		/**
 		 * @type ChalkySticks/Collection/Schedule
 		 */
 		@Prop({
-			default: () => {
-				return new ChalkySticks.Collection.Schedule({
-					baseUrl: ChalkySticks.Core.Constants.API_URL_V1,
-				});
-			},
+			default: () => ChalkySticks.Factory.Schedule.collection(),
 		})
 		public scheduleCollection!: ChalkySticks.Collection.Schedule;
 

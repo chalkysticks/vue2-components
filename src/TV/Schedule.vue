@@ -27,6 +27,7 @@
 				v-bind:active="activeChannel == channel"
 				v-bind:channel="channel"
 				v-bind:key="index"
+				v-bind:nowPositionY="scrollTop"
 				v-bind:scheduleCollection="channelMap[channel]"
 				v-for="(channel, index) in channels"
 				v-on:select="Handle_OnChannelItemClick"
@@ -144,6 +145,11 @@
 		protected nowPositionY: number = 0;
 
 		/**
+		 * @type number
+		 */
+		protected scrollTop: number = 0;
+
+		/**
 		 * @type ChalkySticks/Collection/Schedule
 		 */
 		protected scheduleCollectionAll: ChalkySticks.Collection.Schedule;
@@ -218,7 +224,7 @@
 		 * @return void
 		 */
 		@mounted
-		public async ttachEvents(): Promise<void> {
+		public async attachEvents(): Promise<void> {
 			ChalkySticks.Core.Utility.Interval.add(() => this.setNowPosition(), 250, `${this.cid}-now`);
 			ChalkySticks.Core.Utility.Interval.add(() => this.centerNowMarker(), 2000, `${this.cid}-center`);
 
@@ -322,7 +328,7 @@
 			const bboxA = this.$el.getBoundingClientRect();
 			const y = this.scheduleHeaderSize + this.scheduleHourHeight * this.nowPositionY - bboxA.height / 2;
 
-			this.$el.scrollTop = y;
+			this.$el.scrollTop = this.scrollTop = y;
 		}
 
 		// region: Event Handlers
@@ -353,6 +359,8 @@
 			if (this.isCentering) {
 				this.detachCentering();
 			}
+
+			this.scrollTop = this.$el.scrollTop;
 		}
 
 		// endregion: Event Handlers

@@ -11,13 +11,19 @@
 		</div>
 
 		<div class="glass-panel content">
-			<div class="tags">
-				<div class="tag is-live" v-if="scheduleModel && scheduleModel.isLive()">Live</div>
-				<div class="tag game-type">{{ formattedGameType }}</div>
+			<div
+				v-bind:style="{
+					transform: `translateY(${verticalTextOffset()}px`,
+				}"
+			>
+				<div class="tags">
+					<div class="tag is-live" v-if="scheduleModel && scheduleModel.isLive()">Live</div>
+					<div class="tag game-type">{{ formattedGameType }}</div>
+				</div>
+				<h3 class="color-chalky-white title">{{ formattedTitle }}</h3>
+				<p class="color-chalky-grey subtitle">{{ formattedSubtitle }}</p>
+				<slot></slot>
 			</div>
-			<h3 class="color-chalky-white title">{{ formattedTitle }}</h3>
-			<p class="color-chalky-grey subtitle">{{ formattedSubtitle }}</p>
-			<slot></slot>
 		</div>
 	</section>
 </template>
@@ -108,6 +114,14 @@
 		public title!: string;
 
 		/**
+		 * Offset if this is a child of a parent list
+		 *
+		 * @type string
+		 */
+		@Prop()
+		protected parentOffsetY!: number;
+
+		/**
 		 * @return string
 		 */
 		protected activeImageUrl!: string;
@@ -160,6 +174,30 @@
 		/**
 		 * @return void
 		 */
+		@mounted
+		public renderOffsetTop(): void {
+			this.$forceUpdate();
+		}
+
+		/**
+		 * @return number
+		 */
+		private getOffsetTop(): number {
+			const element = this.$el as HTMLElement;
+
+			return element?.offsetTop;
+		}
+
+		/**
+		 * @return number
+		 */
+		protected verticalTextOffset(): number {
+			return Math.max(0, this.parentOffsetY - this.getOffsetTop());
+		}
+
+		/**
+		 * @return void
+		 */
 		@Watch('urlList', { immediate: true })
 		protected onUrlListChange(): void {
 			this.loadBestImage();
@@ -179,6 +217,16 @@
 			gap: 0.5em;
 			position: relative;
 			z-index: 2;
+
+			&:after {
+				background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, var(--chalky-blue-4-75) 100%);
+				bottom: 0;
+				content: ' ';
+				height: 30px;
+				left: 0;
+				position: absolute;
+				width: 100%;
+			}
 		}
 
 		.glass-panel {
@@ -311,8 +359,14 @@
 	}
 
 	// Active List + Active Item
-	.state-active .tv-scheduleitem.state-active .glass-panel {
-		background-color: var(--chalky-red-2);
-		outline: 2px solid var(--chalky-red);
+	.state-active .tv-scheduleitem.state-active {
+		.glass-panel {
+			background-color: var(--chalky-red-2);
+			outline: 2px solid var(--chalky-red);
+
+			&::after {
+				background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, var(--chalky-red-2) 100%);
+			}
+		}
 	}
 </style>
