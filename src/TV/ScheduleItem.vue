@@ -84,16 +84,6 @@
 		}
 
 		/**
-		 * Function names to bind to class, typically used for event handlers
-		 *
-		 * Example:
-		 *     ['Handle_OnEvent', 'Handle_On...']
-		 *
-		 * @type string[]
-		 */
-		public bindings: string[] = ['Handle_OnResize'];
-
-		/**
 		 * @type ChalkySticks.Enum.GameType
 		 */
 		@Prop({
