@@ -137,6 +137,11 @@
 		protected imageBroken: boolean = false;
 
 		/**
+		 * @type IntersectionObserver
+		 */
+		private intersectionObserver: IntersectionObserver | null = null;
+
+		/**
 		 * Observers
 		 */
 		private resizeObserver: ResizeObserver | null = null;
@@ -147,6 +152,7 @@
 		@mounted
 		public attachEvents(): void {
 			this.observeOffset();
+			this.observeVisibility();
 		}
 
 		/**
@@ -179,10 +185,37 @@
 		/**
 		 * @return void
 		 */
+		private observeVisibility(): void {
+			const element = this.$el as HTMLElement;
+
+			if (!element) return;
+
+			// Use IntersectionObserver to detect visibility changes
+			this.intersectionObserver = new IntersectionObserver(
+				([entry]) => {
+					this.offsetTop = element.offsetTop;
+				},
+				{
+					root: null,
+					threshold: 0.1,
+				},
+			);
+
+			this.intersectionObserver.observe(element);
+		}
+
+		/**
+		 * @return void
+		 */
 		private cleanupObservers(): void {
 			if (this.resizeObserver) {
 				this.resizeObserver.disconnect();
 				this.resizeObserver = null;
+			}
+
+			if (this.intersectionObserver) {
+				this.intersectionObserver.disconnect();
+				this.intersectionObserver = null;
 			}
 		}
 
