@@ -227,6 +227,7 @@
 		public async attachEvents(): Promise<void> {
 			ChalkySticks.Core.Utility.Interval.add(() => this.setNowPosition(), 250, `${this.cid}-now`);
 			ChalkySticks.Core.Utility.Interval.add(() => this.centerNowMarker(), 2000, `${this.cid}-center`);
+			ChalkySticks.Core.Utility.Interval.add(() => (this.scrollTop = this.$el.scrollTop), 1000 / 12, `${this.cid}-scrolltop`);
 
 			await ChalkySticks.Utility.sleep(1000);
 
@@ -240,6 +241,7 @@
 		public detachEvents(): void {
 			ChalkySticks.Core.Utility.Interval.remove(`${this.cid}-now`);
 			ChalkySticks.Core.Utility.Interval.remove(`${this.cid}-center`);
+			ChalkySticks.Core.Utility.Interval.remove(`${this.cid}-scrolltop`);
 			this.$el.removeEventListener('scroll', this.Handle_OnScroll);
 		}
 
@@ -359,8 +361,6 @@
 			if (this.isCentering) {
 				this.detachCentering();
 			}
-
-			this.scrollTop = this.$el.scrollTop;
 		}
 
 		// endregion: Event Handlers

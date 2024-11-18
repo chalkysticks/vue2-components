@@ -84,6 +84,16 @@
 		}
 
 		/**
+		 * Function names to bind to class, typically used for event handlers
+		 *
+		 * Example:
+		 *     ['Handle_OnEvent', 'Handle_On...']
+		 *
+		 * @type string[]
+		 */
+		public bindings: string[] = ['Handle_OnResize'];
+
+		/**
 		 * @type ChalkySticks.Enum.GameType
 		 */
 		@Prop({
@@ -114,11 +124,6 @@
 		public title!: string;
 
 		/**
-		 * @type number
-		 */
-		protected offsetTop: number = 0;
-
-		/**
 		 * Offset if this is a child of a parent list
 		 *
 		 * @type string
@@ -137,22 +142,11 @@
 		protected imageBroken: boolean = false;
 
 		/**
-		 * @type IntersectionObserver
-		 */
-		private intersectionObserver: IntersectionObserver | null = null;
-
-		/**
-		 * Observers
-		 */
-		private resizeObserver: ResizeObserver | null = null;
-
-		/**
 		 * @return void
 		 */
 		@mounted
 		public attachEvents(): void {
-			this.observeOffset();
-			this.observeVisibility();
+			window.addEventListener('resize', this.Handle_OnResize);
 		}
 
 		/**
@@ -160,63 +154,7 @@
 		 */
 		@beforeDestroy
 		public detachEvents(): void {
-			this.cleanupObservers();
-		}
-
-		/**
-		 * @return void
-		 */
-		private observeOffset(): void {
-			const element = this.$el as HTMLElement;
-
-			if (!element) return;
-
-			// Initial offsetTop calculation
-			this.offsetTop = element.offsetTop;
-
-			// Use ResizeObserver to detect size changes
-			this.resizeObserver = new ResizeObserver(() => {
-				this.offsetTop = element.offsetTop;
-			});
-
-			this.resizeObserver.observe(element);
-		}
-
-		/**
-		 * @return void
-		 */
-		private observeVisibility(): void {
-			const element = this.$el as HTMLElement;
-
-			if (!element) return;
-
-			// Use IntersectionObserver to detect visibility changes
-			this.intersectionObserver = new IntersectionObserver(
-				([entry]) => {
-					this.offsetTop = element.offsetTop;
-				},
-				{
-					root: null,
-					threshold: 0.1,
-				},
-			);
-
-			this.intersectionObserver.observe(element);
-		}
-
-		/**
-		 * @return void
-		 */
-		private cleanupObservers(): void {
-			if (this.resizeObserver) {
-				this.resizeObserver.disconnect();
-				this.resizeObserver = null;
-			}
-
-			if (this.intersectionObserver) {
-				this.intersectionObserver.disconnect();
-				this.intersectionObserver = null;
-			}
+			window.removeEventListener('resize', this.Handle_OnResize);
 		}
 
 		/**
@@ -260,10 +198,27 @@
 		}
 
 		/**
+		 * @return void
+		 */
+		@mounted
+		public renderOffsetTop(): void {
+			this.$forceUpdate();
+		}
+
+		/**
+		 * @return number
+		 */
+		private getOffsetTop(): number {
+			const element = this.$el as HTMLElement;
+
+			return element?.offsetTop;
+		}
+
+		/**
 		 * @return number
 		 */
 		protected verticalTextOffset(): number {
-			return Math.max(0, this.parentOffsetY - this.offsetTop);
+			return Math.max(0, this.parentOffsetY - this.getOffsetTop());
 		}
 
 		/**
@@ -272,6 +227,14 @@
 		@Watch('urlList', { immediate: true })
 		protected Handle_OnUrlChange(): void {
 			this.loadBestImage();
+		}
+
+		/**
+		 * @param Event e
+		 * @return Promise<void>
+		 */
+		protected async Handle_OnResize(e: Event): Promise<void> {
+			this.$forceUpdate();
 		}
 	}
 </script>
