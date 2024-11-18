@@ -124,6 +124,11 @@
 		public title!: string;
 
 		/**
+		 * @type number
+		 */
+		protected offsetTop: number = 0;
+
+		/**
 		 * Offset if this is a child of a parent list
 		 *
 		 * @type string
@@ -142,11 +147,16 @@
 		protected imageBroken: boolean = false;
 
 		/**
+		 * Observers
+		 */
+		private resizeObserver: ResizeObserver | null = null;
+
+		/**
 		 * @return void
 		 */
 		@mounted
 		public attachEvents(): void {
-			window.addEventListener('resize', this.Handle_OnResize);
+			this.observeOffset();
 		}
 
 		/**
@@ -154,7 +164,36 @@
 		 */
 		@beforeDestroy
 		public detachEvents(): void {
-			window.removeEventListener('resize', this.Handle_OnResize);
+			this.cleanupObservers();
+		}
+
+		/**
+		 * @return void
+		 */
+		private observeOffset(): void {
+			const element = this.$el as HTMLElement;
+
+			if (!element) return;
+
+			// Initial offsetTop calculation
+			this.offsetTop = element.offsetTop;
+
+			// Use ResizeObserver to detect size changes
+			this.resizeObserver = new ResizeObserver(() => {
+				this.offsetTop = element.offsetTop;
+			});
+
+			this.resizeObserver.observe(element);
+		}
+
+		/**
+		 * @return void
+		 */
+		private cleanupObservers(): void {
+			if (this.resizeObserver) {
+				this.resizeObserver.disconnect();
+				this.resizeObserver = null;
+			}
 		}
 
 		/**
@@ -198,27 +237,10 @@
 		}
 
 		/**
-		 * @return void
-		 */
-		@mounted
-		public renderOffsetTop(): void {
-			this.$forceUpdate();
-		}
-
-		/**
-		 * @return number
-		 */
-		private getOffsetTop(): number {
-			const element = this.$el as HTMLElement;
-
-			return element?.offsetTop;
-		}
-
-		/**
 		 * @return number
 		 */
 		protected verticalTextOffset(): number {
-			return Math.max(0, this.parentOffsetY - this.getOffsetTop());
+			return Math.max(0, this.parentOffsetY - this.offsetTop);
 		}
 
 		/**
@@ -227,14 +249,6 @@
 		@Watch('urlList', { immediate: true })
 		protected Handle_OnUrlChange(): void {
 			this.loadBestImage();
-		}
-
-		/**
-		 * @param Event e
-		 * @return Promise<void>
-		 */
-		protected async Handle_OnResize(e: Event): Promise<void> {
-			this.$forceUpdate();
 		}
 	}
 </script>
