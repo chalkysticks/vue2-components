@@ -32,7 +32,7 @@
 	import ChalkySticks from '@chalkysticks/sdk';
 	import ViewBase from '../Core/Base';
 	import { Component, Prop, Watch } from 'vue-property-decorator';
-	import { mounted } from '@/Utility/Decorators';
+	import { beforeDestroy, mounted } from '@/Utility/Decorators';
 
 	/**
 	 * @author ChalkySticks LLC
@@ -84,6 +84,16 @@
 		}
 
 		/**
+		 * Function names to bind to class, typically used for event handlers
+		 *
+		 * Example:
+		 *     ['Handle_OnEvent', 'Handle_On...']
+		 *
+		 * @type string[]
+		 */
+		public bindings: string[] = ['Handle_OnResize'];
+
+		/**
 		 * @type ChalkySticks.Enum.GameType
 		 */
 		@Prop({
@@ -130,6 +140,22 @@
 		 * @return boolean
 		 */
 		protected imageBroken: boolean = false;
+
+		/**
+		 * @return void
+		 */
+		@mounted
+		public attachEvents(): void {
+			window.addEventListener('resize', this.Handle_OnResize);
+		}
+
+		/**
+		 * @return void
+		 */
+		@beforeDestroy
+		public detachEvents(): void {
+			window.removeEventListener('resize', this.Handle_OnResize);
+		}
 
 		/**
 		 * @return Promise<void>
@@ -199,8 +225,16 @@
 		 * @return void
 		 */
 		@Watch('urlList', { immediate: true })
-		protected onUrlListChange(): void {
+		protected Handle_OnUrlChange(): void {
 			this.loadBestImage();
+		}
+
+		/**
+		 * @param Event e
+		 * @return Promise<void>
+		 */
+		protected async Handle_OnResize(e: Event): Promise<void> {
+			this.$forceUpdate();
 		}
 	}
 </script>
