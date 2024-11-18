@@ -68,7 +68,7 @@
 		 * @type number
 		 */
 		@Prop({ default: 0 })
-		public nowPositionY: number;
+		public nowPositionY!: number;
 
 		/**
 		 * @type ChalkySticks/Collection/Schedule
