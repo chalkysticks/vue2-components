@@ -26,6 +26,14 @@ export default abstract class TVVideoShared extends ViewBase {
 	public muted!: boolean;
 
 	/**
+	 * When to play or not play
+	 *
+	 * @type boolean
+	 */
+	@Prop({ default: true })
+	public shouldPlay!: boolean;
+
+	/**
 	 * @type number
 	 */
 	@Prop({ default: 0 })
@@ -84,6 +92,16 @@ export default abstract class TVVideoShared extends ViewBase {
 	protected interval: any = 0;
 
 	/**
+	 * @type ReturnType<typeof setInterval>
+	 */
+	protected hysteresisStarting!: ChalkySticks.Utility.Hysteresis;
+
+	/**
+	 * @type ReturnType<typeof setInterval>
+	 */
+	protected hysteresisEnding!: ChalkySticks.Utility.Hysteresis;
+
+	/**
 	 * @param object options
 	 **/
 	constructor(options: Record<string, any> = {}) {
@@ -93,6 +111,51 @@ export default abstract class TVVideoShared extends ViewBase {
 		if (this.requiresScript()) {
 			this.embedScript();
 		}
+	}
+
+	/**
+	 * @return void
+	 */
+	public mounted(): void {
+		super.mounted();
+
+		// Listen for changes to current time
+		this.hysteresisStarting = ChalkySticks.Utility.Hysteresis.add({
+			condition: () => {
+				return this.currentTime >= 2;
+			},
+		});
+
+		this.hysteresisEnding = ChalkySticks.Utility.Hysteresis.add({
+			condition: () => this.currentTime >= this.duration - 5 && this.duration > 0,
+		});
+
+		this.attachEvents();
+	}
+
+	/**
+	 * @return void
+	 */
+	public beforeDestroy(): void {
+		super.beforeDestroy();
+
+		this.detachEvents();
+	}
+
+	/**
+	 * @return void
+	 */
+	public attachEvents(): void {
+		this.hysteresisEnding.on('change', this.Handle_OnVideoEnding);
+		this.hysteresisStarting.on('change', this.Handle_OnVideoStarting);
+	}
+
+	/**
+	 * @return void
+	 */
+	public detachEvents(): void {
+		this.hysteresisStarting?.stop();
+		this.hysteresisEnding?.stop();
 	}
 
 	// region: Actions
@@ -263,7 +326,7 @@ export default abstract class TVVideoShared extends ViewBase {
 	 * @return void
 	 */
 	protected Handle_OnPlayerReady(): void {
-		if (this.url) {
+		if (this.url && this.autoplay && this.shouldPlay) {
 			this.play();
 		}
 
@@ -271,6 +334,7 @@ export default abstract class TVVideoShared extends ViewBase {
 			duration: this.getDuration(),
 			url: this.getVideoUrl(),
 		});
+
 		this.$emit('player:ready');
 	}
 
@@ -309,6 +373,23 @@ export default abstract class TVVideoShared extends ViewBase {
 		if (newValue !== oldValue) {
 			this.setUrl(newValue, this.startTime);
 		}
+	}
+
+	/**
+	 * @return Promise<void>
+	 */
+	protected async Handle_OnVideoEnding(): Promise<void> {
+		this.trigger('video:ending');
+		this.$emit('video:ending');
+	}
+
+	/**
+	 * @param Event e
+	 * @return Promise<void>
+	 */
+	protected async Handle_OnVideoStarting(): Promise<void> {
+		this.trigger('video:starting');
+		this.$emit('video:starting');
 	}
 
 	// endregion: Event Handlers
