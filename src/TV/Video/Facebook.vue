@@ -46,6 +46,7 @@
 		 */
 		public mounted(): void {
 			super.mounted();
+
 			this.attachEvents();
 		}
 
@@ -54,13 +55,16 @@
 		 */
 		public beforeDestroy(): void {
 			super.beforeDestroy();
-			this.detachEvents;
+
+			this.detachEvents();
 		}
 
 		/**
 		 * @return void
 		 */
 		public attachEvents(): void {
+			super.attachEvents();
+
 			this.interval = setInterval(this.Handle_OnInterval, 250);
 		}
 
@@ -68,6 +72,8 @@
 		 * @return void
 		 */
 		public detachEvents(): void {
+			super.detachEvents();
+
 			clearInterval(this.interval);
 			this.interval = 0;
 		}

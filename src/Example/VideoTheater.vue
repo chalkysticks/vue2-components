@@ -6,6 +6,8 @@
 			v-bind:play="play"
 			v-bind:mute="mute"
 			v-bind:scheduleModel="liveScheduleModel"
+			v-on:video:starting="Handle_OnVideoStarting"
+			v-on:video:ending="Handle_OnVideoEnding"
 		/>
 
 		Play {{ play }}
@@ -57,6 +59,20 @@
 			console.log('Styleguide mounted');
 
 			setTimeout(() => (this.play = true), 1000 * 4);
+		}
+
+		/**
+		 * @return Promise<void>
+		 */
+		protected async Handle_OnVideoStarting(): Promise<void> {
+			console.log('Video has passed 2 second mark.');
+		}
+
+		/**
+		 * @return Promise<void>
+		 */
+		protected async Handle_OnVideoEnding(): Promise<void> {
+			console.log('Video approaching the end.');
 		}
 	}
 </script>

@@ -122,12 +122,12 @@ export default abstract class TVVideoShared extends ViewBase {
 		// Listen for changes to current time
 		this.hysteresisStarting = ChalkySticks.Utility.Hysteresis.add({
 			condition: () => {
-				return this.currentTime >= 2;
+				return this.isPlaying && this.currentTime >= 2;
 			},
 		});
 
 		this.hysteresisEnding = ChalkySticks.Utility.Hysteresis.add({
-			condition: () => this.currentTime >= this.duration - 5 && this.duration > 0,
+			condition: () => this.isPlaying && this.currentTime >= this.duration - 5 && this.duration > 0,
 		});
 
 		this.attachEvents();
@@ -388,6 +388,8 @@ export default abstract class TVVideoShared extends ViewBase {
 	 * @return Promise<void>
 	 */
 	protected async Handle_OnVideoStarting(): Promise<void> {
+		console.log('shared: video starting');
+
 		this.trigger('video:starting');
 		this.$emit('video:starting');
 	}
