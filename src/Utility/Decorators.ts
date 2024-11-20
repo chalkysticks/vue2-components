@@ -9,13 +9,34 @@ import { WatchOptions } from 'vue';
  * @return Function
  */
 function methodDecorator(methodName: string) {
-	return createDecorator((options: any, key: number | string): void => {
-		const original = options[methodName];
-		const method = options.methods[key];
+	return createDecorator((options: any, key: string): void => {
+		// Store reference to the decorated method
+		const decoratedMethod = options.methods[key];
 
-		options[methodName] = function () {
-			original && original.call(this);
-			method && method.call(this);
+		// Get existing lifecycle method (if any)
+		const existingMethod = options[methodName];
+
+		// Create new method that properly chains the calls
+		options[methodName] = function (this: any, ...args: any[]) {
+			let result;
+
+			// If there was an existing method, call it first
+			if (existingMethod) {
+				result = existingMethod.apply(this, args);
+			}
+
+			// Then call our decorated method
+			if (decoratedMethod) {
+				// If the first method returned a promise, chain them
+				if (result instanceof Promise) {
+					return result.then(() => decoratedMethod.apply(this, args));
+				}
+
+				// Otherwise just call the decorated method
+				return decoratedMethod.apply(this, args);
+			}
+
+			return result;
 		};
 	});
 }
