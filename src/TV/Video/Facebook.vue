@@ -4,12 +4,12 @@
 			class="fb-video"
 			aria-label="Facebook video player"
 			data-allowfullscreen="true"
-			data-autoplay="true"
 			data-lazy="true"
 			data-mute="true"
 			data-show-captions="false"
 			data-show-text="false"
 			ref="player"
+			v-bind:data-autoplay="autoplay && shouldPlay"
 			v-bind:data-href="url"
 			v-bind:id="playerId"
 			v-bind:key="playerId"
@@ -39,18 +39,27 @@
 		/**
 		 * @type string[]
 		 */
-		public bindings: string[] = ['Handle_OnInterval'];
-
-		/**
-		 * @type boolean
-		 */
-		@Prop({ default: true })
-		public muted!: boolean;
+		public bindings: string[] = ['Handle_OnInterval', 'Handle_OnVideoEnding', 'Handle_OnVideoStarting'];
 
 		/**
 		 * @return void
 		 */
-		@mounted
+		public mounted(): void {
+			super.mounted();
+			this.attachEvents();
+		}
+
+		/**
+		 * @return void
+		 */
+		public beforeDestroy(): void {
+			super.beforeDestroy();
+			this.detachEvents;
+		}
+
+		/**
+		 * @return void
+		 */
 		public attachEvents(): void {
 			this.interval = setInterval(this.Handle_OnInterval, 250);
 		}
@@ -58,7 +67,6 @@
 		/**
 		 * @return void
 		 */
-		@beforeDestroy
 		public detachEvents(): void {
 			clearInterval(this.interval);
 			this.interval = 0;
@@ -311,6 +319,18 @@
 				this.mute();
 			} else {
 				this.unmute();
+			}
+		}
+
+		/**
+		 * @return Promise<void>
+		 */
+		@Watch('shouldPlay')
+		protected async Handle_OnChangePlay(): Promise<void> {
+			if (this.shouldPlay) {
+				this.play();
+			} else {
+				this.pause();
 			}
 		}
 	}
