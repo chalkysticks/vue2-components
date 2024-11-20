@@ -144,16 +144,19 @@ export default class ViewBase extends Vue {
 	}
 
 	/**
+	 * @return void
+	 */
+	public created(): void {
+		this.bindAll();
+	}
+
+	/**
 	 * When mounted to document
 	 *
 	 * @return void
 	 */
 	public mounted(): void {
-		// Bind all functions and remove their references
 		this.bindAll();
-
-		// Attach events
-		this.attachEvents();
 
 		// Some views can automatically animate in
 		if (this.allowAnimation && this.autoAnimateIn) {
