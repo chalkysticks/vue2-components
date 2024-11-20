@@ -6,10 +6,11 @@
 			'state-controls': allowControl,
 		}"
 	>
-		<ChalkyTvVideoYouTube
+		<TvYouTube
 			v-bind:allowControl="allowControl"
 			v-bind:channel="channel"
 			v-bind:muted="mute"
+			v-bind:shouldPlay="play"
 			v-bind:startTime="startTime"
 			v-bind:url="url"
 			v-if="isVideoFromYouTube"
@@ -17,12 +18,15 @@
 			v-on:player:ended="Handle_OnPlayerEnded"
 			v-on:player:error="Handle_OnPlayerError"
 			v-on:player:ready="Handle_OnPlayerReady"
+			v-on:video:starting="Handle_OnVideoStarting"
+			v-on:video:ending="Handle_OnVideoEnding"
 		/>
 
-		<ChalkyTvVideoFacebook
+		<TvFacebook
 			v-bind:allowControl="allowControl"
 			v-bind:channel="channel"
 			v-bind:muted="mute"
+			v-bind:shouldPlay="play"
 			v-bind:startTime="startTime"
 			v-bind:url="url"
 			v-else-if="isVideoFromFacebook"
@@ -30,6 +34,8 @@
 			v-on:player:ended="Handle_OnPlayerEnded"
 			v-on:player:error="Handle_OnPlayerError"
 			v-on:player:ready="Handle_OnPlayerReady"
+			v-on:video:starting="Handle_OnVideoStarting"
+			v-on:video:ending="Handle_OnVideoEnding"
 		/>
 
 		<div v-else>Unknown video player requested</div>
@@ -43,6 +49,8 @@
 <script lang="ts">
 	import ChalkySticks from '@chalkysticks/sdk';
 	import ViewBase from '../Core/Base';
+	import TvYouTube from './Video/YouTube.vue';
+	import TvFacebook from './Video/Facebook.vue';
 	import { Component, Prop, Ref, Watch } from 'vue-property-decorator';
 	import { beforeDestroy, mounted } from '@/Utility/Decorators';
 
@@ -66,7 +74,12 @@
 	 * @package TV
 	 * @project ChalkySticks SDK Vue2.0 Components
 	 */
-	@Component
+	@Component({
+		components: {
+			TvFacebook,
+			TvYouTube,
+		},
+	})
 	export default class VideoTheater extends ViewBase {
 		/**
 		 * @type ChalkySticks.Model.Schedule
@@ -130,6 +143,12 @@
 		 */
 		@Prop({ default: true })
 		public mute!: boolean;
+
+		/**
+		 * @type boolean
+		 */
+		@Prop({ default: true })
+		public play!: boolean;
 
 		/**
 		 * @type ChalkySticks.Collection.Schedule
@@ -331,9 +350,9 @@
 		}
 
 		/**
-		 * @return void
+		 * @return Promise<void>
 		 */
-		protected Handle_OnPlayerEnded(): void {
+		protected async Handle_OnPlayerEnded(): Promise<void> {
 			if (this.isUsingSchedule) {
 				setTimeout(() => {
 					this.setBySchedule(this.scheduleCollection);
@@ -346,9 +365,9 @@
 		/**
 		 * Flag and skip if we're using a schedule
 		 *
-		 * @return void
+		 * @return Promise<void>
 		 */
-		protected Handle_OnPlayerError(): void {
+		protected async Handle_OnPlayerError(): Promise<void> {
 			if (this.isUsingSchedule) {
 				setTimeout(() => this.flagAndSkip());
 			}
@@ -359,9 +378,9 @@
 		/**
 		 * Autoplay once the player is loaded and ready
 		 *
-		 * @return void
+		 * @return Promise<void>
 		 */
-		protected Handle_OnPlayerReady(): void {
+		protected async Handle_OnPlayerReady(): Promise<void> {
 			// this.beginAutoplay();
 			// Autoplay is taken care of by the player
 
@@ -369,15 +388,33 @@
 		}
 
 		/**
+		 * Video is at least 2 seconds in
+		 *
+		 * @return Promise<void>
+		 */
+		protected async Handle_OnVideoStarting(): Promise<void> {
+			this.$emit('video:starting');
+		}
+
+		/**
+		 * Video is nearly over
+		 *
+		 * @return Promise<void>
+		 */
+		protected async Handle_OnVideoEnding(): Promise<void> {
+			this.$emit('video:ending');
+		}
+
+		/**
 		 * @param ChalkySticks.Model.Schedule newModel
 		 * @param ChalkySticks.Model.Schedule oldModel
-		 * @return void
+		 * @return Promise<void>
 		 */
 		@Watch('scheduleModel', {
 			deep: true,
 			immediate: true,
 		})
-		protected Handle_OnScheduleModelChange(newModel: ChalkySticks.Model.Schedule, oldModel: ChalkySticks.Model.Schedule) {
+		protected async Handle_OnScheduleModelChange(newModel: ChalkySticks.Model.Schedule, oldModel: ChalkySticks.Model.Schedule): Promise<void> {
 			// Model exists and has an ID
 			if (newModel && newModel.id) {
 				this.beginAutoplay();
@@ -392,9 +429,9 @@
 		}
 
 		/**
-		 * @return void
+		 * @return Promise<void>
 		 */
-		protected Handle_OnVisibilityChange(): void {
+		protected async Handle_OnVisibilityChange(): Promise<void> {
 			if (document.visibilityState === 'visible') {
 				if (this.isUsingSchedule) {
 					this.seekToCurrentTime(this.scheduleCollection);
