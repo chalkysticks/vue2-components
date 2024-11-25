@@ -5,6 +5,7 @@
 			<VenueCard
 				class="list-item type-minimal"
 				v-bind:class="{ 'state-selected': venueModel.id == selectedVenueId }"
+				v-bind:interactiveGallery="false"
 				v-bind:key="venueModel.id"
 				v-bind:venueModel="venueModel"
 				v-for="venueModel in venueCollection"

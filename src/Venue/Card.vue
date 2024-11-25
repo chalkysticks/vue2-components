@@ -1,6 +1,6 @@
 <template>
 	<div class="chalky venue-card glass-panel" v-bind:class="'type-' + venueModel.getType()">
-		<VenueGallery v-bind:interactive="true" v-bind:venueModel="venueModel" />
+		<VenueGallery v-bind:interactive="interactiveGallery" v-bind:venueModel="venueModel" />
 
 		<section class="content" v-if="venueModel.getName()">
 			<section class="title">
@@ -143,6 +143,12 @@
 
 			return output;
 		}
+
+		/**
+		 * @type boolean
+		 */
+		@Prop({ default: true })
+		public interactiveGallery!: boolean;
 
 		/**
 		 * @type ChalkySticks/Model/Venue
