@@ -6,13 +6,13 @@
 		}"
 	>
 		<picture
-			v-for="(media, index) in venueModel.media"
+			v-for="(model, index) in media"
 			v-bind:key="index"
 			v-bind:class="{
 				'state-active': activeIndex === index,
 			}"
 		>
-			<source v-bind:srcset="media.getUrl()" />
+			<source v-bind:srcset="model.getUrl()" />
 			<img
 				src="https://map.chalkysticks.com/image/backgrounds/no-photos-venue.jpg"
 				v-on:load="Handle_OnImageLoaded"
@@ -20,7 +20,7 @@
 			/>
 		</picture>
 
-		<picture v-if="venueModel.media.length == 0">
+		<picture v-if="media.length == 0">
 			<img
 				src="https://map.chalkysticks.com/image/backgrounds/no-photos-venue.jpg"
 				v-on:load="Handle_OnImageLoaded"
@@ -44,6 +44,19 @@
 	 */
 	@Component
 	export default class VenueGallery extends ViewBase {
+		/**
+		 * @type ChalkySticks.Model.VenueMedia[]
+		 */
+		protected get media(): ChalkySticks.Model.VenueMedia[] {
+			const output = [...this.venueModel.media];
+
+			if (output.length < 3) {
+				output.push(...this.venueModel.media);
+			}
+
+			return output;
+		}
+
 		/**
 		 * @type ChalkySticks.Core.Input.Pointer
 		 */

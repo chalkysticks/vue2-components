@@ -2,8 +2,8 @@
 	<section
 		class="chalky branding-splash"
 		v-bind:class="{
-			fullscreen: fullscreen,
 			fixed: fullscreen,
+			fullscreen: fullscreen,
 		}"
 	>
 		<div class="part part-1">
