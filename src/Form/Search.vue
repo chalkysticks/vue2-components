@@ -59,7 +59,7 @@
 		/**
 		 * @return Promise<void>
 		 */
-		protected async searchLocation(query: string): Promise<void> {
+		public async searchLocation(query: string): Promise<void> {
 			// Fetch coordinates
 			await this.geocodeModel.setQueryParam('address', this.query).fetch();
 
@@ -70,7 +70,7 @@
 		/**
 		 * @return Promise<void>
 		 */
-		protected async searchVenue(query: string): Promise<void> {
+		public async searchVenue(query: string): Promise<void> {
 			await this.venueCollection.setQueryParam('q', query).fetch();
 
 			// Emit model
