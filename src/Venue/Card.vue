@@ -15,6 +15,15 @@
 				<span class="address">{{ venueModel.getAddress() }}</span>
 			</address>
 
+			<address class="today">
+				<h6 class="hours-today">{{ venueModel.hours.getTodayHours()?.formatHours() }}</h6>
+				<span class="is-open detail tag badge type-danger" v-if="venueModel.isOpenNow()">Open</span>
+			</address>
+
+			<section class="description">
+				<p>{{ venueModel.getDescription() }}</p>
+			</section>
+
 			<section class="details">
 				<span
 					class="detail tag badge"
@@ -49,10 +58,6 @@
 					<dt class="hours-sunday">Sunday</dt>
 					<dd class="hours-sunday">{{ venueModel.hours.getHoursForDay('sunday')?.formatHours() }}</dd>
 				</dl>
-			</section>
-
-			<section class="description">
-				<p>{{ venueModel.getDescription() }}</p>
 			</section>
 
 			<section class="actions">
@@ -195,6 +200,18 @@
 			padding: 1rem;
 		}
 
+		.today {
+			align-items: center;
+			display: flex;
+			gap: 0.5rem;
+
+			.badge {
+				font-size: 0.675em;
+				font-weight: bold;
+				padding: 0.5em 0.75em;
+			}
+		}
+
 		.content {
 			border-radius: var(--rounded-corner-outer);
 			border-top-left-radius: 0;
@@ -247,6 +264,15 @@
 			justify-content: center;
 			letter-spacing: -0.05em;
 			gap: 0.25rem;
+		}
+
+		dl {
+			margin: 1rem 0;
+
+			dt {
+				float: left;
+				margin-right: 0.5rem;
+			}
 		}
 	}
 
@@ -317,6 +343,7 @@
 			}
 		}
 
+		.today,
 		.hours,
 		.details,
 		.description,
