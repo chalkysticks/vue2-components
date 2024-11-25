@@ -1,8 +1,8 @@
 <template>
 	<div class="root">
-		<VideoTheater />
+		<Styleguide />
 
-		<!-- <Styleguide /> -->
+		<!-- <VideoTheater /> -->
 		<!-- <ForcedLandscape /> -->
 	</div>
 </template>

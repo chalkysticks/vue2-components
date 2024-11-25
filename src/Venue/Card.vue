@@ -1,6 +1,6 @@
 <template>
 	<div class="chalky venue-card glass-panel" v-bind:class="'type-' + venueModel.getType()">
-		<VenueGallery v-bind:venueModel="venueModel" />
+		<VenueGallery v-bind:interactive="true" v-bind:venueModel="venueModel" />
 
 		<section class="content" v-if="venueModel.getName()">
 			<section class="title">
@@ -24,6 +24,31 @@
 				>
 					{{ venueDetailModel.getValue() }}
 				</span>
+			</section>
+
+			<section class="hours">
+				<dl>
+					<dt class="hours-monday">Monday</dt>
+					<dd class="hours-monday">{{ venueModel.hours.getHoursForDay('monday')?.formatHours() }}</dd>
+
+					<dt class="hours-tuesday">Tuesday</dt>
+					<dd class="hours-tuesday">{{ venueModel.hours.getHoursForDay('tuesday')?.formatHours() }}</dd>
+
+					<dt class="hours-wednesday">Wednesday</dt>
+					<dd class="hours-wednesday">{{ venueModel.hours.getHoursForDay('wednesday')?.formatHours() }}</dd>
+
+					<dt class="hours-thursday">Thursday</dt>
+					<dd class="hours-thursday">{{ venueModel.hours.getHoursForDay('thursday')?.formatHours() }}</dd>
+
+					<dt class="hours-friday">Friday</dt>
+					<dd class="hours-friday">{{ venueModel.hours.getHoursForDay('friday')?.formatHours() }}</dd>
+
+					<dt class="hours-saturday">Saturday</dt>
+					<dd class="hours-saturday">{{ venueModel.hours.getHoursForDay('saturday')?.formatHours() }}</dd>
+
+					<dt class="hours-sunday">Sunday</dt>
+					<dd class="hours-sunday">{{ venueModel.hours.getHoursForDay('sunday')?.formatHours() }}</dd>
+				</dl>
 			</section>
 
 			<section class="description">
@@ -50,8 +75,9 @@
 				</a>
 			</section>
 
-			<section class="is-open" v-if="false">
-				<span class="detail tag badge type-dark">Open Now</span>
+			<section class="open-closed">
+				<span class="is-open detail tag badge type-dark" v-if="venueModel.isOpenNow()">Open</span>
+				<span class="is-closed detail tag badge type-danger" v-else>Closed</span>
 			</section>
 
 			<section class="distance" v-if="$store.getters['location/hasPosition']">
@@ -92,9 +118,11 @@
 		public get distance(): string {
 			const myLatitude = this.$store.getters['location/latitude'];
 			const myLongitude = this.$store.getters['location/longitude'];
-			const venueLatitude = this.venueModel.getLatitude();
-			const venueLongitude = this.venueModel.getLongitude();
-			const distance = ChalkySticks.Utility.Geolocation.distanceBetween(myLatitude, myLongitude, venueLatitude, venueLongitude);
+			const distance = this.venueModel.getDistance(myLatitude, myLongitude, 'mi');
+
+			// const venueLatitude = this.venueModel.getLatitude();
+			// const venueLongitude = this.venueModel.getLongitude();
+			// const distance = ChalkySticks.Utility.Geolocation.distanceBetween(myLatitude, myLongitude, venueLatitude, venueLongitude);
 
 			return distance.toFixed(2);
 		}
@@ -103,7 +131,12 @@
 		 * @return string
 		 */
 		public get rating(): string {
-			return '★ ★ ★ ★ ★';
+			const rating = Math.round(this.venueModel.getRating());
+			const filled = '★ '.repeat(rating);
+			const empty = '☆ '.repeat(5 - rating);
+			const output = filled + empty;
+
+			return output;
 		}
 
 		/**
@@ -195,10 +228,14 @@
 			}
 		}
 
-		.is-open {
+		.open-closed {
 			position: absolute;
-			right: 1.125rem;
-			top: 1rem;
+			right: 0.75rem;
+			top: 0.5rem;
+
+			.is-open {
+				display: none;
+			}
 		}
 
 		.distance {
@@ -243,6 +280,10 @@
 				overflow: hidden;
 				width: calc(var(--thumbnail-size) * 1.5);
 			}
+
+			picture:not(:first-child) {
+				display: none;
+			}
 		}
 
 		.content {
@@ -276,6 +317,7 @@
 			}
 		}
 
+		.hours,
 		.details,
 		.description,
 		.rating,
