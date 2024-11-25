@@ -12,8 +12,9 @@
 
 <script lang="ts">
 	import ChalkySticks from '@chalkysticks/sdk';
+	import Router from '../Core/Router';
 	import ViewBase from '../Core/Base';
-	import { Component, Prop } from 'vue-property-decorator';
+	import { Component, Prop, Watch } from 'vue-property-decorator';
 	import { beforeDestroy, mounted } from '@/Utility/Decorators';
 
 	/**
@@ -45,6 +46,12 @@
 		/**
 		 * @type string
 		 */
+		@Prop({ default: '' })
+		public queryParameter!: string;
+
+		/**
+		 * @type string
+		 */
 		@Prop({ default: 'location' })
 		public type!: 'location' | 'venue';
 
@@ -55,6 +62,22 @@
 			default: () => ChalkySticks.Factory.Venue.collection(),
 		})
 		public venueCollection!: ChalkySticks.Collection.Venue;
+
+		/**
+		 * @param string query
+		 * @return Promise<void>
+		 */
+		public async search(query: string): Promise<void> {
+			switch (this.type) {
+				case 'location':
+					await this.searchLocation(this.query);
+					break;
+
+				case 'venue':
+					await this.searchVenue(this.query);
+					break;
+			}
+		}
 
 		/**
 		 * @return Promise<void>
@@ -84,15 +107,38 @@
 		protected async Handle_OnSubmit(e: SubmitEvent): Promise<void> {
 			e.preventDefault();
 
-			// Set the query search param
-			switch (this.type) {
-				case 'location':
-					await this.searchLocation(this.query);
-					break;
+			// Wait to hear back from the query string
+			if (this.queryParameter) {
+				Router.router.push({
+					query: {
+						[this.queryParameter]: this.query,
+					},
+				});
+			}
 
-				case 'venue':
-					await this.searchVenue(this.query);
-					break;
+			// Search directly using search
+			else {
+				this.search(this.query);
+			}
+		}
+
+		/**
+		 * @param Event e
+		 * @return Promise<void>
+		 */
+		@Watch('$route.query', {
+			deep: true,
+			immediate: true,
+		})
+		protected async Handle_OnRouteChange(newQuery: any, oldQuery: any): Promise<void> {
+			const newQueryValue = newQuery[this.queryParameter];
+
+			console.log('Listening for route change', newQuery, oldQuery);
+
+			// Search if the route changes
+			if (newQueryValue && newQueryValue !== this.query) {
+				this.query = newQueryValue;
+				this.search(this.query);
 			}
 		}
 	}

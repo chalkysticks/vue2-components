@@ -1,5 +1,6 @@
 import * as VueGoogleMaps from 'vue2-google-maps';
 import ChalkySticks from '@chalkysticks/sdk';
+import Router from './Core/Router';
 
 // Theme
 // ---------------------------------------------------------------------------
@@ -89,6 +90,11 @@ const ChalkySticksVue = {
 			log: () => console.log('ChalkySticks v3', options),
 			options: options,
 		};
+
+		// Check for a $router was passed in
+		if (options.provide?.router) {
+			Router.router = options.provide?.router;
+		}
 
 		// Provide a Vuex store to ChalkySticks
 		ChalkySticks.Core.Provider.Store.register(options.provide?.store || Store);

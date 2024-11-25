@@ -48,6 +48,7 @@ interface IVueInstallationOptions {
 		};
 	};
 	provide?: {
+		router: any;
 		store: any;
 	};
 	sdk?: {
