@@ -133,13 +133,14 @@
 		protected async Handle_OnRouteChange(newQuery: any, oldQuery: any): Promise<void> {
 			const newQueryValue = newQuery[this.queryParameter];
 
-			console.log('Listening for route change', newQuery, oldQuery);
+			// No query available
+			if (!newQueryValue) {
+				return;
+			}
 
 			// Search if the route changes
-			if (newQueryValue && newQueryValue !== this.query) {
-				this.query = newQueryValue;
-				this.search(this.query);
-			}
+			this.query = newQueryValue;
+			this.search(this.query);
 		}
 	}
 </script>
