@@ -66,6 +66,7 @@
 	import * as UtilityMap from '../Utility/Map';
 	import ChalkySticks from '@chalkysticks/sdk';
 	import ViewBase from '../Core/Base';
+	import gsap from 'gsap';
 	import { Component, Prop, Ref } from 'vue-property-decorator';
 	import { beforeDestroy, mounted } from '../Utility/Decorators';
 
@@ -442,6 +443,11 @@
 			this.$emit('marker:click', marker.model);
 
 			if (this.centerOnMarker) {
+				const mapCenter = this.mapObject?.getCenter();
+				const oldPosition: IGoogleMapPosition = {
+					lat: mapCenter?.lat() || this.centerLatitude,
+					lng: mapCenter?.lng() || this.centerLongitude,
+				};
 				const position: IGoogleMapPosition = {
 					lat: marker.position.lat,
 					lng: marker.position.lng,
@@ -456,8 +462,17 @@
 				position.lat += offsetY;
 				position.lng += offsetX;
 
-				// Center on position
-				this.mapObject.setCenter(position);
+				// Center on position (this.mapObject.setCenter(position);)
+				if (this.mapObject) {
+					gsap.to(oldPosition, {
+						duration: 0.5,
+						lat: position.lat,
+						lng: position.lng,
+						onUpdate: () => {
+							this.mapObject.setCenter(oldPosition);
+						},
+					});
+				}
 			}
 		}
 
