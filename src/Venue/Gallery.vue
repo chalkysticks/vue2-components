@@ -45,12 +45,20 @@
 	@Component
 	export default class VenueGallery extends ViewBase {
 		/**
+		 * @return boolean
+		 */
+		protected get isInteractive(): boolean {
+			return this.interactive && this.media.length > 1;
+		}
+
+		/**
 		 * @type ChalkySticks.Model.VenueMedia[]
 		 */
 		protected get media(): ChalkySticks.Model.VenueMedia[] {
 			const output = [...this.venueModel.media];
 
-			if (output.length < 3) {
+			// If there's two, double it so we have at least three
+			if (output.length === 2) {
 				output.push(...this.venueModel.media);
 			}
 
@@ -114,7 +122,7 @@
 		 */
 		@mounted
 		public attachEvents(): void {
-			if (this.interactive) {
+			if (this.isInteractive) {
 				this.pointer.on('tap', this.Handle_OnTap.bind(this));
 				this.pointer.on('drag', this.Handle_OnDrag.bind(this));
 				this.pointer.on('up', this.Handle_OnDragRelease.bind(this));
