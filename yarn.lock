@@ -1063,59 +1063,59 @@
     bootstrap "^5.0.1"
 
 "@chalkysticks/sdk-authentication@github:chalkysticks/sdk-authentication":
-  version "1.5.3"
-  resolved "https://codeload.github.com/chalkysticks/sdk-authentication/tar.gz/81b2d3dbc0ae21b1603c842fab2426b8b2fa9677"
+  version "1.6.1"
+  resolved "https://codeload.github.com/chalkysticks/sdk-authentication/tar.gz/f7e06656c8beb412b51c83777420b31f63166710"
   dependencies:
     "@chalkysticks/mrm-preset" "github:chalkysticks/mrm-preset"
     "@chalkysticks/sdk-core" "github:chalkysticks/sdk-core"
 
 "@chalkysticks/sdk-core@github:chalkysticks/sdk-core":
-  version "1.24.0"
-  resolved "https://codeload.github.com/chalkysticks/sdk-core/tar.gz/0c3685121922ff09a3ecfa69a29ff304076693c7"
+  version "1.26.0"
+  resolved "https://codeload.github.com/chalkysticks/sdk-core/tar.gz/376e58bc747cf1e8ee33e92aa3aeadb4cea51aa6"
   dependencies:
     "@chalkysticks/mrm-preset" "github:chalkysticks/mrm-preset"
     "@types/googlemaps" "^3.43.3"
     restmc "git+https://github.com/mattkenefick/restmc.git"
 
 "@chalkysticks/sdk-pad@github:chalkysticks/sdk-pad#v2":
-  version "1.2.3"
-  resolved "https://codeload.github.com/chalkysticks/sdk-pad/tar.gz/d24870e747b5bd478623f13aa942b9ccba71db27"
+  version "1.3.1"
+  resolved "https://codeload.github.com/chalkysticks/sdk-pad/tar.gz/85b60b2cb18d6a0a5371db1d9c12f33c64ed5959"
   dependencies:
     "@chalkysticks/mrm-preset" "github:chalkysticks/mrm-preset"
     "@chalkysticks/sdk-core" "github:chalkysticks/sdk-core"
 
 "@chalkysticks/sdk-players@github:chalkysticks/sdk-players":
-  version "1.5.4"
-  resolved "https://codeload.github.com/chalkysticks/sdk-players/tar.gz/5fe6bae0c25ab31db3d73a9872f2454d1f306997"
+  version "1.6.1"
+  resolved "https://codeload.github.com/chalkysticks/sdk-players/tar.gz/23aa04c53a078c7871812a660eb0416883624a4e"
   dependencies:
     "@chalkysticks/mrm-preset" "github:chalkysticks/mrm-preset"
     "@chalkysticks/sdk-core" "github:chalkysticks/sdk-core"
 
 "@chalkysticks/sdk-tv@github:chalkysticks/sdk-tv#v1":
-  version "1.8.0"
-  resolved "https://codeload.github.com/chalkysticks/sdk-tv/tar.gz/bf6ea78c00dcd05601bb5dd92a44148dedfcbfce"
+  version "1.9.1"
+  resolved "https://codeload.github.com/chalkysticks/sdk-tv/tar.gz/23f29dd68b1504104ae55384440f7ed3433f6999"
   dependencies:
     "@chalkysticks/mrm-preset" "github:chalkysticks/mrm-preset"
     "@chalkysticks/sdk-core" "github:chalkysticks/sdk-core"
 
 "@chalkysticks/sdk-venues@github:chalkysticks/sdk-venues#v1":
-  version "1.3.2"
-  resolved "https://codeload.github.com/chalkysticks/sdk-venues/tar.gz/36f8e73130575c1ac1f40418acfeec4bfcd20b36"
+  version "1.4.1"
+  resolved "https://codeload.github.com/chalkysticks/sdk-venues/tar.gz/169d14a5920225ab72d5a7b0b570a90f941e0679"
   dependencies:
     "@chalkysticks/mrm-preset" "github:chalkysticks/mrm-preset"
     "@chalkysticks/sdk-core" "github:chalkysticks/sdk-core"
     luxon "^3.5.0"
 
 "@chalkysticks/sdk-wallet@github:chalkysticks/sdk-wallet":
-  version "1.2.1"
-  resolved "https://codeload.github.com/chalkysticks/sdk-wallet/tar.gz/8ffbe2f8370645cd59d51b66cc42815b650da745"
+  version "1.3.1"
+  resolved "https://codeload.github.com/chalkysticks/sdk-wallet/tar.gz/0fd9ddc7b0cf54985431eb68468560a4cd28bba0"
   dependencies:
     "@chalkysticks/mrm-preset" "github:chalkysticks/mrm-preset"
     "@chalkysticks/sdk-core" "github:chalkysticks/sdk-core"
 
 "@chalkysticks/sdk@github:chalkysticks/sdk":
-  version "1.24.1"
-  resolved "https://codeload.github.com/chalkysticks/sdk/tar.gz/0c2dd2fd73e19513c5db037b5544cddfa3a50a10"
+  version "1.26.0"
+  resolved "https://codeload.github.com/chalkysticks/sdk/tar.gz/474b5f908388c00242f9592d3a6455b0f530ddf2"
   dependencies:
     "@chalkysticks/sdk-authentication" "github:chalkysticks/sdk-authentication"
     "@chalkysticks/sdk-core" "github:chalkysticks/sdk-core"

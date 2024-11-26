@@ -86,9 +86,10 @@
 		@created
 		public afterCreate() {
 			// Set query parameters
-			this.venueCollection.setQueryParams({
-				limit: this.listSize || this.venueCollection.limit,
-			});
+			// mk: This took me 2 hours to fix. UGH
+			// this.venueCollection.setQueryParams({
+			// 	limit: this.listSize || this.venueCollection.limit,
+			// });
 
 			// Check if we need to load data
 			if (!this.venueCollection.length) {

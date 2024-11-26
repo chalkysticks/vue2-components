@@ -16,6 +16,9 @@ module.exports = {
 	},
 	configureWebpack: {
 		devServer: {
+			client: {
+				overlay: false,
+			},
 			headers: {
 				'Access-Control-Allow-Origin': '*',
 			},

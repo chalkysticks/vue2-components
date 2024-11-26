@@ -202,14 +202,14 @@
 
 			// Create schedules
 			this.scheduleCollectionAll = ChalkySticks.Factory.Schedule.collection();
-			this.scheduleCollection8Ball = ChalkySticks.Factory.Schedule.collection(ChalkySticks.Enum.GameType.EightBall);
-			this.scheduleCollection9Ball = ChalkySticks.Factory.Schedule.collection(ChalkySticks.Enum.GameType.NineBall);
-			this.scheduleCollection10Ball = ChalkySticks.Factory.Schedule.collection(ChalkySticks.Enum.GameType.TenBall);
-			this.scheduleCollectionStraight = ChalkySticks.Factory.Schedule.collection(ChalkySticks.Enum.GameType.StraightPool);
-			this.scheduleCollectionSnooker = ChalkySticks.Factory.Schedule.collection(ChalkySticks.Enum.GameType.Snooker);
-			this.scheduleCollectionBilliards = ChalkySticks.Factory.Schedule.collection(ChalkySticks.Enum.GameType.Billiards);
-			this.scheduleCollectionTrick = ChalkySticks.Factory.Schedule.collection(ChalkySticks.Enum.GameType.TrickShots);
-			this.scheduleCollection1Pocket = ChalkySticks.Factory.Schedule.collection(ChalkySticks.Enum.GameType.OnePocket);
+			this.scheduleCollection8Ball = ChalkySticks.Factory.Schedule.collection({}, ChalkySticks.Enum.GameType.EightBall);
+			this.scheduleCollection9Ball = ChalkySticks.Factory.Schedule.collection({}, ChalkySticks.Enum.GameType.NineBall);
+			this.scheduleCollection10Ball = ChalkySticks.Factory.Schedule.collection({}, ChalkySticks.Enum.GameType.TenBall);
+			this.scheduleCollectionStraight = ChalkySticks.Factory.Schedule.collection({}, ChalkySticks.Enum.GameType.StraightPool);
+			this.scheduleCollectionSnooker = ChalkySticks.Factory.Schedule.collection({}, ChalkySticks.Enum.GameType.Snooker);
+			this.scheduleCollectionBilliards = ChalkySticks.Factory.Schedule.collection({}, ChalkySticks.Enum.GameType.Billiards);
+			this.scheduleCollectionTrick = ChalkySticks.Factory.Schedule.collection({}, ChalkySticks.Enum.GameType.TrickShots);
+			this.scheduleCollection1Pocket = ChalkySticks.Factory.Schedule.collection({}, ChalkySticks.Enum.GameType.OnePocket);
 		}
 
 		/**

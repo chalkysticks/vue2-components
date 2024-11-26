@@ -662,9 +662,11 @@
 				<div>
 					<ChalkyVenueMap
 						class="hide-streetview"
-						v-bind:venueCollection="venueCollection"
+						v-bind:centerOnMarker="true"
+						v-bind:centerOffsetY="-0.005"
 						v-bind:latitude="mapLatitude"
 						v-bind:longitude="mapLongitude"
+						v-bind:venueCollection="venueCollection"
 						v-bind:zoom="mapZoom"
 						v-on:beacon:click="Handle_OnClickMapBeacon"
 						v-on:marker:click="Handle_OnClickMapMarker"
@@ -755,7 +757,10 @@
 		 * @type ChalkySticks/Collection/Venue
 		 */
 		@Prop({
-			default: () => ChalkySticks.Factory.Venue.collection(),
+			default: () =>
+				ChalkySticks.Factory.Venue.collection({
+					limit: 64,
+				}),
 		})
 		public venueCollection!: ChalkySticks.Collection.Venue;
 
@@ -798,7 +803,7 @@
 			this.Handle_OnHashChange = this.Handle_OnHashChange.bind(this);
 
 			// console.log('Schedule Collection', this.scheduleCollection);
-			// console.log('Venue Collection', this.venueCollection);
+			console.log('Venue Collection', this.venueCollection);
 
 			// Fetch geolocation
 			setTimeout(() => {
@@ -880,7 +885,9 @@
 			console.log('Clicked marker', venueModel);
 
 			// this.mapLongitude = 1;
-			this.mapZoom = 10;
+			// this.mapZoom = 10;
+
+			console.log('We could set the mapZoom here if we wanted');
 		}
 
 		/**

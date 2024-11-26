@@ -64,7 +64,22 @@
 		/**
 		 * @type number
 		 */
+		public static DISTANCE: number = 1000 * 10;
+
+		/**
+		 * @type number
+		 */
 		public static MARKER_SIZE: number = 40;
+
+		/**
+		 * @type GmapMap
+		 */
+		protected get mapObject(): any {
+			const mapRef = this.$refs.map as any;
+			const center = mapRef.$mapObject;
+
+			return mapRef.$mapObject;
+		}
 
 		/**
 		 * @type GmapMap
@@ -119,12 +134,36 @@
 		public beaconCollection!: ChalkySticks.Collection.Beacon;
 
 		/**
+		 * @type boolean
+		 */
+		@Prop({ default: false })
+		public centerOnMarker!: boolean;
+
+		/**
+		 * @type number
+		 */
+		@Prop({ default: 0 })
+		public centerOffsetX!: number;
+
+		/**
+		 * @type number
+		 */
+		@Prop({ default: 0 })
+		public centerOffsetY!: number;
+
+		/**
+		 * @type number
+		 */
+		@Prop({ default: 0 })
+		public centerZoom!: number;
+
+		/**
 		 * @type ChalkySticks/Collection/Venue
 		 */
 		@Prop({
 			default: () =>
-				new ChalkySticks.Collection.Venue({
-					baseUrl: ChalkySticks.Core.Constants.API_URL_V1,
+				ChalkySticks.Factory.Venue.collection({
+					limit: 64,
 				}),
 		})
 		public venueCollection!: ChalkySticks.Collection.Venue;
@@ -187,7 +226,7 @@
 
 			// Set range for the beacon search
 			this.beaconCollection.setQueryParams({
-				d: 1000 * 5,
+				d: VenueMap.DISTANCE,
 				lat: this.latitude,
 				lon: this.longitude,
 			});
@@ -312,12 +351,11 @@
 			ChalkySticks.Core.Utility.Debounce.exec(
 				this.symbol,
 				() => {
-					if (!this.$refs.map || !(this.$refs.map as any)?.$mapObject) {
+					if (!this.mapObject) {
 						return;
 					}
 
-					const mapRef = this.$refs.map as any;
-					const center = mapRef.$mapObject.getCenter();
+					const center = this.mapObject?.getCenter();
 					const lat = center.lat();
 					const lng = center.lng();
 
@@ -360,6 +398,23 @@
 		 */
 		protected async Handle_OnClickMarker(e: any, marker: IGoogleMapMarker): Promise<void> {
 			this.$emit('marker:click', marker.model);
+
+			if (this.centerOnMarker) {
+				const position = {
+					lat: marker.position.lat,
+					lng: marker.position.lng,
+				};
+
+				// Change zoom
+				// this.zoom = this.centerZoom || this.zoom;
+
+				// Handle offsets
+				position.lat += this.centerOffsetY;
+				position.lng += this.centerOffsetX;
+
+				// Center on position
+				this.mapObject.setCenter(position);
+			}
 		}
 
 		/**
