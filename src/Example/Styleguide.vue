@@ -662,10 +662,12 @@
 				<div>
 					<ChalkyVenueMap
 						class="hide-streetview"
+						v-bind:centerLatitude="mapLatitude"
+						v-bind:centerLongitude="mapLongitude"
 						v-bind:centerOnMarker="true"
-						v-bind:centerOffsetY="-0.005"
-						v-bind:latitude="mapLatitude"
-						v-bind:longitude="mapLongitude"
+						v-bind:centerOffsetY="-100"
+						v-bind:userLatitude="40.800335"
+						v-bind:userLongitude="-73.968452"
 						v-bind:venueCollection="venueCollection"
 						v-bind:zoom="mapZoom"
 						v-on:beacon:click="Handle_OnClickMapBeacon"

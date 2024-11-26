@@ -131,6 +131,11 @@
 			immediate: true,
 		})
 		protected async Handle_OnRouteChange(newQuery: any, oldQuery: any): Promise<void> {
+			if (!this.queryParameter) {
+				return;
+			}
+
+			// Get the new query value
 			const newQueryValue = newQuery[this.queryParameter];
 
 			// No query available

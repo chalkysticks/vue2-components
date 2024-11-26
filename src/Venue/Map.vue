@@ -5,8 +5,8 @@
 			style="width: 100%; height: 100%"
 			ref="map"
 			v-bind:center="{
-				lat: latitude,
-				lng: longitude,
+				lat: centerLatitude,
+				lng: centerLongitude,
 			}"
 			v-bind:options="{
 				disableDefaultUi: true,
@@ -43,12 +43,26 @@
 					v-on:click="Handle_OnClickBeacon($event, beacon)"
 				/>
 			</div>
+
+			<div class="user-container">
+				<GmapMarker
+					class="icon icon-user"
+					v-bind:clickable="false"
+					v-bind:draggable="false"
+					v-bind:icon="getUserMarker()"
+					v-bind:position="{
+						lat: userLatitude,
+						lng: userLongitude,
+					}"
+				/>
+			</div>
 		</GmapMap>
 		<slot></slot>
 	</section>
 </template>
 
 <script lang="ts">
+	import * as UtilityMap from '../Utility/Map';
 	import ChalkySticks from '@chalkysticks/sdk';
 	import ViewBase from '../Core/Base';
 	import { Component, Prop, Ref } from 'vue-property-decorator';
@@ -104,34 +118,31 @@
 			one: require('../Assets/image/markers/pin-1.svg'),
 			three: require('../Assets/image/markers/pin-3.svg'),
 			two: require('../Assets/image/markers/pin-2.svg'),
+			user: require('../Assets/image/markers/user.svg'),
 		};
-
-		/**
-		 * @type number
-		 */
-		@Prop({
-			default: 10,
-		})
-		public latitude!: number;
-
-		/**
-		 * @type number
-		 */
-		@Prop({
-			default: 10,
-		})
-		public longitude!: number;
 
 		/**
 		 * @type ChalkySticks/Collection/Beacon
 		 */
 		@Prop({
 			default: () =>
-				new ChalkySticks.Collection.Beacon({
-					baseUrl: ChalkySticks.Core.Constants.API_URL_V1,
+				ChalkySticks.Factory.Beacon.collection({
+					distance: VenueMap.DISTANCE,
 				}),
 		})
 		public beaconCollection!: ChalkySticks.Collection.Beacon;
+
+		/**
+		 * @type number
+		 */
+		@Prop({ default: 10 })
+		public centerLatitude!: number;
+
+		/**
+		 * @type number
+		 */
+		@Prop({ default: 10 })
+		public centerLongitude!: number;
 
 		/**
 		 * @type boolean
@@ -156,6 +167,18 @@
 		 */
 		@Prop({ default: 0 })
 		public centerZoom!: number;
+
+		/**
+		 * @type number
+		 */
+		@Prop({ default: 10 })
+		public userLatitude!: number;
+
+		/**
+		 * @type number
+		 */
+		@Prop({ default: 10 })
+		public userLongitude!: number;
 
 		/**
 		 * @type ChalkySticks/Collection/Venue
@@ -224,11 +247,11 @@
 		constructor() {
 			super();
 
-			// Set range for the beacon search
+			// fixme
 			this.beaconCollection.setQueryParams({
 				d: VenueMap.DISTANCE,
-				lat: this.latitude,
-				lon: this.longitude,
+				lat: this.centerLatitude,
+				lon: this.centerLongitude,
 			});
 
 			// Check if we need to load data
@@ -295,6 +318,19 @@
 		}
 
 		/**
+		 * @return IGoogleMapMarkerIcon
+		 */
+		protected getUserMarker(): IGoogleMapMarkerIcon {
+			return {
+				scaledSize: {
+					height: VenueMap.MARKER_SIZE,
+					width: VenueMap.MARKER_SIZE,
+				},
+				url: this.icons.user,
+			};
+		}
+
+		/**
 		 * @return void
 		 */
 		protected populateBeacons(): void {
@@ -356,6 +392,11 @@
 					}
 
 					const center = this.mapObject?.getCenter();
+
+					if (!center) {
+						return;
+					}
+
 					const lat = center.lat();
 					const lng = center.lng();
 
@@ -400,17 +441,19 @@
 			this.$emit('marker:click', marker.model);
 
 			if (this.centerOnMarker) {
-				const position = {
+				const position: IGoogleMapPosition = {
 					lat: marker.position.lat,
 					lng: marker.position.lng,
 				};
 
-				// Change zoom
-				// this.zoom = this.centerZoom || this.zoom;
+				// Convert pixel offsets to coordinate deltas
+				const currentMapZoom = this.mapObject?.getZoom() || this.zoom;
+				const offsetY = UtilityMap.pixelsToLatitudeDelta(this.centerOffsetY, currentMapZoom);
+				const offsetX = UtilityMap.pixelsToLongitudeDelta(this.centerOffsetX, currentMapZoom, position.lat);
 
-				// Handle offsets
-				position.lat += this.centerOffsetY;
-				position.lng += this.centerOffsetX;
+				// Adjust position
+				position.lat += offsetY;
+				position.lng += offsetX;
 
 				// Center on position
 				this.mapObject.setCenter(position);
