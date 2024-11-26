@@ -1,10 +1,9 @@
 <template>
-	<div class="chalky venue-map">
+	<section class="chalky venue-map">
 		<GmapMap
 			map-type-id="terrain"
 			style="width: 100%; height: 100%"
 			ref="map"
-			v-on:bounds_changed="Handle_OnBoundsChanged"
 			v-bind:center="{
 				lat: latitude,
 				lng: longitude,
@@ -20,6 +19,7 @@
 				zoomControl: true,
 			}"
 			v-bind:zoom="zoom"
+			v-on:bounds_changed="Handle_OnBoundsChanged"
 			v-on:click="Handle_OnClickMap"
 		>
 			<div class="marker-container" v-bind:key="index" v-for="(marker, index) in markers.map" v-on:click="Handle_OnClickMarkerContainer">
@@ -44,7 +44,8 @@
 				/>
 			</div>
 		</GmapMap>
-	</div>
+		<slot></slot>
+	</section>
 </template>
 
 <script lang="ts">
