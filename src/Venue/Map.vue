@@ -21,6 +21,7 @@
 			v-bind:zoom="zoom"
 			v-on:bounds_changed="Handle_OnBoundsChanged"
 			v-on:click="Handle_OnClickMap"
+			v-on:drag="Handle_OnDragMap"
 		>
 			<div class="marker-container" v-bind:key="index" v-for="(marker, index) in markers.map" v-on:click="Handle_OnClickMarkerContainer">
 				<GmapMarker
@@ -385,7 +386,7 @@
 		 */
 		protected async Handle_OnBoundsChanged(): Promise<void> {
 			ChalkySticks.Core.Utility.Debounce.exec(
-				this.symbol,
+				this.cid + ':bounds',
 				() => {
 					if (!this.mapObject) {
 						return;
@@ -466,6 +467,37 @@
 		 */
 		protected async Handle_OnClickMarkerContainer(e: PointerEvent): Promise<void> {
 			e.stopPropagation();
+		}
+
+		/**
+		 * @param PointerEvent e
+		 * @return Promise<void>
+		 */
+		protected async Handle_OnDragMap(e: PointerEvent): Promise<void> {
+			ChalkySticks.Core.Utility.Debounce.exec(
+				this.cid + ':drag',
+				() => {
+					if (!this.mapObject) {
+						return;
+					}
+
+					const center = this.mapObject?.getCenter();
+
+					if (!center) {
+						return;
+					}
+
+					const lat = center.lat();
+					const lng = center.lng();
+
+					this.$emit('map:drag', {
+						latitude: lat,
+						longitude: lng,
+					});
+				},
+				1000,
+				true,
+			);
 		}
 
 		/**
