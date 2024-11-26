@@ -278,6 +278,20 @@
 				}
 			}
 
+			.distance {
+				bottom: 0.5rem;
+				color: var(--chalky-grey-3);
+				flex-direction: row;
+				font-size: var(--font-size-x-small);
+				margin-bottom: 0.5rem;
+				top: auto;
+				transform: none;
+
+				.icon {
+					width: 10px;
+				}
+			}
+
 			.address,
 			.details,
 			.description,
