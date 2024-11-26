@@ -24,6 +24,7 @@ export function pixelsToLatitudeDelta(pixels: number, zoom: number): number {
 export function pixelsToLongitudeDelta(pixels: number, zoom: number, latitude: number): number {
 	// Need to account for the fact that longitude distances vary with latitude
 	const metersPerPixel = (156543.03392 * Math.cos((latitude * Math.PI) / 180)) / Math.pow(2, zoom);
+
 	// Earth's circumference at this latitude
 	const earthCircumferenceAtLatitude = 40075017 * Math.cos((latitude * Math.PI) / 180);
 
