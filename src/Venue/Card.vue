@@ -1,8 +1,12 @@
 <template>
 	<div class="chalky venue-card glass-panel" v-bind:class="'type-' + venueModel.getType()">
+		<slot name="before"></slot>
+
 		<VenueGallery v-bind:interactive="interactiveGallery" v-bind:venueModel="venueModel" />
 
 		<section class="content" v-if="venueModel.getName()">
+			<slot name="content:before"></slot>
+
 			<section class="title">
 				<h3 class="name">{{ venueModel.getName() }}</h3>
 			</section>
@@ -103,7 +107,11 @@
 
 				<span>{{ distance }} mi</span>
 			</section>
+
+			<slot name="content:after"></slot>
 		</section>
+
+		<slot name="after"></slot>
 	</div>
 </template>
 
