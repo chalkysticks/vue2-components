@@ -2,18 +2,18 @@
 	<main class="styleguide theme-dark">
 		<header>
 			<nav>
-				<a v-on:click="Handle_OnClickNav" href="#general">General</a>
-				<a v-on:click="Handle_OnClickNav" href="#authentication">Authentication</a>
-				<a v-on:click="Handle_OnClickNav" href="#branding">Branding</a>
-				<a v-on:click="Handle_OnClickNav" href="#tv">TV</a>
-				<a v-on:click="Handle_OnClickNav" href="#user">User</a>
-				<a v-on:click="Handle_OnClickNav" href="#utility">Utility</a>
-				<a v-on:click="Handle_OnClickNav" href="#venues">Venues</a>
-				<a v-on:click="Handle_OnClickNav" href="#wallet">Wallet</a>
+				<a href="#general">General</a>
+				<a href="#authentication">Authentication</a>
+				<a href="#branding">Branding</a>
+				<a href="#tv">TV</a>
+				<a href="#user">User</a>
+				<a href="#utility">Utility</a>
+				<a href="#venues">Venues</a>
+				<a href="#wallet">Wallet</a>
 			</nav>
 		</header>
 
-		<section class="level-0" v-bind:class="{ 'state-active': tab == 'general' }">
+		<section class="level-0" v-if="tab == 'general'" v-bind:class="{ 'state-active': tab == 'general' }">
 			<header>
 				<h2>General</h2>
 			</header>
@@ -119,7 +119,7 @@
 			</section>
 		</section>
 
-		<section class="level-0" v-bind:class="{ 'state-active': tab == 'user' }">
+		<section class="level-0" v-if="tab == 'user'" v-bind:class="{ 'state-active': tab == 'user' }">
 			<header>
 				<h2>User</h2>
 			</header>
@@ -134,7 +134,7 @@
 			</section>
 		</section>
 
-		<section class="level-0" v-bind:class="{ 'state-active': tab == 'utility' }">
+		<section class="level-0" v-if="tab == 'utility'" v-bind:class="{ 'state-active': tab == 'utility' }">
 			<header>
 				<h2>Utility</h2>
 			</header>
@@ -167,7 +167,7 @@
 			</section>
 		</section>
 
-		<section class="level-0" v-bind:class="{ 'state-active': tab == 'branding' }">
+		<section class="level-0" v-if="tab == 'branding'" v-bind:class="{ 'state-active': tab == 'branding' }">
 			<header>
 				<h2>Branding</h2>
 			</header>
@@ -246,7 +246,7 @@
 			</section>
 		</section>
 
-		<section class="level-0" v-bind:class="{ 'state-active': tab == 'authentication' }">
+		<section class="level-0" v-if="tab == 'authentication'" v-bind:class="{ 'state-active': tab == 'authentication' }">
 			<header>
 				<h2>Authentication</h2>
 			</header>
@@ -362,7 +362,7 @@
 			</section>
 		</section>
 
-		<section class="level-0" v-bind:class="{ 'state-active': tab == 'tv' }">
+		<section class="level-0" v-if="tab == 'tv'" v-bind:class="{ 'state-active': tab == 'tv' }">
 			<header>
 				<h2>Television</h2>
 			</header>
@@ -608,7 +608,7 @@
 			</section>
 		</section>
 
-		<section class="level-0" v-bind:class="{ 'state-active': tab == 'venues' }">
+		<section class="level-0" v-if="tab == 'venues'" v-bind:class="{ 'state-active': tab == 'venues' }">
 			<header>
 				<h2>Venues</h2>
 			</header>
@@ -618,7 +618,7 @@
 					<h3>Venue Gallery</h3>
 				</header>
 				<div class="push-bottom">
-					<ChalkyVenueGallery v-bind:venueModel="venueCollection.at(0)" />
+					<ChalkyVenueGallery v-bind:interactive="true" v-bind:venueModel="venueCollection.at(0)" />
 				</div>
 			</section>
 
@@ -689,7 +689,7 @@
 			</section>
 		</section>
 
-		<section class="level-0" v-bind:class="{ 'state-active': tab == 'wallet' }">
+		<section class="level-0" v-if="tab == 'wallet'" v-bind:class="{ 'state-active': tab == 'wallet' }">
 			<header>
 				<h2>Wallet</h2>
 			</header>
@@ -761,7 +761,7 @@
 		@Prop({
 			default: () =>
 				ChalkySticks.Factory.Venue.collection({
-					limit: 64,
+					limit: 12,
 				}),
 		})
 		public venueCollection!: ChalkySticks.Collection.Venue;

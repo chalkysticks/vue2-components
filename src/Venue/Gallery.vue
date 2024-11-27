@@ -12,15 +12,10 @@
 				'state-active': activeIndex === index,
 			}"
 		>
-			<source v-bind:srcset="model.getUrl()" />
-			<img
-				src="https://map.chalkysticks.com/image/backgrounds/no-photos-venue.jpg"
-				v-on:load="Handle_OnImageLoaded"
-				v-bind:class="{ 'is-loaded': loadedImages.includes(index) }"
-			/>
+			<img v-bind:class="{ 'is-loaded': loadedImages.includes(index) }" v-bind:src="model?.getUrl()" v-on:load="Handle_OnImageLoaded" />
 		</picture>
 
-		<picture v-if="media.length == 0">
+		<picture v-if="media.length == 0" class="state-active">
 			<img
 				src="https://map.chalkysticks.com/image/backgrounds/no-photos-venue.jpg"
 				v-on:load="Handle_OnImageLoaded"
@@ -45,6 +40,13 @@
 	@Component
 	export default class VenueGallery extends ViewBase {
 		/**
+		 * @return number
+		 */
+		protected get containerWidth(): number {
+			return this.$el.clientWidth;
+		}
+
+		/**
 		 * @return boolean
 		 */
 		protected get isInteractive(): boolean {
@@ -55,22 +57,18 @@
 		 * @type ChalkySticks.Model.VenueMedia[]
 		 */
 		protected get media(): ChalkySticks.Model.VenueMedia[] {
-			const output = [...this.venueModel.media];
+			if (!this.interactive) {
+				return [this.venueModel.media.at(0)];
+			} else {
+				const output = [...this.venueModel.media];
 
-			// If there's two, double it so we have at least three
-			if (output.length === 2) {
-				output.push(...this.venueModel.media);
+				// If there's two, double it so we have at least three
+				if (output.length === 2) {
+					output.push(...this.venueModel.media);
+				}
+
+				return output;
 			}
-
-			return output;
-		}
-
-		/**
-		 * @type ChalkySticks.Core.Input.Pointer
-		 */
-		protected get pointer(): ChalkySticks.Core.Input.Pointer {
-			const pointer = new ChalkySticks.Core.Input.Pointer('pointer', true, this.$el as HTMLElement);
-			return pointer;
 		}
 
 		/**
@@ -118,10 +116,17 @@
 		protected loadedImages: number[] = [];
 
 		/**
+		 * @type ChalkySticks.Core.Input.Pointer
+		 */
+		protected pointer!: ChalkySticks.Core.Input.Pointer;
+
+		/**
 		 * @return void
 		 */
 		@mounted
 		public attachEvents(): void {
+			this.pointer = new ChalkySticks.Core.Input.Pointer('pointer', true, this.$el as HTMLElement);
+
 			if (this.isInteractive) {
 				this.pointer.on('tap', this.Handle_OnTap.bind(this));
 				this.pointer.on('drag', this.Handle_OnDrag.bind(this));
@@ -193,7 +198,7 @@
 		 */
 		protected async Handle_OnDrag(e: ChalkySticks.Core.IDispatcherEvent<any>): Promise<void> {
 			this.hasInteracted = true;
-			this.dragRatio = this.pointer.dx / window.innerWidth;
+			this.dragRatio = this.pointer.dx / this.containerWidth;
 
 			if (this.automatic) {
 				this.stop();
@@ -205,11 +210,15 @@
 		 * @return Promise<void>
 		 */
 		protected async Handle_OnDragRelease(e: ChalkySticks.Core.IDispatcherEvent<any>): Promise<void> {
+			const dragRatio = this.dragRatio > 0.3 ? 1 : this.dragRatio < -0.3 ? -1 : 0;
+
+			// Animate to new area
 			await gsap.to(this, {
-				dragRatio: Math.round(this.dragRatio),
+				dragRatio: dragRatio,
 				duration: 0.5,
 			});
 
+			// Advance the "state" class
 			if (this.dragRatio > 0.5) {
 				this.previous();
 			} else if (this.dragRatio < -0.5) {
