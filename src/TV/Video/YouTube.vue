@@ -119,56 +119,56 @@
 		 * @return number
 		 */
 		public getCurrentTime(): number {
-			return this.api.getCurrentTime();
+			return this.api?.getCurrentTime();
 		}
 
 		/**
 		 * @return number
 		 */
 		public getDuration(): number {
-			return this.api.getDuration();
+			return this.api?.getDuration();
 		}
 
 		/**
 		 * @return string
 		 */
 		public getVideoUrl(): string {
-			return this.api.getVideoUrl();
+			return this.api?.getVideoUrl();
 		}
 
 		/**
 		 * @return boolean
 		 */
 		public isMuted(): boolean {
-			return this.api.isMuted();
+			return this.api?.isMuted();
 		}
 
 		/**
 		 * @return void
 		 */
 		public mute(): void {
-			this.api.mute();
+			this.api?.mute();
 		}
 
 		/**
 		 * @return void
 		 */
 		public pause(): void {
-			this.api.pauseVideo();
+			this.api?.pauseVideo();
 		}
 
 		/**
 		 * @return number
 		 */
 		public play(): void {
-			this.api.playVideo();
+			this.api?.playVideo();
 		}
 
 		/**
 		 * @return void
 		 */
 		public unmute(): void {
-			this.api.unMute();
+			this.api?.unMute();
 		}
 
 		/**
@@ -177,7 +177,7 @@
 		 */
 		public seekTo(seconds: number = 30): void {
 			try {
-				this.api.seekTo(seconds, true);
+				this.api?.seekTo(seconds, true);
 			} catch (e) {
 				console.warn('Could not seek to', seconds);
 			}
