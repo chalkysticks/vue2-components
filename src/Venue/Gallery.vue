@@ -15,7 +15,7 @@
 			<img
 				v-if="model?.getUrl()"
 				v-bind:class="{ 'is-loaded': loadedImages.includes(index) }"
-				v-bind:src="imageProxy + model.getUrl()"
+				v-bind:src="model.getUrlLarge()"
 				v-on:load="Handle_OnImageLoaded"
 			/>
 
@@ -59,17 +59,6 @@
 		}
 
 		/**
-		 * @todo IMPORTANT
-		 *
-		 * Swap this out once we have our own one setup
-		 *
-		 * @return string
-		 */
-		protected get imageProxy(): string {
-			return 'https://image.buck-sandbox.co/unsafe/768x0/filters:format(webp)/';
-		}
-
-		/**
 		 * @return boolean
 		 */
 		protected get isInteractive(): boolean {
@@ -77,9 +66,9 @@
 		}
 
 		/**
-		 * @type ChalkySticks.Model.VenueMedia[]
+		 * @type ChalkySticks.Model.Media[]
 		 */
-		protected get media(): ChalkySticks.Model.VenueMedia[] {
+		protected get media(): ChalkySticks.Model.Media[] {
 			if (!this.interactive) {
 				return [this.venueModel.media.at(0)];
 			} else {
