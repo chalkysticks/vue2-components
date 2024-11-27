@@ -1059,11 +1059,6 @@
   dependencies:
     tslib "^2.1.0"
 
-"@capacitor/geolocation@^5.0.0":
-  version "5.0.8"
-  resolved "https://registry.yarnpkg.com/@capacitor/geolocation/-/geolocation-5.0.8.tgz#d319752123f9d97c2e463f41adb28b0070dd5b25"
-  integrity sha512-ikyAKtgTfBeyZVAhDQ0Cbor6yJ18QM+xstlwRIiTRKMZDHty7rhCB0nTLpZvCGe1RQh7JLInUuKX2mPWaNELUQ==
-
 "@capacitor/geolocation@^6.0.2":
   version "6.0.2"
   resolved "https://registry.yarnpkg.com/@capacitor/geolocation/-/geolocation-6.0.2.tgz#4a973029c2b2b69b14ce6d0177d144d458964d6c"
@@ -1087,14 +1082,12 @@
     "@chalkysticks/sdk-core" "github:chalkysticks/sdk-core"
 
 "@chalkysticks/sdk-core@github:chalkysticks/sdk-core":
-  version "1.27.0"
-  resolved "https://codeload.github.com/chalkysticks/sdk-core/tar.gz/3e301618adbef16f4efcb0145bbae09fa53227ee"
+  version "1.28.0"
+  resolved "https://codeload.github.com/chalkysticks/sdk-core/tar.gz/988092ea32525ec1a376cca42c0d133eba6500b2"
   dependencies:
     "@chalkysticks/mrm-preset" "github:chalkysticks/mrm-preset"
     "@types/googlemaps" "^3.43.3"
     restmc "git+https://github.com/mattkenefick/restmc.git"
-  optionalDependencies:
-    "@capacitor/geolocation" "^5.0.0"
 
 "@chalkysticks/sdk-pad@github:chalkysticks/sdk-pad#v2":
   version "1.3.1"
@@ -1133,8 +1126,8 @@
     "@chalkysticks/sdk-core" "github:chalkysticks/sdk-core"
 
 "@chalkysticks/sdk@github:chalkysticks/sdk":
-  version "1.27.0"
-  resolved "https://codeload.github.com/chalkysticks/sdk/tar.gz/1d9d06e89ad8a327e06f47e69a58aae520b5fccf"
+  version "1.28.0"
+  resolved "https://codeload.github.com/chalkysticks/sdk/tar.gz/e268d91e4e4f821f4a84541fef5f99e3d345072a"
   dependencies:
     "@chalkysticks/sdk-authentication" "github:chalkysticks/sdk-authentication"
     "@chalkysticks/sdk-core" "github:chalkysticks/sdk-core"
@@ -1143,8 +1136,6 @@
     "@chalkysticks/sdk-tv" "github:chalkysticks/sdk-tv#v1"
     "@chalkysticks/sdk-venues" "github:chalkysticks/sdk-venues#v1"
     "@chalkysticks/sdk-wallet" "github:chalkysticks/sdk-wallet"
-  optionalDependencies:
-    "@capacitor/geolocation" "^5.0.0"
 
 "@discoveryjs/json-ext@0.5.7":
   version "0.5.7"
