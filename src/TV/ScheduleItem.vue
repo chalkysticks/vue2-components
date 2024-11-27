@@ -187,7 +187,6 @@
 
 					return;
 				} catch {
-					console.log('fetch failed for', imageUrl);
 					continue;
 				}
 			}

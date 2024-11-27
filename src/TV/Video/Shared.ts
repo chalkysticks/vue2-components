@@ -388,8 +388,6 @@ export default abstract class TVVideoShared extends ViewBase {
 	 * @return Promise<void>
 	 */
 	protected async Handle_OnVideoStarting(): Promise<void> {
-		console.log('shared: video starting');
-
 		this.trigger('video:starting');
 		this.$emit('video:starting');
 	}

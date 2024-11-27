@@ -138,35 +138,35 @@
 		 * @return boolean
 		 */
 		public isMuted(): boolean {
-			return this.api.isMuted();
+			return this.api?.isMuted();
 		}
 
 		/**
 		 * @return void
 		 */
 		public mute(): void {
-			this.api.mute();
+			this.api?.mute();
 		}
 
 		/**
 		 * @return void
 		 */
 		public pause(): void {
-			this.api.pause();
+			this.api?.pause();
 		}
 
 		/**
 		 * @return number
 		 */
 		public play(): void {
-			this.api.play();
+			this.api?.play();
 		}
 
 		/**
 		 * @return void
 		 */
 		public unmute(): void {
-			this.api.unmute();
+			this.api?.unmute();
 		}
 
 		/**
@@ -175,7 +175,7 @@
 		 */
 		public seekTo(seconds: number = 30): void {
 			try {
-				this.api.seek(seconds, true);
+				this.api?.seek(seconds, true);
 			} catch (e) {
 				console.warn('Could not seek to', seconds);
 			}

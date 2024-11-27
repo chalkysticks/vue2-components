@@ -4,6 +4,7 @@
         "url": "https://github.com/chalkysticks/vue2-components/issues"
     },
     "dependencies": {
+        "@capacitor/core": "^6.2.0",
         "@chalkysticks/sass": "github:chalkysticks/sass-theme",
         "@chalkysticks/sdk": "github:chalkysticks/sdk",
         "@fortawesome/fontawesome-free": "^5.15.3",
@@ -57,6 +58,9 @@
     "license": "MIT",
     "main": "./src/index.ts",
     "name": "@chalkysticks/vue2-components",
+    "optionalDependencies": {
+        "@capacitor/geolocation": "^6.0.2"
+    },
     "peerDependencies": {
         "sass": "^1.26.5",
         "sass-loader": "^8.0.2",
@@ -82,5 +86,5 @@
     "template": {
         "name": "ChalkySticks SDK Vue2.0 Components"
     },
-    "version": "1.35.5"
+    "version": "1.36.0"
 }
