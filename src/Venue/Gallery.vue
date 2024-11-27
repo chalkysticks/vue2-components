@@ -12,7 +12,19 @@
 				'state-active': activeIndex === index,
 			}"
 		>
-			<img v-bind:class="{ 'is-loaded': loadedImages.includes(index) }" v-bind:src="model?.getUrl()" v-on:load="Handle_OnImageLoaded" />
+			<img
+				v-if="model?.getUrl()"
+				v-bind:class="{ 'is-loaded': loadedImages.includes(index) }"
+				v-bind:src="imageProxy + model.getUrl()"
+				v-on:load="Handle_OnImageLoaded"
+			/>
+
+			<img
+				v-else
+				src="https://map.chalkysticks.com/image/backgrounds/no-photos-venue.jpg"
+				v-bind:class="{ 'is-loaded': loadedImages.includes(0) }"
+				v-on:load="Handle_OnImageLoaded"
+			/>
 		</picture>
 
 		<picture v-if="media.length == 0" class="state-active">
@@ -44,6 +56,17 @@
 		 */
 		protected get containerWidth(): number {
 			return this.$el.clientWidth;
+		}
+
+		/**
+		 * @todo IMPORTANT
+		 *
+		 * Swap this out once we have our own one setup
+		 *
+		 * @return string
+		 */
+		protected get imageProxy(): string {
+			return 'https://image.buck-sandbox.co/unsafe/768x0/filters:format(webp)/';
 		}
 
 		/**
