@@ -520,20 +520,11 @@
 		 * @return Promise<void>
 		 */
 		protected async Handle_OnMapMove(position: IMapPosition): Promise<void> {
-			if (this.autoFetch) {
-				this.venueCollection
-					.setQueryParams({
-						lat: position.latitude || 0,
-						lon: position.longitude || 0,
-					})
-					.fetch();
+			const coordinates = ChalkySticks.Utility.Geolocation.simplifyCoordinates(position, undefined, 1e2);
 
-				this.beaconCollection
-					.setQueryParams({
-						lat: position.latitude || 0,
-						lon: position.longitude || 0,
-					})
-					.fetch();
+			if (this.autoFetch) {
+				this.venueCollection.setQueryParams(coordinates).fetch();
+				this.beaconCollection.setQueryParams(coordinates).fetch();
 			}
 		}
 	}

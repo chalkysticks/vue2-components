@@ -24,6 +24,7 @@
 </template>
 
 <script lang="ts">
+	import * as UtilityMap from '../Utility/Map';
 	import ChalkySticks from '@chalkysticks/sdk';
 	import VenueCard from './Card.vue';
 	import ViewBase from '../Core/Base';
@@ -162,13 +163,14 @@
 				return;
 			}
 
+			// Trigger store
 			this.$store.dispatch('location/position', e.data);
 
-			this.venueCollection.setQueryParams({
-				lat: e.data.coords.latitude,
-				lon: e.data.coords.longitude,
-			});
+			// Simplify coordinates
+			const coordinates = ChalkySticks.Utility.Geolocation.simplifyCoordinates(e.data.coords, undefined, 1e2);
 
+			// Update query parameters
+			this.venueCollection.setQueryParams(coordinates);
 			this.venueCollection.fetch();
 		}
 
