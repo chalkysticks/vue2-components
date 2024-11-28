@@ -15,6 +15,10 @@
 				<span>{{ rating }}</span>
 			</section>
 
+			<section class="confirmed">
+				<img class="icon size-xs" src="~@chalkysticks/sass/build/asset/image/icon/confirmed-venue.svg" />
+			</section>
+
 			<address class="address">
 				<span class="address">{{ venueModel.getAddress() }}</span>
 			</address>
@@ -243,6 +247,12 @@
 			}
 		}
 
+		.confirmed {
+			position: absolute;
+			right: 0.75rem;
+			top: 0.75rem;
+		}
+
 		.address {
 			clear: both;
 			margin-bottom: 1.5rem;
@@ -300,6 +310,11 @@
 	// Variations
 	// ---------------------------------------------------------------------------
 
+	.chalky.venue-card.glass-panel {
+		.confirmed {
+		}
+	}
+
 	.chalky.venue-card:not(.list-item) {
 		.distance {
 			display: none;
@@ -347,6 +362,11 @@
 				h3 {
 					font-size: var(--font-size-medium);
 				}
+			}
+
+			.confirmed {
+				right: 0.25rem;
+				top: 0.25rem;
 			}
 
 			.address {
