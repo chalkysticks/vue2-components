@@ -16,7 +16,7 @@
 			</section>
 
 			<section class="confirmed">
-				<img class="icon size-xs" src="~@chalkysticks/sass/build/asset/image/icon/confirmed-venue.svg" />
+				<img v-if="hasTableImage" class="icon size-xs" src="~@chalkysticks/sass/build/asset/image/icon/confirmed-venue.svg" />
 			</section>
 
 			<address class="address">
@@ -149,6 +149,15 @@
 			// const distance = ChalkySticks.Utility.Geolocation.distanceBetween(myLatitude, myLongitude, venueLatitude, venueLongitude);
 
 			return distance.toFixed(2);
+		}
+
+		/**
+		 * @return boolean
+		 */
+		public get hasTableImage(): boolean {
+			return !!this.venueModel.media.findWhere({
+				subgroup: 'table',
+			});
 		}
 
 		/**

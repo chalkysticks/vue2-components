@@ -1111,8 +1111,8 @@
     "@chalkysticks/sdk-core" "github:chalkysticks/sdk-core"
 
 "@chalkysticks/sdk-venues@github:chalkysticks/sdk-venues#v1":
-  version "1.4.2"
-  resolved "https://codeload.github.com/chalkysticks/sdk-venues/tar.gz/2f332d2b95643a4b138937125a582e374a565647"
+  version "1.4.3"
+  resolved "https://codeload.github.com/chalkysticks/sdk-venues/tar.gz/0a2efcf87bf8953d226c93e3dafb23a91ef89d2d"
   dependencies:
     "@chalkysticks/mrm-preset" "github:chalkysticks/mrm-preset"
     "@chalkysticks/sdk-core" "github:chalkysticks/sdk-core"
@@ -1126,8 +1126,8 @@
     "@chalkysticks/sdk-core" "github:chalkysticks/sdk-core"
 
 "@chalkysticks/sdk@github:chalkysticks/sdk":
-  version "1.29.1"
-  resolved "https://codeload.github.com/chalkysticks/sdk/tar.gz/cdf60fd5cd4e4b1617da1f42bbb43be09bb07940"
+  version "1.29.2"
+  resolved "https://codeload.github.com/chalkysticks/sdk/tar.gz/6fd085ef8407e5866861e7b369b721510dc80934"
   dependencies:
     "@chalkysticks/sdk-authentication" "github:chalkysticks/sdk-authentication"
     "@chalkysticks/sdk-core" "github:chalkysticks/sdk-core"
@@ -1136,6 +1136,7 @@
     "@chalkysticks/sdk-tv" "github:chalkysticks/sdk-tv#v1"
     "@chalkysticks/sdk-venues" "github:chalkysticks/sdk-venues#v1"
     "@chalkysticks/sdk-wallet" "github:chalkysticks/sdk-wallet"
+    luxon "^3.5.0"
 
 "@discoveryjs/json-ext@0.5.7":
   version "0.5.7"
