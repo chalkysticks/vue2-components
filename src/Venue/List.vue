@@ -1,5 +1,10 @@
 <template>
-	<div class="chalky venue-list">
+	<div
+		class="chalky venue-list"
+		v-bind:class="{
+			'state-loading': venueCollection.loading,
+		}"
+	>
 		<section class="list">
 			<slot name="before-list"></slot>
 			<VenueCard
@@ -192,6 +197,10 @@
 			overflow: auto;
 			padding: 1rem;
 
+			.venue-card {
+				transition: opacity 0.5s ease-in-out;
+			}
+
 			> * {
 				margin-bottom: 1.5rem;
 				position: relative;
@@ -306,6 +315,19 @@
 
 		.actions {
 			display: none;
+		}
+	}
+
+	// State
+	// ---------------------------------------------------------------------------
+
+	.chalky.venue-list.state-loading {
+		.list {
+			background: url('~@chalkysticks/sass/build/asset/image/loader/triangle-white-light.svg') no-repeat center center;
+		}
+
+		.venue-card {
+			opacity: 0;
 		}
 	}
 </style>

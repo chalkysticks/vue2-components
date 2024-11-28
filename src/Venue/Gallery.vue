@@ -1,6 +1,9 @@
 <template>
 	<section
 		class="chalky venue-gallery stacked"
+		v-bind:class="{
+			'state-loaded-some': loadedImages.length > 0,
+		}"
 		v-bind:style="{
 			'--drag-offset': dragRatio,
 		}"
@@ -279,6 +282,7 @@
 		border-radius: var(--rounded-corner);
 		display: grid;
 		overflow: hidden;
+		position: relative;
 		user-select: none;
 
 		picture {
@@ -340,6 +344,28 @@
 
 		picture.state-active + picture {
 			z-index: 5;
+		}
+	}
+
+	// Animation
+	// ---------------------------------------------------------------------------
+
+	.venue-gallery:not(.state-loaded-some)::before {
+		animation: shimmer 2s infinite;
+		background: linear-gradient(90deg, transparent, var(--chalky-grey-3), transparent);
+		content: '';
+		height: 200%;
+		opacity: 0.2;
+		position: absolute;
+		top: 0;
+		transform: translateY(-25%) translateX(-130%) rotate(30deg);
+		width: 50%;
+	}
+
+	@keyframes shimmer {
+		100% {
+			opacity: 0;
+			transform: translateY(-25%) translateX(200%) rotate(30deg);
 		}
 	}
 </style>
