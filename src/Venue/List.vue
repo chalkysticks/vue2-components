@@ -183,8 +183,8 @@
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
+		height: 100%;
 		justify-content: center;
-		min-height: 100%;
 
 		.list {
 			background-color: var(--chalky-white);
