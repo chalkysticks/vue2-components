@@ -282,6 +282,11 @@
 			}
 		}
 
+		.title {
+			line-height: 1.1;
+			margin-bottom: 0.25em;
+		}
+
 		.subtitle {
 			margin: 0;
 		}
@@ -289,6 +294,10 @@
 		.gallery,
 		.tags {
 			display: none;
+		}
+
+		.tags {
+			margin-bottom: 0.5em;
 		}
 
 		.gallery {
