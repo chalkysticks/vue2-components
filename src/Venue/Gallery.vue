@@ -23,7 +23,7 @@
 			/>
 
 			<img
-				v-else
+				class="no-photo"
 				src="https://map.chalkysticks.com/image/backgrounds/no-photos-venue.jpg"
 				v-bind:class="{ 'is-loaded': loadedImages.includes(0) }"
 				v-on:load="Handle_OnImageLoaded"
@@ -301,8 +301,21 @@
 				transition: opacity 0.25s var(--ease-out-quad);
 				width: 100%;
 
+				// mk: We do this because the "No photo" keeps the structure of
+				// the gallery visually, but once the actual photo loads, we
+				// can hide the "No photos".
 				&.is-loaded {
 					opacity: 1;
+
+					+ .is-loaded {
+						display: none;
+					}
+				}
+
+				// mk: But if the no photo is the first and only one, then we
+				// must show it.
+				&.no-photo.is-loaded:first-child:last-child {
+					display: initial;
 				}
 			}
 
@@ -350,7 +363,7 @@
 	// Animation
 	// ---------------------------------------------------------------------------
 
-	.venue-gallery:not(.state-loaded-some)::before {
+	.venue-gallery::before {
 		animation: shimmer 2s infinite;
 		background: linear-gradient(90deg, transparent, var(--chalky-grey-3), transparent);
 		content: '';
