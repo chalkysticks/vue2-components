@@ -180,14 +180,15 @@
 
 <style lang="scss">
 	.chalky.venue-list {
-		--thumbnail-size: 150px;
-
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
+		justify-content: center;
+		min-height: 100%;
 
 		.list {
-			background-color: #fff;
+			background-color: var(--chalky-white);
+			height: 100%;
 			overflow: auto;
 			padding: 1rem;
 
@@ -253,7 +254,7 @@
 			grid-template-columns: 1fr;
 			margin: 0;
 			white-space: nowrap;
-			width: calc(var(--thumbnail-size) * 1.5);
+			width: calc(var(--chalky-venue-list-thumbnail-size) * 1.5);
 
 			.gallery {
 				background-color: transparent;
