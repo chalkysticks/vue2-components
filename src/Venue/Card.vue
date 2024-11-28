@@ -336,7 +336,7 @@
 		grid-row-gap: 0px;
 		grid-template-columns: auto 1fr;
 		grid-template-rows: auto auto auto;
-		// height: var(--thumbnail-size);
+		// height: var(--chalky-venue-list-thumbnail-size);
 		max-width: 100%;
 		padding: 0;
 
@@ -347,9 +347,9 @@
 
 			picture {
 				border-radius: var(--rounded-corner);
-				height: var(--thumbnail-size);
+				height: var(--chalky-venue-list-thumbnail-size);
 				overflow: hidden;
-				width: calc(var(--thumbnail-size) * 1.5);
+				width: calc(var(--chalky-venue-list-thumbnail-size) * 1.5);
 			}
 
 			picture:not(:first-child) {
@@ -408,7 +408,7 @@
 
 	@container (min-width: 400px) {
 		.chalky.venue-card {
-			--thumbnail-size: 60px;
+			--chalky-venue-list-thumbnail-size: 60px;
 		}
 	}
 </style>
