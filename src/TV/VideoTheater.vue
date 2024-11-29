@@ -285,6 +285,9 @@
 		 */
 		public setByModel(model: ChalkySticks.Model.Schedule): void {
 			this.setUrl(model.getEmbedUrl());
+
+			// Event
+			this.$emit('schedule:set', model);
 		}
 
 		/**
@@ -304,6 +307,9 @@
 
 			// Show title
 			this.setUrl(embedUrl, time);
+
+			// Event
+			this.$emit('schedule:set', model);
 		}
 
 		/**
@@ -359,7 +365,7 @@
 				}, 500);
 			}
 
-			this.$emit('player:ended');
+			this.$emit('player:ended', this.scheduleModel);
 		}
 
 		/**
@@ -372,7 +378,7 @@
 				setTimeout(() => this.flagAndSkip());
 			}
 
-			this.$emit('player:error');
+			this.$emit('player:error', this.scheduleModel);
 		}
 
 		/**
@@ -384,7 +390,7 @@
 			// this.beginAutoplay();
 			// Autoplay is taken care of by the player
 
-			this.$emit('player:ready');
+			this.$emit('player:ready', this.scheduleModel);
 		}
 
 		/**
@@ -393,7 +399,7 @@
 		 * @return Promise<void>
 		 */
 		protected async Handle_OnVideoStarting(): Promise<void> {
-			this.$emit('video:starting');
+			this.$emit('video:starting', this.scheduleModel);
 		}
 
 		/**
@@ -402,7 +408,7 @@
 		 * @return Promise<void>
 		 */
 		protected async Handle_OnVideoEnding(): Promise<void> {
-			this.$emit('video:ending');
+			this.$emit('video:ending', this.scheduleModel);
 		}
 
 		/**
@@ -425,7 +431,7 @@
 				this.beginAutoplay();
 			}
 
-			this.$emit('schedule:change');
+			this.$emit('schedule:change', newModel);
 		}
 
 		/**

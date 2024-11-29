@@ -1,6 +1,6 @@
 <template>
 	<section class="chalky tv-attributionbanner">
-		<a v-bind:href="url" v-bind:title="title">
+		<a v-bind:href="url" v-bind:title="title" target="_blank">
 			<figure class="thumbnail">
 				<img v-bind:src="thumbnailUrl" crossorigin="anonymous" referrerpolicy="no-referrer" />
 			</figure>
