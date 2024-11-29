@@ -72,18 +72,26 @@
 		 * @type ChalkySticks.Model.Media[]
 		 */
 		protected get media(): ChalkySticks.Model.Media[] {
+			const MEDIA_SORT_ORDER = ['table', 'interior', 'exterior'];
+
+			const sortedMediaModels = this.venueModel.media.models
+				.filter((model) => MEDIA_SORT_ORDER.includes(model.getSubgroup()))
+				.sort((a, b) => {
+					return MEDIA_SORT_ORDER.indexOf(a.getSubgroup()) - MEDIA_SORT_ORDER.indexOf(b.getSubgroup());
+				});
+
 			if (!this.interactive) {
-				return [this.venueModel.media.at(0)];
-			} else {
-				const output = [...this.venueModel.media];
-
-				// If there's two, double it so we have at least three
-				if (output.length === 2) {
-					output.push(...this.venueModel.media);
-				}
-
-				return output;
+				return [sortedMediaModels[0]];
 			}
+
+			// In interactive mode, return all media models
+			// If only 2 items present, duplicate them to ensure at least 3
+			const mediaModels = [...sortedMediaModels];
+			if (mediaModels.length === 2) {
+				mediaModels.push(...sortedMediaModels);
+			}
+
+			return mediaModels;
 		}
 
 		/**
