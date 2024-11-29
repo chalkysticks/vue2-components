@@ -7,11 +7,11 @@
 
 			<div class="details">
 				<h5 class="type-small-heading">Presented By</h5>
-				<p class="type-small-paragraph">{{ title }} Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet</p>
+				<p class="type-small-paragraph">{{ title }}</p>
 			</div>
 
 			<div class="youtube">
-				<img src="@/Assets/image/graphic/youtube.svg" />
+				<img src="../Assets/image/graphic/youtube.svg" />
 			</div>
 		</a>
 	</section>

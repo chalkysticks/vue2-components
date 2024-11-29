@@ -9,6 +9,10 @@
 			</section>
 		</header>
 
+		<!-- This all still needs to be hooked up and stuff -->
+		<!-- Probably break this into a new component -->
+		<WalletCollection />
+
 		<nav>
 			<ul>
 				<li>
@@ -60,6 +64,7 @@
 	import ChalkySticks from '@chalkysticks/sdk';
 	import UserAvatar from '../User/Avatar.vue';
 	import ViewBase from '../Core/Base';
+	import WalletCollection from '../Wallet/Collection.vue';
 	import gsap from 'gsap';
 	import { Component, Prop } from 'vue-property-decorator';
 	import { beforeDestroy, mounted } from '@/Utility/Decorators';
@@ -75,6 +80,7 @@
 		components: {
 			BrandingBadge,
 			UserAvatar,
+			WalletCollection,
 		},
 	})
 	export default class UserMenu extends ViewBase {
@@ -182,6 +188,11 @@
 		width: 90%;
 		z-index: var(--z-modal-mid);
 
+		ul li button {
+			padding: 0.5rem 0;
+			width: 100%;
+		}
+
 		header {
 			align-items: center;
 			display: grid;
@@ -196,11 +207,6 @@
 			.user-menu + * {
 				grid-area: 1 / 2 / 2 / 3;
 			}
-		}
-
-		ul li button {
-			padding: 0.5rem 0;
-			width: 100%;
 		}
 
 		.action-container {
