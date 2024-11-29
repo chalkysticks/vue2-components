@@ -372,6 +372,9 @@
 
 <style lang="scss">
 	.tv-schedule {
+		--z-tv-header-top: calc(var(--z-page-mid) + 5);
+		--z-tv-header-mid: calc(var(--z-page-mid) + 3);
+
 		display: grid;
 		gap: var(--chalky-tv-schedule-gap);
 		grid-template-columns: var(--chalky-tv-schedule-sidebar-size) 1fr;
@@ -390,7 +393,7 @@
 			position: sticky;
 			top: 0;
 			width: 100%;
-			z-index: var(--z-header-top);
+			z-index: var(--z-tv-header-top);
 		}
 
 		.tv-timeline {
@@ -398,7 +401,7 @@
 			grid-area: 2 / 1 / 3 / 2;
 			left: 0;
 			position: sticky;
-			z-index: var(--z-header-mid);
+			z-index: var(--z-tv-header-mid);
 		}
 
 		.headers {
@@ -406,7 +409,7 @@
 			grid-area: 1 / 2 / 2 / 3;
 			position: sticky;
 			top: 0;
-			z-index: var(--z-header-mid);
+			z-index: var(--z-tv-header-mid);
 
 			.channel-header {
 				background-color: var(--chalky-blue-4);
@@ -442,7 +445,7 @@
 			top: 0;
 			transform: translate(0, -5px);
 			width: 100%;
-			z-index: var(--z-header-mid);
+			z-index: var(--z-tv-header-mid);
 
 			.badge {
 				transform: translate(-120%, -50%);
