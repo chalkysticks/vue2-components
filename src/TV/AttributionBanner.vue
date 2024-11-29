@@ -64,11 +64,15 @@
 		--thumbnail-size: 36px;
 
 		color: var(--chalky-white);
+		display: flex;
+		min-height: 50px;
 
 		a {
 			align-items: center;
+			border: 0;
 			color: inherit;
 			display: grid;
+			flex-grow: 1;
 			gap: 0.5rem;
 			grid-template-columns: auto minmax(0, 1fr) auto;
 			grid-template-rows: 1fr;
