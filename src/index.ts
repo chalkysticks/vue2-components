@@ -23,6 +23,7 @@ import BrandingSplash from './Branding/Splash.vue';
 import BrandingStandard from './Branding/Standard.vue';
 import ButtonLogin from './Button/Login.vue';
 import FormSearch from './Form/Search.vue';
+import TvAttributionBanner from './TV/AttributionBanner.vue';
 import TvLiveList from './TV/LiveList.vue';
 import TvLowerThird from './TV/LowerThird.vue';
 import TvNowPlaying from './TV/NowPlaying.vue';
@@ -58,6 +59,7 @@ const components = {
 	BrandingStandard,
 	ButtonLogin,
 	FormSearch,
+	TvAttributionBanner,
 	TvLiveList,
 	TvLowerThird,
 	TvNowPlaying,
@@ -134,6 +136,7 @@ export {
 	BrandingSplash,
 	BrandingStandard,
 	ButtonLogin,
+	TvAttributionBanner,
 	TvLiveList,
 	TvLowerThird,
 	TvNowPlaying,

@@ -23,11 +23,7 @@
 		 * @type ChalkySticks/Model/Schedule
 		 */
 		@Prop({
-			default: () => {
-				return new ChalkySticks.Model.Schedule({
-					baseUrl: ChalkySticks.Core.Constants.API_URL_V1,
-				});
-			},
+			default: () => ChalkySticks.Factory.Schedule.model(),
 		})
 		public scheduleModel!: ChalkySticks.Model.Schedule;
 	}

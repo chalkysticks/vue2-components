@@ -389,6 +389,18 @@
 
 			<section class="level-1">
 				<header>
+					<h3>Attribution Banner</h3>
+				</header>
+
+				<div class="theme-light padded background-chalky-blue p-3">
+					<ChalkyTvAttributionBanner v-bind:scheduleModel="scheduleCollection.at(0)" />
+				</div>
+			</section>
+
+			<hr />
+
+			<section class="level-1">
+				<header>
 					<h3>Video Preview</h3>
 				</header>
 
