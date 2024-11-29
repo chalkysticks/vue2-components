@@ -100,7 +100,7 @@
 		 * @return number
 		 */
 		private get scheduleHeaderSize(): number {
-			const variable = ChalkySticks.Utility.getCSSVariable('--chalky-tv-schedule-header-size');
+			const variable = ChalkySticks.Utility.getCSSVariable('--chalky-tv-schedule-header-size', this.$el as HTMLElement);
 			const value = parseFloat(variable);
 
 			return value;
@@ -110,7 +110,7 @@
 		 * @return number
 		 */
 		private get scheduleHourHeight(): number {
-			const variable = ChalkySticks.Utility.getCSSVariable('--chalky-tv-hour-height');
+			const variable = ChalkySticks.Utility.getCSSVariable('--chalky-tv-hour-height', this.$el as HTMLElement);
 			const value = parseFloat(variable);
 
 			return value;
