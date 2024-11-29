@@ -117,9 +117,8 @@
 		public icons: Record<string, string> = {
 			beacon: require('../Assets/image/markers/pool-player-2.png'),
 			default: require('../Assets/image/markers/marker.svg'),
-			one: require('../Assets/image/markers/pin-1.svg'),
-			three: require('../Assets/image/markers/pin-3.svg'),
-			two: require('../Assets/image/markers/pin-2.svg'),
+			noimages: require('../Assets/image/markers/marker-light.svg'),
+			notable: require('../Assets/image/markers/marker-grey.svg'),
 			user: require('../Assets/image/markers/user.svg'),
 		};
 
@@ -293,21 +292,12 @@
 			if (marker.model instanceof ChalkySticks.Model.Beacon) {
 				url = this.icons.beacon;
 			} else {
-				// switch (marker.model.getType()) {
-				// 	case 'bar':
-				// 		url = this.icons.one;
-				// 		break;
+				const hasMedia = marker.model.media.length > 0;
+				const hasTable = !!marker.model.media.findWhere({
+					subgroup: 'table',
+				});
 
-				// 	case 'hall':
-				// 		url = this.icons.two;
-				// 		break;
-
-				// 	case 'hotel':
-				// 		url = this.icons.three;
-				// 		break;
-				// }
-
-				url = this.icons.default;
+				url = hasMedia ? (hasTable ? this.icons.default : this.icons.noimages) : this.icons.notable;
 			}
 
 			return {
