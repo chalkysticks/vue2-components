@@ -287,7 +287,7 @@
 			this.setUrl(model.getEmbedUrl());
 
 			// Event
-			this.$emit('schedule:set', model);
+			this.$emit('schedule:set', this.currentVideo);
 		}
 
 		/**
@@ -309,7 +309,7 @@
 			this.setUrl(embedUrl, time);
 
 			// Event
-			this.$emit('schedule:set', model);
+			this.$emit('schedule:set', this.currentVideo);
 		}
 
 		/**
@@ -365,7 +365,7 @@
 				}, 500);
 			}
 
-			this.$emit('player:ended', this.scheduleModel);
+			this.$emit('player:ended', this.currentVideo);
 		}
 
 		/**
@@ -378,7 +378,7 @@
 				setTimeout(() => this.flagAndSkip());
 			}
 
-			this.$emit('player:error', this.scheduleModel);
+			this.$emit('player:error', this.currentVideo);
 		}
 
 		/**
@@ -390,7 +390,7 @@
 			// this.beginAutoplay();
 			// Autoplay is taken care of by the player
 
-			this.$emit('player:ready', this.scheduleModel);
+			this.$emit('player:ready', this.currentVideo);
 		}
 
 		/**
@@ -399,7 +399,7 @@
 		 * @return Promise<void>
 		 */
 		protected async Handle_OnVideoStarting(): Promise<void> {
-			this.$emit('video:starting', this.scheduleModel);
+			this.$emit('video:starting', this.currentVideo);
 		}
 
 		/**
@@ -408,7 +408,7 @@
 		 * @return Promise<void>
 		 */
 		protected async Handle_OnVideoEnding(): Promise<void> {
-			this.$emit('video:ending', this.scheduleModel);
+			this.$emit('video:ending', this.currentVideo);
 		}
 
 		/**
@@ -431,7 +431,7 @@
 				this.beginAutoplay();
 			}
 
-			this.$emit('schedule:change', newModel);
+			this.$emit('schedule:change', this.currentVideo);
 		}
 
 		/**
