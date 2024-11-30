@@ -262,6 +262,10 @@
 	.chalky.authentication-navigation {
 		.logged-in {
 			display: none;
+
+			button {
+				font-size: 0;
+			}
 		}
 
 		.logged-out {
@@ -277,7 +281,8 @@
 
 	.chalky.authentication-navigation {
 		&.state-logged-in .logged-in {
-			display: block;
+			display: flex;
+			transform: scale(1.125);
 		}
 
 		&.state-logged-in .logged-out {
