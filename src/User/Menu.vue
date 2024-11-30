@@ -165,6 +165,7 @@
 		protected async Handle_OnClick(e: PointerEvent): Promise<void> {
 			e.preventDefault();
 			e.stopPropagation();
+			e.stopImmediatePropagation();
 		}
 
 		/**
