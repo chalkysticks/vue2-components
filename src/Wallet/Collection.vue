@@ -28,14 +28,14 @@
 		/**
 		 * @type boolean
 		 */
-		public get canCollect(): boolean {
+		protected get canCollect(): boolean {
 			return this.userModel?.lastCollection?.canCollect() || !this.userModel?.lastCollection?.id;
 		}
 
 		/**
 		 * @type string
 		 */
-		public get formattedBalance(): string {
+		protected get formattedBalance(): string {
 			const amount: number = this.userModel.getWalletBalance() || 0;
 			const formatter: Intl.NumberFormat = new Intl.NumberFormat('en-US', {
 				currency: 'USD',
@@ -66,9 +66,9 @@
 		})
 		public userModel!: ChalkySticks.Model.User;
 
-		/**
-		 * @return void
-		 */
+		// region: Event Handlers
+		// ---------------------------------------------------------------------------
+
 		/**
 		 * @param PointerEvent e
 		 * @return Promise<void>
@@ -79,10 +79,14 @@
 			// Collections
 			const response = await ChalkySticks.Factory.Wallet.model().collect(this.$store.getters['authentication/token']);
 
-			console.log('Response', response);
+			// Refresh the user model
+			await this.userModel.fetch();
 
+			// Update the page
 			this.$forceUpdate();
 		}
+
+		// endregion: Event Handlers
 	}
 </script>
 

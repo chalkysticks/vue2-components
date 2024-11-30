@@ -1,5 +1,5 @@
 <template>
-	<section class="chalky user-menu shadow xl">
+	<section class="chalky user-menu shadow xl" v-on:click="Handle_OnClick">
 		<header>
 			<UserAvatar size="sm" v-bind:userModel="store.getters['authentication/user']" />
 
@@ -157,6 +157,15 @@
 
 		// region: Event Handlers
 		// ---------------------------------------------------------------------------
+
+		/**
+		 * @param PointerEvent e
+		 * @return Promise<void>
+		 */
+		protected async Handle_OnClick(e: PointerEvent): Promise<void> {
+			e.preventDefault();
+			e.stopPropagation();
+		}
 
 		/**
 		 * @return Promise<void>
