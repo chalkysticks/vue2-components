@@ -57,6 +57,10 @@
 		position: relative;
 		overflow: visible;
 
+		.avatar {
+			border: 3px solid var(--chalky-blue);
+		}
+
 		.notification {
 			position: absolute;
 			right: 0;
