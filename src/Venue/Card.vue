@@ -84,7 +84,7 @@
 				</a>
 				<a class="btn button-tertiary size-small action" target="_blank" v-bind:href="getMapUrl()" v-if="venueModel.getAddress()">
 					<i class="icon fa fa-map-marker"></i>
-					<span class="caption">Map</span>
+					<span class="caption">Directions</span>
 				</a>
 			</section>
 
