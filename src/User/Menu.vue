@@ -5,13 +5,13 @@
 
 			<section>
 				<h5 class="username" v-bind:key="userId">{{ authModel.user.getName() }}</h5>
-				<a class="edit-profile color-chalky-lightblue" href="#">Edit Profile</a>
+				<a class="edit-profile color-chalky-lightblue small" href="#">Edit Profile</a>
 			</section>
 		</header>
 
 		<!-- This all still needs to be hooked up and stuff -->
 		<!-- Probably break this into a new component -->
-		<WalletCollection />
+		<WalletCollection v-bind:userModel="store.getters['authentication/user']" />
 
 		<nav>
 			<ul>
@@ -207,6 +207,10 @@
 			.user-menu + * {
 				grid-area: 1 / 2 / 2 / 3;
 			}
+		}
+
+		.wallet-collection {
+			margin: 0 -1rem 1rem -1rem;
 		}
 
 		.action-container {
