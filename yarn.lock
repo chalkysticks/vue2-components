@@ -1082,8 +1082,8 @@
     "@chalkysticks/sdk-core" "github:chalkysticks/sdk-core"
 
 "@chalkysticks/sdk-core@github:chalkysticks/sdk-core":
-  version "1.30.6"
-  resolved "https://codeload.github.com/chalkysticks/sdk-core/tar.gz/d086654ae5531f295f3f78d7cb28f5a9e12b2f6e"
+  version "1.30.7"
+  resolved "https://codeload.github.com/chalkysticks/sdk-core/tar.gz/e7f4f199f9032607fb7df3ef75382b8e805f58d5"
   dependencies:
     "@chalkysticks/mrm-preset" "github:chalkysticks/mrm-preset"
     "@types/googlemaps" "^3.43.3"
@@ -1119,8 +1119,8 @@
     luxon "^3.5.0"
 
 "@chalkysticks/sdk@github:chalkysticks/sdk":
-  version "1.30.7"
-  resolved "https://codeload.github.com/chalkysticks/sdk/tar.gz/1827f389075ce7fc50efa4415962c077596489c5"
+  version "1.30.8"
+  resolved "https://codeload.github.com/chalkysticks/sdk/tar.gz/169d0556b4cd261843c63fcb6a447916c02b999a"
   dependencies:
     "@chalkysticks/sdk-authentication" "github:chalkysticks/sdk-authentication"
     "@chalkysticks/sdk-core" "github:chalkysticks/sdk-core"

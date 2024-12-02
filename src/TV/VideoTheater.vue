@@ -2,9 +2,12 @@
 	<div
 		class="chalky tv-videotheater ratio ratio-16x9"
 		v-bind:class="{
+			'show-controls': showControls && !allowControl,
 			'state-bumper': showBumper,
 			'state-controls': allowControl,
 		}"
+		v-on:pointermove="Handle_OnHover"
+		v-on:pointerdown="Handle_OnTap"
 	>
 		<TvYouTube
 			v-bind:allowControl="allowControl"
@@ -43,6 +46,15 @@
 		<video class="chalky-bumper" muted playsInline ref="bumper" v-on:ended="Handle_OnBumperEnd">
 			<source src="https://chalkysticks.s3.amazonaws.com/video/chalky-5s.mp4" type="video/mp4" />
 		</video>
+
+		<div class="controls">
+			<button class="icon-only" v-on:click="Handle_OnClickCast">
+				<img height="24" class="filter-invert" src="../Assets/image/icon/cast.svg" alt="Cast" />
+			</button>
+			<button class="icon-only" v-on:click="Handle_OnClickFullscreen">
+				<img height="24" class="filter-invert" src="../Assets/image/icon/fullscreen.svg" alt="Fullscreen" />
+			</button>
+		</div>
 	</div>
 </template>
 
@@ -186,12 +198,22 @@
 		/**
 		 * @type boolean
 		 */
+		protected showControls: boolean = false;
+
+		/**
+		 * @type boolean
+		 */
 		protected startTime: number = 0;
 
 		/**
 		 * @type string
 		 */
 		protected url: string = '';
+
+		/**
+		 * @type number
+		 */
+		private controlsTimeout: number = 0;
 
 		/**
 		 * @return void
@@ -332,6 +354,36 @@
 			this.showBumper = false;
 		}
 
+		/**
+		 * @return void
+		 */
+		protected displayControls(): void {
+			// Show and autohide
+			this.showControls = true;
+
+			// Clear intervals
+			clearTimeout(this.controlsTimeout);
+
+			// Set new timeout
+			this.controlsTimeout = setTimeout(() => {
+				this.showControls = false;
+			}, 1000 * 3) as any;
+		}
+
+		/**
+		 * @return Promise<void>
+		 */
+		protected async goFullscreen(): Promise<void> {
+			ChalkySticks.Utility.Presentation.toggleFullscreen(this.$el as HTMLElement);
+		}
+
+		/**
+		 * @return Promise<void>
+		 */
+		protected async castVideo(): Promise<void> {
+			ChalkySticks.Utility.Presentation.castToDevice(this.url);
+		}
+
 		// region: Event Handlers
 		// ---------------------------------------------------------------------------
 
@@ -353,6 +405,33 @@
 			}
 
 			this.$emit('bumper:start');
+		}
+
+		/**
+		 * @param PointerEvent e
+		 * @return Promise<void>
+		 */
+		protected async Handle_OnClickFullscreen(e: PointerEvent): Promise<void> {
+			e.preventDefault();
+
+			this.goFullscreen();
+		}
+
+		/**
+		 * @param PointerEvent e
+		 * @return Promise<void>
+		 */
+		protected async Handle_OnClickCast(e: PointerEvent): Promise<void> {
+			e.preventDefault();
+
+			this.castVideo();
+		}
+
+		/**
+		 * @return Promise<void>
+		 */
+		protected async Handle_OnHover(): Promise<void> {
+			this.displayControls();
 		}
 
 		/**
@@ -391,6 +470,13 @@
 			// Autoplay is taken care of by the player
 
 			this.$emit('player:ready', this.currentVideo);
+		}
+
+		/**
+		 * @return Promise<void>
+		 */
+		protected async Handle_OnTap(): Promise<void> {
+			this.displayControls();
 		}
 
 		/**
@@ -454,8 +540,12 @@
 <style lang="scss">
 	.chalky.tv-videotheater {
 		margin: 0 auto;
-		pointer-events: none;
 		position: relative;
+
+		.tv-video-facebook,
+		.tv-video-youtube {
+			pointer-events: none;
+		}
 
 		.chalky-bumper,
 		iframe {
@@ -473,10 +563,41 @@
 			opacity: 0;
 		}
 
+		.controls {
+			background: linear-gradient(0deg, rgba(0, 0, 0, 0.66) 80%, rgba(0, 0, 0, 0));
+			bottom: 0;
+			display: flex;
+			gap: 0.25rem;
+			height: auto;
+			justify-content: flex-end;
+			left: 0;
+			opacity: 0;
+			padding: 0.5rem;
+			pointer-events: none;
+			position: absolute;
+			right: 0;
+			text-align: right;
+			top: auto;
+			transition: opacity 0.5s ease-in-out;
+			z-index: 10;
+
+			button {
+				padding: 1rem;
+			}
+		}
+
 		// State
 		// ---------------------------------------------------------------------
 
 		&.state-controls {
+			.tv-video-facebook,
+			.tv-video-youtube {
+				pointer-events: all;
+			}
+		}
+
+		&.show-controls .controls {
+			opacity: 1;
 			pointer-events: all;
 		}
 

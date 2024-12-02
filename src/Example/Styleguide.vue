@@ -591,7 +591,7 @@
 						channel=""
 						ref="videoTheater"
 						v-bind:mute="muteVideo"
-						v-bind:allowControl="true"
+						v-bind:allowControl="false"
 						v-bind:scheduleModel="liveScheduleModel"
 					/>
 
