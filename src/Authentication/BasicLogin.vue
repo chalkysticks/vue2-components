@@ -65,6 +65,12 @@
 						&nbsp;
 						<span>{{ message }}</span>
 					</div>
+
+					<label>
+						<a class="type-caps" href="/login" title="Login" v-on:click="Handle_OnClickLogin">
+							<span>Login</span>
+						</a>
+					</label>
 				</div>
 			</fieldset>
 		</form>
@@ -118,7 +124,7 @@
 					</div>
 
 					<label>
-						<a class="type-caps" href="/sign-up" title="Sign up" v-on:click="Handle_OnClickSignUp">
+						<a class="type-caps" href="/sign-up" title="Sign up" v-on:click="Handle_OnClickSignup">
 							<span>Sign up</span>
 						</a>
 					</label>
@@ -263,7 +269,17 @@
 		 * @param PointerEvent e
 		 * @return Promise<void>
 		 */
-		protected async Handle_OnClickSignUp(e: PointerEvent): Promise<void> {
+		protected async Handle_OnClickLogin(e: PointerEvent): Promise<void> {
+			e.preventDefault();
+
+			this.showSignup = false;
+		}
+
+		/**
+		 * @param PointerEvent e
+		 * @return Promise<void>
+		 */
+		protected async Handle_OnClickSignup(e: PointerEvent): Promise<void> {
 			e.preventDefault();
 
 			this.showSignup = true;
