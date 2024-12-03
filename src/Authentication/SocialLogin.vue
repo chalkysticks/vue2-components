@@ -2,8 +2,6 @@
 	<div class="chalky authentication-sociallogin">
 		<form name="social-login">
 			<fieldset>
-				<legend>Login via Social</legend>
-
 				<button class="btn-social type-google button-secondary" v-on:click="Handle_OnClickLoginWithGoogle">
 					<span>Login with Google</span>
 				</button>
@@ -47,42 +45,19 @@
 		 */
 		@Prop({
 			default: () =>
-				new ChalkySticks.Model.Authentication(undefined, {
-					baseUrl: ChalkySticks.Core.Constants.API_URL_V1,
+				ChalkySticks.Factory.Authentication.model({
+					baseUrl: ChalkySticks.Core.Constants.API_URL_V3,
 				}),
 		})
 		public authModel!: ChalkySticks.Model.Authentication;
 
 		/**
-		 * Check for token and save it to the object
-		 *
-		 * @return void
+		 * @type string
 		 */
-		public mounted(): void {
-			this.searchForToken();
-		}
-
-		/**
-		 * Look at the URL bar for token
-		 *
-		 * @return string
-		 */
-		public searchForToken(): string {
-			const url: URL = new URL(location.href);
-			const token: string = url.searchParams.get('token') || '';
-			const state: any = {};
-
-			// Find token from URL
-			if (token) {
-				url.searchParams.delete('token');
-				history.replaceState(state, '', url.href);
-			}
-
-			// Save to local storage
-			localStorage.setItem(AuthenticationSocialLogin.storageKey, token);
-
-			return (AuthenticationSocialLogin.token = token);
-		}
+		@Prop({
+			default: () => location.href,
+		})
+		public redirectTo!: string;
 
 		// region: Event Handlers
 		// ---------------------------------------------------------------------
@@ -93,7 +68,7 @@
 		protected Handle_OnClickLoginWithFacebook(e: MouseEvent): void {
 			e.preventDefault();
 
-			this.authModel.loginSocial('facebook');
+			this.authModel.loginWithFacebook(this.redirectTo);
 		}
 
 		/**
@@ -102,7 +77,7 @@
 		protected Handle_OnClickLoginWithGoogle(e: MouseEvent): void {
 			e.preventDefault();
 
-			this.authModel.loginSocial('google');
+			this.authModel.loginWithGoogle(this.redirectTo);
 		}
 
 		// endregion: Event Handlers

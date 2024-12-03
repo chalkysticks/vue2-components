@@ -342,6 +342,18 @@
 				<div>
 					<ChalkyAuthenticationAuthPanel
 						v-bind:authModel="authModel"
+						v-bind:includeBasic="false"
+						v-bind:includeSocial="true"
+						v-on:success="Handle_OnLoginSuccess"
+						v-on:error="Handle_OnLoginError"
+					/>
+				</div>
+
+				<hr />
+
+				<div>
+					<ChalkyAuthenticationAuthPanel
+						v-bind:authModel="authModel"
 						v-bind:includeSocial="true"
 						v-on:success="Handle_OnLoginSuccess"
 						v-on:error="Handle_OnLoginError"
@@ -736,10 +748,15 @@
 		readonly videoTheater!: typeof ChalkyVideoTheater;
 
 		/**
+		 * @todo Update the factory
+		 *
 		 * @type ChalkySticks/Model/Authentication
 		 */
 		@Prop({
-			default: () => ChalkySticks.Factory.Authentication.model(),
+			default: () =>
+				ChalkySticks.Factory.Authentication.model({
+					baseUrl: ChalkySticks.Core.Constants.API_URL_V3,
+				}),
 		})
 		public authModel!: ChalkySticks.Model.Authentication;
 
@@ -836,6 +853,31 @@
 
 			// Listeners
 			window.addEventListener('hashchange', this.Handle_OnHashChange);
+
+			// Setup
+			this.tokenLogin();
+		}
+
+		/**
+		 * @return void
+		 */
+		public tokenLogin(): void {
+			let token;
+
+			const authModel = new ChalkySticks.Model.Authentication();
+			authModel.baseUrl = 'http://localhost:8000/v3';
+
+			if ((token = ChalkySticks.Model.Authentication.getAuthToken())) {
+				// Using promises
+				authModel
+					.loginWithToken(token)
+					.then((userModel) => {
+						console.log('User:', userModel.getName(), userModel);
+					})
+					.catch((e) => {
+						console.log('Could not login:', e.code, e.message);
+					});
+			}
 		}
 
 		// region: Event Handlers
