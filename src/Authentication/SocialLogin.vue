@@ -2,13 +2,14 @@
 	<div class="chalky authentication-sociallogin">
 		<form name="social-login">
 			<fieldset>
-				<button class="btn-social type-google button-secondary" v-on:click="Handle_OnClickLoginWithGoogle">
-					<span>Login with Google</span>
+				<button class="google">
+					<img class="icon" src="~@chalkysticks/sass/build/asset/image/icon/google.svg" v-on:click="Handle_OnClickLoginWithGoogle" />
+					<span>Sign in with Google</span>
 				</button>
 
-				<button class="btn-social type-facebook button-secondary" v-on:click="Handle_OnClickLoginWithFacebook">
+				<!-- <button class="btn-social type-facebook button-secondary" v-on:click="Handle_OnClickLoginWithFacebook">
 					<span>Login with Facebook</span>
-				</button>
+				</button> -->
 			</fieldset>
 		</form>
 	</div>
@@ -90,8 +91,7 @@
 		max-width: 500px;
 
 		button {
-			display: block;
-			margin: 1rem 0;
+			max-width: 100%;
 			width: 100%;
 		}
 	}

@@ -22,6 +22,7 @@ import BrandingBadge from './Branding/Badge.vue';
 import BrandingSplash from './Branding/Splash.vue';
 import BrandingStandard from './Branding/Standard.vue';
 import ButtonLogin from './Button/Login.vue';
+import ButtonSignup from './Button/Signup.vue';
 import FormSearch from './Form/Search.vue';
 import TvAttributionBanner from './TV/AttributionBanner.vue';
 import TvLiveList from './TV/LiveList.vue';
@@ -58,6 +59,7 @@ const components = {
 	BrandingSplash,
 	BrandingStandard,
 	ButtonLogin,
+	ButtonSignup,
 	FormSearch,
 	TvAttributionBanner,
 	TvLiveList,
@@ -136,6 +138,7 @@ export {
 	BrandingSplash,
 	BrandingStandard,
 	ButtonLogin,
+	ButtonSignup,
 	TvAttributionBanner,
 	TvLiveList,
 	TvLowerThird,

@@ -7,7 +7,69 @@
 			'state-login-success': this.authModel.isLoggedIn(),
 		}"
 	>
-		<form v-on:submit="Handle_OnSubmit">
+		<form v-if="showSignup" v-on:submit="Handle_OnSubmitSignup">
+			<fieldset>
+				<legend>Login</legend>
+
+				<label>
+					<input minlength="6" name="name" type="text" placeholder="Name" v-model="fullName" v-on:keydown="Handle_OnKeydownInput" />
+				</label>
+
+				<label class="clearfix">
+					<input
+						autocomplete="email"
+						minlength="6"
+						name="email"
+						placeholder="Email address"
+						type="email"
+						v-model="email"
+						v-on:keydown="Handle_OnKeydownInput"
+					/>
+				</label>
+
+				<label class="clearfix">
+					<input
+						autocomplete="current-password"
+						minlength="6"
+						name="password"
+						type="password"
+						placeholder="Password"
+						v-model="password"
+						v-on:keydown="Handle_OnKeydownInput"
+					/>
+				</label>
+
+				<label class="clearfix">
+					<input
+						autocomplete="current-password"
+						minlength="6"
+						name="confirm-password"
+						type="password"
+						placeholder="Confirm Password"
+						v-model="passwordConfirmation"
+						v-on:keydown="Handle_OnKeydownInput"
+					/>
+				</label>
+
+				<div class="action-container">
+					<div class="alert alert-success" v-if="this.authModel.isLoggedIn()">
+						<i class="fa fa-check-circle"></i>
+						&nbsp;
+						<span>Welcome {{ this.authModel.user.getName() }}</span>
+					</div>
+
+					<ButtonSignup v-else-if="!this.loginFailed" />
+
+					<div class="alert alert-danger" v-if="this.loginFailed">
+						<i class="fa fa-exclamation-triangle"></i>
+						&nbsp;
+						<span>{{ message }}</span>
+					</div>
+				</div>
+			</fieldset>
+		</form>
+
+		<form v-else v-on:submit="Handle_OnSubmitLogin">
 			<fieldset>
 				<legend>Login</legend>
 
@@ -35,7 +97,7 @@
 						v-on:keydown="Handle_OnKeydownInput"
 					/>
 
-					<a class="type-small" href="/forgot-password" title="Forgot Password">
+					<a class="type-caps" href="/forgot-password" title="Forgot Password">
 						<span>Forget password?</span>
 					</a>
 				</label>
@@ -56,7 +118,7 @@
 					</div>
 
 					<label>
-						<a href="/sign-up" title="Sign up">
+						<a class="type-caps" href="/sign-up" title="Sign up" v-on:click="Handle_OnClickSignUp">
 							<span>Sign up</span>
 						</a>
 					</label>
@@ -68,6 +130,7 @@
 
 <script lang="ts">
 	import ButtonLogin from '../Button/Login.vue';
+	import ButtonSignup from '../Button/Signup.vue';
 	import ChalkySticks from '@chalkysticks/sdk';
 	import Store from '../Store';
 	import ViewBase from '../Core/Base';
@@ -82,6 +145,7 @@
 	@Component({
 		components: {
 			ButtonLogin,
+			ButtonSignup,
 		},
 	})
 	export default class AuthenticationBasicLogin extends ViewBase {
@@ -90,8 +154,8 @@
 		 */
 		@Prop({
 			default: () =>
-				new ChalkySticks.Model.Authentication(undefined, {
-					baseUrl: ChalkySticks.Core.Constants.API_URL_V1,
+				ChalkySticks.Factory.Authentication.model({
+					baseUrl: ChalkySticks.Core.Constants.API_URL_V3,
 				}),
 		})
 		public authModel!: ChalkySticks.Model.Authentication;
@@ -100,6 +164,11 @@
 		 * @type string
 		 */
 		public email: string = '';
+
+		/**
+		 * @type string
+		 */
+		public fullName: string = '';
 
 		/**
 		 * @type boolean
@@ -115,6 +184,16 @@
 		 * @type string
 		 */
 		public password: string = '';
+
+		/**
+		 * @type string
+		 */
+		public passwordConfirmation: string = '';
+
+		/**
+		 * @type boolean
+		 */
+		protected showSignup: boolean = false;
 
 		/**
 		 * @return void
@@ -153,8 +232,42 @@
 			return new ChalkySticks.Model.User();
 		}
 
+		/**
+		 * Signup via email
+		 *
+		 * @return Promise<ChalkySticks.Model.User>
+		 */
+		public async signup(): Promise<ChalkySticks.Model.User> {
+			// Reset login failure
+			this.loginFailed = false;
+
+			// Attempt login
+			try {
+				return await this.authModel.signup({
+					email: this.email,
+					name: this.fullName,
+					password: this.password,
+					password_confirmation: this.passwordConfirmation,
+				});
+			} catch (e) {
+				// this.$emit('error');
+			}
+
+			return new ChalkySticks.Model.User();
+		}
+
 		// region: Event Handlers
 		// ---------------------------------------------------------------------------
+
+		/**
+		 * @param PointerEvent e
+		 * @return Promise<void>
+		 */
+		protected async Handle_OnClickSignUp(e: PointerEvent): Promise<void> {
+			e.preventDefault();
+
+			this.showSignup = true;
+		}
 
 		/**
 		 * @param KeyboardEvent e
@@ -168,24 +281,34 @@
 		/**
 		 * @return void
 		 */
-		protected Handle_OnFailure(): void {
-			this.message = 'Login attempt unsuccessful';
+		protected Handle_OnFailure(e: any): void {
+			this.message = e.detail?.error?.message || 'The action could not be completed.';
 			this.loginFailed = true;
 			this.$emit('error');
 
 			setTimeout(() => {
 				this.loginFailed = false;
-			}, 1000 * 2);
+			}, 1000 * 2.5);
 		}
 
 		/**
 		 * @param SubmitEvent e
 		 * @return void
 		 */
-		protected Handle_OnSubmit(e: SubmitEvent): void {
+		protected Handle_OnSubmitLogin(e: SubmitEvent): void {
 			e.preventDefault();
 
 			this.login();
+		}
+
+		/**
+		 * @param SubmitEvent e
+		 * @return void
+		 */
+		protected Handle_OnSubmitSignup(e: SubmitEvent): void {
+			e.preventDefault();
+
+			this.signup();
 		}
 
 		/**
