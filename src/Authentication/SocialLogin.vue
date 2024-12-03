@@ -2,8 +2,8 @@
 	<div class="chalky authentication-sociallogin">
 		<form name="social-login">
 			<fieldset>
-				<button class="google">
-					<img class="icon" src="~@chalkysticks/sass/build/asset/image/icon/google.svg" v-on:click="Handle_OnClickLoginWithGoogle" />
+				<button class="google" v-on:click="Handle_OnClickLoginWithGoogle">
+					<img class="icon" src="~@chalkysticks/sass/build/asset/image/icon/google.svg" />
 					<span>Sign in with Google</span>
 				</button>
 
