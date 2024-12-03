@@ -26,7 +26,14 @@
 		<!-- Helpers -->
 		<section class="utility">
 			<UtilityModal ref="authModal" v-bind:class="{ 'd-none': !shouldShowLogin }">
-				<AuthenticationAuthPanel v-on="$listeners" v-bind:authModel="authModel" class="type-modal" ref="authPanel" />
+				<AuthenticationAuthPanel
+					class="type-modal"
+					ref="authPanel"
+					v-bind:authModel="authModel"
+					v-bind:includeBasic="includeBasic"
+					v-bind:includeSocial="includeSocial"
+					v-on="$listeners"
+				/>
 			</UtilityModal>
 
 			<UtilityModal ref="settingsModal" v-bind:class="{ 'd-none': !shouldShowSettings }">
@@ -115,6 +122,26 @@
 		 * @return boolean
 		 */
 		public shouldShowSettings: boolean = false;
+
+		/**
+		 * Whether or not to include basic login form
+		 *
+		 * @type boolean
+		 */
+		@Prop({
+			default: true,
+		})
+		public includeBasic!: boolean;
+
+		/**
+		 * Whether or not to include social media buttons
+		 *
+		 * @type boolean
+		 */
+		@Prop({
+			default: false,
+		})
+		public includeSocial!: boolean;
 
 		/**
 		 * @return string
