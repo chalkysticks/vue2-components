@@ -25,11 +25,7 @@
 		 * @type ChalkySticks/Collection/UserMedia
 		 */
 		@Prop({
-			// default: () => new ChalkySticks.Factory.UserMedia.collection(),
-			default: () =>
-				new ChalkySticks.Collection.UserMedia({
-					baseUrl: 'http://localhost:8000/v3',
-				}),
+			default: () => ChalkySticks.Factory.UserMedia.collection(),
 		})
 		public userMediaCollection!: ChalkySticks.Collection.UserMedia;
 
@@ -42,9 +38,3 @@
 		}
 	}
 </script>
-
-<style lang="scss">
-	.chalky.media-user-exterior {
-		// Not implemented
-	}
-</style>

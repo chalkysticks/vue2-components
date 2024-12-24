@@ -54,11 +54,7 @@
 		 * @type ChalkySticks/Collection/VenueMedia
 		 */
 		@Prop({
-			// default: () => new ChalkySticks.Factory.VenueMedia.collection(),
-			default: () =>
-				new ChalkySticks.Collection.VenueMedia({
-					baseUrl: 'http://localhost:8000/v3',
-				}),
+			default: () => ChalkySticks.Factory.VenueMedia.collection(),
 		})
 		public venueMediaCollection!: ChalkySticks.Collection.VenueMedia;
 
@@ -88,9 +84,3 @@
 		}
 	}
 </script>
-
-<style lang="scss">
-	.chalky.media-venue-table {
-		// Not implemented
-	}
-</style>
