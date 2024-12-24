@@ -5,6 +5,7 @@
 				<a href="#general">General</a>
 				<a href="#authentication">Authentication</a>
 				<a href="#branding">Branding</a>
+				<a href="#media">Media</a>
 				<a href="#tv">TV</a>
 				<a href="#user">User</a>
 				<a href="#utility">Utility</a>
@@ -130,6 +131,51 @@
 				</header>
 				<div>
 					<ChalkyUserMenu v-bind:authModel="authModel" />
+				</div>
+			</section>
+		</section>
+
+		<section class="level-0" v-if="tab == 'media'" v-bind:class="{ 'state-active': tab == 'media' }">
+			<header>
+				<h2>Media</h2>
+			</header>
+
+			<section class="level-1">
+				<header>
+					<h3>User Person</h3>
+				</header>
+				<div style="display: flex; gap: 1rem">
+					<ChalkyMediaUser />
+					<ChalkyMediaUser aspectRatio="square" />
+					<ChalkyMediaUser aspectRatio="landscape" />
+				</div>
+			</section>
+
+			<section class="level-1">
+				<header>
+					<h3>Venue Interior</h3>
+				</header>
+				<div>
+					<ChalkyMediaVenue type="interior" />
+				</div>
+			</section>
+
+			<section class="level-1">
+				<header>
+					<h3>Venue Exterior</h3>
+				</header>
+				<div>
+					<ChalkyMediaVenue type="exterior" />
+				</div>
+			</section>
+
+			<section class="level-1">
+				<header>
+					<h3>Venue Tables</h3>
+				</header>
+				<div style="display: flex; gap: 1rem">
+					<ChalkyMediaVenue type="table" />
+					<ChalkyMediaVenue type="table" v-if="venueCollection.length" v-bind:venueModel="venueCollection.at(0)" />
 				</div>
 			</section>
 		</section>
@@ -847,7 +893,7 @@
 			// 	timeout: 5000,
 			// });
 
-			// this.venueCollection.fetch();
+			this.venueCollection.fetch();
 			this.liveScheduleCollection.fetch();
 			this.scheduleCollection.fetch();
 

@@ -24,6 +24,9 @@ import BrandingStandard from './Branding/Standard.vue';
 import ButtonLogin from './Button/Login.vue';
 import ButtonSignup from './Button/Signup.vue';
 import FormSearch from './Form/Search.vue';
+import MediaFeed from './Media/Feed.vue';
+import MediaUser from './Media/User.vue';
+import MediaVenue from './Media/Venue.vue';
 import TvAttributionBanner from './TV/AttributionBanner.vue';
 import TvLiveList from './TV/LiveList.vue';
 import TvLowerThird from './TV/LowerThird.vue';
@@ -61,6 +64,9 @@ const components = {
 	ButtonLogin,
 	ButtonSignup,
 	FormSearch,
+	MediaFeed,
+	MediaUser,
+	MediaVenue,
 	TvAttributionBanner,
 	TvLiveList,
 	TvLowerThird,
@@ -139,6 +145,9 @@ export {
 	BrandingStandard,
 	ButtonLogin,
 	ButtonSignup,
+	MediaFeed,
+	MediaUser,
+	MediaVenue,
 	TvAttributionBanner,
 	TvLiveList,
 	TvLowerThird,
