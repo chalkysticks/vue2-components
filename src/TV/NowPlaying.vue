@@ -21,7 +21,7 @@
 	import ChalkySticks from '@chalkysticks/sdk';
 	import ViewBase from '../Core/Base';
 	import { Component, Prop } from 'vue-property-decorator';
-	import { mounted } from '@/Utility/Decorators';
+	import { created, mounted } from '@/Utility/Decorators';
 
 	/**
 	 * @author ChalkySticks LLC
@@ -63,13 +63,13 @@
 		/**
 		 * @return Promise<void>
 		 */
-		@mounted
-		protected async setup(): Promise<void> {
+		@created
+		protected async afterCreate(): Promise<void> {
 			// Set the query parameter for the game type
 			this.scheduleCollection.setChannel(this.gameType);
 
 			// Fetch the schedule
-			if (!this.scheduleCollection.hasFetched) {
+			if (!this.scheduleCollection.requestTime) {
 				await this.scheduleCollection.fetch();
 			}
 		}

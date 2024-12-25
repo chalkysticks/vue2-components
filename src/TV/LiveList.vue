@@ -20,7 +20,7 @@
 	import ChalkySticks from '@chalkysticks/sdk';
 	import ViewBase from '../Core/Base';
 	import { Component, Prop } from 'vue-property-decorator';
-	import { beforeDestroy, mounted } from '@/Utility/Decorators';
+	import { beforeDestroy, created, mounted } from '@/Utility/Decorators';
 
 	/**
 	 * @author ChalkySticks LLC
@@ -43,12 +43,10 @@
 		public scheduleCollection!: ChalkySticks.Collection.Schedule;
 
 		/**
-		 * @constructor
+		 * @return void
 		 */
-		constructor() {
-			super();
-
-			// Fetch the schedule collection
+		@created
+		public afterCreate(): void {
 			this.scheduleCollection.fetch();
 		}
 

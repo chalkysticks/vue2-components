@@ -68,7 +68,7 @@
 	import ViewBase from '../Core/Base';
 	import gsap from 'gsap';
 	import { Component, Prop, Ref } from 'vue-property-decorator';
-	import { beforeDestroy, mounted } from '../Utility/Decorators';
+	import { beforeDestroy, created, mounted } from '../Utility/Decorators';
 
 	/**
 	 * @class VenueMap
@@ -254,9 +254,14 @@
 				lat: this.centerLatitude,
 				lon: this.centerLongitude,
 			});
+		}
 
-			// Check if we need to load data
-			if (!this.venueCollection.length) {
+		/**
+		 * @return void
+		 */
+		@created
+		public afterCreate() {
+			if (!this.venueCollection.requestTime) {
 				this.beaconCollection.fetch();
 				this.venueCollection.fetch();
 			} else {
