@@ -2,7 +2,7 @@
 	<div
 		class="chalky venue-list"
 		v-bind:class="{
-			'state-loading': venueCollection.loading,
+			'state-loading': venueCollection.models.length == 0 || venueCollection.loading,
 		}"
 	>
 		<section class="list">
@@ -162,17 +162,17 @@
 		 * @param MouseEvent e
 		 * @return Promise<void>
 		 */
-		protected async Handle_OnLocationChange(e: ChalkySticks.Core.Event.IDispatcherEvent<GeolocationPosition>): Promise<void> {
+		protected async Handle_OnLocationChange(e: ChalkySticks.Core.Event.IDispatcherEvent<ChalkySticks.Core.IGeolocationPayload>): Promise<void> {
 			// Don't sync to global location
 			if (!this.useLocation) {
 				return;
 			}
 
 			// Trigger store
-			this.$store.dispatch('location/position', e.data);
+			this.$store.dispatch('location/position', e.data.position);
 
 			// Simplify coordinates
-			const coordinates = ChalkySticks.Utility.Geolocation.simplifyCoordinates(e.data.coords, undefined, 1e2);
+			const coordinates = ChalkySticks.Utility.Geolocation.simplifyCoordinates(e.data.position.coords, undefined, 1e2);
 
 			// Update query parameters
 			this.venueCollection.setQueryParams(coordinates);
