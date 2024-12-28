@@ -171,9 +171,6 @@
 			// Trigger store
 			this.$store.dispatch('location/position', e.data);
 
-			// Log
-			console.log('VenueList: Location change');
-
 			// Simplify coordinates
 			const coordinates = ChalkySticks.Utility.Geolocation.simplifyCoordinates(e.data.coords, undefined, 1e2);
 

@@ -261,7 +261,7 @@
 		 */
 		@created
 		public afterCreate() {
-			if (!this.venueCollection.requestTime) {
+			if (this.venueCollection.requestTime <= 0) {
 				this.beaconCollection.fetch();
 				this.venueCollection.fetch();
 			} else {
