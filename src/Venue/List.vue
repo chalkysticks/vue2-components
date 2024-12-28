@@ -34,7 +34,7 @@
 	import VenueCard from './Card.vue';
 	import ViewBase from '../Core/Base';
 	import { Component, Prop } from 'vue-property-decorator';
-	import { created } from '../Utility/Decorators';
+	import { created, mounted } from '../Utility/Decorators';
 
 	/**
 	 * @class VenueList
@@ -89,7 +89,7 @@
 		/**
 		 * @constructor
 		 */
-		@created
+		@mounted
 		public afterCreate() {
 			// Set query parameters
 			// mk: This took me 2 hours to fix. UGH
@@ -98,7 +98,7 @@
 			// });
 
 			// Check if we need to load data
-			if (!this.venueCollection.requestTime) {
+			if (this.venueCollection.shouldFetch()) {
 				this.venueCollection.fetch();
 			}
 

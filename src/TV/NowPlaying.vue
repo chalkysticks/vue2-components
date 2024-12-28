@@ -69,7 +69,7 @@
 			this.scheduleCollection.setChannel(this.gameType);
 
 			// Fetch the schedule
-			if (this.scheduleCollection.requestTime <= 0) {
+			if (this.scheduleCollection.shouldFetch()) {
 				await this.scheduleCollection.fetch();
 			}
 		}

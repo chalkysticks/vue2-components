@@ -259,9 +259,9 @@
 		/**
 		 * @return void
 		 */
-		@created
+		@mounted
 		public afterCreate() {
-			if (this.venueCollection.requestTime <= 0) {
+			if (this.venueCollection.shouldFetch()) {
 				this.beaconCollection.fetch();
 				this.venueCollection.fetch();
 			} else {
