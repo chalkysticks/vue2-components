@@ -1,5 +1,5 @@
 <template>
-	<div class="chalky venue-card glass-panel" v-bind:class="'type-' + venueModel.getType()">
+	<div class="chalky venue-card glass-panel" v-bind:class="'type-' + venueModel.getType()" v-bind:key="venueModel.id">
 		<slot name="before"></slot>
 
 		<VenueGallery v-bind:key="venueModel.id" v-bind:interactive="interactiveGallery" v-bind:venueModel="venueModel" />
@@ -8,11 +8,15 @@
 			<slot name="content:before"></slot>
 
 			<section class="title">
-				<h3 class="name">{{ venueModel.getName() }}</h3>
+				<div class="inner">
+					<h3 class="name">{{ venueModel.getName() }}</h3>
+				</div>
 			</section>
 
 			<section class="rating">
-				<span>{{ rating }}</span>
+				<div class="inner">
+					<span>{{ rating }}</span>
+				</div>
 			</section>
 
 			<section class="confirmed">
@@ -20,72 +24,117 @@
 			</section>
 
 			<address class="address">
-				<span class="address">{{ venueModel.getAddress() }}</span>
+				<div class="inner">
+					<span class="address">{{ venueModel.getAddress() }}</span>
+				</div>
 			</address>
 
 			<address class="today">
-				<h6 class="hours-today">{{ venueModel.hours.getTodayHours()?.formatHours() }}</h6>
-				<span class="is-open detail tag badge type-danger" v-if="venueModel.isOpenNow()">Open</span>
+				<div class="inner">
+					<h6 class="hours-today">{{ venueModel.hours.getTodayHours()?.formatHours() }}</h6>
+					<span class="is-open detail tag badge type-danger" v-if="venueModel.isOpenNow()">Open</span>
+				</div>
 			</address>
 
 			<section class="description">
-				<p>{{ venueModel.getDescription() }}</p>
+				<div class="inner">
+					<p>{{ venueModel.getDescription() }}</p>
+				</div>
 			</section>
 
 			<section class="details">
-				<span
-					class="detail tag badge"
-					v-bind:class="venueDetailModel.getKey()"
-					v-bind:key="venueDetailModel.getKey()"
-					v-for="venueDetailModel in venueModel.detail"
-				>
-					{{ venueDetailModel.getValue() }}
-				</span>
+				<div class="inner">
+					<span
+						class="detail tag badge"
+						v-bind:class="venueDetailModel.getKey()"
+						v-bind:key="venueDetailModel.getKey()"
+						v-for="venueDetailModel in venueModel.detail"
+					>
+						{{ venueDetailModel.getValue() }}
+					</span>
+				</div>
+			</section>
+
+			<section class="checkins" v-if="venueModel.checkins.length">
+				<header>
+					<h5>Who's Here</h5>
+				</header>
+
+				<div class="inner">
+					<div class="users">
+						<UserAvatar
+							size="sm"
+							v-bind:key="index"
+							v-bind:userModel="venueCheckinModel.user"
+							v-for="(venueCheckinModel, index) in venueModel.checkins"
+						/>
+					</div>
+					<div class="action" v-if="$store.getters['authentication/authenticated']">
+						<ButtonCheckin v-bind:venueModel="venueModel" />
+					</div>
+				</div>
 			</section>
 
 			<section class="hours">
-				<dl>
-					<dt class="hours-monday">Monday</dt>
-					<dd class="hours-monday">{{ venueModel.hours.getHoursForDay('monday')?.formatHours() }}</dd>
+				<header>
+					<h5>Hours</h5>
+				</header>
 
-					<dt class="hours-tuesday">Tuesday</dt>
-					<dd class="hours-tuesday">{{ venueModel.hours.getHoursForDay('tuesday')?.formatHours() }}</dd>
+				<div class="inner">
+					<div class="today">
+						<!-- Add timeline of todays hours -->
+					</div>
 
-					<dt class="hours-wednesday">Wednesday</dt>
-					<dd class="hours-wednesday">{{ venueModel.hours.getHoursForDay('wednesday')?.formatHours() }}</dd>
+					<dl>
+						<dt class="hours-monday">Monday</dt>
+						<dd class="hours-monday">{{ venueModel.hours.getHoursForDay('monday')?.formatHours() }}</dd>
 
-					<dt class="hours-thursday">Thursday</dt>
-					<dd class="hours-thursday">{{ venueModel.hours.getHoursForDay('thursday')?.formatHours() }}</dd>
+						<dt class="hours-tuesday">Tuesday</dt>
+						<dd class="hours-tuesday">{{ venueModel.hours.getHoursForDay('tuesday')?.formatHours() }}</dd>
 
-					<dt class="hours-friday">Friday</dt>
-					<dd class="hours-friday">{{ venueModel.hours.getHoursForDay('friday')?.formatHours() }}</dd>
+						<dt class="hours-wednesday">Wednesday</dt>
+						<dd class="hours-wednesday">{{ venueModel.hours.getHoursForDay('wednesday')?.formatHours() }}</dd>
 
-					<dt class="hours-saturday">Saturday</dt>
-					<dd class="hours-saturday">{{ venueModel.hours.getHoursForDay('saturday')?.formatHours() }}</dd>
+						<dt class="hours-thursday">Thursday</dt>
+						<dd class="hours-thursday">{{ venueModel.hours.getHoursForDay('thursday')?.formatHours() }}</dd>
 
-					<dt class="hours-sunday">Sunday</dt>
-					<dd class="hours-sunday">{{ venueModel.hours.getHoursForDay('sunday')?.formatHours() }}</dd>
-				</dl>
+						<dt class="hours-friday">Friday</dt>
+						<dd class="hours-friday">{{ venueModel.hours.getHoursForDay('friday')?.formatHours() }}</dd>
+
+						<dt class="hours-saturday">Saturday</dt>
+						<dd class="hours-saturday">{{ venueModel.hours.getHoursForDay('saturday')?.formatHours() }}</dd>
+
+						<dt class="hours-sunday">Sunday</dt>
+						<dd class="hours-sunday">{{ venueModel.hours.getHoursForDay('sunday')?.formatHours() }}</dd>
+					</dl>
+				</div>
 			</section>
 
 			<section class="actions">
-				<a
-					class="btn button-tertiary size-small action"
-					target="_blank"
-					v-bind:href="'tel:' + venueModel.getPhone()"
-					v-if="venueModel.getPhone()"
-				>
-					<i class="icon fa fa-phone"></i>
-					<span class="caption">Call</span>
-				</a>
-				<a class="btn button-tertiary size-small action" target="_blank" v-bind:href="venueModel.getWebsite()" v-if="venueModel.getWebsite()">
-					<i class="icon fa fa-globe"></i>
-					<span class="caption">Website</span>
-				</a>
-				<a class="btn button-tertiary size-small action" target="_blank" v-bind:href="getMapUrl()" v-if="venueModel.getAddress()">
-					<i class="icon fa fa-map-marker"></i>
-					<span class="caption">Directions</span>
-				</a>
+				<div class="inner">
+					<a
+						class="btn button-tertiary size-small action"
+						target="_blank"
+						v-bind:href="'tel:' + venueModel.getPhone()"
+						v-if="venueModel.getPhone()"
+					>
+						<i class="icon fa fa-phone"></i>
+						<span class="caption">Call</span>
+					</a>
+					<a
+						class="btn button-tertiary size-small action"
+						target="_blank"
+						v-bind:href="venueModel.getWebsite()"
+						v-if="venueModel.getWebsite()"
+					>
+						<i class="icon fa fa-globe"></i>
+						<span class="caption">Website</span>
+					</a>
+					<a class="btn button-tertiary size-small action" target="_blank" v-bind:href="getMapUrl()" v-if="venueModel.getAddress()">
+						<i class="icon fa fa-map-marker"></i>
+						<span class="caption">Directions</span>
+					</a>
+				</div>
 			</section>
 
 			<section class="open-closed">
@@ -120,10 +169,13 @@
 </template>
 
 <script lang="ts">
+	import ButtonCheckin from '../Button/Checkin.vue';
 	import ChalkySticks from '@chalkysticks/sdk';
+	import UserAvatar from '../User/Avatar.vue';
 	import VenueGallery from './Gallery.vue';
 	import ViewBase from '../Core/Base';
 	import { Component, Prop } from 'vue-property-decorator';
+	import { mounted } from '../Utility/Decorators';
 
 	/**
 	 * @class VenueCard
@@ -132,6 +184,8 @@
 	 */
 	@Component({
 		components: {
+			ButtonCheckin,
+			UserAvatar,
 			VenueGallery,
 		},
 	})
@@ -314,6 +368,18 @@
 				margin-right: 0.5rem;
 			}
 		}
+
+		.checkins {
+			.inner {
+				align-items: center;
+				display: flex;
+				justify-content: space-between;
+			}
+
+			.inner .actions {
+				flex-shrink: 1;
+			}
+		}
 	}
 
 	// Variations
@@ -390,6 +456,26 @@
 				right: 1rem;
 				top: 50%;
 				transform: translate(0, -50%);
+			}
+
+			.checkins {
+				position: absolute;
+				right: 0.5rem;
+				bottom: 2.5rem;
+
+				header,
+				.user-avatar,
+				.action {
+					display: none;
+				}
+
+				.user-avatar:first-child {
+					display: block;
+				}
+
+				.user-avatar {
+					--avatar-size-sm: 30px;
+				}
 			}
 		}
 
