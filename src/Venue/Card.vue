@@ -289,14 +289,16 @@
 		}
 
 		.today {
-			align-items: center;
-			display: flex;
-			gap: 0.5rem;
+			.inner {
+				align-items: center;
+				display: flex;
+				gap: 0.5rem;
 
-			.badge {
-				font-size: 0.675em;
-				font-weight: bold;
-				padding: 0.5em 0.75em;
+				.badge {
+					font-size: 0.675em;
+					font-weight: bold;
+					padding: 0.5em 0.75em;
+				}
 			}
 		}
 
@@ -326,11 +328,14 @@
 		}
 
 		.actions {
-			align-items: center;
-			display: flex;
-			gap: 0.5rem;
-			justify-content: space-between;
 			margin-top: 3em;
+
+			.inner {
+				align-items: center;
+				display: flex;
+				gap: 0.5rem;
+				justify-content: space-between;
+			}
 
 			.action {
 				display: inline-block;
