@@ -263,6 +263,10 @@
 		padding: 0.5rem;
 		position: relative;
 
+		header + .inner {
+			margin-top: 1rem;
+		}
+
 		.title {
 			float: left;
 			margin-right: 1rem;
