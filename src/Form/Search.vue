@@ -1,7 +1,7 @@
 <template>
 	<section class="chalky form-search">
 		<form class="glass-panel shadow-xl border-blue" v-on:submit="Handle_OnSubmit">
-			<i class="branding-chalky-badge size-sm"></i>
+			<i class="branding-chalky-badge size-sm" v-on:click="$emit('click:badge')"></i>
 
 			<label>
 				<input type="text" v-bind:placeholder="placeholder" v-model="query" />

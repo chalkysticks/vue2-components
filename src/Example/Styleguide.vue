@@ -760,6 +760,16 @@
 						v-on:map:move="Handle_OnMoveMap"
 					/>
 				</div>
+
+				<div class="padded">
+					<ChalkyFormSearch
+						placeholder="New York, NY"
+						queryParameter="search"
+						type="location"
+						v-on:click:badge="Handle_OnClickBadge"
+						v-on:search:location="Handle_OnSearchLocation"
+					/>
+				</div>
 			</section>
 
 			<section class="level-1">
@@ -979,6 +989,13 @@
 		}
 
 		/**
+		 * @return Promise<void>
+		 */
+		protected async Handle_OnClickBadge(): Promise<void> {
+			console.log('click badge');
+		}
+
+		/**
 		 * @param ChalkySticks.Model.Schedule scheduleModel
 		 * @return Promise<void>
 		 */
@@ -1032,10 +1049,29 @@
 		}
 
 		/**
+		 * @param string query
+		 * @return Promise<void>
+		 */
+		protected async Handle_OnSearchStart(query: string): Promise<void> {
+			// this.followUser = false;
+
+			console.log('Search start');
+		}
+
+		/**
 		 * @param ChalkySticks.Model.Geocode geocodeModel
 		 * @return Promise<void>
 		 */
 		protected async Handle_OnSearchLocation(geocodeModel: ChalkySticks.Model.Geocode): Promise<void> {
+			const { latitude, longitude } = geocodeModel.getLocation();
+
+			this.mapLatitude = latitude;
+			this.mapLongitude = longitude;
+
+			this.venueCollection.setQueryParam('latitude', latitude);
+			this.venueCollection.setQueryParam('longitude', longitude);
+			this.venueCollection.fetch();
+
 			console.log('Geocode location', geocodeModel);
 
 			console.log('Location', geocodeModel.getLocation());
