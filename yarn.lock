@@ -1075,8 +1075,8 @@
     bootstrap "^5.0.1"
 
 "@chalkysticks/sdk-authentication@github:chalkysticks/sdk-authentication":
-  version "1.7.2"
-  resolved "https://codeload.github.com/chalkysticks/sdk-authentication/tar.gz/19f7c8ebbd285c78af1a0bfd03223a522bc1e395"
+  version "1.7.3"
+  resolved "https://codeload.github.com/chalkysticks/sdk-authentication/tar.gz/30e8d263ca50e72c778d9d8d265ffb1adf80f559"
   dependencies:
     "@chalkysticks/mrm-preset" "github:chalkysticks/mrm-preset"
     "@chalkysticks/sdk-core" "github:chalkysticks/sdk-core"
@@ -1128,8 +1128,8 @@
     luxon "^3.5.0"
 
 "@chalkysticks/sdk@github:chalkysticks/sdk":
-  version "1.32.2"
-  resolved "https://codeload.github.com/chalkysticks/sdk/tar.gz/f3d95adcd35e438b85dfa47d2659547cd53a3360"
+  version "1.32.3"
+  resolved "https://codeload.github.com/chalkysticks/sdk/tar.gz/0eee5c22945f0e704576840117149d304af023bf"
   dependencies:
     "@chalkysticks/sdk-authentication" "github:chalkysticks/sdk-authentication"
     "@chalkysticks/sdk-core" "github:chalkysticks/sdk-core"
@@ -1442,9 +1442,9 @@
     "@types/node" "*"
 
 "@types/node@*":
-  version "22.10.2"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-22.10.2.tgz#a485426e6d1fdafc7b0d4c7b24e2c78182ddabb9"
-  integrity sha512-Xxr6BBRCAOQixvonOye19wnzyDiUtTeqldOOmj3CkeblonbccA12PFwlufvRdrpjXxqnmUaeiU5EOA+7s5diUQ==
+  version "22.10.3"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-22.10.3.tgz#cdc2a89bf6e5d5e593fad08e83f74d7348d5dd10"
+  integrity sha512-DifAyw4BkrufCILvD3ucnuN8eydUfc/C1GlyrnI+LK6543w5/L3VeVgf05o3B4fqSXP1dKYLOZsKfutpxPzZrw==
   dependencies:
     undici-types "~6.20.0"
 

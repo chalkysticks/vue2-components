@@ -55,19 +55,22 @@
 				</div>
 			</section>
 
-			<section class="checkins" v-if="venueModel.checkins.length">
+			<section class="checkins">
 				<header>
 					<h5>Who's Here</h5>
 				</header>
 
 				<div class="inner">
-					<div class="users">
+					<div class="users" v-if="venueModel.checkins.length">
 						<UserAvatar
 							size="sm"
 							v-bind:key="index"
 							v-bind:userModel="venueCheckinModel.user"
 							v-for="(venueCheckinModel, index) in venueModel.checkins"
 						/>
+					</div>
+					<div v-else>
+						<!-- <p>Be the first to check in!</p> -->
 					</div>
 					<div class="action" v-if="$store.getters['authentication/authenticated']">
 						<ButtonCheckin v-bind:venueModel="venueModel" />

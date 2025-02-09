@@ -24,6 +24,7 @@ import BrandingStandard from './Branding/Standard.vue';
 import ButtonLogin from './Button/Login.vue';
 import ButtonSignup from './Button/Signup.vue';
 import FormSearch from './Form/Search.vue';
+import MediaCardSwipe from './Media/CardSwipe.vue';
 import MediaFeed from './Media/Feed.vue';
 import MediaUser from './Media/User.vue';
 import MediaVenue from './Media/Venue.vue';
@@ -34,11 +35,11 @@ import TvNowPlaying from './TV/NowPlaying.vue';
 import TvSchedule from './TV/Schedule.vue';
 import TvScheduleItem from './TV/ScheduleItem.vue';
 import TvScheduleList from './TV/ScheduleList.vue';
-import TvVideoFacebook from './TV/Video/Facebook.vue';
-import TvVideoYouTube from './TV/Video/YouTube.vue';
 import TvTimeline from './TV/Timeline.vue';
+import TvVideoFacebook from './TV/Video/Facebook.vue';
 import TvVideoPreview from './TV/VideoPreview.vue';
 import TvVideoTheater from './TV/VideoTheater.vue';
+import TvVideoYouTube from './TV/Video/YouTube.vue';
 import UserMenu from './User/Menu.vue';
 import UtilityForceLandscape from './Utility/ForceLandscape.vue';
 import UtilityModal from './Utility/Modal.vue';
@@ -64,6 +65,7 @@ const components = {
 	ButtonLogin,
 	ButtonSignup,
 	FormSearch,
+	MediaCardSwipe,
 	MediaFeed,
 	MediaUser,
 	MediaVenue,
@@ -145,6 +147,7 @@ export {
 	BrandingStandard,
 	ButtonLogin,
 	ButtonSignup,
+	MediaCardSwipe,
 	MediaFeed,
 	MediaUser,
 	MediaVenue,

@@ -232,7 +232,7 @@
 			try {
 				return await this.authModel.login(this.email, this.password);
 			} catch (e) {
-				// this.$emit('error');
+				this.$emit('error');
 			}
 
 			return new ChalkySticks.Model.User();
@@ -256,7 +256,7 @@
 					password_confirmation: this.passwordConfirmation,
 				});
 			} catch (e) {
-				// this.$emit('error');
+				this.$emit('error');
 			}
 
 			return new ChalkySticks.Model.User();

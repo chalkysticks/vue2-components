@@ -9,16 +9,16 @@
 		}"
 	>
 		<picture
-			v-for="(model, index) in media"
 			v-bind:key="index"
 			v-bind:class="{
 				'state-active': activeIndex === index,
 			}"
+			v-for="(model, index) in media"
 		>
 			<img
-				v-if="model?.getUrl()"
 				v-bind:class="{ 'is-loaded': loadedImages.includes(index) }"
 				v-bind:src="model.getUrlLarge()"
+				v-if="model?.getUrl()"
 				v-on:load="Handle_OnImageLoaded"
 			/>
 
@@ -33,8 +33,8 @@
 		<picture v-if="media.length == 0" class="state-active">
 			<img
 				src="https://map.chalkysticks.com/image/backgrounds/no-photos-venue.jpg"
-				v-on:load="Handle_OnImageLoaded"
 				v-bind:class="{ 'is-loaded': loadedImages.includes(0) }"
+				v-on:load="Handle_OnImageLoaded"
 			/>
 		</picture>
 	</section>

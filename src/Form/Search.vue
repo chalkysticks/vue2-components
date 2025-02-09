@@ -68,6 +68,9 @@
 		 * @return Promise<void>
 		 */
 		public async search(query: string): Promise<void> {
+			this.$emit('search:start', query);
+
+			// Search based on type
 			switch (this.type) {
 				case 'location':
 					await this.searchLocation(this.query);
