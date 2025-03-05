@@ -201,6 +201,14 @@
 				transition: opacity 0.5s ease-in-out;
 			}
 
+			.chalky.venue-card .content {
+				background: transparent;
+			}
+
+			.glass-panel {
+				background: transparent;
+			}
+
 			> * {
 				margin-bottom: 1.5rem;
 				position: relative;
@@ -232,6 +240,8 @@
 	// ---------------------------------------------------------------------------
 
 	.chalky.venue-list.horizontal {
+		--chalky-venue-list-thumbnail-size: 150px;
+
 		.list {
 			-webkit-overflow-scrolling: touch;
 			align-items: center;
@@ -243,7 +253,7 @@
 			scrollbar-width: thin;
 
 			.venue-gallery {
-				border-radius: var(--rounded-corner);
+				border-radius: var(--chalky-venue-gallery-border-radius);
 			}
 
 			> * {
@@ -314,6 +324,39 @@
 		}
 
 		.actions {
+			display: none;
+		}
+	}
+
+	// Variations
+	// ---------------------------------------------------------------------------
+
+	.chalky.venue-list.variation-compact {
+		--chalky-venue-gallery-border-radius: 0.25em;
+		--chalky-venue-list-address-font-size: 0.875em;
+		--chalky-venue-list-checkin-avatar-size: 30px;
+		--chalky-venue-list-thumbnail-size: 2.5em;
+		--chalky-venue-list-title-font-size: 1em;
+
+		.confirmed,
+		.venue-gallery,
+		.distance {
+			display: none;
+		}
+
+		.content {
+			padding: 0;
+		}
+	}
+
+	.chalky.venue-list.variation-small {
+		--chalky-venue-gallery-border-radius: 0.25em;
+		--chalky-venue-list-address-font-size: 0.875em;
+		--chalky-venue-list-checkin-avatar-size: 30px;
+		--chalky-venue-list-thumbnail-size: 2.5em;
+		--chalky-venue-list-title-font-size: 1em;
+
+		.distance {
 			display: none;
 		}
 	}

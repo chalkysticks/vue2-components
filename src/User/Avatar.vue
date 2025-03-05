@@ -58,7 +58,7 @@
 		overflow: visible;
 
 		.avatar {
-			border: 3px solid var(--chalky-blue);
+			border: var(--chalky-avatar-stroke-width) solid var(--chalky-avatar-stroke-color);
 		}
 
 		.notification {

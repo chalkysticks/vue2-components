@@ -2,6 +2,9 @@
 // ----------------------------------------------------------------------------
 
 :root {
+	--chalky-avatar-stroke-color: var(--color-blue);
+	--chalky-avatar-stroke-width: 3px;
+
 	--chalky-tv-channel-count: 9;
 	--chalky-tv-hour-height: 200px;
 	--chalky-tv-schedule-gap: 1px;
@@ -12,5 +15,17 @@
 
 	--chalky-utilityscreen-zindex: 500;
 
-	--chalky-venue-list-thumbnail-size: 150px;
+	--chalky-venue-card-border-radius: var(--rounded-corner-outer);
+	--chalky-venue-card-content-border-radius: var(--rounded-corner-outer);
+	--chalky-venue-card-distance-font-size: var(--font-size-small);
+	--chalky-venue-card-distance-font-weight: var(--font-weight-bold);
+	--chalky-venue-card-title: 1.25em;
+	--chalky-venue-gallery-border-radius: var(--rounded-corner);
+	--chalky-venue-list-address-font-size: var(--font-size-small);
+	--chalky-venue-list-checkin-avatar-size: 30px;
+	--chalky-venue-list-thumbnail-size: 75px;
+	--chalky-venue-list-title-font-size: var(--font-size-medium);
+	--chalky-venue-map-height: 512px;
+	--chalky-venue-map-icon-size: 32px;
+	--chalky-venue-map-width: 512px;
 }

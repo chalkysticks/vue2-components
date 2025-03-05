@@ -527,13 +527,13 @@
 
 <style lang="scss">
 	.chalky.venue-map {
-		height: 512px;
-		width: 512px;
+		height: var(--chalky-venue-map-height);
+		width: var(--chalky-venue-map-width);
 
 		.icon-marker,
 		.icon-beacon {
-			height: 32px;
-			width: 32px;
+			height: var(--chalky-venue-map-icon-size);
+			width: var(--chalky-venue-map-icon-size);
 		}
 
 		a[href^="http://maps.google.com/maps"],

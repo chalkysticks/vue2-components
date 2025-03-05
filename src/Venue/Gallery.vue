@@ -287,7 +287,7 @@
 <style lang="scss">
 	.venue-gallery {
 		background: var(--chalky-blue-3) url('~@chalkysticks/sass/build/asset/image/branding/icon-blue-4.svg') no-repeat center / 15%;
-		border-radius: var(--rounded-corner);
+		border-radius: var(--chalky-venue-gallery-border-radius);
 		display: grid;
 		overflow: hidden;
 		position: relative;

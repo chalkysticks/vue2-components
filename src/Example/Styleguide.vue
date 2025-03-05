@@ -778,8 +778,17 @@
 
 					<p><small>@todo add location</small></p>
 				</header>
-				<div>
-					<ChalkyVenueList v-bind:venueCollection="venueCollection" />
+
+				<div class="push-bottom">
+					<ChalkyVenueList class="variation-compact" v-bind:venueCollection="venueCollection" />
+				</div>
+
+				<div class="push-bottom">
+					<ChalkyVenueList class="variation-small" v-bind:venueCollection="venueCollection" />
+				</div>
+
+				<div class="push-bottom">
+					<ChalkyVenueList class="variation-normal" v-bind:venueCollection="venueCollection" />
 				</div>
 			</section>
 		</section>
@@ -1176,6 +1185,24 @@
 	.app {
 		.chalky.venue-list {
 			height: 450px;
+		}
+	}
+
+	// Media Queries
+	// ---------------------------------------------------------------------------
+
+	@media (max-width: 800px) {
+		.styleguide {
+			padding: 1rem;
+
+			.level-1 {
+				padding-left: 0;
+
+				> header {
+					float: none;
+					margin-left: 0;
+				}
+			}
 		}
 	}
 

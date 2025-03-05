@@ -262,7 +262,7 @@
 
 <style lang="scss">
 	.chalky.venue-card {
-		border-radius: var(--rounded-corner-outer);
+		border-radius: var(--chalky-venue-card-border-radius);
 		padding: 0.5rem;
 		position: relative;
 
@@ -276,7 +276,7 @@
 			max-width: 50%;
 
 			h1 {
-				font-size: 1.25em;
+				font-size: var(--chalky-venue-card-title);
 			}
 		}
 
@@ -310,7 +310,7 @@
 		}
 
 		.content {
-			border-radius: var(--rounded-corner-outer);
+			border-radius: var(--chalky-venue-card-content-border-radius);
 			border-top-left-radius: 0;
 			border-top-right-radius: 0;
 
@@ -365,11 +365,11 @@
 			align-items: center;
 			display: flex;
 			flex-direction: column;
-			font-size: var(--font-size-small);
-			font-weight: var(--font-weight-bold);
+			font-size: var(--chalky-venue-card-distance-font-size);
+			font-weight: var(--chalky-venue-card-distance-font-weight);
+			gap: 0.25rem;
 			justify-content: center;
 			letter-spacing: -0.05em;
-			gap: 0.25rem;
 		}
 
 		dl {
@@ -447,7 +447,7 @@
 				max-width: 100%;
 
 				h3 {
-					font-size: var(--font-size-medium);
+					font-size: var(--chalky-venue-list-title-font-size);
 				}
 			}
 
@@ -458,7 +458,7 @@
 
 			.address {
 				align-content: flex-start;
-				font-size: var(--font-size-small);
+				font-size: var(--chalky-venue-list-address-font-size);
 				line-height: 1.25;
 				margin-bottom: 0;
 			}
@@ -471,9 +471,9 @@
 			}
 
 			.checkins {
+				bottom: 2.5rem;
 				position: absolute;
 				right: 0.5rem;
-				bottom: 2.5rem;
 
 				header,
 				.user-avatar,
@@ -486,7 +486,7 @@
 				}
 
 				.user-avatar {
-					--avatar-size-sm: 30px;
+					--avatar-size-sm: var(--chalky-venue-list-checkin-avatar-size);
 				}
 			}
 		}
