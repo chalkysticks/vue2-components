@@ -48,7 +48,7 @@
 						class="detail tag badge"
 						v-bind:class="venueDetailModel.getKey()"
 						v-bind:key="venueDetailModel.getKey()"
-						v-for="venueDetailModel in venueModel.detail"
+						v-for="venueDetailModel in venueModel.details"
 					>
 						{{ venueDetailModel.getValue() }}
 					</span>
