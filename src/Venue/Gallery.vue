@@ -149,11 +149,11 @@
 		@mounted
 		public attachEvents(): void {
 			this.pointer = new ChalkySticks.Core.Input.Pointer('pointer', true, this.$el as HTMLElement);
+			this.pointer.on('tap:small', this.Handle_OnTapSmall.bind(this));
 
 			if (this.isInteractive) {
 				this.pointer.on('drag', this.Handle_OnDrag.bind(this));
 				this.pointer.on('tap', this.Handle_OnTap.bind(this));
-				this.pointer.on('tap:small', this.Handle_OnTapSmall.bind(this));
 				this.pointer.on('up', this.Handle_OnDragRelease.bind(this));
 			}
 		}
