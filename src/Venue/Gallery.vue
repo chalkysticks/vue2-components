@@ -151,8 +151,9 @@
 			this.pointer = new ChalkySticks.Core.Input.Pointer('pointer', true, this.$el as HTMLElement);
 
 			if (this.isInteractive) {
-				this.pointer.on('tap', this.Handle_OnTap.bind(this));
 				this.pointer.on('drag', this.Handle_OnDrag.bind(this));
+				this.pointer.on('tap', this.Handle_OnTap.bind(this));
+				this.pointer.on('tap:small', this.Handle_OnTapSmall.bind(this));
 				this.pointer.on('up', this.Handle_OnDragRelease.bind(this));
 			}
 		}
@@ -162,8 +163,9 @@
 		 */
 		@beforeDestroy
 		public detachEvents(): void {
-			this.pointer.off('tap');
 			this.pointer.off('drag');
+			this.pointer.off('tap');
+			this.pointer.off('tap:small');
 			this.pointer.off('up');
 		}
 
@@ -279,6 +281,13 @@
 		protected async Handle_OnTap(): Promise<void> {
 			this.hasInteracted = true;
 			this.$emit('tap');
+		}
+
+		/**
+		 * @return Promise<void>
+		 */
+		protected async Handle_OnTapSmall(): Promise<void> {
+			this.$emit('tap:small');
 		}
 
 		// endregion: Event Handlers

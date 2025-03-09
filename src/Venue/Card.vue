@@ -6,7 +6,7 @@
 			v-bind:key="venueModel.id"
 			v-bind:interactive="interactiveGallery"
 			v-bind:venueModel="venueModel"
-			v-on:tap="$emit('click:gallery')"
+			v-on:tap:small="$emit('click:gallery')"
 		/>
 
 		<section class="content" v-if="venueModel.getName()">
