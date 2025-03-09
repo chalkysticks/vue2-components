@@ -15,7 +15,7 @@
 	import Router from '../Core/Router';
 	import ViewBase from '../Core/Base';
 	import { Component, Prop, Watch } from 'vue-property-decorator';
-	import { beforeDestroy, mounted } from '@/Utility/Decorators';
+	import { beforeDestroy, bind, mounted } from '@/Utility/Decorators';
 
 	/**
 	 * @author ChalkySticks LLC
@@ -126,6 +126,8 @@
 		}
 
 		/**
+		 * @todo, This can't be right. The newQuery[this.queryParameter] is not correct.
+		 *
 		 * @param Event e
 		 * @return Promise<void>
 		 */
@@ -133,8 +135,9 @@
 			deep: true,
 			immediate: true,
 		})
+		@bind
 		protected async Handle_OnRouteChange(newQuery: any, oldQuery: any): Promise<void> {
-			if (!this.queryParameter) {
+			if (!this.queryParameter || !newQuery) {
 				return;
 			}
 

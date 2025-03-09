@@ -278,6 +278,7 @@
 		 */
 		protected async Handle_OnTap(): Promise<void> {
 			this.hasInteracted = true;
+			this.$emit('tap');
 		}
 
 		// endregion: Event Handlers

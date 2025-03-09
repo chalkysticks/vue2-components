@@ -736,7 +736,7 @@
 					<ChalkyVenueCard />
 				</div>
 				<div>
-					<ChalkyVenueCard v-bind:venueModel="venueCollection.at(0)" />
+					<ChalkyVenueCard v-bind:venueModel="venueCollection.at(0)" v-on:click:gallery="Handle_OnClickCardGallery" />
 				</div>
 			</section>
 
@@ -1002,6 +1002,13 @@
 		 */
 		protected async Handle_OnClickBadge(): Promise<void> {
 			console.log('click badge');
+		}
+
+		/**
+		 * @return Promise<void>
+		 */
+		protected async Handle_OnClickCardGallery(): Promise<void> {
+			console.log('click card gallery');
 		}
 
 		/**

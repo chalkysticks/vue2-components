@@ -2,7 +2,12 @@
 	<div class="chalky venue-card glass-panel" v-bind:class="'type-' + venueModel.getType()" v-bind:key="venueModel.id">
 		<slot name="before"></slot>
 
-		<VenueGallery v-bind:key="venueModel.id" v-bind:interactive="interactiveGallery" v-bind:venueModel="venueModel" />
+		<VenueGallery
+			v-bind:key="venueModel.id"
+			v-bind:interactive="interactiveGallery"
+			v-bind:venueModel="venueModel"
+			v-on:tap="$emit('click:gallery')"
+		/>
 
 		<section class="content" v-if="venueModel.getName()">
 			<slot name="content:before"></slot>
