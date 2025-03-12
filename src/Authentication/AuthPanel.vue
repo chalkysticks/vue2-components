@@ -5,8 +5,15 @@
 		</header>
 
 		<section class="login-container">
-			<AuthenticationBasicLogin v-bind:authModel="authModel" v-if="includeBasic" />
+			<AuthenticationBasicLogin
+				v-bind:allowForgotPassword="allowForgotPassword"
+				v-bind:allowSignup="allowSignup"
+				v-bind:authModel="authModel"
+				v-if="includeBasic"
+			/>
+
 			<hr v-if="includeBasic && includeSocial" />
+
 			<AuthenticationSocialLogin v-bind:authModel="authModel" v-if="includeSocial" />
 		</section>
 	</div>
@@ -36,6 +43,22 @@
 		},
 	})
 	class AuthenticationAuthPanel extends ViewBase {
+		/**
+		 * Whether or not to allow signup
+		 *
+		 * @type boolean
+		 */
+		@Prop({ default: true })
+		public allowForgotPassword!: boolean;
+
+		/**
+		 * Whether or not to allow signup
+		 *
+		 * @type boolean
+		 */
+		@Prop({ default: true })
+		public allowSignup!: boolean;
+
 		/**
 		 * @type ChalkySticks/Model/Authentication
 		 */

@@ -103,7 +103,7 @@
 						v-on:keydown="Handle_OnKeydownInput"
 					/>
 
-					<a class="type-caps" href="/forgot-password" title="Forgot Password">
+					<a class="type-caps" href="/forgot-password" title="Forgot Password" v-if="allowForgotPassword">
 						<span>Forget password?</span>
 					</a>
 				</label>
@@ -123,7 +123,7 @@
 						<span>{{ message }}</span>
 					</div>
 
-					<label>
+					<label v-if="allowSignup">
 						<a class="type-caps" href="/sign-up" title="Sign up" v-on:click="Handle_OnClickSignup">
 							<span>Sign up</span>
 						</a>
@@ -155,6 +155,22 @@
 		},
 	})
 	export default class AuthenticationBasicLogin extends ViewBase {
+		/**
+		 * Whether or not to allow signup
+		 *
+		 * @type boolean
+		 */
+		@Prop({ default: true })
+		public allowForgotPassword!: boolean;
+
+		/**
+		 * Whether or not to allow signup
+		 *
+		 * @type boolean
+		 */
+		@Prop({ default: true })
+		public allowSignup!: boolean;
+
 		/**
 		 * @type ChalkySticks/Model/Authentication
 		 */

@@ -357,6 +357,8 @@
 				</header>
 				<div>
 					<ChalkyAuthenticationBasicLogin
+						v-bind:allowForgotPassword="true"
+						v-bind:allowSignup="true"
 						v-bind:authModel="authModel"
 						v-on:success="Handle_OnLoginSuccess"
 						v-on:error="Handle_OnLoginError"
@@ -392,6 +394,8 @@
 				</header>
 				<div>
 					<ChalkyAuthenticationAuthPanel
+						v-bind:allowForgotPassword="true"
+						v-bind:allowSignup="true"
 						v-bind:authModel="authModel"
 						v-on:success="Handle_OnLoginSuccess"
 						v-on:error="Handle_OnLoginError"
