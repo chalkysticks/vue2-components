@@ -43,6 +43,7 @@ import TvVideoYouTube from './TV/Video/YouTube.vue';
 import UserMenu from './User/Menu.vue';
 import UtilityForceLandscape from './Utility/ForceLandscape.vue';
 import UtilityModal from './Utility/Modal.vue';
+import UtilityPagination from './Utility/Pagination.vue';
 import UtilityPortraitOverlay from './Utility/PortraitOverlay.vue';
 import UtilityScrollToBegin from './Utility/ScrollToBegin.vue';
 import VenueCard from './Venue/Card.vue';
@@ -84,6 +85,7 @@ const components = {
 	UserMenu,
 	UtilityForceLandscape,
 	UtilityModal,
+	UtilityPagination,
 	UtilityPortraitOverlay,
 	UtilityScrollToBegin,
 	VenueCard,
@@ -165,6 +167,7 @@ export {
 	TvVideoYouTube,
 	UserMenu,
 	UtilityForceLandscape,
+	UtilityPagination,
 	UtilityPortraitOverlay,
 	UtilityScrollToBegin,
 	VenueCard,

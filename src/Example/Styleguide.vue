@@ -727,6 +727,18 @@
 						</template>
 					</ChalkyVenueList>
 				</div>
+				<div>
+					<ChalkyUtilityPagination v-bind:collection="venueCollection" />
+				</div>
+				<br />
+				<div>
+					<ChalkyUtilityPagination
+						v-bind:showFirst="true"
+						v-bind:showLast="true"
+						v-bind:maxPagesToShow="3"
+						v-bind:collection="venueCollection"
+					/>
+				</div>
 			</section>
 
 			<section class="level-1">
