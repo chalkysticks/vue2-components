@@ -321,6 +321,8 @@
 			setTimeout(() => {
 				this.loginFailed = false;
 			}, 1000 * 2.5);
+
+			this.$forceUpdate();
 		}
 
 		/**
@@ -349,6 +351,8 @@
 		protected Handle_OnSuccess(): void {
 			this.$emit('login', this.authModel.user);
 			this.$emit('success', this.authModel.user);
+
+			this.$forceUpdate();
 		}
 
 		// endregion: Event Handlers

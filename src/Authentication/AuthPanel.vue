@@ -10,6 +10,9 @@
 				v-bind:allowSignup="allowSignup"
 				v-bind:authModel="authModel"
 				v-if="includeBasic"
+				v-on:error="$emit('error', $event)"
+				v-on:login="$emit('login', $event)"
+				v-on:success="$emit('success', $event)"
 			/>
 
 			<hr v-if="includeBasic && includeSocial" />

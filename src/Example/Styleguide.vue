@@ -356,13 +356,13 @@
 					</p>
 				</header>
 				<div>
-					<ChalkyAuthenticationBasicLogin
+					<!-- <ChalkyAuthenticationBasicLogin
 						v-bind:allowForgotPassword="true"
 						v-bind:allowSignup="true"
 						v-bind:authModel="authModel"
 						v-on:success="Handle_OnLoginSuccess"
 						v-on:error="Handle_OnLoginError"
-					/>
+					/> -->
 				</div>
 			</section>
 
@@ -1056,8 +1056,8 @@
 		/**
 		 * @return Promise<void>
 		 */
-		protected async Handle_OnLoginSuccess(): Promise<void> {
-			console.log('Login success');
+		protected async Handle_OnLoginSuccess($user): Promise<void> {
+			console.log('Login success', arguments, $user);
 		}
 
 		/**
