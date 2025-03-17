@@ -936,7 +936,7 @@
 
 			// Fetch geolocation
 			setTimeout(() => {
-				// ChalkySticks.Utility.Geolocation.getLocation();
+				ChalkySticks.Utility.Geolocation.getLocation();
 			}, 1000);
 
 			// ChalkySticks.Utility.Geolocation.watchLocation(undefined, undefined, {
@@ -944,6 +944,10 @@
 			// 	maximumAge: 0,
 			// 	timeout: 5000,
 			// });
+
+			// Unlock more pagination
+			this.venueCollection.setQueryParam('kenefick', 'true');
+			this.venueCollection.setQueryParam('distance', '1000');
 
 			this.venueCollection.fetch();
 			this.liveScheduleCollection.fetch();

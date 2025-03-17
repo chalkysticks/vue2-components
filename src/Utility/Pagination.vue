@@ -40,7 +40,7 @@
 		 * @type Collection<T>
 		 */
 		@Prop()
-		public collection: Collection<any>;
+		public collection!: Collection<any>;
 
 		/**
 		 * @type number
@@ -205,7 +205,7 @@
 		protected async Handle_OnClickFirst(e: PointerEvent): Promise<void> {
 			e.preventDefault();
 
-			this.collection.fetch(null, { page: 1 });
+			this.collection.fetch(undefined, { page: 1 });
 		}
 
 		/**
@@ -215,7 +215,7 @@
 		protected async Handle_OnClickPrevious(e: PointerEvent): Promise<void> {
 			e.preventDefault();
 
-			this.collection.fetch(null, { page: this.getPreviousPage() });
+			this.collection.fetch(undefined, { page: this.getPreviousPage() });
 		}
 
 		/**
@@ -226,7 +226,7 @@
 		protected async Handle_OnClickPageNumber(e: PointerEvent, pageNumber: number): Promise<void> {
 			e.preventDefault();
 
-			this.collection.fetch(null, { page: pageNumber });
+			this.collection.fetch(undefined, { page: pageNumber });
 		}
 
 		/**
@@ -236,7 +236,7 @@
 		protected async Handle_OnClickNext(e: PointerEvent): Promise<void> {
 			e.preventDefault();
 
-			this.collection.fetch(null, { page: this.getNextPage() });
+			this.collection.fetch(undefined, { page: this.getNextPage() });
 		}
 
 		/**
@@ -246,7 +246,7 @@
 		protected async Handle_OnClickLast(e: PointerEvent): Promise<void> {
 			e.preventDefault();
 
-			this.collection.fetch(null, { page: this.getTotalPages() });
+			this.collection.fetch(undefined, { page: this.getTotalPages() });
 		}
 
 		// endregion: Event Handlers
