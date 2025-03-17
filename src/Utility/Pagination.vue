@@ -1,9 +1,15 @@
 <template>
 	<section class="chalky utility-pagination">
+		<div class="debug">
+			{{ collection.cid }}
+			Pages: {{ getTotalPages() }} Items: {{ getTotalItems() }} Per Page: {{ getTotalPerPage() }}
+		</div>
+
+		<slot name="before"></slot>
+
 		<button class="page-action action-first" v-if="showFirst" v-on:click="Handle_OnClickFirst">First</button>
 		<button class="page-action action-previous" v-if="showPrevious" v-on:click="Handle_OnClickPrevious">Previous</button>
 
-		<!-- Paged number buttons -->
 		<template v-if="showNumbers">
 			<button
 				class="page-number"
@@ -19,6 +25,8 @@
 
 		<button class="page-action action-next" v-if="showNext" v-on:click="Handle_OnClickNext">Next</button>
 		<button class="page-action action-last" v-if="showLast" v-on:click="Handle_OnClickLast">Last</button>
+
+		<slot name="after"></slot>
 	</section>
 </template>
 
@@ -27,7 +35,7 @@
 	import { Collection } from 'restmc';
 	import ViewBase from '../Core/Base';
 	import { Component, Prop } from 'vue-property-decorator';
-	import { beforeDestroy, mounted } from '@/Utility/Decorators';
+	import { beforeDestroy, bind, mounted } from '@/Utility/Decorators';
 
 	/**
 	 * @author ChalkySticks LLC
@@ -83,6 +91,22 @@
 		 */
 		@Prop({ default: true })
 		public showPrevious!: boolean;
+
+		/**
+		 * @return void
+		 */
+		@mounted
+		public attachEvents(): void {
+			this.collection.on('success', this.Handle_OnFetchSuccess);
+		}
+
+		/**
+		 * @return void
+		 */
+		@beforeDestroy
+		public detachEvents(): void {
+			this.collection.off('success', this.Handle_OnFetchSuccess);
+		}
 
 		// region: Pagination
 		// ---------------------------------------------------------------------------
@@ -249,6 +273,14 @@
 			this.collection.fetch(undefined, { page: this.getTotalPages() });
 		}
 
+		/**
+		 * @return Promise<void>
+		 */
+		@bind
+		protected async Handle_OnFetchSuccess(): Promise<void> {
+			this.$forceUpdate();
+		}
+
 		// endregion: Event Handlers
 	}
 </script>
@@ -275,6 +307,10 @@
 		border-radius: 0.44rem;
 		display: flex;
 		overflow: hidden;
+
+		.debug {
+			display: none;
+		}
 
 		button {
 			background: var(--chalky-pagination-button-background);
