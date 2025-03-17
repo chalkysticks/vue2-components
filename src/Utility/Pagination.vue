@@ -97,7 +97,7 @@
 		 */
 		@mounted
 		public attachEvents(): void {
-			this.collection.on('success', this.Handle_OnFetchSuccess);
+			this.collection.on('complete', this.Handle_OnFetchSuccess);
 		}
 
 		/**
@@ -105,7 +105,7 @@
 		 */
 		@beforeDestroy
 		public detachEvents(): void {
-			this.collection.off('success', this.Handle_OnFetchSuccess);
+			this.collection.off('complete', this.Handle_OnFetchSuccess);
 		}
 
 		// region: Pagination
