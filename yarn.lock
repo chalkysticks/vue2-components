@@ -1082,8 +1082,8 @@
     "@chalkysticks/sdk-core" "github:chalkysticks/sdk-core"
 
 "@chalkysticks/sdk-core@github:chalkysticks/sdk-core":
-  version "1.32.0"
-  resolved "https://codeload.github.com/chalkysticks/sdk-core/tar.gz/b92ee4c38940bed1653c7a4b7e1a5ca23d2176d8"
+  version "1.32.1"
+  resolved "https://codeload.github.com/chalkysticks/sdk-core/tar.gz/63a04a73b7591b83a291f0049628d8eda3815624"
   dependencies:
     "@chalkysticks/mrm-preset" "github:chalkysticks/mrm-preset"
     "@types/googlemaps" "^3.43.3"
@@ -1128,8 +1128,8 @@
     luxon "^3.5.0"
 
 "@chalkysticks/sdk@github:chalkysticks/sdk":
-  version "1.33.7"
-  resolved "https://codeload.github.com/chalkysticks/sdk/tar.gz/481c83f4729b462e072254463d3a38d5c4887741"
+  version "1.33.9"
+  resolved "https://codeload.github.com/chalkysticks/sdk/tar.gz/2b8e41bb296c3ceebb1346a21dc175f4a4a66034"
   dependencies:
     "@chalkysticks/sdk-authentication" "github:chalkysticks/sdk-authentication"
     "@chalkysticks/sdk-core" "github:chalkysticks/sdk-core"
@@ -4021,12 +4021,7 @@ has-proto@^1.0.1:
   resolved "https://registry.yarnpkg.com/has-proto/-/has-proto-1.0.3.tgz#b31ddfe9b0e6e9914536a6ab286426d0214f77fd"
   integrity sha512-SJ1amZAJUiZS+PhsVLf5tGydlaVB8EdFpaSO4gmiUKUOxk8qzn5AIy4ZeJUmh22znIdk/uMAUT2pl3FxzVUH+Q==
 
-has-symbols@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/has-symbols/-/has-symbols-1.0.3.tgz#bb7b2c4349251dce87b125f7bdf874aa7c8b39f8"
-  integrity sha512-l3LCuF6MgDNwTDKkdYGEihYjt5pRPbEg46rtlmnSPlUbgmB8LOIrKJbYYFBSbnPaJexMKtiPO8hmeRjRz2Td+A==
-
-has-symbols@^1.1.0:
+has-symbols@^1.0.3, has-symbols@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/has-symbols/-/has-symbols-1.1.0.tgz#fc9c6a783a084951d0b971fe1018de813707a338"
   integrity sha512-1cDNdwJ2Jaohmb3sg4OmKaMBwuC48sYni5HUw2DvsC8LjGTLK9h+eb1X6RyuOHe4hT0ULCW68iomhjUoKUqlPQ==
@@ -5780,12 +5775,11 @@ resolve@^1.10.0, resolve@^1.14.2:
     supports-preserve-symlinks-flag "^1.0.0"
 
 "restmc@git+https://github.com/mattkenefick/restmc.git":
-  version "1.1.0"
-  resolved "git+https://github.com/mattkenefick/restmc.git#ced6013926c2105a14bc6053baf8c734a892389d"
+  version "1.3.0"
+  resolved "git+https://github.com/mattkenefick/restmc.git#44b7cb0742eb3e60eb6614a2187d431fda5e90bf"
   dependencies:
     "@types/node-fetch" "^2.5.7"
     axios "^0.21.4"
-    form-data "^4.0.0"
     https "^1.0.0"
     node-fetch "^2.6.0"
 
