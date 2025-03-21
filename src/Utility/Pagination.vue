@@ -1,10 +1,5 @@
 <template>
 	<section class="chalky utility-pagination">
-		<div class="debug">
-			{{ collection.cid }}
-			Pages: {{ getTotalPages() }} Items: {{ getTotalItems() }} Per Page: {{ getTotalPerPage() }}
-		</div>
-
 		<slot name="before"></slot>
 
 		<button class="page-action action-first" v-if="showFirst" v-on:click="Handle_OnClickFirst">First</button>
