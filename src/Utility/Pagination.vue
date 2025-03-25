@@ -103,6 +103,14 @@
 			this.collection.off('complete', this.Handle_OnFetchSuccess);
 		}
 
+		/**
+		 * @param number number
+		 * @return Promise<any>
+		 */
+		protected async fetchPage(number: number): Promise<any> {
+			return this.collection.fetch(undefined, { page: number });
+		}
+
 		// region: Pagination
 		// ---------------------------------------------------------------------------
 
@@ -224,7 +232,7 @@
 		protected async Handle_OnClickFirst(e: PointerEvent): Promise<void> {
 			e.preventDefault();
 
-			this.collection.fetch(undefined, { page: 1 });
+			this.fetchPage(1);
 		}
 
 		/**
@@ -234,7 +242,7 @@
 		protected async Handle_OnClickPrevious(e: PointerEvent): Promise<void> {
 			e.preventDefault();
 
-			this.collection.fetch(undefined, { page: this.getPreviousPage() });
+			this.fetchPage(this.getPreviousPage());
 		}
 
 		/**
@@ -245,7 +253,7 @@
 		protected async Handle_OnClickPageNumber(e: PointerEvent, pageNumber: number): Promise<void> {
 			e.preventDefault();
 
-			this.collection.fetch(undefined, { page: pageNumber });
+			this.fetchPage(pageNumber);
 		}
 
 		/**
@@ -255,7 +263,7 @@
 		protected async Handle_OnClickNext(e: PointerEvent): Promise<void> {
 			e.preventDefault();
 
-			this.collection.fetch(undefined, { page: this.getNextPage() });
+			this.fetchPage(this.getNextPage());
 		}
 
 		/**
@@ -265,7 +273,7 @@
 		protected async Handle_OnClickLast(e: PointerEvent): Promise<void> {
 			e.preventDefault();
 
-			this.collection.fetch(undefined, { page: this.getTotalPages() });
+			this.fetchPage(this.getTotalPages());
 		}
 
 		/**

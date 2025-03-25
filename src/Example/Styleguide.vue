@@ -706,8 +706,49 @@
 				<header>
 					<h3>Venue Gallery</h3>
 				</header>
+
 				<div class="push-bottom">
+					<h6>Not interactive</h6>
+					<ChalkyVenueGallery v-bind:interactive="false" v-bind:venueModel="venueCollection.at(0)" />
+				</div>
+
+				<div class="push-bottom">
+					<h6>Not interactive / Automatic</h6>
+					<ChalkyVenueGallery v-bind:interactive="false" v-bind:automatic="true" v-bind:venueModel="venueCollection.at(0)" />
+				</div>
+
+				<div class="push-bottom">
+					<h6>Interactive</h6>
 					<ChalkyVenueGallery v-bind:interactive="true" v-bind:venueModel="venueCollection.at(0)" />
+				</div>
+
+				<div class="push-bottom">
+					<h6>Before / After</h6>
+					<ChalkyVenueGallery v-bind:interactive="true" v-bind:venueModel="venueCollection.at(0)">
+						<template v-slot:before-item="{ index }">
+							<div class="controls">{{ index + 1 }}</div>
+						</template>
+
+						<template v-slot:after-item="{ venueModel }">
+							<div class="caption" v-if="venueModel">{{ venueModel.getName() }}</div>
+						</template>
+					</ChalkyVenueGallery>
+				</div>
+
+				<div class="push-bottom">
+					<ChalkyVenueGallery layout="grid" v-bind:venueModel="venueCollection.at(0)" />
+				</div>
+
+				<div class="push-bottom">
+					<ChalkyVenueGallery layout="grid" v-bind:venueModel="venueCollection.at(0)">
+						<template v-slot:before-item="{ index }">
+							<div class="controls">{{ index + 1 }}</div>
+						</template>
+
+						<template v-slot:after-item="{ venueModel }">
+							<div class="caption" v-if="venueModel">{{ venueModel.getName() }}</div>
+						</template>
+					</ChalkyVenueGallery>
 				</div>
 			</section>
 
