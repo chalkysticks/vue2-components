@@ -1145,8 +1145,8 @@
 			this.mapLatitude = latitude;
 			this.mapLongitude = longitude;
 
-			this.venueCollection.setQueryParam('latitude', latitude);
-			this.venueCollection.setQueryParam('longitude', longitude);
+			this.venueCollection.setQueryParam('latitude', latitude.toString());
+			this.venueCollection.setQueryParam('longitude', longitude.toString());
 			this.venueCollection.fetch();
 
 			console.log('Geocode location', geocodeModel);

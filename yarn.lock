@@ -1082,8 +1082,8 @@
     "@chalkysticks/sdk-core" "github:chalkysticks/sdk-core"
 
 "@chalkysticks/sdk-core@github:chalkysticks/sdk-core":
-  version "1.32.4"
-  resolved "https://codeload.github.com/chalkysticks/sdk-core/tar.gz/bfd7b71932ecb68f3231adcd8c2c5c4b07696d58"
+  version "1.34.0"
+  resolved "https://codeload.github.com/chalkysticks/sdk-core/tar.gz/110e7e1dfc7cf9985b6d490015e7b23beda05727"
   dependencies:
     "@chalkysticks/mrm-preset" "github:chalkysticks/mrm-preset"
     "@types/googlemaps" "^3.43.3"
@@ -1120,17 +1120,18 @@
     "@chalkysticks/sdk-core" "github:chalkysticks/sdk-core"
 
 "@chalkysticks/sdk-venues@github:chalkysticks/sdk-venues#v1":
-  version "1.5.4"
-  resolved "https://codeload.github.com/chalkysticks/sdk-venues/tar.gz/e59372ce5c31d0c4abfaa0d294bedc1a9ee89200"
+  version "1.7.0"
+  resolved "https://codeload.github.com/chalkysticks/sdk-venues/tar.gz/4a2432a2843ba3e75c251dee3ff5311c0c70a7a9"
   dependencies:
     "@chalkysticks/mrm-preset" "github:chalkysticks/mrm-preset"
     "@chalkysticks/sdk-core" "github:chalkysticks/sdk-core"
     luxon "^3.5.0"
+    reflect-metadata "^0.2.2"
     restmc "git+https://github.com/mattkenefick/restmc.git"
 
 "@chalkysticks/sdk@github:chalkysticks/sdk":
-  version "1.34.2"
-  resolved "https://codeload.github.com/chalkysticks/sdk/tar.gz/36e396cc7daf7f028598916d605788ee71480c1d"
+  version "1.34.13"
+  resolved "https://codeload.github.com/chalkysticks/sdk/tar.gz/83ea516017efd11bbdbad94ef0a323868bf5a713"
   dependencies:
     "@chalkysticks/sdk-authentication" "github:chalkysticks/sdk-authentication"
     "@chalkysticks/sdk-core" "github:chalkysticks/sdk-core"
@@ -1444,11 +1445,11 @@
     "@types/node" "*"
 
 "@types/node@*":
-  version "22.13.13"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-22.13.13.tgz#5e7d110fb509b0d4a43fbf48fa9d6e0f83e1b1e7"
-  integrity sha512-ClsL5nMwKaBRwPcCvH8E7+nU4GxHVx1axNvMZTFHMEfNI7oahimt26P5zjVCRrjiIWj6YFXfE1v3dEp94wLcGQ==
+  version "22.14.0"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-22.14.0.tgz#d3bfa3936fef0dbacd79ea3eb17d521c628bb47e"
+  integrity sha512-Kmpl+z84ILoG+3T/zQFyAJsU6EPTmOCj8/2+83fSN6djd6I4o7uOuGIH6vq3PrjY5BGitSbFuMN18j3iknubbA==
   dependencies:
-    undici-types "~6.20.0"
+    undici-types "~6.21.0"
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.4"
@@ -4700,9 +4701,9 @@ lru-cache@^6.0.0:
     yallist "^4.0.0"
 
 luxon@^3.5.0:
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/luxon/-/luxon-3.5.0.tgz#6b6f65c5cd1d61d1fd19dbf07ee87a50bf4b8e20"
-  integrity sha512-rh+Zjr6DNfUYR3bPwJEnuwDdqMbxZW7LOQfUN4B54+Cl+0o5zaU9RJ6bcidfDtC1cWCZXQ+nvX8bf6bAji37QQ==
+  version "3.6.1"
+  resolved "https://registry.yarnpkg.com/luxon/-/luxon-3.6.1.tgz#d283ffc4c0076cb0db7885ec6da1c49ba97e47b0"
+  integrity sha512-tJLxrKJhO2ukZ5z0gyjY1zPh3Rh88Ej9P7jNrZiHMUXHae1yvI2imgOZtL1TO8TW6biMMKfTtAOoEJANgtWBMQ==
 
 magic-string@^0.30.10:
   version "0.30.10"
@@ -5677,6 +5678,11 @@ readdirp@~3.6.0:
   dependencies:
     picomatch "^2.2.1"
 
+reflect-metadata@^0.2.2:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/reflect-metadata/-/reflect-metadata-0.2.2.tgz#400c845b6cba87a21f2c65c4aeb158f4fa4d9c5b"
+  integrity sha512-urBwgfrvVP/eAyXx4hluJivBKzuEbSQs9rKWCrCkbSxNv8mxPcUZKeuoF3Uy4mJl3Lwprp6yy5/39VWigZ4K6Q==
+
 regenerate-unicode-properties@^10.1.0:
   version "10.1.1"
   resolved "https://registry.yarnpkg.com/regenerate-unicode-properties/-/regenerate-unicode-properties-10.1.1.tgz#6b0e05489d9076b04c436f318d9b067bba459480"
@@ -5776,8 +5782,8 @@ resolve@^1.10.0, resolve@^1.14.2:
     supports-preserve-symlinks-flag "^1.0.0"
 
 "restmc@git+https://github.com/mattkenefick/restmc.git":
-  version "1.3.3"
-  resolved "git+https://github.com/mattkenefick/restmc.git#6f9d8b6c8c0d8b8ba864df4bba8745f1ce3d2b4d"
+  version "1.3.6"
+  resolved "git+https://github.com/mattkenefick/restmc.git#42dff27d827da11219214254c3e69f69629f853e"
   dependencies:
     "@types/node-fetch" "^2.5.7"
     axios "^0.21.4"
@@ -6475,10 +6481,10 @@ typescript@5.1.6:
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.1.6.tgz#02f8ac202b6dad2c0dd5e0913745b47a37998274"
   integrity sha512-zaWCozRZ6DLEWAWFrVDz1H6FVXzUSfTy5FUMWsQlU8Ym5JP9eO4xkTIROFCQvhQf61z6O/G6ugw3SgAnvvm+HA==
 
-undici-types@~6.20.0:
-  version "6.20.0"
-  resolved "https://registry.yarnpkg.com/undici-types/-/undici-types-6.20.0.tgz#8171bf22c1f588d1554d55bf204bc624af388433"
-  integrity sha512-Ny6QZ2Nju20vw1SRHe3d9jVu6gJ+4e3+MMpqu7pqE5HT6WsTSlce++GQmK5UXS8mzV8DSYHrQH+Xrf2jVcuKNg==
+undici-types@~6.21.0:
+  version "6.21.0"
+  resolved "https://registry.yarnpkg.com/undici-types/-/undici-types-6.21.0.tgz#691d00af3909be93a7faa13be61b3a5b50ef12cb"
+  integrity sha512-iwDZqg0QAGrg9Rav5H4n0M64c3mkR59cJ6wQp+7C4nI0gsmExaedaYLNO44eT4AtBBwjbTiGPMlt2Md0T9H9JQ==
 
 unicode-canonical-property-names-ecmascript@^2.0.0:
   version "2.0.0"

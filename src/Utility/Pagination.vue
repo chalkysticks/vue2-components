@@ -27,8 +27,8 @@
 
 <script lang="ts">
 	import ChalkySticks from '@chalkysticks/sdk';
-	import { Collection } from 'restmc';
 	import ViewBase from '../Core/Base';
+	import { Collection } from 'restmc';
 	import { Component, Prop } from 'vue-property-decorator';
 	import { beforeDestroy, bind, mounted } from '@/Utility/Decorators';
 
@@ -56,6 +56,12 @@
 		 */
 		@Prop({ default: 1 })
 		public minPagesToShow!: number;
+
+		/**
+		 * @type string
+		 */
+		@Prop({ default: 'page' })
+		public queryParameterKey!: string;
 
 		/**
 		 * @type boolean
@@ -88,6 +94,12 @@
 		public showPrevious!: boolean;
 
 		/**
+		 * @type boolean
+		 */
+		@Prop({ default: true })
+		public useQueryParameters!: boolean;
+
+		/**
 		 * @return void
 		 */
 		@mounted
@@ -104,10 +116,43 @@
 		}
 
 		/**
+		 * If we're using query parameters, initialize the component with the current page from the URL
+		 *
+		 * @return void
+		 */
+		@mounted
+		protected setDefaults(): void {
+			if (!this.useQueryParameters) {
+				return;
+			}
+
+			// Get the page from the query parameter
+			const page = ChalkySticks.Utility.getQueryParameter(this.queryParameterKey);
+
+			// It's a real number!
+			if (page && !isNaN(parseInt(page, 10))) {
+				const pageNumber = parseInt(page, 10);
+
+				if (pageNumber > 0) {
+					this.fetchPage(pageNumber);
+				}
+			}
+		}
+
+		/**
 		 * @param number number
 		 * @return Promise<any>
 		 */
 		protected async fetchPage(number: number): Promise<any> {
+			// Emit event
+			this.$emit('change', number);
+
+			// Update query parameter if we're supposed to
+			this.updateQueryParameter(number);
+
+			// Set values
+			console.log('setting fuckin', number);
+
 			return this.collection.fetch(undefined, { page: number });
 		}
 
@@ -221,6 +266,27 @@
 		}
 
 		// endregion: Pagination
+
+		// region: Helpers
+		// ---------------------------------------------------------------------------
+
+		/**
+		 * @param number page
+		 * @return void
+		 */
+		protected updateQueryParameter(page: number): void {
+			/**
+			 * Update the query parameter in the URL if `useQueryParameters` is enabled
+			 */
+			if (!this.useQueryParameters) {
+				return;
+			}
+
+			// Update on window location
+			ChalkySticks.Utility.setQueryParameter(this.queryParameterKey, page.toString());
+		}
+
+		// endregion: Helpers
 
 		// region: Event Handlers
 		// ---------------------------------------------------------------------------
