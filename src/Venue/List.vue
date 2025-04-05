@@ -63,12 +63,6 @@
 		/**
 		 * @type number
 		 */
-		@Prop({ default: 10 })
-		public listSize!: number;
-
-		/**
-		 * @type number
-		 */
 		@Prop({ default: 0 })
 		public selectedVenueId!: number;
 
@@ -91,12 +85,6 @@
 		 */
 		@mounted
 		public afterCreate() {
-			// Set query parameters
-			// mk: This took me 2 hours to fix. UGH
-			// this.venueCollection.setQueryParams({
-			// 	limit: this.listSize || this.venueCollection.limit,
-			// });
-
 			// Check if we need to load data
 			if (this.venueCollection.shouldFetch()) {
 				this.venueCollection.fetch();

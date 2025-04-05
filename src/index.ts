@@ -23,6 +23,8 @@ import BrandingSplash from './Branding/Splash.vue';
 import BrandingStandard from './Branding/Standard.vue';
 import ButtonLogin from './Button/Login.vue';
 import ButtonSignup from './Button/Signup.vue';
+import ContentItem from './Content/Item.vue';
+import ContentList from './Content/List.vue';
 import FormSearch from './Form/Search.vue';
 import MediaCardSwipe from './Media/CardSwipe.vue';
 import MediaFeed from './Media/Feed.vue';
@@ -65,6 +67,8 @@ const components = {
 	BrandingStandard,
 	ButtonLogin,
 	ButtonSignup,
+	ContentItem,
+	ContentList,
 	FormSearch,
 	MediaCardSwipe,
 	MediaFeed,
@@ -149,6 +153,8 @@ export {
 	BrandingStandard,
 	ButtonLogin,
 	ButtonSignup,
+	ContentItem,
+	ContentList,
 	MediaCardSwipe,
 	MediaFeed,
 	MediaUser,
