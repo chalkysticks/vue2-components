@@ -66,7 +66,7 @@
 				</header>
 
 				<div class="inner">
-					<div class="users" v-if="venueModel.checkins.length">
+					<div class="users" v-if="venueModel.checkins.models.length">
 						<UserAvatar
 							size="sm"
 							v-bind:key="index"

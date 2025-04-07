@@ -1082,8 +1082,8 @@
     "@chalkysticks/sdk-core" "github:chalkysticks/sdk-core"
 
 "@chalkysticks/sdk-core@github:chalkysticks/sdk-core":
-  version "1.34.0"
-  resolved "https://codeload.github.com/chalkysticks/sdk-core/tar.gz/110e7e1dfc7cf9985b6d490015e7b23beda05727"
+  version "1.34.1"
+  resolved "https://codeload.github.com/chalkysticks/sdk-core/tar.gz/b20979f32b5df71e97e8545f85e487830569f94c"
   dependencies:
     "@chalkysticks/mrm-preset" "github:chalkysticks/mrm-preset"
     "@types/googlemaps" "^3.43.3"
@@ -1120,8 +1120,8 @@
     "@chalkysticks/sdk-core" "github:chalkysticks/sdk-core"
 
 "@chalkysticks/sdk-venues@github:chalkysticks/sdk-venues#v1":
-  version "1.7.0"
-  resolved "https://codeload.github.com/chalkysticks/sdk-venues/tar.gz/4a2432a2843ba3e75c251dee3ff5311c0c70a7a9"
+  version "1.7.1"
+  resolved "https://codeload.github.com/chalkysticks/sdk-venues/tar.gz/b2221fda453198d6ba2035011cb6992d46dd89e9"
   dependencies:
     "@chalkysticks/mrm-preset" "github:chalkysticks/mrm-preset"
     "@chalkysticks/sdk-core" "github:chalkysticks/sdk-core"
@@ -1130,8 +1130,8 @@
     restmc "git+https://github.com/mattkenefick/restmc.git"
 
 "@chalkysticks/sdk@github:chalkysticks/sdk":
-  version "1.34.13"
-  resolved "https://codeload.github.com/chalkysticks/sdk/tar.gz/83ea516017efd11bbdbad94ef0a323868bf5a713"
+  version "1.34.16"
+  resolved "https://codeload.github.com/chalkysticks/sdk/tar.gz/4ae7c27b511852c8607ce957161f7734eaf241c5"
   dependencies:
     "@chalkysticks/sdk-authentication" "github:chalkysticks/sdk-authentication"
     "@chalkysticks/sdk-core" "github:chalkysticks/sdk-core"
@@ -5782,8 +5782,8 @@ resolve@^1.10.0, resolve@^1.14.2:
     supports-preserve-symlinks-flag "^1.0.0"
 
 "restmc@git+https://github.com/mattkenefick/restmc.git":
-  version "1.3.6"
-  resolved "git+https://github.com/mattkenefick/restmc.git#42dff27d827da11219214254c3e69f69629f853e"
+  version "1.3.7"
+  resolved "git+https://github.com/mattkenefick/restmc.git#efac333b1630b38eab29f72298f0bf5ab6962537"
   dependencies:
     "@types/node-fetch" "^2.5.7"
     axios "^0.21.4"

@@ -7,6 +7,7 @@
 	>
 		<section class="list" v-bind:key="venueCollection.requestTime">
 			<slot name="before-list"></slot>
+
 			<VenueCard
 				class="list-item type-minimal"
 				v-bind:class="{ 'state-selected': venueModel.id == selectedVenueId }"
@@ -16,6 +17,7 @@
 				v-for="venueModel in venueCollection"
 				v-on:click.native="Handle_OnClickVenue($event, venueModel)"
 			/>
+
 			<slot name="after-list"></slot>
 		</section>
 
