@@ -16,7 +16,24 @@
 				v-bind:venueModel="venueModel"
 				v-for="venueModel in venueCollection"
 				v-on:click.native="Handle_OnClickVenue($event, venueModel)"
-			/>
+			>
+				<!-- Pass through slots from parent to VenueCard -->
+				<template v-slot:before>
+					<slot name="venue-before" v-bind:venue="venueModel"></slot>
+				</template>
+
+				<template v-slot:content:before>
+					<slot name="venue-content-before" v-bind:venue="venueModel"></slot>
+				</template>
+
+				<template v-slot:content:after>
+					<slot name="venue-content-after" v-bind:venue="venueModel"></slot>
+				</template>
+
+				<template v-slot:after>
+					<slot name="venue-after" v-bind:venue="venueModel"></slot>
+				</template>
+			</VenueCard>
 
 			<slot name="after-list"></slot>
 		</section>
