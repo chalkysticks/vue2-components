@@ -1075,15 +1075,15 @@
     bootstrap "^5.0.1"
 
 "@chalkysticks/sdk-authentication@github:chalkysticks/sdk-authentication":
-  version "1.7.5"
-  resolved "https://codeload.github.com/chalkysticks/sdk-authentication/tar.gz/7597bf2278006e6f0033181865fba91b4bd4712e"
+  version "1.7.6"
+  resolved "https://codeload.github.com/chalkysticks/sdk-authentication/tar.gz/2ca1cb0813d8335e784ad300a2669b35e3e6c98e"
   dependencies:
     "@chalkysticks/mrm-preset" "github:chalkysticks/mrm-preset"
     "@chalkysticks/sdk-core" "github:chalkysticks/sdk-core"
 
 "@chalkysticks/sdk-core@github:chalkysticks/sdk-core":
-  version "1.34.5"
-  resolved "https://codeload.github.com/chalkysticks/sdk-core/tar.gz/066eeddf3c77b5ef00746a3b1be67636cf135e00"
+  version "1.34.6"
+  resolved "https://codeload.github.com/chalkysticks/sdk-core/tar.gz/17df4053808604b2b726b30f1de7846272fea25c"
   dependencies:
     "@chalkysticks/mrm-preset" "github:chalkysticks/mrm-preset"
     "@types/googlemaps" "^3.43.3"
@@ -1130,8 +1130,8 @@
     restmc "git+https://github.com/mattkenefick/restmc.git"
 
 "@chalkysticks/sdk@github:chalkysticks/sdk":
-  version "1.34.26"
-  resolved "https://codeload.github.com/chalkysticks/sdk/tar.gz/b4c8b8ada1282ed372933743b50db2e5c33947f5"
+  version "1.34.27"
+  resolved "https://codeload.github.com/chalkysticks/sdk/tar.gz/c7694fadcb040de325baeb42195b09d928326421"
   dependencies:
     "@chalkysticks/sdk-authentication" "github:chalkysticks/sdk-authentication"
     "@chalkysticks/sdk-core" "github:chalkysticks/sdk-core"
@@ -1445,9 +1445,9 @@
     "@types/node" "*"
 
 "@types/node@*":
-  version "22.14.1"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-22.14.1.tgz#53b54585cec81c21eee3697521e31312d6ca1e6f"
-  integrity sha512-u0HuPQwe/dHrItgHHpmw3N2fYCR6x4ivMNbPHRkBVP4CvN+kiRrKHWk3i8tXiO/joPwXLMYvF9TTF0eqgHIuOw==
+  version "22.15.0"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-22.15.0.tgz#5fcf430c079da64e96028b87cbffc218a02685db"
+  integrity sha512-99S8dWD2DkeE6PBaEDw+In3aar7hdoBvjyJMR6vaKBTzpvR0P00ClzJMOoVrj9D2+Sy/YCwACYHnBTpMhg1UCA==
   dependencies:
     undici-types "~6.21.0"
 
