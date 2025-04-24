@@ -118,26 +118,6 @@
 		public automatic!: boolean;
 
 		/**
-		 * @type number
-		 */
-		protected activeIndex: number = 0;
-
-		/**
-		 * @type number
-		 */
-		protected dragRatio: number = 0;
-
-		/**
-		 * @type boolean
-		 */
-		protected hasInteracted: boolean = false;
-
-		/**
-		 * @type number
-		 */
-		protected intervalDuration: number = 1000 * 5;
-
-		/**
 		 * @type boolean
 		 */
 		@Prop({ default: false })
@@ -156,6 +136,26 @@
 			default: () => new ChalkySticks.Model.Venue(),
 		})
 		public venueModel!: ChalkySticks.Model.Venue;
+
+		/**
+		 * @type number
+		 */
+		protected activeIndex: number = 0;
+
+		/**
+		 * @type number
+		 */
+		protected dragRatio: number = 0;
+
+		/**
+		 * @type boolean
+		 */
+		protected hasInteracted: boolean = false;
+
+		/**
+		 * @type number
+		 */
+		protected intervalDuration: number = 1000 * 5;
 
 		/**
 		 * @type number[]
@@ -203,9 +203,9 @@
 
 		/**
 		 * Move to the next image in the gallery
-		 * @return void
+		 * @return Promise<void>
 		 */
-		protected next(): void {
+		protected async next(): Promise<void> {
 			this.activeIndex = this.activeIndex + 1;
 
 			if (this.activeIndex >= this.media.length) {
@@ -215,9 +215,9 @@
 
 		/**
 		 * Move to the previous image in the gallery
-		 * @return void
+		 * @return Promise<void>
 		 */
-		protected previous(): void {
+		protected async previous(): Promise<void> {
 			this.activeIndex = this.activeIndex - 1;
 
 			if (this.activeIndex < 0) {

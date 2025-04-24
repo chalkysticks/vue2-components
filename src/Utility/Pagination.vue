@@ -150,9 +150,6 @@
 			// Update query parameter if we're supposed to
 			this.updateQueryParameter(number);
 
-			// Set values
-			console.log('setting fuckin', number);
-
 			return this.collection.fetch(undefined, { page: number });
 		}
 

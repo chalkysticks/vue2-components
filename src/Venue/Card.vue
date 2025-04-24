@@ -3,6 +3,7 @@
 		<slot name="before"></slot>
 
 		<VenueGallery
+			ref="gallery"
 			v-bind:key="venueModel.id"
 			v-bind:interactive="interactiveGallery"
 			v-bind:venueModel="venueModel"
@@ -41,13 +42,13 @@
 				</div>
 			</address>
 
-			<section class="description">
+			<section class="description" v-if="venueModel.attributes.description">
 				<div class="inner">
 					<p>{{ venueModel.getDescription() }}</p>
 				</div>
 			</section>
 
-			<section class="details">
+			<section class="details" v-if="venueModel.details.models.length">
 				<div class="inner">
 					<span
 						class="detail tag badge"
@@ -75,10 +76,16 @@
 						/>
 					</div>
 					<div v-else>
-						<!-- <p>Be the first to check in!</p> -->
+						<p>Be the first to check in!</p>
+
+						<div v-if="isNearby && !$store.getters['authentication/authenticated']">
+							<strong>Looks like you might be here?</strong>
+						</div>
 					</div>
-					<div class="action" v-if="$store.getters['authentication/authenticated']">
-						<ButtonCheckin v-bind:venueModel="venueModel" />
+
+					<div class="action">
+						v-if="$store.getters['authentication/authenticated'] && isNearby">
+						<ButtonCheckin v-bind:venueModel="venueModel" v-on:checkin="Handle_OnCheckinSuccess" />
 					</div>
 				</div>
 			</section>
@@ -182,8 +189,8 @@
 	import UserAvatar from '../User/Avatar.vue';
 	import VenueGallery from './Gallery.vue';
 	import ViewBase from '../Core/Base';
-	import { Component, Prop } from 'vue-property-decorator';
-	import { mounted } from '../Utility/Decorators';
+	import { Component, Prop, Ref } from 'vue-property-decorator';
+	import { beforeDestroy, mounted } from '../Utility/Decorators';
 
 	/**
 	 * @class VenueCard
@@ -198,6 +205,12 @@
 		},
 	})
 	export default class VenueCard extends ViewBase {
+		/**
+		 * @type VenueGallery
+		 */
+		@Ref('gallery')
+		protected venueGallery!: VenueGallery;
+
 		/**
 		 * @return string
 		 */
@@ -220,6 +233,15 @@
 			return !!this.venueModel.media.findWhere({
 				subgroup: 'table',
 			});
+		}
+
+		/**
+		 * If we're within 0.1 miles of the venue, we consider it "nearby".
+		 *
+		 * @return boolean
+		 */
+		public get isNearby(): boolean {
+			return parseFloat(this.distance) < 0.1;
 		}
 
 		/**
@@ -262,6 +284,20 @@
 
 			return output;
 		}
+
+		// region: Event Handlers
+		// ---------------------------------------------------------------------------
+
+		/**
+		 * DOES NOT WORK
+		 *
+		 * @return Promise<void>
+		 */
+		protected async Handle_OnCheckinSuccess(): Promise<void> {
+			this.$forceUpdate();
+		}
+
+		// endregion: Event Handlers
 	}
 </script>
 
