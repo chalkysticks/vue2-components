@@ -80,8 +80,13 @@
 				return;
 			}
 
+			// If no avatar media model, return
+			if (!avatarMediaModel) {
+				return;
+			}
+
 			// Remove from the backend
-			// await avatarMediaModel.useModifiedEndpoint(this.userModel).delete();
+			await avatarMediaModel.useModifiedEndpoint(this.userModel).delete();
 
 			// Remove from the user model's media collection
 			this.userModel.media.remove(avatarMediaModel);

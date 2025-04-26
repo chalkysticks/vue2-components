@@ -281,6 +281,12 @@
 				const canvas = document.createElement('canvas');
 				const context = canvas.getContext('2d');
 
+				if (!context) {
+					console.warn('Failed to get canvas context for image fallback');
+					URL.revokeObjectURL(imageUrl);
+					return;
+				}
+
 				canvas.width = image.width;
 				canvas.height = image.height;
 				context.drawImage(image, 0, 0);
