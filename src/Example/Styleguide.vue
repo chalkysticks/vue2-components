@@ -110,6 +110,259 @@
 
 			<section class="level-1">
 				<header>
+					<h3>Fields</h3>
+				</header>
+
+				<section>
+					<label>
+						<h6>Email Address</h6>
+						<input type="text" placeholder="Enter password" />
+					</label>
+				</section>
+
+				<section>
+					<label>
+						<input type="text" placeholder="Enter password" />
+					</label>
+				</section>
+
+				<section>
+					<label>
+						<input type="text" placeholder="Enter password" required />
+						<small class="type-error">This field is required</small>
+					</label>
+				</section>
+
+				<section>
+					<label>
+						<input type="text" placeholder="Enter password" required />
+						<a href="#" class="type-caps">Forgot Password</a>
+					</label>
+				</section>
+
+				<section>
+					<label>
+						<h6>Select a Thing</h6>
+						<select name="select">
+							<option value="1">Option 1</option>
+							<option value="2">Option 2</option>
+							<option value="3">Option 3</option>
+						</select>
+					</label>
+				</section>
+
+				<section class="push-bottom">
+					<h4>Button Styles</h4>
+
+					<section class="button-group">
+						<button>
+							<span>Button</span>
+						</button>
+
+						<button class="button-secondary">
+							<span>Secondary</span>
+						</button>
+
+						<button class="button-tertiary">
+							<span>Tertiary</span>
+						</button>
+
+						<button disabled>
+							<span>Disabled</span>
+						</button>
+					</section>
+				</section>
+
+				<section class="push-bottom">
+					<h4>Social Button Styles</h4>
+
+					<section class="button-group">
+						<button class="button-facebook">
+							<span>Facebook</span>
+						</button>
+
+						<button class="button-yelp">
+							<span>Yelp</span>
+						</button>
+
+						<button class="button-google">
+							<span>Google</span>
+						</button>
+
+						<button class="button-linkedin">
+							<span>LinkedIn</span>
+						</button>
+
+						<button class="button-github">
+							<span>Github</span>
+						</button>
+					</section>
+				</section>
+
+				<section class="push-bottom">
+					<h4>Button Sizes</h4>
+
+					<section class="button-group">
+						<button class="size-xx-small">
+							<span>XX Small</span>
+						</button>
+
+						<button class="size-x-small">
+							<span>X Small</span>
+						</button>
+
+						<button class="size-small">
+							<span>Small</span>
+						</button>
+
+						<button class="size-normal">
+							<span>Normal</span>
+						</button>
+
+						<button class="size-medium">
+							<span>Medium</span>
+						</button>
+
+						<button class="size-large">
+							<span>Large</span>
+						</button>
+					</section>
+				</section>
+
+				<section>
+					<button class="google">
+						<img class="icon" src="~@chalkysticks/sass/build/asset/image/icon/google.svg" />
+						<span>Sign in with Google</span>
+					</button>
+				</section>
+
+				<section>
+					<div
+						class="fb-login-button"
+						data-width=""
+						data-size=""
+						data-button-type=""
+						data-layout=""
+						data-auto-logout-link="false"
+						data-use-continue-as="true"
+					></div>
+				</section>
+
+				<section class="button-group text-center margin">
+					<button>
+						<span>Button</span>
+					</button>
+
+					<label>
+						<a href="#" class="type-caps">Sign up</a>
+					</label>
+				</section>
+
+				<section class="layout-horizontal">
+					<label>
+						<input type="radio" />
+						<span>Radio #1</span>
+					</label>
+
+					<label>
+						<input checked type="radio" />
+						<span>Radio #2</span>
+					</label>
+
+					<label>
+						<input checked disabled type="radio" />
+						<span>Radio #2</span>
+					</label>
+				</section>
+
+				<section class="layout-horizontal">
+					<label>
+						<input type="checkbox" />
+						<span>Checkbox #1</span>
+					</label>
+
+					<label>
+						<input checked type="checkbox" />
+						<span>Checkbox #2</span>
+					</label>
+
+					<label>
+						<input checked disabled type="checkbox" />
+						<span>Checkbox #2</span>
+					</label>
+				</section>
+
+				<section class="layout-horizontal">
+					<label>
+						<input class="switch" type="checkbox" />
+						<span>Switch #1</span>
+					</label>
+
+					<label>
+						<input class="switch" checked type="checkbox" />
+						<span>Switch #2</span>
+					</label>
+
+					<label>
+						<input class="switch" checked disabled type="checkbox" />
+						<span>Switch #2</span>
+					</label>
+				</section>
+
+				<section class="layout-horizontal theme-dark">
+					<label>
+						<input type="radio" />
+						<span>Radio #1</span>
+					</label>
+
+					<label>
+						<input checked type="radio" />
+						<span>Radio #2</span>
+					</label>
+
+					<label>
+						<input checked disabled type="radio" />
+						<span>Radio #2</span>
+					</label>
+				</section>
+
+				<section class="layout-horizontal theme-dark">
+					<label>
+						<input type="checkbox" />
+						<span>Checkbox #1</span>
+					</label>
+
+					<label>
+						<input checked type="checkbox" />
+						<span>Checkbox #2</span>
+					</label>
+
+					<label>
+						<input checked disabled type="checkbox" />
+						<span>Checkbox #2</span>
+					</label>
+				</section>
+
+				<section class="layout-horizontal theme-dark">
+					<label>
+						<input class="switch" type="checkbox" />
+						<span>Switch #1</span>
+					</label>
+
+					<label>
+						<input class="switch" checked type="checkbox" />
+						<span>Switch #2</span>
+					</label>
+
+					<label>
+						<input class="switch" checked disabled type="checkbox" />
+						<span>Switch #2</span>
+					</label>
+				</section>
+			</section>
+
+			<section class="level-1">
+				<header>
 					<h3>Search Form</h3>
 				</header>
 				<div class="background-chalky-white padded">
@@ -151,6 +404,16 @@
 			<header>
 				<h2>User</h2>
 			</header>
+
+			<section class="level-1">
+				<header>
+					<h3>Auth</h3>
+				</header>
+
+				<div>
+					<ChalkyAuthenticationAuthPanel v-bind:allowForgotPassword="true" v-bind:allowSignup="true" v-bind:authModel="authModel" />
+				</div>
+			</section>
 
 			<section class="level-1">
 				<header>
@@ -999,6 +1262,20 @@
 		 * @type string
 		 */
 		protected tab: string = location.hash.substr(1) || 'branding';
+
+		/**
+		 * @return void
+		 */
+		public created(): void {
+			window.chalky = {
+				app: {
+					limit: 32,
+					localUrl: 'http://localhost:8000/v3', // Config.App.SERVER_URL,
+				},
+			};
+
+			console.log('ChalkySticks', ChalkySticks);
+		}
 
 		/**
 		 * @return void

@@ -1,6 +1,6 @@
 <template>
 	<section class="chalky user-avatar">
-		<span class="notification badge rounded-pill bg-danger" v-if="notificataionCount">{{ notificataionCount }}</span>
+		<span class="notification badge rounded-pill bg-danger" v-if="notificationCount">{{ notificationCount }}</span>
 
 		<picture class="avatar" v-bind:class="'size-' + size">
 			<source v-bind:srcset="avatarUrl" />
@@ -32,7 +32,7 @@
 		/**
 		 * @return number
 		 */
-		public get notificataionCount(): number {
+		public get notificationCount(): number {
 			return 0;
 		}
 
@@ -54,8 +54,9 @@
 
 <style lang="scss">
 	.user-avatar {
-		position: relative;
+		font-size: 0;
 		overflow: visible;
+		position: relative;
 
 		.avatar {
 			border: var(--chalky-avatar-stroke-width) solid var(--chalky-avatar-stroke-color);

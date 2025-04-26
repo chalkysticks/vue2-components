@@ -1,77 +1,41 @@
 <template>
 	<section class="chalky user-menu shadow xl" v-on:click="Handle_OnClick">
-		<header>
-			<UserAvatar size="sm" v-bind:userModel="store.getters['authentication/user']" />
-
-			<section>
-				<h5 class="username" v-bind:key="userId">{{ authModel.user.getName() }}</h5>
-				<a class="edit-profile color-chalky-lightblue small" href="#">Edit Profile</a>
-			</section>
-		</header>
-
-		<!-- This all still needs to be hooked up and stuff -->
-		<!-- Probably break this into a new component -->
-		<WalletCollection v-bind:userModel="store.getters['authentication/user']" />
-
-		<nav>
-			<ul>
-				<li>
-					<button v-on:click="$emit('click:profile')">
-						<img class="icon filter-invert size-xx" src="~@chalkysticks/sass/build/asset/image/icon/user-profile.svg" />
-						<span>Profile</span>
-					</button>
-				</li>
-				<li>
-					<button v-on:click="$emit('click:password')">
-						<img class="icon filter-invert size-xx" src="~@chalkysticks/sass/build/asset/image/icon/password.svg" />
-						<span>Password</span>
-					</button>
-				</li>
-				<li>
-					<button v-on:click="$emit('click:notifications')">
-						<img class="icon filter-invert size-xx" src="~@chalkysticks/sass/build/asset/image/icon/notification.svg" />
-						<span>Notifications</span>
-					</button>
-				</li>
-				<li>
-					<button v-on:click="$emit('click:billing')">
-						<img class="icon filter-invert size-xx" src="~@chalkysticks/sass/build/asset/image/icon/billing.svg" />
-						<span>Billing</span>
-					</button>
-				</li>
-				<li>
-					<button v-on:click="$emit('click:about')">
-						<img class="icon filter-invert size-xx" src="~@chalkysticks/sass/build/asset/image/icon/chalkysticks.svg" />
-						<span>About</span>
-					</button>
-				</li>
-			</ul>
-		</nav>
-
-		<section class="action-container">
-			<button class="button-secondary" v-on:click="$emit('click:logout')">Logout</button>
-		</section>
-
-		<footer>
-			<a class="type-caps" href="https://www.chalkysticks.com/privacy-policy" target="_blank">Privacy Policy</a>
-			<a class="type-caps" href="https://www.chalkysticks.com/terms-of-use" target="_blank">Terms of Service</a>
-		</footer>
+		<template v-if="!userId">
+			<section>Please Login</section>
+		</template>
+		<template v-else>
+			<component
+				v-bind:is="activeComponent"
+				v-bind:authModel="authModel"
+				v-bind:key="userId"
+				v-on:click:about="Handle_OnClickView('about')"
+				v-on:click:back="Handle_OnClickBack"
+				v-on:click:close="Handle_OnClickClose"
+				v-on:click:logout="Handle_OnClickLogout"
+				v-on:click:notifications="Handle_OnClickView('notifications')"
+				v-on:click:password="Handle_OnClickView('password')"
+				v-on:click:profile="Handle_OnClickView('profile')"
+			/>
+		</template>
 	</section>
 </template>
 
 <script lang="ts">
 	import BrandingBadge from '../Branding/Badge.vue';
 	import ChalkySticks from '@chalkysticks/sdk';
-	import UserAvatar from '../User/Avatar.vue';
+	import UserAvatar from './Avatar.vue';
+	import UserMenuAbout from './Menu/About.vue';
+	import UserMenuBilling from './Menu/Billing.vue';
+	import UserMenuLanding from './Menu/Landing.vue';
+	import UserMenuNotifications from './Menu/Notifications.vue';
+	import UserMenuPassword from './Menu/Password.vue';
+	import UserMenuProfile from './Menu/Profile.vue';
 	import ViewBase from '../Core/Base';
-	import WalletCollection from '../Wallet/Collection.vue';
 	import gsap from 'gsap';
 	import { Component, Prop } from 'vue-property-decorator';
 	import { beforeDestroy, mounted } from '@/Utility/Decorators';
 
 	/**
-	 * @todo this needs work. the avatar isn't rendering
-	 *
 	 * @author ChalkySticks LLC
 	 * @package User
 	 * @project ChalkySticks SDK Vue2.0 Components
@@ -80,10 +44,32 @@
 		components: {
 			BrandingBadge,
 			UserAvatar,
-			WalletCollection,
+			UserMenuAbout,
+			UserMenuBilling,
+			UserMenuLanding,
+			UserMenuNotifications,
+			UserMenuPassword,
+			UserMenuProfile,
 		},
 	})
 	export default class UserMenu extends ViewBase {
+		/**
+		 * Get the active component based on the view
+		 *
+		 * @return any
+		 */
+		public get activeComponent(): any {
+			const map: Record<string, any> = {
+				about: UserMenuAbout,
+				landing: UserMenuLanding,
+				notifications: UserMenuNotifications,
+				password: UserMenuPassword,
+				profile: UserMenuProfile,
+			};
+
+			return map[this.activeView] || null;
+		}
+
 		/**
 		 * @return Store
 		 */
@@ -103,6 +89,11 @@
 		 * @type string
 		 */
 		public userId: string = '';
+
+		/**
+		 * @type string
+		 */
+		public activeView: string = 'landing';
 
 		/**
 		 * @return void
@@ -163,9 +154,39 @@
 		 * @return Promise<void>
 		 */
 		protected async Handle_OnClick(e: PointerEvent): Promise<void> {
-			e.preventDefault();
-			e.stopPropagation();
+			// e.preventDefault();
+
 			e.stopImmediatePropagation();
+			e.stopPropagation();
+		}
+
+		/**
+		 * @param PointerEvent e
+		 * @return Promise<void>
+		 */
+		protected async Handle_OnClickBack(e: PointerEvent): Promise<void> {
+			this.activeView = 'landing';
+		}
+
+		/**
+		 * Switch to specified view
+		 *
+		 * @param string view
+		 * @return void
+		 */
+		public Handle_OnClickView(view: string): void {
+			this.activeView = view;
+		}
+
+		/**
+		 * Handle logout action
+		 *
+		 * @return Promise<void>
+		 */
+		public async Handle_OnClickLogout(): Promise<void> {
+			// await this.authModel.logout();
+			this.userId = '';
+			this.$emit('logout');
 		}
 
 		/**
@@ -175,6 +196,7 @@
 			this.$forceUpdate();
 
 			this.userId = this.authModel.user.id;
+			this.activeView = 'landing';
 		}
 
 		// endregion: Event Handlers
@@ -197,43 +219,6 @@
 		position: relative;
 		width: 90%;
 		z-index: var(--z-modal-mid);
-
-		ul li button {
-			padding: 0.5rem 0;
-			width: 100%;
-		}
-
-		header {
-			align-items: center;
-			display: grid;
-			gap: 1rem;
-			grid-template-columns: min-content 1fr;
-			grid-template-rows: 1fr;
-			padding: 1rem 0;
-
-			.user-menu {
-				grid-area: 1 / 1 / 2 / 2;
-			}
-			.user-menu + * {
-				grid-area: 1 / 2 / 2 / 3;
-			}
-		}
-
-		.wallet-collection {
-			margin: 0 -1rem 1rem -1rem;
-		}
-
-		.action-container {
-			margin-top: 2rem;
-			text-align: center;
-		}
-
-		footer {
-			align-items: center;
-			display: flex;
-			justify-content: space-evenly;
-			padding: 1.5rem 0;
-		}
 	}
 
 	// State

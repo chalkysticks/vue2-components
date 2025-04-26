@@ -42,6 +42,7 @@ import TvVideoFacebook from './TV/Video/Facebook.vue';
 import TvVideoPreview from './TV/VideoPreview.vue';
 import TvVideoTheater from './TV/VideoTheater.vue';
 import TvVideoYouTube from './TV/Video/YouTube.vue';
+import UserAvatar from './User/Avatar.vue';
 import UserMenu from './User/Menu.vue';
 import UtilityForceLandscape from './Utility/ForceLandscape.vue';
 import UtilityModal from './Utility/Modal.vue';
@@ -53,6 +54,7 @@ import VenueGallery from './Venue/Gallery.vue';
 import VenueList from './Venue/List.vue';
 import VenueMap from './Venue/Map.vue';
 import ViewBase from './Core/Base';
+import WalletCollection from './Wallet/Collection.vue';
 import Store from './Store';
 
 const components = {
@@ -86,6 +88,7 @@ const components = {
 	TvVideoPreview,
 	TvVideoTheater,
 	TvVideoYouTube,
+	UserAvatar,
 	UserMenu,
 	UtilityForceLandscape,
 	UtilityModal,
@@ -96,6 +99,7 @@ const components = {
 	VenueGallery,
 	VenueList,
 	VenueMap,
+	WalletCollection,
 };
 
 const ChalkySticksVue = {
@@ -171,6 +175,7 @@ export {
 	TvVideoPreview,
 	TvVideoTheater,
 	TvVideoYouTube,
+	UserAvatar,
 	UserMenu,
 	UtilityForceLandscape,
 	UtilityPagination,
@@ -180,6 +185,7 @@ export {
 	VenueList,
 	VenueMap,
 	ViewBase,
+	WalletCollection,
 };
 
 export default ChalkySticksVue;
