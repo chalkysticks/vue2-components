@@ -1,12 +1,8 @@
 <template>
 	<section class="chalky user-menu shadow xl" v-on:click="Handle_OnClick">
 		<template v-if="!userModel.id">
-			<section class="text-center padded">
-				<p class="push-bottom">If you are logged in, you must logout and login again.</p>
-
-				<section>
-					<button class="button-secondary" v-on:click="Handle_OnClickLogout">Logout</button>
-				</section>
+			<section class="logged-out tint-chalky-grey-2 push-top">
+				<h5>You are logged out.</h5>
 			</section>
 		</template>
 
@@ -14,7 +10,7 @@
 			<component
 				v-bind:is="activeComponent"
 				v-bind:authModel="authModel"
-				v-bind:key="userId"
+				v-bind:key="userModel.id"
 				v-on:click:about="Handle_OnClickView('about')"
 				v-on:click:back="Handle_OnClickBack"
 				v-on:click:close="Handle_OnClickClose"
@@ -98,11 +94,6 @@
 			default: () => new ChalkySticks.Model.Authentication(),
 		})
 		public authModel!: ChalkySticks.Model.Authentication;
-
-		/**
-		 * @type string
-		 */
-		public userId: string = '';
 
 		/**
 		 * @type string
@@ -197,10 +188,18 @@
 		 *
 		 * @return Promise<void>
 		 */
+		public async Handle_OnClickClose(): Promise<void> {
+			this.$emit('click:close');
+			this.$emit('close');
+		}
+
+		/**
+		 * Handle logout action
+		 *
+		 * @return Promise<void>
+		 */
 		public async Handle_OnClickLogout(): Promise<void> {
-			// await this.authModel.logout();
-			this.userId = '';
-			this.$emit('logout');
+			this.$emit('click:logout');
 		}
 
 		/**
@@ -209,7 +208,6 @@
 		protected async Handle_OnLogin(): Promise<void> {
 			this.$forceUpdate();
 
-			this.userId = this.authModel.user.id;
 			this.activeView = 'landing';
 		}
 
@@ -228,21 +226,28 @@
 		display: flex;
 		flex-direction: column;
 		margin: 0 auto;
-		max-height: 75dvh;
-		min-height: 50dvh;
+		max-height: 75svh;
+		min-height: 50svh;
 		outline: 1px solid var(--chalky-grey-4);
 		overflow: auto;
 		padding: 0rem 2rem;
 		position: relative;
 		width: 90%;
 		z-index: var(--z-modal-mid);
+
+		.logged-out {
+			align-items: center;
+			display: flex;
+			flex-grow: 1;
+			justify-content: center;
+		}
 	}
 
 	// State
 	// ---------------------------------------------------------------------------
 
 	.chalky.user-menu.type-modal {
-		height: 100dvh;
+		height: 100svh;
 		left: 50%;
 		position: fixed;
 		top: 50%;

@@ -1,6 +1,11 @@
 // Media Queries
 // ---------------------------------------------------------------------------
 
+@mixin SafeFullHeight {
+	height: 100svh;
+	height: var(--safe-viewport-height, 100svh); // optional fallback
+}
+
 @mixin media-query($device) {
 	@if $device == 'tablet' {
 		@media (min-width: 768px) and (max-width: 1024px) {

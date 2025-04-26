@@ -5,35 +5,47 @@
 			'state-loading': this.authModel.loading,
 			'state-login-failed': this.loginFailed,
 			'state-login-success': this.authModel.isLoggedIn(),
+			'state-signup': this.showSignup,
 		}"
 	>
 		<form v-if="showSignup" v-on:submit="Handle_OnSubmitSignup">
 			<fieldset>
-				<legend>Login</legend>
+				<legend>Sign up</legend>
 
 				<label>
-					<input minlength="6" name="name" type="text" placeholder="Name" v-model="fullName" v-on:keydown="Handle_OnKeydownInput" />
+					<h6>Name</h6>
+					<input
+						autocomplete="name"
+						minlength="6"
+						name="name"
+						placeholder="John Doe"
+						type="text"
+						v-model="fullName"
+						v-on:keydown="Handle_OnKeydownInput"
+					/>
 				</label>
 
-				<label class="clearfix">
+				<label>
+					<h6>Email Address</h6>
 					<input
 						autocomplete="email"
-						minlength="6"
+						minlength="8"
 						name="email"
-						placeholder="Email address"
+						placeholder="john@example.com"
 						type="email"
 						v-model="email"
 						v-on:keydown="Handle_OnKeydownInput"
 					/>
 				</label>
 
-				<label class="clearfix">
+				<label>
+					<h6>Password</h6>
 					<input
 						autocomplete="current-password"
 						minlength="6"
 						name="password"
-						type="password"
 						placeholder="Password"
+						type="password"
 						v-model="password"
 						v-on:keydown="Handle_OnKeydownInput"
 					/>
@@ -44,8 +56,8 @@
 						autocomplete="current-password"
 						minlength="6"
 						name="confirm-password"
-						type="password"
 						placeholder="Confirm Password"
+						type="password"
 						v-model="passwordConfirmation"
 						v-on:keydown="Handle_OnKeydownInput"
 					/>
@@ -103,9 +115,9 @@
 						v-on:keydown="Handle_OnKeydownInput"
 					/>
 
-					<a class="type-caps" href="/forgot-password" title="Forgot Password" v-if="allowForgotPassword">
+					<!-- <a class="type-caps" href="/forgot-password" title="Forgot Password" v-if="allowForgotPassword">
 						<span>Forget password?</span>
-					</a>
+					</a> -->
 				</label>
 
 				<div class="action-container">

@@ -37,7 +37,7 @@
 			</UtilityModal>
 
 			<UtilityModal ref="settingsModal" v-bind:class="{ 'd-none': !shouldShowSettings }">
-				<UserMenu v-on="$listeners" v-bind:authModel="authModel" class="type-modal" ref="settingsPanel" />
+				<UserMenu class="type-modal" ref="settingsPanel" v-bind:authModel="authModel" v-on:click:close="hideSettings" v-on="$listeners" />
 			</UtilityModal>
 		</section>
 	</div>

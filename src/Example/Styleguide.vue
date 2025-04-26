@@ -420,7 +420,7 @@
 					<h3>User Menu</h3>
 				</header>
 				<div>
-					<ChalkyUserMenu class="type-modal" v-bind:authModel="authModel" />
+					<ChalkyUserMenu v-bind:authModel="authModel" />
 				</div>
 			</section>
 		</section>
