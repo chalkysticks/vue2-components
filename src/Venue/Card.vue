@@ -75,7 +75,8 @@
 							v-for="(venueCheckinModel, index) in venueModel.checkins"
 						/>
 					</div>
-					<div v-else>
+
+					<div class="checkin-cta" v-else>
 						<p>Be the first to check in!</p>
 
 						<div v-if="isNearby && !$store.getters['authentication/authenticated']">
@@ -83,8 +84,7 @@
 						</div>
 					</div>
 
-					<div class="action">
-						v-if="$store.getters['authentication/authenticated'] && isNearby">
+					<div class="action" v-if="$store.getters['authentication/authenticated'] && isNearby">
 						<ButtonCheckin v-bind:venueModel="venueModel" v-on:checkin="Handle_OnCheckinSuccess" />
 					</div>
 				</div>
@@ -532,6 +532,7 @@
 			}
 		}
 
+		.checkin-cta,
 		.today,
 		.hours,
 		.details,

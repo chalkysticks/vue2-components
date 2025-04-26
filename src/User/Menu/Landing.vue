@@ -9,7 +9,7 @@
 			</section>
 
 			<div class="actions">
-				<button class="control theme-dark size-medium round type-close"></button>
+				<button class="control theme-dark size-medium round type-close" v-on:click="$emit('click:logout')"></button>
 			</div>
 		</header>
 
