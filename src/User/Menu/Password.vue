@@ -31,9 +31,6 @@
 
 			<fieldset class="actions">
 				<button class="button-primary size-medium" type="submit">Save</button>
-				<br />
-				<br />
-				<button class="button-secondary size-small" type="reset">Reset</button>
 			</fieldset>
 		</form>
 	</section>
@@ -69,6 +66,7 @@
 		}
 
 		.actions {
+			margin-bottom: 1rem;
 			text-align: center;
 		}
 	}

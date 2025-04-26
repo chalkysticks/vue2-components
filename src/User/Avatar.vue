@@ -26,7 +26,7 @@
 		 * @return string
 		 */
 		public get avatarUrl(): string {
-			return this.userModel.avatar.getUrlMedium();
+			return this.userModel.avatar?.id ? this.userModel.avatar?.getUrlMedium() : this.userModel.media.primary?.getUrlMedium();
 		}
 
 		/**

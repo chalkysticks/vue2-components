@@ -1267,6 +1267,7 @@
 		 * @return void
 		 */
 		public created(): void {
+			// @ts-ignore
 			window.chalky = {
 				app: {
 					limit: 32,

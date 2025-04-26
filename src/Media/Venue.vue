@@ -39,10 +39,10 @@
 		public limit!: number;
 
 		/**
-		 * @type ChalkySticks.Enum.MediaType
+		 * @type ChalkySticks.Enum.MediaSubgroup
 		 */
-		@Prop({ default: ChalkySticks.Enum.MediaType.Table })
-		public type!: ChalkySticks.Enum.MediaType;
+		@Prop({ default: ChalkySticks.Enum.MediaSubgroup.Table })
+		public subgroup!: ChalkySticks.Enum.MediaSubgroup;
 
 		/**
 		 * @type ChalkySticks/Model/Venue
@@ -65,17 +65,17 @@
 			this.venueMediaCollection.setQueryParam('limit', this.limit.toString());
 			this.venueMediaCollection.random().include();
 
-			switch (this.type) {
-				case ChalkySticks.Enum.MediaType.Exterior:
+			switch (this.subgroup) {
+				case ChalkySticks.Enum.MediaSubgroup.Exterior:
 					this.venueMediaCollection.exterior();
 					break;
 
-				case ChalkySticks.Enum.MediaType.Interior:
+				case ChalkySticks.Enum.MediaSubgroup.Interior:
 					this.venueMediaCollection.interior();
 					break;
 
 				default:
-				case ChalkySticks.Enum.MediaType.Table:
+				case ChalkySticks.Enum.MediaSubgroup.Table:
 					this.venueMediaCollection.table();
 					break;
 			}

@@ -10,32 +10,113 @@
 			</div>
 		</header>
 
-		<section id="userMenuProfilePhotoContainer">
-			<UserAvatar size="lg" v-bind:userModel="store.getters['authentication/user']" />
-
-			<div class="actions">
-				<h3>Profile Photo</h3>
-
-				<button class="button-primary size-small">Change</button>
-				&nbsp;
-				<button class="button-secondary size-small">Remove</button>
-			</div>
-		</section>
+		<FormUserProfilePhoto v-bind:userModel="userModel" v-on:remove="Handle_OnRemoveAvatar" v-on:select="Handle_OnSelectAvatar" />
 
 		<form id="userMenuProfile" class="padded" v-on:submit="Handle_OnFormSubmit">
 			<fieldset>
 				<label>
 					<h6>Name</h6>
 
-					<input type="text" placeholder="Enter name" v-model="store.getters['authentication/user'].attributes.name" />
+					<input type="text" placeholder="Enter name" v-model="userModel.attributes.name" />
+				</label>
+
+				<figure class="google-login padded background-chalky-blue" v-if="userModel.attributes.is_google">
+					<img class="filter-invert" src="~@chalkysticks/sass/build/asset/image/icon/social-google.svg" />
+
+					<div>
+						<h5>Logged in With Google</h5>
+						<p>{{ userModel.attributes.email }}</p>
+					</div>
+				</figure>
+
+				<label v-else>
+					<h6>Email Address</h6>
+
+					<input disabled type="email" placeholder="Enter email" v-model="userModel.attributes.email" />
+					<small class="type-message">This field is cannot be changed.</small>
 				</label>
 
 				<label>
-					<h6>Email Address</h6>
+					<h6>Bio</h6>
 
-					<input disabled type="email" placeholder="Enter email" v-model="store.getters['authentication/user'].attributes.email" />
-					<small class="type-message">This field is cannot be changed.</small>
+					<textarea type="text" placeholder="Tell us about yourself and your game" v-model="userModel.biography"></textarea>
 				</label>
+
+				<label>
+					<h6>Phone</h6>
+
+					<input type="text" placeholder="Phone number (optional)" v-model="userModel.attributes.phone" />
+				</label>
+
+				<label>
+					<h6>Hometown</h6>
+
+					<input type="text" placeholder="Where are you from" v-model="userModel.hometown" />
+				</label>
+
+				<!-- {{ userModel.authCheckin }} -->
+				<!-- {{ userModel.talentLevel }} -->
+
+				<hr />
+
+				<h5 class="push-bottom">Games you play</h5>
+
+				<section class="games-played push-bottom">
+					<label>
+						<input class="switch" type="checkbox" v-model="userModel.plays8Ball" />
+						<span>8 Ball</span>
+					</label>
+
+					<label>
+						<input class="switch" type="checkbox" v-model="userModel.plays9Ball" />
+						<span>9 Ball</span>
+					</label>
+
+					<label>
+						<input class="switch" type="checkbox" v-model="userModel.plays10Ball" />
+						<span>10 Ball</span>
+					</label>
+
+					<label>
+						<input class="switch" type="checkbox" v-model="userModel.playsArtistic" />
+						<span>Artistic</span>
+					</label>
+
+					<label>
+						<input class="switch" type="checkbox" v-model="userModel.playsBanks" />
+						<span>Banks</span>
+					</label>
+
+					<label>
+						<input class="switch" type="checkbox" v-model="userModel.playsBilliards" />
+						<span>Billiards</span>
+					</label>
+
+					<label>
+						<input class="switch" type="checkbox" v-model="userModel.playsOneCushion" />
+						<span>One Cushion</span>
+					</label>
+
+					<label>
+						<input class="switch" type="checkbox" v-model="userModel.playsOnePocket" />
+						<span>One Pocket</span>
+					</label>
+
+					<label>
+						<input class="switch" type="checkbox" v-model="userModel.playsPyramid" />
+						<span>Pyramid</span>
+					</label>
+
+					<label>
+						<input class="switch" type="checkbox" v-model="userModel.playsSnooker" />
+						<span>Snooker</span>
+					</label>
+
+					<label>
+						<input class="switch" type="checkbox" v-model="userModel.playStraight" />
+						<span>Straight Pool</span>
+					</label>
+				</section>
 			</fieldset>
 
 			<figure v-if="isSaved" class="padded text-center">
@@ -44,9 +125,6 @@
 
 			<fieldset v-else class="actions">
 				<button class="button-primary size-medium" type="submit">Save</button>
-				<br />
-				<br />
-				<button class="button-secondary size-small" type="reset">Reset</button>
 			</fieldset>
 		</form>
 	</section>
@@ -54,7 +132,7 @@
 
 <script lang="ts">
 	import ChalkySticks from '@chalkysticks/sdk';
-	import UserAvatar from '../Avatar.vue';
+	import FormUserProfilePhoto from '../../Form/UserProfilePhoto.vue';
 	import ViewBase from '../../Core/Base';
 	import { Component, Prop } from 'vue-property-decorator';
 	import { beforeDestroy, mounted } from '@/Utility/Decorators';
@@ -66,7 +144,7 @@
 	 */
 	@Component({
 		components: {
-			UserAvatar,
+			FormUserProfilePhoto,
 		},
 	})
 	export default class UserMenuProfile extends ViewBase {
@@ -75,6 +153,13 @@
 		 */
 		public get store(): any {
 			return ChalkySticks.Core.Provider.Store.get();
+		}
+
+		/**
+		 * @return ChalkySticks.Model.User
+		 */
+		public get userModel(): ChalkySticks.Model.User {
+			return this.store.getters['authentication/user'];
 		}
 
 		/**
@@ -102,6 +187,20 @@
 			setTimeout(() => (this.isSaved = false), 2000);
 		}
 
+		/**
+		 * @return Promise<void>
+		 */
+		protected async Handle_OnRemoveAvatar(): Promise<void> {
+			this.$forceUpdate();
+		}
+
+		/**
+		 * @return Promise<void>
+		 */
+		protected async Handle_OnSelectAvatar(): Promise<void> {
+			this.$forceUpdate();
+		}
+
 		// endregion: Event Handlers
 	}
 </script>
@@ -113,28 +212,31 @@
 			width: auto;
 		}
 
-		#userMenuProfilePhotoContainer {
+		.actions {
+			margin-bottom: 1rem;
+			text-align: center;
+		}
+
+		.google-login {
 			align-items: center;
 			display: flex;
-			flex-direction: row;
+			gap: 1rem;
+			margin-bottom: 2rem;
+
+			p {
+				margin: 0;
+			}
+		}
+
+		.games-played {
+			display: grid;
+			grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+			grid-template-rows: auto;
 			gap: 1rem;
 
-			h3 {
-				margin-bottom: 1rem;
+			label {
+				margin: 0.5rem 0;
 			}
-
-			.actions {
-				text-align: left;
-			}
-		}
-
-		.avatar {
-			border-radius: 50%;
-			border: 3px solid var(--chalky-white);
-		}
-
-		.actions {
-			text-align: center;
 		}
 	}
 </style>

@@ -11,14 +11,13 @@
 		</header>
 
 		<section class="content padded">
-			<div class="badge-container text-center">
-				<ChalkyBrandingBadge size="lg" mode="dark" />
+			<div class="badge-container text-center push-bottom">
+				<ChalkyBrandingBadge size="md" mode="dark" />
 			</div>
 
 			<div class="app-info text-center">
-				<h2>ChalkySticks</h2>
-				<p class="version">Version 3.0.1</p>
-				<p class="tagline">Unleash your inner pool shark</p>
+				<h3>ChalkySticks</h3>
+				<p class="version">Version 3.0</p>
 			</div>
 
 			<footer>
