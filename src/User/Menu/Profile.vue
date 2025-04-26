@@ -12,7 +12,7 @@
 
 		<FormUserProfilePhoto v-bind:userModel="userModel" v-on:remove="Handle_OnRemoveAvatar" v-on:select="Handle_OnSelectAvatar" />
 
-		<form id="userMenuProfile" class="padded" v-on:submit="Handle_OnFormSubmit">
+		<form id="userMenuProfile" v-on:submit="Handle_OnFormSubmit">
 			<fieldset>
 				<label>
 					<h6>Name</h6>

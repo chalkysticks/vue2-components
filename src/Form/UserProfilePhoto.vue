@@ -1,7 +1,7 @@
 <template>
 	<section class="chalky form-userprofilephoto">
 		<section class="default" v-if="isChangeMode === false">
-			<UserAvatar size="lg" v-bind:userModel="userModel" v-on:click.native="Handle_OnClickChange" />
+			<UserAvatar size="md" v-bind:userModel="userModel" v-on:click.native="Handle_OnClickChange" />
 
 			<section class="actions">
 				<h3>{{ userModel.attributes.name }}</h3>

@@ -1,8 +1,15 @@
 <template>
 	<section class="chalky user-menu shadow xl" v-on:click="Handle_OnClick">
 		<template v-if="!userId">
-			<section>Please Login</section>
+			<section class="text-center padded">
+				<p class="push-bottom">If you are logged in, you must logout and login again.</p>
+
+				<section>
+					<button class="button-secondary" v-on:click="$emit('logout')">Logout</button>
+				</section>
+			</section>
 		</template>
+
 		<template v-else>
 			<component
 				v-bind:is="activeComponent"
@@ -214,7 +221,10 @@
 		display: flex;
 		flex-direction: column;
 		margin: 0 auto;
+		max-height: 75dvh;
+		min-height: 50dvh;
 		outline: 1px solid var(--chalky-grey-4);
+		overflow: auto;
 		padding: 0rem 2rem;
 		position: relative;
 		width: 90%;
@@ -225,10 +235,16 @@
 	// ---------------------------------------------------------------------------
 
 	.chalky.user-menu.type-modal {
+		height: 100dvh;
 		left: 50%;
+		padding: 0 1rem;
 		position: fixed;
 		top: 50%;
 		transform: translate(-50%, -50%) !important;
 		z-index: 999;
+
+		.chalky.user-menu-profile header {
+			margin: 0;
+		}
 	}
 </style>
