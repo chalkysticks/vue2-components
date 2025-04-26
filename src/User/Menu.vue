@@ -243,10 +243,10 @@
 
 	.chalky.user-menu.type-modal {
 		height: 100dvh;
-		// left: 50%;
-		// position: fixed;
-		// top: 50%;
-		// transform: translate(-50%, -50%) !important;
+		left: 50%;
+		position: fixed;
+		top: 50%;
+		transform: translate(-50%, -50%) !important;
 		z-index: 999;
 	}
 </style>
