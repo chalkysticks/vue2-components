@@ -1,11 +1,11 @@
 <template>
 	<section class="chalky user-menu shadow xl" v-on:click="Handle_OnClick">
-		<template v-if="!userId">
+		<template v-if="!userModel.id">
 			<section class="text-center padded">
 				<p class="push-bottom">If you are logged in, you must logout and login again.</p>
 
 				<section>
-					<button class="button-secondary" v-on:click="$emit('logout')">Logout</button>
+					<button class="button-secondary" v-on:click="Handle_OnClickLogout">Logout</button>
 				</section>
 			</section>
 		</template>
@@ -82,6 +82,13 @@
 		 */
 		public get store(): any {
 			return ChalkySticks.Core.Provider.Store.get();
+		}
+
+		/**
+		 * @return ChalkySticks.Model.User
+		 */
+		public get userModel(): ChalkySticks.Model.User {
+			return this.store.getters['authentication/user'];
 		}
 
 		/**
@@ -236,15 +243,10 @@
 
 	.chalky.user-menu.type-modal {
 		height: 100dvh;
-		left: 50%;
-		padding: 0 1rem;
-		position: fixed;
-		top: 50%;
-		transform: translate(-50%, -50%) !important;
+		// left: 50%;
+		// position: fixed;
+		// top: 50%;
+		// transform: translate(-50%, -50%) !important;
 		z-index: 999;
-
-		.chalky.user-menu-profile header {
-			margin: 0;
-		}
 	}
 </style>
