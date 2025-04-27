@@ -25,6 +25,14 @@
 					v-bind:userModel="store.getters['authentication/user']"
 				/>
 			</button>
+
+			<svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<ellipse cx="7.07572" cy="7.44" rx="6.92429" ry="7.2" fill="#2B3544" />
+				<path
+					d="M6.75004 9.57296L4.67439 7.10633C4.42954 6.81537 4.62826 6.36 5.00008 6.36H9.15139C9.52321 6.36 9.72193 6.81536 9.47708 7.10633L7.40143 9.57296C7.22901 9.77786 6.92246 9.77786 6.75004 9.57296Z"
+					fill="#CCCCCC"
+				/>
+			</svg>
 		</section>
 
 		<!-- Helpers -->
@@ -304,6 +312,18 @@
 			display: flex;
 			justify-content: center;
 			transform: scale(0.7);
+		}
+
+		.logged-in {
+			align-items: center;
+			display: flex;
+			flex-direction: row;
+			gap: 0.25em;
+
+			> button {
+				border: 4px solid var(--chalky-blue);
+				border-radius: 50%;
+			}
 		}
 	}
 
