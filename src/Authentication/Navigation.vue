@@ -19,7 +19,11 @@
 		<!-- When we're logged in -->
 		<section class="logged-in">
 			<button class="plain no-hover" v-on:click="Handle_OnClickUserMenu">
-				<UserAvatar v-bind:size="size" v-bind:userModel="store.getters['authentication/user']" />
+				<UserAvatar
+					v-bind:key="store.getters['authentication/user'].uniqueKey"
+					v-bind:size="size"
+					v-bind:userModel="store.getters['authentication/user']"
+				/>
 			</button>
 		</section>
 
