@@ -18,7 +18,7 @@
 			<section class="photo-gallery" ref="photoGallery">
 				<picture
 					v-bind:class="{
-						'state-active': mediaModel.id === userModel.avatar.id,
+						'state-active': mediaModel.attributes.subgroup === 'avatar',
 					}"
 					v-bind:key="userModel.uniqueKey + index"
 					v-for="(mediaModel, index) in userModel.media"
@@ -120,19 +120,15 @@
 		 *
 		 * @return Promise<void>
 		 */
-		protected async unsetCurrentAvatar(): Promise<void> {
-			// Unset the current avatar
-			if (!this.userModel.avatar?.id) {
-				return;
+		protected async unsetAvatars(): Promise<void> {
+			for (const mediaModel of this.userModel.media) {
+				// If the media model is an avatar, unset it
+				if (mediaModel.attributes.subgroup === ChalkySticks.Enum.MediaSubgroup.Avatar) {
+					await mediaModel.useModifiedEndpoint(this.userModel).save({
+						subgroup: ChalkySticks.Enum.MediaSubgroup.Person,
+					});
+				}
 			}
-
-			// Clone the avatar model to avoid modifying the original
-			const avatarModel = this.userModel.avatar.clone();
-
-			// Unset the avatar relationship
-			await avatarModel.useModifiedEndpoint(this.userModel).save({
-				subgroup: ChalkySticks.Enum.MediaSubgroup.Person,
-			});
 		}
 
 		/**
@@ -147,10 +143,18 @@
 				return;
 			}
 
+			// Find media model in the user's media collection
+			const existingMediaModel = this.userModel.media.findWhere({
+				id: mediaModel.id,
+			});
+
 			// Set new avatar
-			await mediaModel.useModifiedEndpoint(this.userModel).save({
+			await existingMediaModel.useModifiedEndpoint(this.userModel).save({
 				subgroup: ChalkySticks.Enum.MediaSubgroup.Avatar,
 			});
+
+			// Set the attributes
+			this.userModel.avatar.set(existingMediaModel.attributes);
 
 			// Clear the user's avatar relationship
 			this.userModel.clearRelationship('avatar');
@@ -212,10 +216,13 @@
 		 */
 		protected async Handle_OnSelectAvatar(e: PointerEvent, mediaModel: ChalkySticks.Model.Media): Promise<void> {
 			// Unset current avatar
-			await this.unsetCurrentAvatar();
+			await this.unsetAvatars();
 
-			// Set new avatar
+			// // Set new avatar
 			await this.setAvatar(mediaModel);
+
+			// Update user
+			this.userModel.dispatch('change');
 
 			// Emit
 			this.$emit('select');
