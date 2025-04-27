@@ -1075,15 +1075,16 @@
     bootstrap "^5.0.1"
 
 "@chalkysticks/sdk-authentication@github:chalkysticks/sdk-authentication":
-  version "1.7.7"
-  resolved "https://codeload.github.com/chalkysticks/sdk-authentication/tar.gz/bdcf1ec03de50240c4251bf2640ca648fe236987"
+  version "1.7.8"
+  resolved "https://codeload.github.com/chalkysticks/sdk-authentication/tar.gz/9d778b1a4b1a9bda9bfe6f74fe60e3679ca8517c"
   dependencies:
     "@chalkysticks/mrm-preset" "github:chalkysticks/mrm-preset"
     "@chalkysticks/sdk-core" "github:chalkysticks/sdk-core"
+    restmc "git+https://github.com/mattkenefick/restmc.git"
 
 "@chalkysticks/sdk-core@github:chalkysticks/sdk-core":
-  version "1.35.7"
-  resolved "https://codeload.github.com/chalkysticks/sdk-core/tar.gz/e96399ddb9eb5707eb0388625f542423ba5a06ac"
+  version "1.35.9"
+  resolved "https://codeload.github.com/chalkysticks/sdk-core/tar.gz/c3b762c41466f2f026169ccc02d721dd0c6037dc"
   dependencies:
     "@chalkysticks/mrm-preset" "github:chalkysticks/mrm-preset"
     "@types/googlemaps" "^3.43.3"
@@ -1099,29 +1100,32 @@
     luxon "^3.5.0"
 
 "@chalkysticks/sdk-pad@github:chalkysticks/sdk-pad#v2":
-  version "1.3.5"
-  resolved "https://codeload.github.com/chalkysticks/sdk-pad/tar.gz/ac908a96c829440c8d080059b297fa01540d6ab5"
+  version "1.3.6"
+  resolved "https://codeload.github.com/chalkysticks/sdk-pad/tar.gz/a4557398a63a260bd7a3039ea02478348120cd53"
   dependencies:
     "@chalkysticks/mrm-preset" "github:chalkysticks/mrm-preset"
     "@chalkysticks/sdk-core" "github:chalkysticks/sdk-core"
+    restmc "git+https://github.com/mattkenefick/restmc.git"
 
 "@chalkysticks/sdk-players@github:chalkysticks/sdk-players":
-  version "1.6.2"
-  resolved "https://codeload.github.com/chalkysticks/sdk-players/tar.gz/c83fe0676ae93c5a47c185ba2c92d2a2c496726d"
+  version "1.6.3"
+  resolved "https://codeload.github.com/chalkysticks/sdk-players/tar.gz/7b267dff160b28384c6d906ec0a8a653271662c1"
   dependencies:
     "@chalkysticks/mrm-preset" "github:chalkysticks/mrm-preset"
     "@chalkysticks/sdk-core" "github:chalkysticks/sdk-core"
+    restmc "git+https://github.com/mattkenefick/restmc.git"
 
 "@chalkysticks/sdk-tv@github:chalkysticks/sdk-tv#v1":
-  version "1.9.4"
-  resolved "https://codeload.github.com/chalkysticks/sdk-tv/tar.gz/b3a4faa9856e3cf5227057985d0b6240d0888782"
+  version "1.9.5"
+  resolved "https://codeload.github.com/chalkysticks/sdk-tv/tar.gz/70320283cf98655722aa89c4e05e97e09f03210b"
   dependencies:
     "@chalkysticks/mrm-preset" "github:chalkysticks/mrm-preset"
     "@chalkysticks/sdk-core" "github:chalkysticks/sdk-core"
+    restmc "git+https://github.com/mattkenefick/restmc.git"
 
 "@chalkysticks/sdk-venues@github:chalkysticks/sdk-venues#v1":
-  version "1.7.4"
-  resolved "https://codeload.github.com/chalkysticks/sdk-venues/tar.gz/2b94d8ab676fca56d300943855ea7189fc1037fc"
+  version "1.7.5"
+  resolved "https://codeload.github.com/chalkysticks/sdk-venues/tar.gz/149fb9141ac6a279959e9f2717ff792fb9a97820"
   dependencies:
     "@chalkysticks/mrm-preset" "github:chalkysticks/mrm-preset"
     "@chalkysticks/sdk-core" "github:chalkysticks/sdk-core"
@@ -1130,8 +1134,8 @@
     restmc "git+https://github.com/mattkenefick/restmc.git"
 
 "@chalkysticks/sdk@github:chalkysticks/sdk":
-  version "1.34.34"
-  resolved "https://codeload.github.com/chalkysticks/sdk/tar.gz/b6282f6c1d9ce1a3dd39c85021fb9d98c8187fc9"
+  version "1.35.5"
+  resolved "https://codeload.github.com/chalkysticks/sdk/tar.gz/92686a3cec2d0f56d33590db3e1996e6fd93ea45"
   dependencies:
     "@chalkysticks/sdk-authentication" "github:chalkysticks/sdk-authentication"
     "@chalkysticks/sdk-core" "github:chalkysticks/sdk-core"
@@ -5782,8 +5786,8 @@ resolve@^1.10.0, resolve@^1.14.2:
     supports-preserve-symlinks-flag "^1.0.0"
 
 "restmc@git+https://github.com/mattkenefick/restmc.git":
-  version "1.3.7"
-  resolved "git+https://github.com/mattkenefick/restmc.git#efac333b1630b38eab29f72298f0bf5ab6962537"
+  version "1.3.12"
+  resolved "git+https://github.com/mattkenefick/restmc.git#c3dba090e3df7ea9c19bc783819a26ef4831b225"
   dependencies:
     "@types/node-fetch" "^2.5.7"
     axios "^0.21.4"

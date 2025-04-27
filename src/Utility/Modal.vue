@@ -55,11 +55,11 @@
 
 <style lang="scss">
 	.utility-modal {
-		height: 100dvh;
+		height: 100svh;
 		left: 0;
 		position: fixed;
 		top: 0;
-		width: 100dvw;
+		width: 100svw;
 		z-index: var(--z-modal-bottom);
 
 		> * {

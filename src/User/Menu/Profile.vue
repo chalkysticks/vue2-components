@@ -2,9 +2,7 @@
 	<section class="chalky user-menu-profile">
 		<header class="header-base">
 			<button class="control theme-dark size-medium type-left" v-on:click="$emit('click:back')">Back</button>
-
 			<h3>Profile</h3>
-
 			<div class="actions">
 				<button class="control theme-dark round size-medium type-close" v-on:click="$emit('click:close')"></button>
 			</div>
@@ -16,7 +14,6 @@
 			<fieldset>
 				<label>
 					<h6>Name</h6>
-
 					<input type="text" placeholder="Enter name" v-model="userModel.attributes.name" />
 				</label>
 
@@ -31,26 +28,22 @@
 
 				<label v-else>
 					<h6>Email Address</h6>
-
 					<input disabled type="email" placeholder="Enter email" v-model="userModel.attributes.email" />
 					<small class="type-message">This field is cannot be changed.</small>
 				</label>
 
 				<label>
 					<h6>Bio</h6>
-
 					<textarea type="text" placeholder="Tell us about yourself and your game" v-model="userModel.biography"></textarea>
 				</label>
 
 				<label>
 					<h6>Phone</h6>
-
 					<input type="text" placeholder="Phone number (optional)" v-model="userModel.attributes.phone" />
 				</label>
 
 				<label>
 					<h6>Hometown</h6>
-
 					<input type="text" placeholder="Where are you from" v-model="userModel.hometown" />
 				</label>
 
@@ -133,6 +126,7 @@
 <script lang="ts">
 	import ChalkySticks from '@chalkysticks/sdk';
 	import FormUserProfilePhoto from '../../Form/UserProfilePhoto.vue';
+	import UserAvatar from '../Avatar.vue';
 	import ViewBase from '../../Core/Base';
 	import { Component, Prop } from 'vue-property-decorator';
 	import { beforeDestroy, mounted } from '@/Utility/Decorators';
@@ -145,6 +139,7 @@
 	@Component({
 		components: {
 			FormUserProfilePhoto,
+			UserAvatar,
 		},
 	})
 	export default class UserMenuProfile extends ViewBase {

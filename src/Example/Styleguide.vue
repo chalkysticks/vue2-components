@@ -420,6 +420,8 @@
 					<h3>User Menu</h3>
 				</header>
 				<div>
+					<UserAvatar v-bind:key="store.getters['authentication/user'].uniqueKey" v-bind:userModel="store.getters['authentication/user']" />
+
 					<ChalkyUserMenu v-bind:authModel="authModel" />
 				</div>
 			</section>
@@ -1152,12 +1154,14 @@
 	import AuthenticationAuthPanel from '@/Authentication/AuthPanel.vue';
 	import ChalkySticks from '@chalkysticks/sdk';
 	import ChalkyVideoTheater from '@/TV/TvVideoTheater.vue';
+	import UserAvatar from '../User/Avatar.vue';
 	import { Component, Prop, Ref, Watch, Vue } from 'vue-property-decorator';
 	import { VideoTheaterChannel } from '@/TV/VideoTheater.vue';
 
 	@Component({
 		components: {
 			AuthenticationAuthPanel,
+			UserAvatar,
 		},
 	})
 	export default class Styleguide extends Vue {
@@ -1166,6 +1170,13 @@
 		 */
 		public get ChalkySticks(): typeof ChalkySticks {
 			return ChalkySticks;
+		}
+
+		/**
+		 * @return Store
+		 */
+		public get store(): any {
+			return ChalkySticks.Core.Provider.Store.get();
 		}
 
 		/**

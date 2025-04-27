@@ -136,6 +136,25 @@ const ChalkySticksVue = {
 			},
 		});
 
+		// Make our objects reactive to Vue
+		ChalkySticks.Model.Base.useReactiveHook((instance) => {
+			if (!instance.__isReactive) {
+				// Vue.observable(instance);
+
+				Vue.util.defineReactive(instance, 'uniqueKey', instance.uniqueKey);
+				(instance as any).__isReactive = true;
+			}
+		});
+
+		ChalkySticks.Collection.Base.useReactiveHook((instance) => {
+			if (!instance.__isReactive) {
+				// Vue.observable(instance);
+
+				Vue.util.defineReactive(instance, 'uniqueKey', instance.uniqueKey);
+				(instance as any).__isReactive = true;
+			}
+		});
+
 		// Directives (like v-model, v-show)
 		// @see https://v3.vuejs.org/guide/custom-directive.html#intro
 

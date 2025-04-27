@@ -1,7 +1,8 @@
 <template>
 	<section class="chalky form-userprofilephoto">
-		<section class="default" v-if="isChangeMode === false">
-			<UserAvatar size="md" v-bind:userModel="userModel" v-on:click.native="Handle_OnClickChange" />
+		<!-- Default View -->
+		<section class="default" v-bind:key="userModel.uniqueKey" v-if="isChangeMode === false">
+			<UserAvatar size="md" v-bind:key="userModel.uniqueKey" v-bind:userModel="userModel" v-on:click.native="Handle_OnClickChange" />
 
 			<section class="actions">
 				<h3>{{ userModel.attributes.name }}</h3>
@@ -12,13 +13,14 @@
 			</section>
 		</section>
 
+		<!-- Selection Gallery -->
 		<section class="changeMode" v-else>
-			<section class="photo-gallery">
+			<section class="photo-gallery" ref="photoGallery">
 				<picture
 					v-bind:class="{
 						'state-active': mediaModel.id === userModel.avatar.id,
 					}"
-					v-bind:key="index"
+					v-bind:key="userModel.uniqueKey + index"
 					v-for="(mediaModel, index) in userModel.media"
 					v-on:click.native="Handle_OnClickChange"
 				>
@@ -40,7 +42,7 @@
 	import FormImageUploader from './ImageUploader.vue';
 	import UserAvatar from '../User/Avatar.vue';
 	import ViewBase from '../Core/Base';
-	import { Component, Prop } from 'vue-property-decorator';
+	import { Component, Prop, Ref } from 'vue-property-decorator';
 	import { beforeDestroy, mounted } from '@/Utility/Decorators';
 
 	/**
@@ -55,6 +57,14 @@
 		},
 	})
 	export default class FormUserProfilePhoto extends ViewBase {
+		/**
+		 * Reference to the photo gallery element
+		 *
+		 * @type HTMLDivElement
+		 */
+		@Ref('photoGallery')
+		protected photoGallery!: HTMLDivElement;
+
 		/**
 		 * The model to upload images to (must support media upload interface)
 		 * This could be a venue, user, or any other model with media capabilities
@@ -91,11 +101,59 @@
 			// Remove from the user model's media collection
 			this.userModel.media.remove(avatarMediaModel);
 
-			// Update
-			this.$forceUpdate();
-
 			// Emit
 			this.$emit('remove');
+		}
+
+		/**
+		 * @return void
+		 */
+		protected scrollToEnd(): void {
+			this.photoGallery.scrollTo({
+				behavior: 'smooth',
+				left: this.photoGallery.scrollWidth,
+			});
+		}
+
+		/**
+		 * Unset the current avatar relationship
+		 *
+		 * @return Promise<void>
+		 */
+		protected async unsetCurrentAvatar(): Promise<void> {
+			// Unset the current avatar
+			if (!this.userModel.avatar?.id) {
+				return;
+			}
+
+			// Clone the avatar model to avoid modifying the original
+			const avatarModel = this.userModel.avatar.clone();
+
+			// Unset the avatar relationship
+			await avatarModel.useModifiedEndpoint(this.userModel).save({
+				subgroup: ChalkySticks.Enum.MediaSubgroup.Person,
+			});
+		}
+
+		/**
+		 * Set the avatar for the user model
+		 *
+		 * @param mediaModel ChalkySticks.Model.Media
+		 * @return Promise<void>
+		 */
+		protected async setAvatar(mediaModel: ChalkySticks.Model.Media): Promise<void> {
+			// If no media model, return
+			if (!mediaModel) {
+				return;
+			}
+
+			// Set new avatar
+			await mediaModel.useModifiedEndpoint(this.userModel).save({
+				subgroup: ChalkySticks.Enum.MediaSubgroup.Avatar,
+			});
+
+			// Clear the user's avatar relationship
+			this.userModel.clearRelationship('avatar');
 		}
 
 		// region: Event Handlers
@@ -118,10 +176,8 @@
 		protected async Handle_OnClickRemove(e: PointerEvent): Promise<void> {
 			e.preventDefault();
 
+			// Remove the photo we have now
 			await this.removePrimaryPhoto();
-
-			// Update
-			this.$forceUpdate();
 
 			// Emit
 			this.$emit('remove');
@@ -145,9 +201,6 @@
 			// Remove from the user model's media collection
 			this.userModel.media.remove(mediaModel);
 
-			// Update
-			this.$forceUpdate();
-
 			// Emit
 			this.$emit('remove');
 		}
@@ -158,26 +211,11 @@
 		 * @return Promise<void>
 		 */
 		protected async Handle_OnSelectAvatar(e: PointerEvent, mediaModel: ChalkySticks.Model.Media): Promise<void> {
-			// Unset the current avatar
-			if (this.userModel.avatar?.id) {
-				const avatarModel = this.userModel.avatar.clone();
-
-				avatarModel.set({
-					subgroup: ChalkySticks.Enum.MediaSubgroup.Person,
-				});
-
-				await avatarModel.useModifiedEndpoint(this.userModel).save();
-			}
+			// Unset current avatar
+			await this.unsetCurrentAvatar();
 
 			// Set new avatar
-			mediaModel.set({
-				subgroup: ChalkySticks.Enum.MediaSubgroup.Avatar,
-			});
-
-			await mediaModel.useModifiedEndpoint(this.userModel).save();
-
-			// Update
-			this.$forceUpdate();
+			await this.setAvatar(mediaModel);
 
 			// Emit
 			this.$emit('select');
@@ -187,8 +225,10 @@
 		 * @return Promise<void>
 		 */
 		protected async Handle_OnUploadComplete(): Promise<void> {
-			this.$forceUpdate();
+			// Scroll to the end of the photo gallery
+			setTimeout(() => this.scrollToEnd(), 100);
 
+			// Emit
 			this.$emit('upload');
 		}
 

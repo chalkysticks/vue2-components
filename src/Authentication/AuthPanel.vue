@@ -158,6 +158,7 @@
 		display: flex;
 		flex-direction: row;
 		margin: 0 auto;
+		max-height: 90svh;
 		outline: 1px solid var(--chalky-grey-4);
 		position: relative;
 		width: calc(var(--chalky-authpanel-graphic-width) + var(--chalky-authpanel-content-width));
