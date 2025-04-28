@@ -66,7 +66,7 @@
 					<h5>Who's Here</h5>
 				</header>
 
-				<div class="inner">
+				<div class="inner" v-bind:key="venueModel.checkins.uniqueKey">
 					<div class="users" v-if="venueModel.checkins.models.length">
 						<UserAvatar
 							size="sm"
@@ -84,8 +84,14 @@
 						</div>
 					</div>
 
-					<div class="action" v-if="$store.getters['authentication/authenticated'] && isNearby">
-						<ButtonCheckin v-bind:venueModel="venueModel" v-on:checkin="Handle_OnCheckinSuccess" />
+					<!-- <div class="action" v-if="$store.getters['authentication/authenticated'] && isNearby"> -->
+
+					<div v-if="isCheckedInHere()" class="action">
+						<strong>You are here</strong>
+					</div>
+
+					<div class="action" v-else-if="$store.getters['authentication/authenticated']">
+						<ButtonCheckin v-bind:venueModel="venueModel" />
 					</div>
 				</div>
 			</section>
@@ -206,12 +212,6 @@
 	})
 	export default class VenueCard extends ViewBase {
 		/**
-		 * @type VenueGallery
-		 */
-		@Ref('gallery')
-		protected venueGallery!: VenueGallery;
-
-		/**
 		 * @return string
 		 */
 		public get distance(): string {
@@ -257,6 +257,12 @@
 		}
 
 		/**
+		 * @type VenueGallery
+		 */
+		@Ref('gallery')
+		protected venueGallery!: VenueGallery;
+
+		/**
 		 * @type boolean
 		 */
 		@Prop({ default: true })
@@ -269,6 +275,16 @@
 			default: () => new ChalkySticks.Model.Venue(),
 		})
 		public venueModel!: ChalkySticks.Model.Venue;
+
+		/**
+		 * @return boolean
+		 */
+		protected isCheckedInHere(): boolean {
+			const userModel = this.$store.getters['authentication/user'];
+
+			// Check if the user is checked in here
+			return this.venueModel.checkins.models.some((checkin) => checkin.user.id === userModel?.id);
+		}
 
 		/**
 		 * @return string
@@ -284,20 +300,6 @@
 
 			return output;
 		}
-
-		// region: Event Handlers
-		// ---------------------------------------------------------------------------
-
-		/**
-		 * DOES NOT WORK
-		 *
-		 * @return Promise<void>
-		 */
-		protected async Handle_OnCheckinSuccess(): Promise<void> {
-			this.$forceUpdate();
-		}
-
-		// endregion: Event Handlers
 	}
 </script>
 
@@ -386,9 +388,12 @@
 			}
 
 			.action {
-				display: inline-block;
 				// flex: 1;
+				align-items: center;
+				display: inline-flex;
 				flex-grow: 1;
+				gap: 0.5em;
+				justify-content: center;
 			}
 		}
 

@@ -1,5 +1,5 @@
 <template>
-	<main class="styleguide theme-dark">
+	<main class="styleguide theme-dark background-chalky-blue-4">
 		<header>
 			<nav>
 				<a href="#general">General</a>
@@ -996,6 +996,53 @@
 
 			<section class="level-1">
 				<header>
+					<h3>Venue Card</h3>
+
+					<p>1. No model</p>
+					<p>2. With model</p>
+				</header>
+				<div class="push-bottom">
+					<ChalkyVenueCard />
+				</div>
+				<div>
+					<ChalkyVenueCard v-bind:venueModel="venueCollection.at(0)" v-on:click:gallery="Handle_OnClickCardGallery" />
+				</div>
+			</section>
+
+			<section class="level-1">
+				<header>
+					<h3>Venue Map</h3>
+				</header>
+				<div>
+					<ChalkyVenueMap
+						class="hide-streetview"
+						v-bind:centerLatitude="mapLatitude"
+						v-bind:centerLongitude="mapLongitude"
+						v-bind:centerOnMarker="true"
+						v-bind:centerOffsetY="-100"
+						v-bind:userLatitude="40.800335"
+						v-bind:userLongitude="-73.968452"
+						v-bind:venueCollection="venueCollection"
+						v-bind:zoom="mapZoom"
+						v-on:beacon:click="Handle_OnClickMapBeacon"
+						v-on:marker:click="Handle_OnClickMapMarker"
+						v-on:map:move="Handle_OnMoveMap"
+					/>
+				</div>
+
+				<div class="padded">
+					<ChalkyFormSearch
+						placeholder="New York, NY"
+						queryParameter="search"
+						type="location"
+						v-on:click:badge="Handle_OnClickBadge"
+						v-on:search:location="Handle_OnSearchLocation"
+					/>
+				</div>
+			</section>
+
+			<section class="level-1">
+				<header>
 					<h3>Venue Gallery</h3>
 				</header>
 
@@ -1070,53 +1117,6 @@
 						v-bind:showLast="true"
 						v-bind:maxPagesToShow="3"
 						v-bind:collection="venueCollection"
-					/>
-				</div>
-			</section>
-
-			<section class="level-1">
-				<header>
-					<h3>Venue Card</h3>
-
-					<p>1. No model</p>
-					<p>2. With model</p>
-				</header>
-				<div class="push-bottom">
-					<ChalkyVenueCard />
-				</div>
-				<div>
-					<ChalkyVenueCard v-bind:venueModel="venueCollection.at(0)" v-on:click:gallery="Handle_OnClickCardGallery" />
-				</div>
-			</section>
-
-			<section class="level-1">
-				<header>
-					<h3>Venue Map</h3>
-				</header>
-				<div>
-					<ChalkyVenueMap
-						class="hide-streetview"
-						v-bind:centerLatitude="mapLatitude"
-						v-bind:centerLongitude="mapLongitude"
-						v-bind:centerOnMarker="true"
-						v-bind:centerOffsetY="-100"
-						v-bind:userLatitude="40.800335"
-						v-bind:userLongitude="-73.968452"
-						v-bind:venueCollection="venueCollection"
-						v-bind:zoom="mapZoom"
-						v-on:beacon:click="Handle_OnClickMapBeacon"
-						v-on:marker:click="Handle_OnClickMapMarker"
-						v-on:map:move="Handle_OnMoveMap"
-					/>
-				</div>
-
-				<div class="padded">
-					<ChalkyFormSearch
-						placeholder="New York, NY"
-						queryParameter="search"
-						type="location"
-						v-on:click:badge="Handle_OnClickBadge"
-						v-on:search:location="Handle_OnSearchLocation"
 					/>
 				</div>
 			</section>

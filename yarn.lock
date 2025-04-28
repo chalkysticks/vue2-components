@@ -1124,8 +1124,8 @@
     restmc "git+https://github.com/mattkenefick/restmc.git"
 
 "@chalkysticks/sdk-venues@github:chalkysticks/sdk-venues#v1":
-  version "1.7.5"
-  resolved "https://codeload.github.com/chalkysticks/sdk-venues/tar.gz/149fb9141ac6a279959e9f2717ff792fb9a97820"
+  version "1.8.0"
+  resolved "https://codeload.github.com/chalkysticks/sdk-venues/tar.gz/e9fe565ceb6ce76b9162dee2eb15b08ed1d87a28"
   dependencies:
     "@chalkysticks/mrm-preset" "github:chalkysticks/mrm-preset"
     "@chalkysticks/sdk-core" "github:chalkysticks/sdk-core"
@@ -1134,8 +1134,8 @@
     restmc "git+https://github.com/mattkenefick/restmc.git"
 
 "@chalkysticks/sdk@github:chalkysticks/sdk":
-  version "1.35.5"
-  resolved "https://codeload.github.com/chalkysticks/sdk/tar.gz/92686a3cec2d0f56d33590db3e1996e6fd93ea45"
+  version "1.35.6"
+  resolved "https://codeload.github.com/chalkysticks/sdk/tar.gz/ed1459ea1b94ef612e35aaf6b8d7d7d8ef4ffaca"
   dependencies:
     "@chalkysticks/sdk-authentication" "github:chalkysticks/sdk-authentication"
     "@chalkysticks/sdk-core" "github:chalkysticks/sdk-core"
