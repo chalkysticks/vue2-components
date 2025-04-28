@@ -299,24 +299,16 @@
 
 <style lang="scss">
 	.chalky.authentication-navigation {
-		.logged-in {
-			display: none;
-
-			button {
-				font-size: 0;
-			}
-		}
-
 		.logged-out {
 			align-items: center;
-			display: flex;
+			display: inline-flex;
 			justify-content: center;
 			transform: scale(0.7);
 		}
 
 		.logged-in {
 			align-items: center;
-			display: flex;
+			display: inline-flex;
 			flex-direction: row;
 			gap: 0.25em;
 
@@ -332,12 +324,20 @@
 
 	.chalky.authentication-navigation {
 		&.state-logged-in .logged-in {
-			display: flex;
+			display: inline-flex;
 			transform: scale(1.125);
 		}
 
 		&.state-logged-in .logged-out {
-			display: none !important;
+			display: none;
+		}
+
+		&:not(.state-logged-in) .logged-in {
+			display: none;
+
+			button {
+				font-size: 0;
+			}
 		}
 	}
 </style>
