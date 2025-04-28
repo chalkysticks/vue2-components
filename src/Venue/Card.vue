@@ -91,7 +91,9 @@
 					</div>
 
 					<div class="action" v-else-if="$store.getters['authentication/authenticated']">
-						<ButtonCheckin v-bind:venueModel="venueModel" />
+						<slot name="checkin:action" v-bind:venueModel="venueModel">
+							<ButtonCheckin v-bind:venueModel="venueModel" />
+						</slot>
 					</div>
 				</div>
 			</section>
@@ -517,7 +519,7 @@
 			}
 
 			.checkins {
-				bottom: 2.5rem;
+				bottom: 25%;
 				position: absolute;
 				right: 0.5rem;
 

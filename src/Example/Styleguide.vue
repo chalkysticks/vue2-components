@@ -1005,7 +1005,11 @@
 					<ChalkyVenueCard />
 				</div>
 				<div>
-					<ChalkyVenueCard v-bind:venueModel="venueCollection.at(0)" v-on:click:gallery="Handle_OnClickCardGallery" />
+					<ChalkyVenueCard v-bind:venueModel="venueCollection.at(0)" v-on:click:gallery="Handle_OnClickCardGallery">
+						<template v-slot:checkin:action="{ venueModel }">
+							<button class="size-x-small" v-bind:id="venueModel.id">Scan Table</button>
+						</template>
+					</ChalkyVenueCard>
 				</div>
 			</section>
 
