@@ -1083,8 +1083,8 @@
     restmc "git+https://github.com/mattkenefick/restmc.git"
 
 "@chalkysticks/sdk-core@github:chalkysticks/sdk-core":
-  version "1.35.9"
-  resolved "https://codeload.github.com/chalkysticks/sdk-core/tar.gz/c3b762c41466f2f026169ccc02d721dd0c6037dc"
+  version "1.36.1"
+  resolved "https://codeload.github.com/chalkysticks/sdk-core/tar.gz/2f425ad51fcfef1e83e5bb285791ef148235dcf9"
   dependencies:
     "@chalkysticks/mrm-preset" "github:chalkysticks/mrm-preset"
     "@types/googlemaps" "^3.43.3"
@@ -1134,8 +1134,8 @@
     restmc "git+https://github.com/mattkenefick/restmc.git"
 
 "@chalkysticks/sdk@github:chalkysticks/sdk":
-  version "1.35.6"
-  resolved "https://codeload.github.com/chalkysticks/sdk/tar.gz/ed1459ea1b94ef612e35aaf6b8d7d7d8ef4ffaca"
+  version "1.36.0"
+  resolved "https://codeload.github.com/chalkysticks/sdk/tar.gz/ce7a9bcdc764e7ae006abf9f816d25caafd15707"
   dependencies:
     "@chalkysticks/sdk-authentication" "github:chalkysticks/sdk-authentication"
     "@chalkysticks/sdk-core" "github:chalkysticks/sdk-core"
@@ -1449,9 +1449,9 @@
     "@types/node" "*"
 
 "@types/node@*":
-  version "22.15.2"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-22.15.2.tgz#1db55aa64618ee93a58c8912f74beefe44aca905"
-  integrity sha512-uKXqKN9beGoMdBfcaTY1ecwz6ctxuJAcUlwE55938g0ZJ8lRxwAZqRz2AJ4pzpt5dHdTPMB863UZ0ESiFUcP7A==
+  version "22.15.3"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-22.15.3.tgz#b7fb9396a8ec5b5dfb1345d8ac2502060e9af68b"
+  integrity sha512-lX7HFZeHf4QG/J7tBZqrCAXwz9J5RD56Y6MpP0eJkka8p+K0RY/yBTW7CYFJ4VGCclxqOLKmiGP5juQc6MKgcw==
   dependencies:
     undici-types "~6.21.0"
 

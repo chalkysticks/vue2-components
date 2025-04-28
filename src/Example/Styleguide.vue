@@ -6,6 +6,7 @@
 				<a href="#authentication">Authentication</a>
 				<a href="#content">Content</a>
 				<a href="#branding">Branding</a>
+				<a href="#feed">Feed</a>
 				<a href="#media">Media</a>
 				<a href="#tv">TV</a>
 				<a href="#user">User</a>
@@ -423,6 +424,41 @@
 					<UserAvatar v-bind:key="store.getters['authentication/user'].uniqueKey" v-bind:userModel="store.getters['authentication/user']" />
 
 					<ChalkyUserMenu v-bind:authModel="authModel" />
+				</div>
+			</section>
+		</section>
+
+		<section class="level-0" v-if="tab == 'feed'" v-bind:class="{ 'state-active': tab == 'feed' }">
+			<header>
+				<h2>Feed</h2>
+			</header>
+
+			<section class="level-1">
+				<header>
+					<h3>User Menu</h3>
+				</header>
+				<div>
+					<UserAvatar v-bind:key="store.getters['authentication/user'].uniqueKey" v-bind:userModel="store.getters['authentication/user']" />
+
+					<ChalkyUserMenu v-bind:authModel="authModel" />
+				</div>
+			</section>
+
+			<section class="level-1">
+				<header>
+					<h3>Feed Card</h3>
+				</header>
+				<div>
+					<ChalkyFeedCard />
+				</div>
+			</section>
+
+			<section class="level-1">
+				<header>
+					<h3>Feed List</h3>
+				</header>
+				<div>
+					<ChalkyFeedList />
 				</div>
 			</section>
 		</section>

@@ -25,6 +25,8 @@ import ButtonLogin from './Button/Login.vue';
 import ButtonSignup from './Button/Signup.vue';
 import ContentItem from './Content/Item.vue';
 import ContentList from './Content/List.vue';
+import FeedCard from './Feed/Card.vue';
+import FeedList from './Feed/List.vue';
 import FormImageUploader from './Form/ImageUploader.vue';
 import FormSearch from './Form/Search.vue';
 import MediaCardSwipe from './Media/CardSwipe.vue';
@@ -72,6 +74,8 @@ const components = {
 	ButtonSignup,
 	ContentItem,
 	ContentList,
+	FeedCard,
+	FeedList,
 	FormImageUploader,
 	FormSearch,
 	MediaCardSwipe,
@@ -180,6 +184,8 @@ export {
 	ButtonSignup,
 	ContentItem,
 	ContentList,
+	FeedCard,
+	FeedList,
 	FormImageUploader,
 	FormSearch,
 	MediaCardSwipe,

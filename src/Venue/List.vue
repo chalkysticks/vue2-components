@@ -175,9 +175,6 @@
 				return;
 			}
 
-			// Trigger store
-			this.$store.dispatch('location/position', e.data.position);
-
 			// Simplify coordinates
 			const coordinates = ChalkySticks.Utility.Geolocation.simplifyCoordinates(e.data.position.coords, undefined, 1e2);
 
