@@ -337,7 +337,7 @@
 		}
 
 		&.state-logged-in .logged-out {
-			display: none;
+			display: none !important;
 		}
 	}
 </style>
