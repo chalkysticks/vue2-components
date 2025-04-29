@@ -102,6 +102,11 @@ export default abstract class TVVideoShared extends ViewBase {
 	protected hysteresisEnding!: ChalkySticks.Utility.Hysteresis;
 
 	/**
+	 * @type boolean
+	 */
+	private isAttached: boolean = false;
+
+	/**
 	 * @param object options
 	 **/
 	constructor(options: Record<string, any> = {}) {
@@ -121,13 +126,13 @@ export default abstract class TVVideoShared extends ViewBase {
 
 		// Listen for changes to current time
 		this.hysteresisStarting = ChalkySticks.Utility.Hysteresis.add({
-			condition: () => {
-				return this.isPlaying && this.currentTime >= 2;
-			},
+			condition: () => this.isPlaying && this.currentTime >= 2,
+			duration: 1000 * 2,
 		});
 
 		this.hysteresisEnding = ChalkySticks.Utility.Hysteresis.add({
 			condition: () => this.isPlaying && this.currentTime >= this.duration - 5 && this.duration > 0,
+			duration: 1000 * 2,
 		});
 
 		this.attachEvents();
@@ -146,14 +151,25 @@ export default abstract class TVVideoShared extends ViewBase {
 	 * @return void
 	 */
 	public attachEvents(): void {
-		this.hysteresisEnding.on('change', this.Handle_OnVideoEnding);
-		this.hysteresisStarting.on('change', this.Handle_OnVideoStarting);
+		if (this.isAttached) {
+			return;
+		}
+
+		this.isAttached = true;
+
+		this.hysteresisEnding.on('set', this.Handle_OnVideoEnding);
+		this.hysteresisStarting.on('set', this.Handle_OnVideoStarting);
 	}
 
 	/**
 	 * @return void
 	 */
 	public detachEvents(): void {
+		this.isAttached = false;
+
+		this.hysteresisEnding.off('set', this.Handle_OnVideoEnding);
+		this.hysteresisStarting.off('set', this.Handle_OnVideoStarting);
+
 		this.hysteresisStarting?.stop();
 		this.hysteresisEnding?.stop();
 	}
