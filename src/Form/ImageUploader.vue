@@ -65,9 +65,9 @@
 </template>
 
 <script lang="ts">
+	import BrandingBadge from '../Branding/Badge.vue';
 	import ChalkySticks from '@chalkysticks/sdk';
 	import ViewBase from '../Core/Base';
-	import BrandingBadge from '../Branding/Badge.vue';
 	import { Component, Prop, Watch } from 'vue-property-decorator';
 	import { beforeDestroy, mounted } from '@/Utility/Decorators';
 
@@ -87,6 +87,30 @@
 	})
 	export default class FormImageUploader extends ViewBase {
 		/**
+		 * Type of files to accept
+		 *
+		 * @type string
+		 */
+		@Prop({ default: 'image/*' })
+		public acceptTypes!: string;
+
+		/**
+		 * Whether to allow multiple file selection
+		 *
+		 * @type boolean
+		 */
+		@Prop({ default: true })
+		public allowMultiple!: boolean;
+
+		/**
+		 * Whether to show metadata fields (subgroup, notes)
+		 *
+		 * @type boolean
+		 */
+		@Prop({ default: true })
+		public enableMetadata!: boolean;
+
+		/**
 		 * The model to upload images to (must support media upload interface)
 		 * This could be a venue, user, or any other model with media capabilities
 		 *
@@ -96,33 +120,9 @@
 		public model!: ChalkySticks.Model.Venue | ChalkySticks.Model.User;
 
 		/**
-		 * Title to display above the uploader
-		 *
-		 * @type {string}
-		 */
-		@Prop({ default: 'Upload Images' })
-		public title!: string;
-
-		/**
-		 * Whether to allow multiple file selection
-		 *
-		 * @type {boolean}
-		 */
-		@Prop({ default: true })
-		public allowMultiple!: boolean;
-
-		/**
-		 * Whether to show metadata fields (subgroup, notes)
-		 *
-		 * @type {boolean}
-		 */
-		@Prop({ default: true })
-		public enableMetadata!: boolean;
-
-		/**
 		 * Whether to include notes field
 		 *
-		 * @type {boolean}
+		 * @type boolean
 		 */
 		@Prop({ default: true })
 		public showNotes!: boolean;
@@ -130,7 +130,7 @@
 		/**
 		 * Whether to include subgroup selection
 		 *
-		 * @type {boolean}
+		 * @type boolean
 		 */
 		@Prop({ default: true })
 		public showSubgroupSelect!: boolean;
@@ -138,7 +138,7 @@
 		/**
 		 * Available subgroups for image categorization
 		 *
-		 * @type {string[]}
+		 * @type string[]
 		 */
 		@Prop({
 			default: () => ['exterior', 'image', 'interior', 'person', 'table', 'video'],
@@ -146,12 +146,12 @@
 		public subgroups!: string[];
 
 		/**
-		 * Type of files to accept
+		 * Title to display above the uploader
 		 *
-		 * @type {string}
+		 * @type string
 		 */
-		@Prop({ default: 'image/*' })
-		public acceptTypes!: string;
+		@Prop({ default: 'Upload Images' })
+		public title!: string;
 
 		/**
 		 * Preview images for display before upload
@@ -163,28 +163,28 @@
 		/**
 		 * Notes entered by user
 		 *
-		 * @type {string}
+		 * @type string
 		 */
 		protected notes: string = '';
 
 		/**
 		 * Selected subgroup from dropdown
 		 *
-		 * @type {string}
+		 * @type string
 		 */
 		protected selectedSubgroup: string = '';
 
 		/**
 		 * Whether a drag operation is in progress
 		 *
-		 * @type {boolean}
+		 * @type boolean
 		 */
 		protected isDragging: boolean = false;
 
 		/**
 		 * Whether an upload is currently in progress
 		 *
-		 * @type {boolean}
+		 * @type boolean
 		 */
 		protected isUploading: boolean = false;
 
@@ -444,9 +444,17 @@
 		 * @param {DragEvent} e - Drop event
 		 * @return {Promise<void>}
 		 */
-		protected async Handle_OnMediaUploadError(error: any): Promise<void> {
-			console.error('Media upload error:', error);
-			alert('An error occurred while uploading images. Please try again.');
+		protected async Handle_OnMediaUploadError(e: any): Promise<void> {
+			const message = e.detail?.request?.response?.data?.message || e.message;
+			const status = e.detail?.request?.status || 400;
+
+			// Alert (@todo remove me)
+			alert(`An error occurred: ${message}`);
+
+			this.$emit('error', {
+				message,
+				status,
+			});
 		}
 
 		/**
