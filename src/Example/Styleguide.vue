@@ -1032,6 +1032,36 @@
 
 			<section class="level-1">
 				<header>
+					<h3>Venue List (Horizontal)</h3>
+
+					<p><small>@todo add location</small></p>
+				</header>
+				<div>
+					<ChalkyVenueList class="horizontal" v-bind:venueCollection="venueCollection">
+						<template v-slot:before-list>
+							<p>Before List</p>
+						</template>
+						<template v-slot:after-list>
+							<p>After List</p>
+						</template>
+					</ChalkyVenueList>
+				</div>
+				<div>
+					<ChalkyUtilityPagination v-bind:collection="venueCollection" />
+				</div>
+				<br />
+				<div>
+					<ChalkyUtilityPagination
+						v-bind:showFirst="true"
+						v-bind:showLast="true"
+						v-bind:maxPagesToShow="3"
+						v-bind:collection="venueCollection"
+					/>
+				</div>
+			</section>
+
+			<section class="level-1">
+				<header>
 					<h3>Venue Card</h3>
 
 					<p>1. No model</p>
@@ -1128,36 +1158,6 @@
 							<div class="caption" v-if="venueModel">{{ venueModel.getName() }}</div>
 						</template>
 					</ChalkyVenueGallery>
-				</div>
-			</section>
-
-			<section class="level-1">
-				<header>
-					<h3>Venue List (Horizontal)</h3>
-
-					<p><small>@todo add location</small></p>
-				</header>
-				<div>
-					<ChalkyVenueList class="horizontal" v-bind:venueCollection="venueCollection">
-						<template v-slot:before-list>
-							<p>Before List</p>
-						</template>
-						<template v-slot:after-list>
-							<p>After List</p>
-						</template>
-					</ChalkyVenueList>
-				</div>
-				<div>
-					<ChalkyUtilityPagination v-bind:collection="venueCollection" />
-				</div>
-				<br />
-				<div>
-					<ChalkyUtilityPagination
-						v-bind:showFirst="true"
-						v-bind:showLast="true"
-						v-bind:maxPagesToShow="3"
-						v-bind:collection="venueCollection"
-					/>
 				</div>
 			</section>
 
@@ -1349,8 +1349,12 @@
 				console.log('Position', position);
 			}, 1000);
 
-			ChalkySticks.Utility.Geolocation.watchLocation((position) => {
-				console.log('Watched location', position);
+			ChalkySticks.Utility.Geolocation.watchLocation((e: any) => {
+				console.log('Watched location', e);
+
+				this.venueCollection.setQueryParam('latitude', e.position.coords.latitude);
+				this.venueCollection.setQueryParam('longitude', e.position.coords.longitude);
+				this.venueCollection.fetch();
 			});
 
 			// Unlock more pagination

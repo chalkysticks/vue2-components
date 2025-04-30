@@ -526,6 +526,10 @@
 				h3 {
 					font-size: var(--chalky-venue-list-title-font-size);
 				}
+
+				.inner {
+					max-width: 70%;
+				}
 			}
 
 			.confirmed {

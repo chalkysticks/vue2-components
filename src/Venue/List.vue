@@ -5,7 +5,7 @@
 			'state-loading': venueCollection.models.length == 0 || venueCollection.loading,
 		}"
 	>
-		<section class="list" v-bind:key="venueCollection.requestTime">
+		<section class="list" v-bind:key="venueCollection.models.length">
 			<slot name="before-list"></slot>
 
 			<VenueCard
