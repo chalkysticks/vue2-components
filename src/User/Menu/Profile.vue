@@ -180,6 +180,11 @@
 			// Show save indicator for 2 seconds
 			this.isSaved = true;
 			setTimeout(() => (this.isSaved = false), 2000);
+
+			// Events
+			ChalkySticks.Core.Event.Bus.dispatch('user:save', {
+				userModel: this.userModel,
+			});
 		}
 
 		/**
@@ -187,6 +192,11 @@
 		 */
 		protected async Handle_OnRemoveAvatar(): Promise<void> {
 			this.$forceUpdate();
+
+			// Events
+			ChalkySticks.Core.Event.Bus.dispatch('user.media:remove', {
+				userModel: this.userModel,
+			});
 		}
 
 		/**
@@ -194,6 +204,11 @@
 		 */
 		protected async Handle_OnSelectAvatar(): Promise<void> {
 			this.$forceUpdate();
+
+			// Events
+			ChalkySticks.Core.Event.Bus.dispatch('user.avatar:set', {
+				userModel: this.userModel,
+			});
 		}
 
 		// endregion: Event Handlers

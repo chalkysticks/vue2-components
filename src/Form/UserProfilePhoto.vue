@@ -101,7 +101,7 @@
 			// Remove from the user model's media collection
 			this.userModel.media.remove(avatarMediaModel);
 
-			// Emit
+			// Events
 			this.$emit('remove');
 		}
 
@@ -182,9 +182,6 @@
 
 			// Remove the photo we have now
 			await this.removePrimaryPhoto();
-
-			// Emit
-			this.$emit('remove');
 		}
 
 		/**
