@@ -126,31 +126,31 @@
 		}
 
 		/**
-		 * @todo, This can't be right. The newQuery[this.queryParameter] is not correct.
+		 * @todo Improve query detection to avoid triggering on hash-only route changes.
 		 *
-		 * @param Event e
+		 * @param object newQuery
+		 * @param object oldQuery
 		 * @return Promise<void>
 		 */
-		@Watch('$route.query', {
+		@Watch('$route', {
 			deep: true,
 			immediate: true,
 		})
 		@bind
-		protected async Handle_OnRouteChange(newQuery: any, oldQuery: any): Promise<void> {
-			if (!this.queryParameter || !newQuery) {
+		protected async Handle_OnRouteChange(newRoute: any, oldRoute: any): Promise<void> {
+			if (!this.queryParameter || !newRoute?.query) {
 				return;
 			}
 
-			// Get the new query value
-			const newQueryValue = newQuery[this.queryParameter];
+			// Prevent execution if query is unchanged (e.g., only the hash changed)
+			const oldValue = oldRoute?.query?.[this.queryParameter];
+			const newValue = newRoute.query[this.queryParameter];
 
-			// No query available
-			if (!newQueryValue) {
+			if (oldValue === newValue || !newValue) {
 				return;
 			}
 
-			// Search if the route changes
-			this.query = newQueryValue;
+			this.query = newValue;
 			this.search(this.query);
 		}
 	}
