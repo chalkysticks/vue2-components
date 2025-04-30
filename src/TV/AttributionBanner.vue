@@ -1,7 +1,7 @@
 <template>
 	<section class="chalky tv-attributionbanner">
 		<a v-bind:href="url" v-bind:title="title" target="_blank">
-			<figure class="thumbnail" v-bind:style="{ opacity: imageLoaded ? 1 : 0 }">
+			<figure class="thumbnail" v-bind:style="{ opacity: imageLoaded || imageFailed ? 1 : 0 }">
 				<img
 					crossorigin="anonymous"
 					referrerpolicy="no-referrer"
