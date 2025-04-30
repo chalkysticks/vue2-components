@@ -104,12 +104,6 @@
 		 */
 		@mounted
 		public afterCreate() {
-			// Check if we need to load data
-			if (this.venueCollection.shouldFetch()) {
-				this.venueCollection.fetch();
-			}
-
-			// Attach events
 			this.attachEvents();
 		}
 
