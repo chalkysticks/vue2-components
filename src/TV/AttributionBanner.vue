@@ -1,15 +1,17 @@
 <template>
 	<section class="chalky tv-attributionbanner">
 		<a v-bind:href="url" v-bind:title="title" target="_blank">
-			<figure class="thumbnail">
+			<figure class="thumbnail" v-bind:style="{ opacity: imageLoaded ? 1 : 0 }">
 				<img
 					crossorigin="anonymous"
 					referrerpolicy="no-referrer"
 					v-bind:src="thumbnailUrl"
 					v-if="!imageFailed"
 					v-on:error="Handle_OnImageError"
+					v-on:load="Handle_OnImageLoad"
 				/>
-				<img v-else class="icon filter-invert" src="~@chalkysticks/sass/build/asset/image/icon/social-youtube.svg" />
+
+				<img v-else class="icon filter-invert" src="~@chalkysticks/sass/build/asset/image/icon/social-youtube.svg" style="padding: 4px" />
 			</figure>
 
 			<div class="details">
@@ -70,11 +72,24 @@
 		private imageFailed: boolean = false;
 
 		/**
+		 * @type boolean
+		 */
+		private imageLoaded: boolean = false;
+
+		/**
 		 * @param Event e
 		 * @return Promise<void>
 		 */
 		protected async Handle_OnImageError(e: Event): Promise<void> {
 			this.imageFailed = true;
+		}
+
+		/**
+		 * @param Event e
+		 * @return Promise<void>
+		 */
+		protected async Handle_OnImageLoad(e: Event): Promise<void> {
+			this.imageLoaded = true;
 		}
 	}
 </script>
@@ -113,17 +128,19 @@
 			border: 2px solid var(--chalky-blue);
 			height: var(--thumbnail-size);
 			position: relative;
+			opacity: 0;
 			overflow: hidden;
+			transition: opacity 0.5s ease-in-out;
 			width: var(--thumbnail-size);
 
 			img {
 				// -4px because of border
-				height: calc(var(--thumbnail-size) + 4px);
-				left: -4px;
+				height: 100%;
+				left: 0;
 				object-fit: cover;
 				position: absolute;
-				top: -4px;
-				width: calc(var(--thumbnail-size) + 4px);
+				top: 0;
+				width: 100%;
 			}
 		}
 
