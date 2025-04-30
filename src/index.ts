@@ -47,6 +47,7 @@ import TvVideoTheater from './TV/VideoTheater.vue';
 import TvVideoYouTube from './TV/Video/YouTube.vue';
 import UserAvatar from './User/Avatar.vue';
 import UserMenu from './User/Menu.vue';
+import UtilityDots from './Utility/Dots.vue';
 import UtilityForceLandscape from './Utility/ForceLandscape.vue';
 import UtilityModal from './Utility/Modal.vue';
 import UtilityPagination from './Utility/Pagination.vue';
@@ -96,6 +97,7 @@ const components = {
 	TvVideoYouTube,
 	UserAvatar,
 	UserMenu,
+	UtilityDots,
 	UtilityForceLandscape,
 	UtilityModal,
 	UtilityPagination,
@@ -206,6 +208,7 @@ export {
 	TvVideoYouTube,
 	UserAvatar,
 	UserMenu,
+	UtilityDots,
 	UtilityForceLandscape,
 	UtilityPagination,
 	UtilityPortraitOverlay,

@@ -53,11 +53,14 @@
 
 			<slot name="after-item" v-bind:index="0"></slot>
 		</div>
+
+		<UtilityDots v-if="media.length > 1" v-bind:amount="media.length" v-bind:activeIndex="activeIndex" />
 	</section>
 </template>
 
 <script lang="ts">
 	import ChalkySticks from '@chalkysticks/sdk';
+	import UtilityDots from '../Utility/Dots.vue';
 	import ViewBase from '../Core/Base';
 	import gsap from 'gsap';
 	import { Component, Prop } from 'vue-property-decorator';
@@ -68,7 +71,11 @@
 	 * @package Venue
 	 * @project ChalkySticks SDK Vue2.0 Components
 	 */
-	@Component
+	@Component({
+		components: {
+			UtilityDots,
+		},
+	})
 	export default class VenueGallery extends ViewBase {
 		/**
 		 * @return number
@@ -471,6 +478,18 @@
 					transition: transform 0.2s ease;
 				}
 			}
+		}
+
+		.utility-dots {
+			bottom: 1rem;
+			left: 50%;
+			position: absolute;
+			transform: translateX(-50%);
+			z-index: 10;
+		}
+
+		&.grid .utility-dots {
+			display: none;
 		}
 	}
 
