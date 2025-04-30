@@ -2,11 +2,11 @@
 	<div class="chalky venue-card glass-panel" v-bind:class="'type-' + venueModel.getType()" v-bind:key="venueModel.id">
 		<slot name="before"></slot>
 
-		<VenueGallery
+		<UtilityGallery
 			ref="gallery"
 			v-bind:key="venueModel.id"
 			v-bind:interactive="interactiveGallery"
-			v-bind:venueModel="venueModel"
+			v-bind:model="venueModel"
 			v-on:tap:small="$emit('click:gallery')"
 		/>
 
@@ -195,7 +195,7 @@
 	import ButtonCheckin from '../Button/Checkin.vue';
 	import ChalkySticks from '@chalkysticks/sdk';
 	import UserAvatar from '../User/Avatar.vue';
-	import VenueGallery from './Gallery.vue';
+	import UtilityGallery from '../Utility/Gallery.vue';
 	import ViewBase from '../Core/Base';
 	import { Component, Prop, Ref } from 'vue-property-decorator';
 	import { beforeDestroy, mounted } from '../Utility/Decorators';
@@ -209,7 +209,7 @@
 		components: {
 			ButtonCheckin,
 			UserAvatar,
-			VenueGallery,
+			UtilityGallery,
 		},
 	})
 	export default class VenueCard extends ViewBase {
@@ -259,10 +259,10 @@
 		}
 
 		/**
-		 * @type VenueGallery
+		 * @type UtilityGallery
 		 */
 		@Ref('gallery')
-		protected venueGallery!: VenueGallery;
+		protected utilityGallery!: UtilityGallery;
 
 		/**
 		 * @type boolean
@@ -334,7 +334,7 @@
 			transform: translate(0, 2px);
 		}
 
-		.venue-gallery + .content {
+		.utility-gallery + .content {
 			background: rgba(255, 255, 255, 0.75);
 			color: var(--chalky-blue);
 			padding: 1rem;
@@ -495,7 +495,7 @@
 		max-width: 100%;
 		padding: 0;
 
-		.venue-gallery {
+		.utility-gallery {
 			align-items: center;
 			display: flex;
 			padding: 0;

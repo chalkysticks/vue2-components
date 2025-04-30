@@ -426,6 +426,24 @@
 					<ChalkyUserMenu v-bind:authModel="authModel" />
 				</div>
 			</section>
+
+			<section class="level-1">
+				<header>
+					<h3>User Card</h3>
+
+					<p>1. No model</p>
+					<p>2. With model</p>
+				</header>
+				<div class="push-bottom">
+					<ChalkyUserCard />
+				</div>
+				<div>
+					<ChalkyUserCard
+						v-bind:key="store.getters['authentication/user'].uniqueKey"
+						v-bind:userModel="store.getters['authentication/user']"
+					/>
+				</div>
+			</section>
 		</section>
 
 		<section class="level-0" v-if="tab == 'feed'" v-bind:class="{ 'state-active': tab == 'feed' }">
