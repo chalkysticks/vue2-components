@@ -2,7 +2,14 @@
 	<section class="chalky tv-attributionbanner">
 		<a v-bind:href="url" v-bind:title="title" target="_blank">
 			<figure class="thumbnail">
-				<img v-bind:src="thumbnailUrl" crossorigin="anonymous" referrerpolicy="no-referrer" />
+				<img
+					crossorigin="anonymous"
+					referrerpolicy="no-referrer"
+					v-bind:src="thumbnailUrl"
+					v-if="!imageFailed"
+					v-on:error="Handle_OnImageError"
+				/>
+				<img v-else class="icon filter-invert" src="~@chalkysticks/sass/build/asset/image/icon/social-youtube.svg" />
 			</figure>
 
 			<div class="details">
@@ -41,7 +48,7 @@
 		 * @return string
 		 */
 		private get title(): string {
-			return this.scheduleModel?.channel?.getTitle();
+			return this.scheduleModel?.channel?.getTitle() || '...';
 		}
 
 		/**
@@ -56,6 +63,19 @@
 		 */
 		@Prop()
 		public scheduleModel!: ChalkySticks.Model.Schedule;
+
+		/**
+		 * @type boolean
+		 */
+		private imageFailed: boolean = false;
+
+		/**
+		 * @param Event e
+		 * @return Promise<void>
+		 */
+		protected async Handle_OnImageError(e: Event): Promise<void> {
+			this.imageFailed = true;
+		}
 	}
 </script>
 
@@ -88,7 +108,7 @@
 		}
 
 		figure {
-			background-color: var(--chalky-blue);
+			background-color: var(--chalky-blue-4);
 			border-radius: var(--thumbnail-size);
 			border: 2px solid var(--chalky-blue);
 			height: var(--thumbnail-size);
@@ -97,12 +117,13 @@
 			width: var(--thumbnail-size);
 
 			img {
-				height: 100%;
-				left: 0;
+				// -4px because of border
+				height: calc(var(--thumbnail-size) + 4px);
+				left: -4px;
 				object-fit: cover;
 				position: absolute;
-				top: 0;
-				width: 100%;
+				top: -4px;
+				width: calc(var(--thumbnail-size) + 4px);
 			}
 		}
 
