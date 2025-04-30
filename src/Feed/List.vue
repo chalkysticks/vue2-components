@@ -39,6 +39,12 @@
 		public feedCollection!: ChalkySticks.Collection.Feed;
 
 		/**
+		 * @type boolean
+		 */
+		@Prop({ default: true })
+		public useLocation!: boolean;
+
+		/**
 		 * @constructor
 		 */
 		@mounted
@@ -74,6 +80,11 @@
 		 * @return Promise<void>
 		 */
 		protected async Handle_OnLocationChange(e: ChalkySticks.Core.Event.IDispatcherEvent<ChalkySticks.Core.IGeolocationPayload>): Promise<void> {
+			// Don't sync to global location
+			if (!this.useLocation) {
+				return;
+			}
+
 			const coordinates = ChalkySticks.Utility.Geolocation.simplifyCoordinates(e.data.position.coords, undefined, 1e2);
 
 			// Update query parameters

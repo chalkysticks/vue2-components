@@ -1343,15 +1343,15 @@
 			console.log('Venue Collection', this.venueCollection);
 
 			// Fetch geolocation
-			setTimeout(() => {
-				ChalkySticks.Utility.Geolocation.getLocation();
+			setTimeout(async () => {
+				const position = await ChalkySticks.Utility.Geolocation.getLocation();
+
+				console.log('Position', position);
 			}, 1000);
 
-			// ChalkySticks.Utility.Geolocation.watchLocation(undefined, undefined, {
-			// 	enableHighAccuracy: true,
-			// 	maximumAge: 0,
-			// 	timeout: 5000,
-			// });
+			ChalkySticks.Utility.Geolocation.watchLocation((position) => {
+				console.log('Watched location', position);
+			});
 
 			// Unlock more pagination
 			this.venueCollection.setQueryParam('kenefick', 'true');

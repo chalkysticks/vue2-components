@@ -88,7 +88,7 @@
 		/**
 		 * @type boolean
 		 */
-		@Prop({ default: true })
+		@Prop({ default: false })
 		public useLocation!: boolean;
 
 		/**
@@ -160,6 +160,8 @@
 		}
 
 		/**
+		 * This is ignored if we don't pass useLocation
+		 *
 		 * @param MouseEvent e
 		 * @return Promise<void>
 		 */
