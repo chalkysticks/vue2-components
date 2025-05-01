@@ -373,6 +373,18 @@
 					<ChalkyFormSearch placeholder="Superfine" type="venue" v-on:search:venue="Handle_OnSearchVenue" />
 				</div>
 			</section>
+
+			<section class="level-1">
+				<header>
+					<h3>Alert Prompt</h3>
+				</header>
+				<div class="background-chalky-white padded">
+					<button v-on:click="Handle_OnClickDialogAlert">Alert</button>
+					<button v-on:click="Handle_OnClickDialogConfirm">Confirm</button>
+					<button v-on:click="Handle_OnClickDialogPrompt">Prompt</button>
+					<button v-on:click="Handle_OnClickDialogCustom">Custom</button>
+				</div>
+			</section>
 		</section>
 
 		<section class="level-0" v-if="tab == 'content'" v-bind:class="{ 'state-active': tab == 'content' }">
@@ -1205,6 +1217,8 @@
 				<h2>Wallet</h2>
 			</header>
 		</section>
+
+		<UtilityAlertPrompt ref="alertPrompt" />
 	</main>
 </template>
 
@@ -1213,6 +1227,7 @@
 	import ChalkySticks from '@chalkysticks/sdk';
 	import ChalkyVideoTheater from '@/TV/TvVideoTheater.vue';
 	import UserAvatar from '../User/Avatar.vue';
+	import UtilityAlertPrompt from '../Utility/AlertPrompt.vue';
 	import { Component, Prop, Ref, Watch, Vue } from 'vue-property-decorator';
 	import { VideoTheaterChannel } from '@/TV/VideoTheater.vue';
 
@@ -1220,6 +1235,7 @@
 		components: {
 			AuthenticationAuthPanel,
 			UserAvatar,
+			UtilityAlertPrompt,
 		},
 	})
 	export default class Styleguide extends Vue {
@@ -1460,6 +1476,80 @@
 		 */
 		protected async Handle_OnClickCardGallery(): Promise<void> {
 			console.log('click card gallery');
+		}
+
+		/**
+		 * @return Promise<void>
+		 */
+		protected async Handle_OnClickDialogAlert(): Promise<void> {
+			const alertPrompt = this.$refs.alertPrompt as UtilityAlertPrompt;
+			await alertPrompt.alert('This is a basic alert message!', 'Basic Alert');
+		}
+
+		/**
+		 * @return Promise<void>
+		 */
+		protected async Handle_OnClickDialogConfirm(): Promise<void> {
+			const alertPrompt = this.$refs.alertPrompt as UtilityAlertPrompt;
+			alertPrompt.confirm('Are you sure you want to proceed with this action?', 'Confirmation');
+
+			alertPrompt.$once('result', (result) => {
+				console.log('$once', result);
+			});
+
+			ChalkySticks.Core.Event.Bus.once('alert', (result) => {
+				console.log('ChalkySticks.Core.Event.once', result);
+			});
+		}
+
+		/**
+		 * @return Promise<void>
+		 */
+		protected async Handle_OnClickDialogPrompt(): Promise<void> {
+			const alertPrompt = this.$refs.alertPrompt as UtilityAlertPrompt;
+			const result = await alertPrompt.prompt('Please select a difficulty level:', 'Game Settings', [
+				{
+					name: 'difficulty',
+					text: 'Easy',
+					type: 'tertiary',
+					value: 'easy',
+				},
+				{
+					name: 'difficulty',
+					text: 'Medium',
+					type: 'secondary',
+					value: 'medium',
+				},
+				{
+					name: 'difficulty',
+					text: 'Hard',
+					type: 'primary',
+					value: 'hard',
+				},
+			]);
+
+			console.log('Prompt result:', result);
+		}
+
+		/**
+		 * @return Promise<void>
+		 */
+		protected async Handle_OnClickDialogCustom(): Promise<void> {
+			const alertPrompt = this.$refs.alertPrompt as UtilityAlertPrompt;
+			await alertPrompt.show('Your session is about to expire. What would you like to do?', 'Session Expiring', [
+				{
+					callback: () => console.log('Logging out...'),
+					text: 'Logout',
+					type: 'tertiary',
+					value: 'logout',
+				},
+				{
+					callback: () => console.log('Extending session...'),
+					text: 'Continue',
+					type: 'primary',
+					value: 'continue',
+				},
+			]);
 		}
 
 		/**

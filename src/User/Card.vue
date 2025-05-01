@@ -45,7 +45,7 @@
 
 			<section class="games-played">
 				<div class="inner">
-					<div class="game" v-for="game in userModel.games">
+					<div class="game" v-bind:key="game.id" v-for="game in userModel.games">
 						{{ game.getValue() }}
 					</div>
 				</div>

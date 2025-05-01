@@ -46,9 +46,12 @@ import TvVideoPreview from './TV/VideoPreview.vue';
 import TvVideoTheater from './TV/VideoTheater.vue';
 import TvVideoYouTube from './TV/Video/YouTube.vue';
 import UserAvatar from './User/Avatar.vue';
+import UserCard from './User/Card.vue';
 import UserMenu from './User/Menu.vue';
+import UtilityAlertPrompt from './Utility/AlertPrompt.vue';
 import UtilityDots from './Utility/Dots.vue';
 import UtilityForceLandscape from './Utility/ForceLandscape.vue';
+import UtilityGallery from './Utility/Gallery.vue';
 import UtilityModal from './Utility/Modal.vue';
 import UtilityPagination from './Utility/Pagination.vue';
 import UtilityPortraitOverlay from './Utility/PortraitOverlay.vue';
@@ -96,9 +99,12 @@ const components = {
 	TvVideoTheater,
 	TvVideoYouTube,
 	UserAvatar,
+	UserCard,
 	UserMenu,
+	UtilityAlertPrompt,
 	UtilityDots,
 	UtilityForceLandscape,
+	UtilityGallery,
 	UtilityModal,
 	UtilityPagination,
 	UtilityPortraitOverlay,
@@ -207,9 +213,12 @@ export {
 	TvVideoTheater,
 	TvVideoYouTube,
 	UserAvatar,
+	UserCard,
 	UserMenu,
+	UtilityAlertPrompt,
 	UtilityDots,
 	UtilityForceLandscape,
+	UtilityGallery,
 	UtilityPagination,
 	UtilityPortraitOverlay,
 	UtilityScrollToBegin,
