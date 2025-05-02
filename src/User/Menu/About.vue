@@ -18,6 +18,8 @@
 			<div class="app-info text-center">
 				<h3>ChalkySticks</h3>
 				<p class="version">Version 3.0</p>
+
+				<!-- Send app feedback -->
 			</div>
 
 			<footer>

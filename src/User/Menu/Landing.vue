@@ -102,6 +102,14 @@
 
 <style lang="scss">
 	.chalky.user-menu-landing {
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+
+		nav {
+			flex-grow: 1;
+		}
+
 		ul li button {
 			padding: 0.5rem 0;
 			width: 100%;

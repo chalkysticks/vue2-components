@@ -25,6 +25,8 @@ import ButtonLogin from './Button/Login.vue';
 import ButtonSignup from './Button/Signup.vue';
 import ContentItem from './Content/Item.vue';
 import ContentList from './Content/List.vue';
+import FactBanner from './Fact/Banner.vue';
+import FactCard from './Fact/Card.vue';
 import FeedCard from './Feed/Card.vue';
 import FeedList from './Feed/List.vue';
 import FormImageUploader from './Form/ImageUploader.vue';
@@ -78,6 +80,8 @@ const components = {
 	ButtonSignup,
 	ContentItem,
 	ContentList,
+	FactBanner,
+	FactCard,
 	FeedCard,
 	FeedList,
 	FormImageUploader,
@@ -192,6 +196,8 @@ export {
 	ButtonSignup,
 	ContentItem,
 	ContentList,
+	FactBanner,
+	FactCard,
 	FeedCard,
 	FeedList,
 	FormImageUploader,

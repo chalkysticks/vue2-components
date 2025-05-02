@@ -5,6 +5,7 @@
 				<a href="#general">General</a>
 				<a href="#authentication">Authentication</a>
 				<a href="#content">Content</a>
+				<a href="#extras">Extras</a>
 				<a href="#branding">Branding</a>
 				<a href="#feed">Feed</a>
 				<a href="#media">Media</a>
@@ -409,6 +410,32 @@
 
 				<div>
 					<ChalkyContentItem v-bind:contentModel="contentCollection.at(0)" />
+				</div>
+			</section>
+		</section>
+
+		<section class="level-0" v-if="tab == 'extras'" v-bind:class="{ 'state-active': tab == 'extras' }">
+			<header>
+				<h2>Extras</h2>
+			</header>
+
+			<section class="level-1">
+				<header>
+					<h3>Fact Banner</h3>
+				</header>
+
+				<div>
+					<ChalkyFactBanner />
+				</div>
+			</section>
+
+			<section class="level-1">
+				<header>
+					<h3>Fact Card</h3>
+				</header>
+
+				<div>
+					<ChalkyFactCard />
 				</div>
 			</section>
 		</section>
