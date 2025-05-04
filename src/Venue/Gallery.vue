@@ -454,21 +454,21 @@
 					width: 100%;
 					overflow: hidden;
 					border-radius: 5px;
-				}
 
-				img {
-					height: 100%;
-					width: 100%;
-					object-fit: cover;
-					opacity: 0;
-					transition: opacity 0.25s var(--ease-out-quad);
+					img {
+						height: 100%;
+						width: 100%;
+						object-fit: cover;
+						opacity: 0;
+						transition: opacity 0.25s var(--ease-out-quad);
 
-					&.is-loaded {
-						opacity: 1;
-					}
+						&.is-loaded {
+							opacity: 1;
+						}
 
-					&.no-photo.is-loaded {
-						display: initial;
+						&.no-photo.is-loaded {
+							display: initial;
+						}
 					}
 				}
 
