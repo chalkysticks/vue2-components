@@ -25,6 +25,34 @@
 				</div>
 			</section>
 
+			<section class="reactions" v-if="false">
+				<div class="inner">
+					<span>{{ venueModel.reactions.like.length }} Likes</span>
+				</div>
+			</section>
+
+			<section class="comments" v-if="false">
+				<div class="inner">
+					<span>{{ venueModel.comments.length }} Comments</span>
+
+					<div v-bind:key="commentModel.id" v-for="commentModel in venueModel.comments" class="comment">
+						<UserAvatar size="xs" v-bind:key="commentModel.id" v-bind:userModel="commentModel.user" />
+
+						<span class="text">{{ commentModel.getBody() }}</span>
+
+						<!-- Check for children -->
+						<div v-if="commentModel.children.length" class="children">
+							<span class="children-count">+{{ commentModel.children.length }} more</span>
+
+							<div class="child" v-for="childCommentModel in commentModel.children" v-bind:key="childCommentModel.id">
+								<UserAvatar size="xs" v-bind:userModel="childCommentModel.user" />
+								<span class="text">{{ childCommentModel.getBody() }}</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
 			<section class="confirmed">
 				<img v-if="hasTableImage" class="icon size-xs" src="~@chalkysticks/sass/build/asset/image/icon/confirmed-venue.svg" />
 			</section>
@@ -466,6 +494,44 @@
 
 				&:nth-child(5) {
 					transform: translate(8rem, 0);
+				}
+			}
+		}
+
+		// @TODO MOVE ME TO MY OWN COMPONENT
+		// SAME WITH REACTIONS
+		.comments {
+			margin: 1rem;
+			outline: 2px solid;
+			padding: 1rem;
+
+			.inner {
+				display: flex;
+				flex-direction: column;
+				gap: 0.5rem;
+			}
+
+			.comment {
+				.user-avatar {
+					float: left;
+					margin-right: 1rem;
+				}
+
+				.text {
+					flex-grow: 1;
+				}
+
+				.children {
+					margin-left: 2rem;
+
+					.children-count {
+						font-weight: bold;
+					}
+
+					.child {
+						display: flex;
+						gap: 0.5rem;
+					}
 				}
 			}
 		}

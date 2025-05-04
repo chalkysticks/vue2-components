@@ -1128,7 +1128,7 @@
 					<ChalkyVenueCard />
 				</div>
 				<div>
-					<ChalkyVenueCard v-bind:venueModel="venueCollection.at(0)" v-on:click:gallery="Handle_OnClickCardGallery">
+					<ChalkyVenueCard v-bind:venueModel="venueModel" v-on:click:gallery="Handle_OnClickCardGallery">
 						<template v-slot:checkin:action="{ venueModel }">
 							<button class="size-x-small" v-bind:id="venueModel.id">Scan Table</button>
 						</template>
@@ -1346,6 +1346,17 @@
 		public venueCollection!: ChalkySticks.Collection.Venue;
 
 		/**
+		 * @type ChalkySticks/Model/Venue
+		 */
+		@Prop({
+			default: () =>
+				ChalkySticks.Factory.Venue.model({
+					limit: 12,
+				}),
+		})
+		public venueModel!: ChalkySticks.Model.Venue;
+
+		/**
 		 * @type ChalkySticks.Enum.GameType
 		 */
 		protected activeChannel: ChalkySticks.Enum.GameType = ChalkySticks.Enum.GameType.All;
@@ -1418,6 +1429,8 @@
 				this.venueCollection.fetch();
 			});
 
+			this.venueModel.id = '635';
+
 			// Unlock more pagination
 			this.venueCollection.setQueryParam('kenefick', 'true');
 			this.venueCollection.setQueryParam('distance', '1000');
@@ -1426,6 +1439,7 @@
 			this.venueCollection.fetch();
 			this.liveScheduleCollection.fetch();
 			this.scheduleCollection.fetch();
+			this.venueModel.fetch();
 
 			// Listeners
 			window.addEventListener('hashchange', this.Handle_OnHashChange);
