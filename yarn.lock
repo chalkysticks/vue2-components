@@ -1069,8 +1069,8 @@
   resolved "https://codeload.github.com/chalkysticks/mrm-preset/tar.gz/ffb5de89f32263360d52934953a34fd823f0e841"
 
 "@chalkysticks/sass@github:chalkysticks/sass-theme":
-  version "1.11.1"
-  resolved "https://codeload.github.com/chalkysticks/sass-theme/tar.gz/19069100043eebd189555b9ca1278f324dd45d18"
+  version "1.11.5"
+  resolved "https://codeload.github.com/chalkysticks/sass-theme/tar.gz/b19ac885bc3a85f59ac7fe893e163a53fccacbca"
   dependencies:
     bootstrap "^5.0.1"
 
