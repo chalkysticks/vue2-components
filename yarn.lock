@@ -1083,8 +1083,8 @@
     restmc "git+https://github.com/mattkenefick/restmc.git"
 
 "@chalkysticks/sdk-core@github:chalkysticks/sdk-core":
-  version "1.39.4"
-  resolved "https://codeload.github.com/chalkysticks/sdk-core/tar.gz/de0e7a358752ee57df828147ab21379e0d1a85a8"
+  version "1.39.6"
+  resolved "https://codeload.github.com/chalkysticks/sdk-core/tar.gz/4b57f8c7fc9f1e48f77499201d7ba61c907f17fc"
   dependencies:
     "@chalkysticks/mrm-preset" "github:chalkysticks/mrm-preset"
     "@types/googlemaps" "^3.43.3"
@@ -1134,8 +1134,8 @@
     restmc "git+https://github.com/mattkenefick/restmc.git"
 
 "@chalkysticks/sdk-venues@github:chalkysticks/sdk-venues#v1":
-  version "1.8.3"
-  resolved "https://codeload.github.com/chalkysticks/sdk-venues/tar.gz/7e335ee347005b9a7a0f7abfe85349194bd61e1e"
+  version "1.8.5"
+  resolved "https://codeload.github.com/chalkysticks/sdk-venues/tar.gz/15cc52c031a0d22014ba27bd5751124d4f226073"
   dependencies:
     "@chalkysticks/mrm-preset" "github:chalkysticks/mrm-preset"
     "@chalkysticks/sdk-core" "github:chalkysticks/sdk-core"
@@ -1144,8 +1144,8 @@
     restmc "git+https://github.com/mattkenefick/restmc.git"
 
 "@chalkysticks/sdk@github:chalkysticks/sdk":
-  version "1.40.1"
-  resolved "https://codeload.github.com/chalkysticks/sdk/tar.gz/8dd127689cfcb263bd8c4e969a6f9cec948375ab"
+  version "1.42.0"
+  resolved "https://codeload.github.com/chalkysticks/sdk/tar.gz/8d267982fdd68e73d0749ece4ecbf15854853668"
   dependencies:
     "@chalkysticks/sdk-authentication" "github:chalkysticks/sdk-authentication"
     "@chalkysticks/sdk-core" "github:chalkysticks/sdk-core"
