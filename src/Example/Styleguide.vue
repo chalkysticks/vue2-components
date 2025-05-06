@@ -13,6 +13,8 @@
 				<a href="#user">User</a>
 				<a href="#utility">Utility</a>
 				<a href="#venues">Venues</a>
+				<a href="#comments">Comments</a>
+				<a href="#reactions">Reactions</a>
 				<a href="#wallet">Wallet</a>
 			</nav>
 		</header>
@@ -1082,6 +1084,71 @@
 			</section>
 		</section>
 
+		<section class="level-0" v-if="tab == 'reactions'" v-bind:class="{ 'state-active': tab == 'reactions' }">
+			<header>
+				<h2>Reactions</h2>
+			</header>
+
+			<section class="level-1">
+				<header>
+					<h3>Auth</h3>
+				</header>
+
+				<div>
+					<ChalkyAuthenticationAuthPanel v-bind:allowForgotPassword="true" v-bind:allowSignup="true" v-bind:authModel="authModel" />
+				</div>
+			</section>
+
+			<section class="level-1">
+				<header>
+					<h3>Reaction Button</h3>
+
+					<p><small>@todo add location</small></p>
+				</header>
+				<div>
+					<ChalkyReactionButton />
+				</div>
+			</section>
+		</section>
+
+		<section class="level-0" v-if="tab == 'comments'" v-bind:class="{ 'state-active': tab == 'comments' }">
+			<header>
+				<h2>Comments</h2>
+			</header>
+
+			<section class="level-1">
+				<header>
+					<h3>Auth</h3>
+				</header>
+
+				<div>
+					<ChalkyAuthenticationAuthPanel v-bind:allowForgotPassword="true" v-bind:allowSignup="true" v-bind:authModel="authModel" />
+				</div>
+			</section>
+
+			<section class="level-1">
+				<header>
+					<h3>Comment Form</h3>
+
+					<p><small>@todo add location</small></p>
+				</header>
+				<div>
+					<ChalkyCommentForm />
+				</div>
+			</section>
+
+			<section class="level-1">
+				<header>
+					<h3>Comment List</h3>
+
+					<p><small>@todo add location</small></p>
+				</header>
+				<div>
+					<ChalkyCommentList v-bind:model="venueModel" />
+				</div>
+			</section>
+		</section>
+
 		<section class="level-0" v-if="tab == 'venues'" v-bind:class="{ 'state-active': tab == 'venues' }">
 			<header>
 				<h2>Venues</h2>
@@ -1429,6 +1496,7 @@
 				this.venueCollection.fetch();
 			});
 
+			this.venueModel.setQueryParam('include', 'comments,reactions');
 			this.venueModel.id = '635';
 
 			// Unlock more pagination

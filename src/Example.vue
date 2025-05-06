@@ -2,6 +2,8 @@
 	<div class="root">
 		<Styleguide />
 
+		<!-- <ChalkyCommentForm /> -->
+
 		<!-- <AlertPromptExample /> -->
 		<!-- <VideoTheater /> -->
 		<!-- <ForcedLandscape /> -->
@@ -29,7 +31,9 @@
 </script>
 
 <style lang="scss">
-	.app {
+	.root {
+		background: #333;
 		height: 100%;
+		min-height: 100svh;
 	}
 </style>

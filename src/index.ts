@@ -23,6 +23,9 @@ import BrandingSplash from './Branding/Splash.vue';
 import BrandingStandard from './Branding/Standard.vue';
 import ButtonLogin from './Button/Login.vue';
 import ButtonSignup from './Button/Signup.vue';
+import CommentForm from './Comment/Form.vue';
+import CommentItem from './Comment/Item.vue';
+import CommentList from './Comment/List.vue';
 import ContentItem from './Content/Item.vue';
 import ContentList from './Content/List.vue';
 import FactBanner from './Fact/Banner.vue';
@@ -35,6 +38,9 @@ import MediaCardSwipe from './Media/CardSwipe.vue';
 import MediaFeed from './Media/Feed.vue';
 import MediaUser from './Media/User.vue';
 import MediaVenue from './Media/Venue.vue';
+import ReactionButton from './Reaction/Button.vue';
+import ReactionList from './Reaction/List.vue';
+import ReactionSummary from './Reaction/Summary.vue';
 import TvAttributionBanner from './TV/AttributionBanner.vue';
 import TvLiveList from './TV/LiveList.vue';
 import TvLowerThird from './TV/LowerThird.vue';
@@ -78,6 +84,9 @@ const components = {
 	BrandingStandard,
 	ButtonLogin,
 	ButtonSignup,
+	CommentForm,
+	CommentItem,
+	CommentList,
 	ContentItem,
 	ContentList,
 	FactBanner,
@@ -90,6 +99,9 @@ const components = {
 	MediaFeed,
 	MediaUser,
 	MediaVenue,
+	ReactionButton,
+	ReactionList,
+	ReactionSummary,
 	TvAttributionBanner,
 	TvLiveList,
 	TvLowerThird,
@@ -194,6 +206,9 @@ export {
 	BrandingStandard,
 	ButtonLogin,
 	ButtonSignup,
+	CommentForm,
+	CommentItem,
+	CommentList,
 	ContentItem,
 	ContentList,
 	FactBanner,
@@ -206,6 +221,9 @@ export {
 	MediaFeed,
 	MediaUser,
 	MediaVenue,
+	ReactionButton,
+	ReactionList,
+	ReactionSummary,
 	TvAttributionBanner,
 	TvLiveList,
 	TvLowerThird,

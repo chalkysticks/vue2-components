@@ -216,11 +216,10 @@
 		 * @return Promise<void>
 		 */
 		protected async Handle_OnKeyDown(e: KeyboardEvent): Promise<void> {
-			e.preventDefault();
-
 			switch (e.key) {
 				case 'Escape':
 					if (this.visible) {
+						e.preventDefault();
 						this.close(null);
 					}
 					break;
@@ -230,6 +229,7 @@
 						const primaryButton = this.buttons.find((btn) => btn.type === 'primary');
 
 						if (primaryButton) {
+							e.preventDefault();
 							await this.Handle_OnClickButton(primaryButton);
 						}
 					}
