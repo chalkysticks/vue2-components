@@ -1075,16 +1075,16 @@
     bootstrap "^5.0.1"
 
 "@chalkysticks/sdk-authentication@github:chalkysticks/sdk-authentication":
-  version "1.7.8"
-  resolved "https://codeload.github.com/chalkysticks/sdk-authentication/tar.gz/9d778b1a4b1a9bda9bfe6f74fe60e3679ca8517c"
+  version "1.7.9"
+  resolved "https://codeload.github.com/chalkysticks/sdk-authentication/tar.gz/a28ad56bc33edae5d5e930598b94de45dc0005fd"
   dependencies:
     "@chalkysticks/mrm-preset" "github:chalkysticks/mrm-preset"
     "@chalkysticks/sdk-core" "github:chalkysticks/sdk-core"
     restmc "git+https://github.com/mattkenefick/restmc.git"
 
 "@chalkysticks/sdk-core@github:chalkysticks/sdk-core":
-  version "1.40.0"
-  resolved "https://codeload.github.com/chalkysticks/sdk-core/tar.gz/b7b4b22b38daff8a25c15f4995531a32571f28f0"
+  version "1.40.3"
+  resolved "https://codeload.github.com/chalkysticks/sdk-core/tar.gz/fc5b3a4c14fb0738999197c98c0aa58608e1bff6"
   dependencies:
     "@chalkysticks/mrm-preset" "github:chalkysticks/mrm-preset"
     "@types/googlemaps" "^3.43.3"
@@ -1144,8 +1144,8 @@
     restmc "git+https://github.com/mattkenefick/restmc.git"
 
 "@chalkysticks/sdk@github:chalkysticks/sdk":
-  version "1.44.0"
-  resolved "https://codeload.github.com/chalkysticks/sdk/tar.gz/ee661639516735e58e7b11d48ba5185fb5b1e401"
+  version "1.48.0"
+  resolved "https://codeload.github.com/chalkysticks/sdk/tar.gz/85c3b30dcc62b9655de65ed14970ceed2c8ab682"
   dependencies:
     "@chalkysticks/sdk-authentication" "github:chalkysticks/sdk-authentication"
     "@chalkysticks/sdk-core" "github:chalkysticks/sdk-core"
@@ -1460,9 +1460,9 @@
     "@types/node" "*"
 
 "@types/node@*":
-  version "22.15.12"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-22.15.12.tgz#9ce54e51e09536faa94e4ec300c4728ee83bfa85"
-  integrity sha512-K0fpC/ZVeb8G9rm7bH7vI0KAec4XHEhBam616nVJCV51bKzJ6oA3luG4WdKoaztxe70QaNjS/xBmcDLmr4PiGw==
+  version "22.15.14"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-22.15.14.tgz#889fd356a04d003a6d5650ccc003ef4d712430d7"
+  integrity sha512-BL1eyu/XWsFGTtDWOYULQEs4KR0qdtYfCxYAUYRoB7JP7h9ETYLgQTww6kH8Sj2C0pFGgrpM0XKv6/kbIzYJ1g==
   dependencies:
     undici-types "~6.21.0"
 

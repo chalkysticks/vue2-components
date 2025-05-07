@@ -2,13 +2,13 @@
 	<section class="chalky comment-list">
 		<slot name="before"></slot>
 
-		<header v-if="showHeader">
+		<header v-if="showHeader" v-bind:key="model.comments.uniqueKey">
 			<slot name="header">
 				<h3>Comments ({{ model.comments.length }})</h3>
 			</slot>
 		</header>
 
-		<div class="comment-container">
+		<div class="comment-container" v-bind:key="model.comments.uniqueKey">
 			<!-- Loading spinner when fetching comments -->
 			<div class="loading" v-if="isLoading">
 				<slot name="loading">
@@ -24,7 +24,7 @@
 			</div>
 
 			<!-- Comment list -->
-			<div class="comments" v-bind:key="model.uniqueKey" v-else>
+			<div class="comments" v-else>
 				<slot name="comments:before"></slot>
 
 				<CommentItem
@@ -212,7 +212,7 @@
 		.comments {
 			display: flex;
 			flex-direction: column;
-			gap: 1.5rem;
+			gap: 1rem;
 		}
 
 		.main-comment-form {
@@ -236,8 +236,8 @@
 		// Apply border styling to top-level comment items
 		// Use deep selector to style components
 		.chalky.comment-item {
-			border-bottom: 1px solid var(--chalky-grey-light, #e0e0e0);
-			padding-bottom: 1.5rem;
+			border: 0;
+			padding: 1rem;
 
 			&:last-child {
 				border-bottom: none;

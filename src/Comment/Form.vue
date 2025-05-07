@@ -174,6 +174,18 @@
 		protected isSubmitting: boolean = false;
 
 		/**
+		 * Focus if it's a reply
+		 *
+		 * @return void
+		 */
+		@mounted
+		protected autoFocus(): void {
+			if (this.isReply) {
+				this.focus();
+			}
+		}
+
+		/**
 		 * Clears the comment form
 		 *
 		 * @return void
@@ -200,12 +212,16 @@
 
 			// Context model is a Comment
 			if (this.isReply) {
-				await this.contextModel.reply(params).save();
+				const commentModel = await this.contextModel.reply(params);
+				await commentModel.save();
+
+				this.contextModel.children.push(commentModel);
 			}
 
 			// Context model is a commentable
 			else {
 				await this.contextModel.comments.comment(params).save();
+				console.log('commenting', this.contextModel);
 			}
 		}
 

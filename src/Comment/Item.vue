@@ -1,11 +1,11 @@
 <template>
-	<div class="chalky comment-item" v-bind:class="{ 'with-replies': commentModel.children && commentModel.children.length > 0 }">
+	<div class="chalky comment-item" v-bind:class="{ 'with-replies': commentModel.children.length > 0 }">
 		<!-- Comment content -->
-		<div class="comment">
+		<div class="comment" v-bind:key="commentModel.uniqueKey">
 			<slot name="comment" v-bind:commentModel="commentModel">
 				<div class="user">
 					<slot name="user" v-bind:userModel="commentModel.user">
-						<UserAvatar v-bind:userModel="commentModel.user" size="sm" />
+						<UserAvatar v-bind:userModel="commentModel.user" size="xs" />
 					</slot>
 				</div>
 
@@ -15,7 +15,8 @@
 							<strong>{{ commentModel.user.getName() }}</strong>
 						</slot>
 
-						<span class="timestamp">{{ commentModel.getCreatedAt() }}</span>
+						<!-- <span class="timestamp">{{ commentModel.getCreatedAt('MM DD YYYY') }}</span> -->
+						<small class="timestamp">{{ commentModel.getCreatedAtTimeAgo() }}</small>
 					</div>
 
 					<div class="body">{{ commentModel.getBody() }}</div>
@@ -46,7 +47,7 @@
 		</div>
 
 		<!-- Replies (nested comments) -->
-		<div class="replies" v-if="commentModel.children && commentModel.children.length > 0">
+		<div class="replies" v-bind:key="commentModel.children.uniqueKey" v-if="commentModel.children.length > 0">
 			<slot name="replies:before"></slot>
 
 			<CommentItem
@@ -104,6 +105,7 @@
 
 		/**
 		 * The comment model to display
+		 *
 		 * @type any
 		 */
 		@Prop({ required: true })
@@ -111,6 +113,7 @@
 
 		/**
 		 * Whether this is a reply comment
+		 *
 		 * @type boolean
 		 */
 		@Prop({ default: false })
@@ -118,12 +121,14 @@
 
 		/**
 		 * Whether to show the reply form
+		 *
 		 * @type boolean
 		 */
 		protected showReplyForm: boolean = false;
 
 		/**
 		 * Toggle reply form visibility
+		 *
 		 * @return void
 		 */
 		protected toggleReplyForm(): void {
@@ -132,6 +137,7 @@
 
 		/**
 		 * Delete the comment
+		 *
 		 * @return Promise<void>
 		 */
 		protected async deleteComment(): Promise<void> {
@@ -144,7 +150,6 @@
 				this.$emit('delete', this.commentModel);
 			} catch (error) {
 				this.$emit('delete:error', error);
-				console.error('Failed to delete comment:', error);
 			}
 		}
 
@@ -153,6 +158,7 @@
 
 		/**
 		 * Handle click on reply button
+		 *
 		 * @return Promise<void>
 		 */
 		protected async Handle_OnClickReply(): Promise<void> {
@@ -161,6 +167,7 @@
 
 		/**
 		 * Handle click on delete button
+		 *
 		 * @return Promise<void>
 		 */
 		protected async Handle_OnClickDelete(): Promise<void> {
@@ -171,17 +178,23 @@
 
 		/**
 		 * Handle successful reply submission
+		 *
 		 * @param commentModel any
 		 * @return Promise<void>
 		 */
 		protected async Handle_OnReplySuccess(commentModel: any): Promise<void> {
 			this.showReplyForm = false;
+			this.commentModel.children.add(commentModel);
 			this.$emit('reply', commentModel);
+
+			console.log('sup bro', this.commentModel);
+
 			this.$forceUpdate();
 		}
 
 		/**
 		 * Handle successful deletion of child comment
+		 *
 		 * @param commentModel any
 		 * @return Promise<void>
 		 */
@@ -196,12 +209,6 @@
 
 <style lang="scss">
 	.chalky.comment-item {
-		&.with-replies {
-			.comment {
-				margin-bottom: 0.75rem;
-			}
-		}
-
 		.comment {
 			display: flex;
 			gap: 0.75rem;
@@ -210,37 +217,36 @@
 				flex-shrink: 0;
 			}
 
+			p:last-child {
+				margin-bottom: 0;
+			}
+
 			.content {
 				flex-grow: 1;
 				overflow-wrap: break-word;
 				word-break: break-word;
 
 				.author {
+					align-items: baseline;
 					display: flex;
 					gap: 0.5rem;
-					margin-bottom: 0.25rem;
-
-					.timestamp {
-						color: var(--chalky-grey-2, #999);
-						font-size: 0.85em;
-					}
 				}
 
 				.body {
-					margin-bottom: 0.5rem;
 					white-space: pre-line;
 				}
 
 				.actions {
 					display: flex;
 					gap: 1rem;
+					margin-top: 0.25rem;
 
 					.reply-button,
 					.delete-button {
 						background: none;
 						border: none;
 						cursor: pointer;
-						font-size: 0.85em;
+						font-size: 0.75rem;
 						padding: 0;
 						text-decoration: none;
 
@@ -250,11 +256,11 @@
 					}
 
 					.reply-button {
-						color: var(--chalky-blue, #0077cc);
+						color: var(--chalky-grey-2);
 					}
 
 					.delete-button {
-						color: var(--chalky-red, #cc0000);
+						color: var(--chalky-red);
 					}
 				}
 			}
@@ -267,32 +273,18 @@
 		}
 
 		.replies {
-			margin-left: 2.5rem;
-			margin-top: 0.75rem;
 			display: flex;
 			flex-direction: column;
-			gap: 1rem;
+			gap: 0.5rem;
+			margin-left: 2.5rem;
+			margin-top: 0.75rem;
 		}
 
-		&.reply-item {
-			padding-top: 0.5rem;
-
-			&:not(:last-child) {
-				padding-bottom: 0.5rem;
-				border-bottom: 1px solid var(--chalky-grey-lighter, #f0f0f0);
-			}
-		}
-	}
-
-	// Media Queries
-	// ---------------------------------------------------------------------------
-
-	@media (max-width: 576px) {
-		.chalky.comment-item {
-			.reply-form-container,
-			.replies {
-				margin-left: 1.5rem;
-			}
+		// Apply border styling to top-level comment items
+		// Use deep selector to style components
+		.reply-item {
+			background-color: var(--chalky-blue-3);
+			border-radius: 0.5rem;
 		}
 	}
 </style>
