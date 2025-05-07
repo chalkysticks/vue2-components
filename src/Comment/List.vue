@@ -39,14 +39,12 @@
 			</div>
 		</div>
 
-		<!-- Main comment form -->
 		<div v-if="showCommentForm && isAuthenticated" class="main-comment-form">
 			<slot name="comment-form">
 				<CommentForm v-bind:contextModel="model" v-on:submit:error="$emit('comment:error', $event)" v-on:submit="Handle_OnCommentSuccess" />
 			</slot>
 		</div>
 
-		<!-- Login prompt if not authenticated -->
 		<div v-else-if="showCommentForm && !isAuthenticated" class="login-prompt">
 			<slot name="login-prompt">
 				<p>
@@ -134,33 +132,6 @@
 		 * @type boolean
 		 */
 		protected isLoading: boolean = false;
-
-		/**
-		 * Load comments when parent model changes
-		 * @return void
-		 */
-		@mounted
-		protected async loadComments(): Promise<void> {
-			this.isLoading = true;
-
-			try {
-				// Fetch comments if they haven't been loaded yet
-				if (!this.model.comments || !this.model.comments.models.length) {
-					this.model.setQueryParams({
-						include: 'comments',
-					});
-
-					await this.model.fetch();
-				}
-
-				this.$emit('load');
-			} catch (error) {
-				this.$emit('load:error', error);
-				console.error('Failed to load comments:', error);
-			}
-
-			this.isLoading = false;
-		}
 
 		/**
 		 * Handle successful comment submission
