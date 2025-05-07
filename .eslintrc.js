@@ -433,6 +433,7 @@ module.exports = {
 		'template-curly-spacing': 0, // Require or disallow spacing around embedded expressions of template strings
 		'yield-star-spacing': 0, // Require or disallow spacing around the * in yield* expressions
 
+		'vue/no-useless-template-attributes': 0,
 		'vue/script-indent': 0,
 		'vue/html-indent': [
 			'error',

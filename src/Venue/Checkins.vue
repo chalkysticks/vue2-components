@@ -148,7 +148,6 @@
 		.whos-here-users {
 			display: grid;
 			place-items: center;
-			margin-bottom: 1rem;
 
 			> * {
 				grid-area: 1 / 1;

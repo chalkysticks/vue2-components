@@ -19,6 +19,12 @@
 				</div>
 			</section>
 
+			<section class="reactions">
+				<div class="inner">
+					<ReactionList v-bind:model="venueModel" />
+				</div>
+			</section>
+
 			<section class="rating">
 				<div class="inner">
 					<span>{{ rating }}</span>
@@ -73,7 +79,15 @@
 				</header>
 
 				<div class="inner" v-bind:key="venueModel.checkins.uniqueKey">
-					<VenueCheckins v-bind:venueModel="venueModel" />
+					<VenueCheckins
+						v-bind:venueModel="venueModel"
+						v-on:checkin:success="$emit('checkin:success')"
+						v-on:login:request="$emit('login:request', $event)"
+					>
+						<template v-slot:checkin:action v-bind:venueModel="venueModel">
+							<slot name="checkin:action" v-bind:venueModel="venueModel"></slot>
+						</template>
+					</VenueCheckins>
 				</div>
 			</section>
 
@@ -138,6 +152,7 @@
 	import ButtonCheckin from '../Button/Checkin.vue';
 	import ChalkySticks from '@chalkysticks/sdk';
 	import CommentList from '../Comment/List.vue';
+	import ReactionList from '../Reaction/List.vue';
 	import UserAvatar from '../User/Avatar.vue';
 	import UtilityGallery from '../Utility/Gallery.vue';
 	import VenueButtonCall from './Button/Call.vue';
@@ -158,6 +173,7 @@
 		components: {
 			ButtonCheckin,
 			CommentList,
+			ReactionList,
 			UserAvatar,
 			UtilityGallery,
 			VenueButtonCall,
