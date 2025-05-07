@@ -508,6 +508,8 @@
 			}
 		}
 
+		.comments,
+		.reactions,
 		.checkin-cta,
 		.today,
 		.hours,
