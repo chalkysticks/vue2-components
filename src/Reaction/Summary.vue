@@ -8,50 +8,52 @@
 			</slot>
 		</header>
 
-		<div v-if="totalReactions === 0" class="empty-state">
-			<slot name="empty">
-				<p>No reactions yet</p>
-			</slot>
-		</div>
-
-		<div v-else class="summary-content">
-			<!-- Overall reaction count -->
-			<div class="total-reactions">
-				<slot name="total" v-bind:totalReactions="totalReactions">
-					<strong>{{ totalReactions }}</strong>
-					{{ totalReactions === 1 ? 'reaction' : 'reactions' }}
+		<section v-bind:key="model.reactions.uniqueKey">
+			<div v-if="model.reactions.length === 0" class="empty-state">
+				<slot name="empty">
+					<p>No reactions yet</p>
 				</slot>
 			</div>
 
-			<!-- Reaction breakdown -->
-			<div class="reaction-breakdown">
-				<div class="reaction-item" v-bind:class="`type-${type}`" v-bind:key="type" v-for="(count, type) in filteredReactionCounts">
-					<slot v-bind:name="`item-${type}`" v-bind:count="count" v-bind:percentage="getPercentage(count)">
-						<div class="reaction-icon">
-							<i :class="getIconClass(type)"></i>
-						</div>
+			<div v-else class="summary-content">
+				<!-- Overall reaction count -->
+				<div class="total-reactions">
+					<slot name="total" v-bind:totalReactions="totalReactions">
+						<strong>{{ totalReactions }}</strong>
+						{{ totalReactions === 1 ? 'reaction' : 'reactions' }}
+					</slot>
+				</div>
 
-						<div class="reaction-info">
-							<div class="reaction-name">{{ formatReactionName(type) }}</div>
-
-							<div class="reaction-progress-container">
-								<div class="reaction-progress" v-bind:style="{ width: `${getPercentage(count)}%` }"></div>
+				<!-- Reaction breakdown -->
+				<div class="reaction-breakdown">
+					<div class="reaction-item" v-bind:class="`type-${type}`" v-bind:key="type" v-for="(count, type) in filteredReactionCounts">
+						<slot v-bind:name="`item-${type}`" v-bind:count="count" v-bind:percentage="getPercentage(count)">
+							<div class="reaction-icon">
+								<i v-bind:class="getIconClass(type)"></i>
 							</div>
 
-							<div class="reaction-count">{{ count }}</div>
-						</div>
+							<div class="reaction-info">
+								<div class="reaction-name">{{ formatReactionName(type) }}</div>
+
+								<div class="reaction-progress-container">
+									<div class="reaction-progress" v-bind:style="{ width: `${getPercentage(count)}%` }"></div>
+								</div>
+
+								<div class="reaction-count">{{ count }}</div>
+							</div>
+						</slot>
+					</div>
+				</div>
+
+				<!-- User reaction status -->
+				<div v-if="isAuthenticated && userReaction" class="user-reaction">
+					<slot name="user-reaction" v-bind:userReaction="userReaction">
+						You reacted with
+						<strong>{{ formatReactionName(userReaction) }}</strong>
 					</slot>
 				</div>
 			</div>
-
-			<!-- User reaction status -->
-			<div v-if="isAuthenticated && userReaction" class="user-reaction">
-				<slot name="user-reaction" v-bind:userReaction="userReaction">
-					You reacted with
-					<strong>{{ formatReactionName(userReaction) }}</strong>
-				</slot>
-			</div>
-		</div>
+		</section>
 
 		<slot name="after"></slot>
 	</section>
@@ -88,11 +90,8 @@
 			const counts: Record<string, number> = {};
 
 			if (this.model?.reactions) {
-				// Get all reaction types from the model
-				const types = Object.keys(this.model.reactions);
-
-				// Filter by specified types if needed
-				const filteredTypes = this.reactionTypes.length > 0 ? types.filter((type) => this.reactionTypes.includes(type)) : types;
+				const types = this.reactionTypes;
+				const filteredTypes = types.filter((type) => this.reactionTypes.includes(type));
 
 				// Count each reaction type
 				filteredTypes.forEach((type) => {
@@ -105,6 +104,7 @@
 
 		/**
 		 * Get reaction counts filtered by threshold
+		 *
 		 * @return Record<string, number>
 		 */
 		public get filteredReactionCounts(): Record<string, number> {
@@ -114,10 +114,12 @@
 			if (this.threshold > 0) {
 				Object.entries(this.reactionCounts).forEach(([type, count]) => {
 					const percentage = this.getPercentage(count);
+
 					if (percentage >= this.threshold) {
 						result[type] = count;
 					}
 				});
+
 				return result;
 			}
 
@@ -126,6 +128,7 @@
 
 		/**
 		 * Get the current user's reaction type if any
+		 *
 		 * @return string | null
 		 */
 		public get userReaction(): string | null {
@@ -134,13 +137,14 @@
 			}
 
 			const userModel = this.$store.getters['authentication/user'];
+
 			if (!userModel) {
 				return null;
 			}
 
 			// Check each reaction type to see if user has reacted
 			for (const type in this.model.reactions) {
-				if (this.model.reactions[type]?.some((reaction: any) => reaction.user_id === userModel.id)) {
+				if (this.model.reactions[type]?.some((reaction: ChalkySticks.Model.Reaction) => reaction.user.id === userModel.id)) {
 					return type;
 				}
 			}
@@ -150,6 +154,7 @@
 
 		/**
 		 * Get total count of all reactions
+		 *
 		 * @return number
 		 */
 		public get totalReactions(): number {
@@ -158,6 +163,8 @@
 
 		/**
 		 * Whether to display in horizontal layout
+		 *
+		 *
 		 * @type boolean
 		 */
 		@Prop({ default: false })
@@ -165,6 +172,7 @@
 
 		/**
 		 * Parent model that the reactions belong to
+		 *
 		 * @type any
 		 */
 		@Prop({ required: true })
@@ -172,13 +180,17 @@
 
 		/**
 		 * Filter to only show specific reaction types
+		 *
 		 * @type string[]
 		 */
-		@Prop({ default: () => [] })
+		@Prop({
+			default: () => Object.values(ChalkySticks.Enum.ReactionType),
+		})
 		public reactionTypes!: string[];
 
 		/**
 		 * Whether to show the header
+		 *
 		 * @type boolean
 		 */
 		@Prop({ default: true })
@@ -186,6 +198,7 @@
 
 		/**
 		 * Minimum percentage to display a reaction type
+		 *
 		 * @type number
 		 */
 		@Prop({ default: 0 })
@@ -193,16 +206,17 @@
 
 		/**
 		 * Format a reaction type name for display
+		 *
 		 * @param reactionType string
 		 * @return string
 		 */
 		protected formatReactionName(reactionType: string): string {
-			// First letter uppercase, rest lowercase
-			return reactionType.charAt(0).toUpperCase() + reactionType.slice(1).toLowerCase();
+			return ChalkySticks.Utility.String.capitalize(reactionType);
 		}
 
 		/**
 		 * Calculate percentage for a reaction count
+		 *
 		 * @param count number
 		 * @return number
 		 */
@@ -210,11 +224,13 @@
 			if (this.totalReactions === 0) {
 				return 0;
 			}
+
 			return Math.round((count / this.totalReactions) * 100);
 		}
 
 		/**
 		 * Get the icon class for a reaction type
+		 *
 		 * @param reactionType string
 		 * @return string
 		 */

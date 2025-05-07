@@ -286,13 +286,22 @@
 <style lang="scss">
 	.chalky.comment-form {
 		form {
-			align-items: flex-start;
-			display: flex;
-			flex-direction: row;
+			display: grid;
+			grid-template-areas:
+				'user input'
+				'whatever actions';
+			grid-template-columns: auto 1fr;
+			grid-template-rows: repeat(2, auto);
 			gap: 0.5rem;
 
-			.input {
-				flex-grow: 1;
+			.user {
+				padding-right: 0.5rem;
+			}
+
+			.actions {
+				grid-area: actions;
+				display: flex;
+				justify-content: flex-end;
 			}
 		}
 	}

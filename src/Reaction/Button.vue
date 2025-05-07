@@ -1,7 +1,14 @@
 <template>
 	<button
 		class="chalky reaction-button"
-		v-bind:class="[`type-${reactionType}`, { 'is-active': isReacted }, { 'is-with-count': showCount && count > 0 }, size]"
+		v-bind:class="[
+			'size-x-small',
+			'button-secondary',
+			`type-${reactionType}`,
+			{ 'is-active': isReacted },
+			{ 'is-with-count': showCount && count > 0 },
+			size,
+		]"
 		v-bind:disabled="isSubmitting"
 		v-on:click="Handle_OnClick"
 	>
@@ -9,7 +16,7 @@
 
 		<div class="icon-container">
 			<slot name="icon">
-				<i :class="iconClass"></i>
+				<i v-bind:class="iconClass"></i>
 			</slot>
 		</div>
 
@@ -19,9 +26,9 @@
 			</slot>
 		</span>
 
-		<span v-if="showCount && count > 0" class="count">
+		<span v-if="showCount && model.reactions[reactionType]" v-bind:key="model.reactions.uniqueKey">
 			<slot name="count">
-				{{ count }}
+				{{ model.reactions[reactionType].length }}
 			</slot>
 		</span>
 
@@ -33,7 +40,7 @@
 	import ChalkySticks from '@chalkysticks/sdk';
 	import ViewBase from '../Core/Base';
 	import { Component, Prop, Watch } from 'vue-property-decorator';
-	import { beforeDestroy, mounted } from '../Utility/Decorators';
+	import { beforeDestroy, bind, mounted } from '../Utility/Decorators';
 
 	/**
 	 * Reaction button component that allows users to react to content
@@ -46,19 +53,11 @@
 	@Component
 	export default class ReactionButton extends ViewBase {
 		/**
-		 * Get the count of this reaction type
-		 * @return number
-		 */
-		public get count(): number {
-			return this.model?.reactions?.[this.reactionType]?.length || 0;
-		}
-
-		/**
 		 * Get the icon class for this reaction type
+		 *
 		 * @return string
 		 */
 		public get iconClass(): string {
-			// Default icons based on reaction type
 			const iconMap: { [key: string]: string } = {
 				angry: 'fa fa-angry',
 				dislike: 'fa fa-thumbs-down',
@@ -74,28 +73,40 @@
 
 		/**
 		 * Check if the current user has reacted with this reaction type
+		 *
 		 * @return boolean
 		 */
 		public get isReacted(): boolean {
 			const userModel = this.$store?.getters['authentication/user'];
 
-			if (!userModel || !this.model?.reactions?.[this.reactionType]) {
+			if (!userModel?.id || !this.reactionCollection) {
 				return false;
 			}
 
-			return this.model.reactions[this.reactionType].some((reaction: any) => reaction.user_id === userModel.id);
+			return this.reactionCollection.models.some((reaction: ChalkySticks.Model.Reaction) => reaction.user.id === userModel.id);
 		}
 
 		/**
 		 * Get the label for this reaction type
+		 *
 		 * @return string
 		 */
 		public get label(): string {
-			return this.reactionType.charAt(0).toUpperCase() + this.reactionType.slice(1).toLowerCase();
+			return ChalkySticks.Utility.String.capitalize(this.reactionType);
+		}
+
+		/**
+		 * Specific collection for like, love, wow, etc.
+		 *
+		 * @return ChalkySticks.Collection.Reaction
+		 */
+		public get reactionCollection(): ChalkySticks.Collection.Reaction {
+			return this.model.reactions[this.reactionType];
 		}
 
 		/**
 		 * Parent model that the reaction belongs to (Venue, User, Content, etc.)
+		 *
 		 * @type any
 		 */
 		@Prop({ required: true })
@@ -103,6 +114,7 @@
 
 		/**
 		 * Type of reaction (like, dislike, wow, etc.)
+		 *
 		 * @type string
 		 */
 		@Prop({ default: 'like' })
@@ -110,6 +122,7 @@
 
 		/**
 		 * Whether to show the reaction count
+		 *
 		 * @type boolean
 		 */
 		@Prop({ default: true })
@@ -117,6 +130,7 @@
 
 		/**
 		 * Whether to show the reaction label
+		 *
 		 * @type boolean
 		 */
 		@Prop({ default: true })
@@ -124,6 +138,7 @@
 
 		/**
 		 * Size of the button (sm, md, lg)
+		 *
 		 * @type string
 		 */
 		@Prop({ default: 'md' })
@@ -134,6 +149,9 @@
 		 * @type boolean
 		 */
 		protected isSubmitting: boolean = false;
+
+		// region: Event Handlers
+		// ---------------------------------------------------------------------------
 
 		/**
 		 * Click handler for the reaction button
@@ -173,26 +191,19 @@
 				this.$emit('click:complete');
 			}
 		}
+
+		// endregion: Event Handlers
 	}
 </script>
 
 <style lang="scss">
 	.chalky.reaction-button {
 		align-items: center;
-		background-color: var(--chalky-grey-lighter, #f5f5f5);
-		border-radius: 4px;
-		border: 1px solid var(--chalky-grey-light, #e0e0e0);
 		cursor: pointer;
 		display: inline-flex;
-		font-size: 14px;
 		gap: 0.25rem;
 		justify-content: center;
-		padding: 0.5rem 0.75rem;
 		transition: all 0.2s ease;
-
-		&:hover {
-			background-color: var(--chalky-grey-light, #e0e0e0);
-		}
 
 		&:disabled {
 			cursor: not-allowed;
@@ -250,28 +261,6 @@
 		&.type-angry {
 			&.is-active {
 				color: #f44336;
-			}
-		}
-	}
-
-	// Media Queries
-	// ---------------------------------------------------------------------------
-
-	@media (max-width: 576px) {
-		.chalky.reaction-button {
-			&.sm {
-				font-size: 11px;
-				padding: 0.25rem 0.4rem;
-			}
-
-			&.md {
-				font-size: 13px;
-				padding: 0.4rem 0.6rem;
-			}
-
-			&.lg {
-				font-size: 15px;
-				padding: 0.6rem 0.8rem;
 			}
 		}
 	}

@@ -43,16 +43,6 @@
 			</slot>
 		</div>
 
-		<!-- Login prompt if not authenticated -->
-		<div v-if="!isAuthenticated && showLoginPrompt" class="login-prompt">
-			<slot name="login-prompt">
-				<p>
-					<a href="#" v-on:click.prevent="$emit('login')">Sign in</a>
-					to react
-				</p>
-			</slot>
-		</div>
-
 		<slot name="after"></slot>
 	</section>
 </template>
@@ -140,10 +130,11 @@
 
 		/**
 		 * List of reaction types to display
+		 *
 		 * @type string[]
 		 */
 		@Prop({
-			default: () => ['like', 'love', 'wow'],
+			default: () => ['like', 'dislike', 'wow'],
 		})
 		public reactions!: string[];
 
@@ -197,33 +188,38 @@
 		 * @return string
 		 */
 		public formatSummaryText(): string {
+			const userModel = this.$store?.getters['authentication/user'];
+			let text = '';
+
 			if (this.totalReactions === 0) {
 				return 'No reactions yet';
 			}
 
-			const userModel = this.$store?.getters['authentication/user'];
-			const hasReacted = Object.entries(this.reactionCounts).some(([type, count]) => {
-				return count > 0 && this.model.reactions[type].some((reaction: any) => reaction.user_id === userModel.id);
-			});
+			// const hasReacted = Object.entries(this.reactionCounts).some(([type, count]) => {
+			// 	return count > 0 && this.model.reactions[type].some((reaction: any) => reaction.user_id === userModel?.id);
+			// });
 
-			let text = '';
+			// let text = '';
 
-			if (hasReacted) {
-				text = 'You and ';
-				if (this.totalReactions === 1) {
-					text = 'You reacted to this';
-					return text;
-				}
-				text += `${this.totalReactions - 1} other${this.totalReactions > 2 ? 's' : ''}`;
-			} else {
-				text = `${this.totalReactions} ${this.totalReactions === 1 ? 'person' : 'people'}`;
-			}
+			// if (hasReacted) {
+			// 	text = 'You and ';
+
+			// 	if (this.totalReactions === 1) {
+			// 		text = 'You reacted to this';
+			// 		return text;
+			// 	}
+
+			// 	text += `${this.totalReactions - 1} other${this.totalReactions > 2 ? 's' : ''}`;
+			// } else {
+			// 	text = `${this.totalReactions} ${this.totalReactions === 1 ? 'person' : 'people'}`;
+			// }
 
 			return `${text} reacted to this`;
 		}
 
 		/**
 		 * Get the icon class for a reaction type
+		 *
 		 * @param reactionType string
 		 * @return string
 		 */

@@ -1,5 +1,5 @@
 <template>
-	<section class="chalky comment-list">
+	<section class="chalky comment-list" v-bind:class="['direction-' + direction]" v-bind:style="{ maxHeight: maxHeight }">
 		<slot name="before"></slot>
 
 		<header v-if="showHeader" v-bind:key="model.comments.uniqueKey">
@@ -94,6 +94,13 @@
 		}
 
 		/**
+		 * Sort direction for comments
+		 * @type string
+		 */
+		@Prop({ default: 'desc' })
+		public direction!: 'asc' | 'desc';
+
+		/**
 		 * Parent model that the comments belong to (Venue, User, Content, etc.)
 		 * @type any
 		 */
@@ -101,18 +108,12 @@
 		public model!: any;
 
 		/**
-		 * Sort direction for comments
+		 * How tall the comment list should be
+		 *
 		 * @type string
 		 */
-		@Prop({ default: 'desc' })
-		public sortDirection!: 'asc' | 'desc';
-
-		/**
-		 * Sort field for comments
-		 * @type string
-		 */
-		@Prop({ default: 'created_at' })
-		public sortField!: string;
+		@Prop()
+		public maxHeight!: string;
 
 		/**
 		 * Whether to show the comment form
@@ -187,6 +188,8 @@
 
 <style lang="scss">
 	.chalky.comment-list {
+		display: flex;
+		flex-direction: column;
 		margin: 1rem 0;
 
 		header {
@@ -194,6 +197,7 @@
 		}
 
 		.comment-container {
+			overflow: auto;
 			position: relative;
 		}
 
@@ -242,6 +246,15 @@
 			&:last-child {
 				border-bottom: none;
 			}
+		}
+	}
+
+	// Variations
+	// ---------------------------------------------------------------------------
+
+	.chalky.comment-list.direction-asc {
+		.comments {
+			flex-direction: column-reverse;
 		}
 	}
 </style>

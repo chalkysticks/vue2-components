@@ -1106,7 +1106,29 @@
 					<p><small>@todo add location</small></p>
 				</header>
 				<div>
-					<ChalkyReactionButton />
+					<ChalkyReactionButton v-bind:model="venueModel" />
+				</div>
+			</section>
+
+			<section class="level-1">
+				<header>
+					<h3>Reaction List</h3>
+
+					<p><small>@todo add location</small></p>
+				</header>
+				<div>
+					<ChalkyReactionList v-bind:model="venueModel" />
+				</div>
+			</section>
+
+			<section class="level-1">
+				<header>
+					<h3>Reaction Summary</h3>
+
+					<p><small>@todo add location</small></p>
+				</header>
+				<div>
+					<ChalkyReactionSummary v-bind:model="venueModel" />
 				</div>
 			</section>
 		</section>
@@ -1144,7 +1166,7 @@
 					<p><small>@todo add location</small></p>
 				</header>
 				<div>
-					<ChalkyCommentList v-bind:model="venueModel" />
+					<ChalkyCommentList direction="asc" maxHeight="80svh" v-bind:model="venueModel" />
 				</div>
 			</section>
 		</section>
@@ -1507,7 +1529,9 @@
 			this.venueCollection.fetch();
 			this.liveScheduleCollection.fetch();
 			this.scheduleCollection.fetch();
-			this.venueModel.fetch();
+			this.venueModel.fetch().then(() => {
+				console.log('Venue Model', this.venueModel);
+			});
 
 			// Listeners
 			window.addEventListener('hashchange', this.Handle_OnHashChange);
