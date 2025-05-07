@@ -1,5 +1,5 @@
 <template>
-	<div class="chalky venue-card glass-panel" v-bind:class="'type-' + venueModel.getType()" v-bind:key="venueModel.id">
+	<div class="chalky venue-card glass-panel" v-bind:class="'type-' + venueModel.getType()" v-bind:key="venueModel.uniqueKey">
 		<slot name="before"></slot>
 
 		<UtilityGallery
@@ -28,28 +28,6 @@
 			<section class="reactions" v-if="false">
 				<div class="inner">
 					<span>{{ venueModel.reactions.like.length }} Likes</span>
-				</div>
-			</section>
-
-			<section class="comments" v-if="false">
-				<div class="inner">
-					<span>{{ venueModel.comments.length }} Comments</span>
-
-					<div v-bind:key="commentModel.id" v-for="commentModel in venueModel.comments" class="comment">
-						<UserAvatar size="xs" v-bind:key="commentModel.id" v-bind:userModel="commentModel.user" />
-
-						<span class="text">{{ commentModel.getBody() }}</span>
-
-						<!-- Check for children -->
-						<div v-if="commentModel.children.length" class="children">
-							<span class="children-count">+{{ commentModel.children.length }} more</span>
-
-							<div class="child" v-for="childCommentModel in commentModel.children" v-bind:key="childCommentModel.id">
-								<UserAvatar size="xs" v-bind:userModel="childCommentModel.user" />
-								<span class="text">{{ childCommentModel.getBody() }}</span>
-							</div>
-						</div>
-					</div>
 				</div>
 			</section>
 
@@ -89,102 +67,39 @@
 				</div>
 			</section>
 
-			<section class="checkins">
+			<section class="checkins" v-if="showCheckins">
 				<header>
 					<h5>Who's Here</h5>
 				</header>
 
 				<div class="inner" v-bind:key="venueModel.checkins.uniqueKey">
-					<div class="whos-here-users" v-if="venueModel.checkins.models.length">
-						<UserAvatar
-							size="sm"
-							v-bind:key="index"
-							v-bind:userModel="venueCheckinModel.user"
-							v-for="(venueCheckinModel, index) in venueModel.checkins"
-						/>
-					</div>
-
-					<div class="checkin-cta" v-else>
-						<p>Be the first to check in!</p>
-
-						<div v-if="isNearby && !$store.getters['authentication/authenticated']">
-							<strong>Looks like you might be here?</strong>
-						</div>
-					</div>
-
-					<!-- <div class="action" v-if="$store.getters['authentication/authenticated'] && isNearby"> -->
-
-					<div v-if="isCheckedInHere()" class="action">
-						<strong>You are here</strong>
-					</div>
-
-					<div class="action" v-else-if="$store.getters['authentication/authenticated']">
-						<slot name="checkin:action" v-bind:venueModel="venueModel">
-							<ButtonCheckin v-bind:venueModel="venueModel" />
-						</slot>
-					</div>
+					<VenueCheckins v-bind:venueModel="venueModel" />
 				</div>
 			</section>
 
-			<section class="hours">
-				<header>
-					<h5>Hours</h5>
-				</header>
+			<section class="comments" v-if="showComments">
+				<CommentList direction="asc" maxHeight="80svh" v-bind:model="venueModel">
+					<template v-slot:header>
+						<h5>Join the Conversation ({{ venueModel.comments.length }})</h5>
+					</template>
+				</CommentList>
+			</section>
 
+			<section class="hours" v-if="showHours">
 				<div class="inner">
-					<div class="today">
-						<!-- Add timeline of todays hours -->
-					</div>
+					<h5>Hours</h5>
+				</div>
 
-					<dl>
-						<dt class="hours-monday">Monday</dt>
-						<dd class="hours-monday">{{ venueModel.hours.getHoursForDay('monday')?.formatHours() }}</dd>
-
-						<dt class="hours-tuesday">Tuesday</dt>
-						<dd class="hours-tuesday">{{ venueModel.hours.getHoursForDay('tuesday')?.formatHours() }}</dd>
-
-						<dt class="hours-wednesday">Wednesday</dt>
-						<dd class="hours-wednesday">{{ venueModel.hours.getHoursForDay('wednesday')?.formatHours() }}</dd>
-
-						<dt class="hours-thursday">Thursday</dt>
-						<dd class="hours-thursday">{{ venueModel.hours.getHoursForDay('thursday')?.formatHours() }}</dd>
-
-						<dt class="hours-friday">Friday</dt>
-						<dd class="hours-friday">{{ venueModel.hours.getHoursForDay('friday')?.formatHours() }}</dd>
-
-						<dt class="hours-saturday">Saturday</dt>
-						<dd class="hours-saturday">{{ venueModel.hours.getHoursForDay('saturday')?.formatHours() }}</dd>
-
-						<dt class="hours-sunday">Sunday</dt>
-						<dd class="hours-sunday">{{ venueModel.hours.getHoursForDay('sunday')?.formatHours() }}</dd>
-					</dl>
+				<div class="inner" v-bind:key="venueModel.hours.uniqueKey">
+					<VenueHours v-bind:venueModel="venueModel" />
 				</div>
 			</section>
 
 			<section class="actions">
 				<div class="inner">
-					<a
-						class="btn button-tertiary size-small action"
-						target="_blank"
-						v-bind:href="'tel:' + venueModel.getPhone()"
-						v-if="venueModel.getPhone()"
-					>
-						<i class="icon fa fa-phone"></i>
-						<span class="caption">Call</span>
-					</a>
-					<a
-						class="btn button-tertiary size-small action"
-						target="_blank"
-						v-bind:href="venueModel.getWebsite()"
-						v-if="venueModel.getWebsite()"
-					>
-						<i class="icon fa fa-globe"></i>
-						<span class="caption">Website</span>
-					</a>
-					<a class="btn button-tertiary size-small action" target="_blank" v-bind:href="getMapUrl()" v-if="venueModel.getAddress()">
-						<i class="icon fa fa-map-marker"></i>
-						<span class="caption">Directions</span>
-					</a>
+					<VenueButtonCall v-bind:venueModel="venueModel" />
+					<VenueButtonWebsite v-bind:venueModel="venueModel" />
+					<VenueButtonDirections v-bind:venueModel="venueModel" />
 				</div>
 			</section>
 
@@ -222,8 +137,14 @@
 <script lang="ts">
 	import ButtonCheckin from '../Button/Checkin.vue';
 	import ChalkySticks from '@chalkysticks/sdk';
+	import CommentList from '../Comment/List.vue';
 	import UserAvatar from '../User/Avatar.vue';
 	import UtilityGallery from '../Utility/Gallery.vue';
+	import VenueButtonCall from './Button/Call.vue';
+	import VenueButtonDirections from './Button/Directions.vue';
+	import VenueButtonWebsite from './Button/Website.vue';
+	import VenueCheckins from './Checkins.vue';
+	import VenueHours from './Hours.vue';
 	import ViewBase from '../Core/Base';
 	import { Component, Prop, Ref } from 'vue-property-decorator';
 	import { beforeDestroy, mounted } from '../Utility/Decorators';
@@ -236,8 +157,14 @@
 	@Component({
 		components: {
 			ButtonCheckin,
+			CommentList,
 			UserAvatar,
 			UtilityGallery,
+			VenueButtonCall,
+			VenueButtonDirections,
+			VenueButtonWebsite,
+			VenueCheckins,
+			VenueHours,
 		},
 	})
 	export default class VenueCard extends ViewBase {
@@ -299,6 +226,24 @@
 		public interactiveGallery!: boolean;
 
 		/**
+		 * @type boolean
+		 */
+		@Prop({ default: true })
+		public showCheckins!: boolean;
+
+		/**
+		 * @type boolean
+		 */
+		@Prop({ default: false })
+		public showComments!: boolean;
+
+		/**
+		 * @type boolean
+		 */
+		@Prop({ default: true })
+		public showHours!: boolean;
+
+		/**
 		 * @type ChalkySticks/Model/Venue
 		 */
 		@Prop({
@@ -314,21 +259,6 @@
 
 			// Check if the user is checked in here
 			return this.venueModel.checkins.models.some((checkin) => checkin.user.id === userModel?.id);
-		}
-
-		/**
-		 * @return string
-		 */
-		protected getMapUrl(): string {
-			let output: string;
-
-			// Set root url
-			output = 'https://www.google.com/maps/place/';
-
-			// Set address
-			output += encodeURIComponent(this.venueModel.getAddress());
-
-			return output;
 		}
 	}
 </script>
@@ -416,15 +346,6 @@
 				gap: 0.5rem;
 				justify-content: space-between;
 			}
-
-			.action {
-				// flex: 1;
-				align-items: center;
-				display: inline-flex;
-				flex-grow: 1;
-				gap: 0.5em;
-				justify-content: center;
-			}
 		}
 
 		.open-closed {
@@ -466,73 +387,6 @@
 
 			.inner .actions {
 				flex-shrink: 1;
-			}
-		}
-
-		.whos-here-users {
-			display: grid;
-			place-items: center;
-
-			> * {
-				grid-area: 1 / 1;
-
-				&:nth-child(1) {
-					transform: translate(0, 0);
-				}
-
-				&:nth-child(2) {
-					transform: translate(2rem, 0);
-				}
-
-				&:nth-child(3) {
-					transform: translate(4rem, 0);
-				}
-
-				&:nth-child(4) {
-					transform: translate(6rem, 0);
-				}
-
-				&:nth-child(5) {
-					transform: translate(8rem, 0);
-				}
-			}
-		}
-
-		// @TODO MOVE ME TO MY OWN COMPONENT
-		// SAME WITH REACTIONS
-		.comments {
-			margin: 1rem;
-			outline: 2px solid;
-			padding: 1rem;
-
-			.inner {
-				display: flex;
-				flex-direction: column;
-				gap: 0.5rem;
-			}
-
-			.comment {
-				.user-avatar {
-					float: left;
-					margin-right: 1rem;
-				}
-
-				.text {
-					flex-grow: 1;
-				}
-
-				.children {
-					margin-left: 2rem;
-
-					.children-count {
-						font-weight: bold;
-					}
-
-					.child {
-						display: flex;
-						gap: 0.5rem;
-					}
-				}
 			}
 		}
 	}
@@ -646,6 +500,29 @@
 		.rating,
 		.actions {
 			display: none;
+		}
+	}
+
+	// List item view styles
+	.chalky.venue-card.list-item {
+		.checkins {
+			bottom: 25%;
+			position: absolute;
+			right: 0.5rem;
+
+			header,
+			.user-avatar,
+			.action {
+				display: none;
+			}
+
+			.user-avatar:first-child {
+				display: block;
+			}
+
+			.user-avatar {
+				--avatar-size-sm: var(--chalky-venue-list-checkin-avatar-size);
+			}
 		}
 	}
 

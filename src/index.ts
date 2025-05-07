@@ -13,8 +13,8 @@ import './Theme/Main.scss';
 // ---------------------------------------------------------------------------
 
 import AuthenticationAuthPanel from './Authentication/AuthPanel.vue';
-import AuthenticationForgotPassword from './Authentication/ForgotPassword.vue';
 import AuthenticationBasicLogin from './Authentication/BasicLogin.vue';
+import AuthenticationForgotPassword from './Authentication/ForgotPassword.vue';
 import AuthenticationNavigation from './Authentication/Navigation.vue';
 import AuthenticationResetPassword from './Authentication/ResetPassword.vue';
 import AuthenticationSocialLogin from './Authentication/SocialLogin.vue';
@@ -64,8 +64,13 @@ import UtilityModal from './Utility/Modal.vue';
 import UtilityPagination from './Utility/Pagination.vue';
 import UtilityPortraitOverlay from './Utility/PortraitOverlay.vue';
 import UtilityScrollToBegin from './Utility/ScrollToBegin.vue';
+import VenueButtonCall from './Venue/Button/Call.vue';
+import VenueButtonDirections from './Venue/Button/Directions.vue';
+import VenueButtonWebsite from './Venue/Button/Website.vue';
 import VenueCard from './Venue/Card.vue';
+import VenueCheckins from './Venue/Checkins.vue';
 import VenueGallery from './Venue/Gallery.vue';
+import VenueHours from './Venue/Hours.vue';
 import VenueList from './Venue/List.vue';
 import VenueMap from './Venue/Map.vue';
 import ViewBase from './Core/Base';
@@ -125,8 +130,13 @@ const components = {
 	UtilityPagination,
 	UtilityPortraitOverlay,
 	UtilityScrollToBegin,
+	VenueButtonCall,
+	VenueButtonDirections,
+	VenueButtonWebsite,
 	VenueCard,
+	VenueCheckins,
 	VenueGallery,
+	VenueHours,
 	VenueList,
 	VenueMap,
 	WalletCollection,
@@ -246,7 +256,13 @@ export {
 	UtilityPagination,
 	UtilityPortraitOverlay,
 	UtilityScrollToBegin,
+	VenueButtonCall,
+	VenueButtonDirections,
+	VenueButtonWebsite,
 	VenueCard,
+	VenueCheckins,
+	VenueGallery,
+	VenueHours,
 	VenueList,
 	VenueMap,
 	ViewBase,

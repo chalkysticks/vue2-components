@@ -1213,15 +1213,26 @@
 					<p>1. No model</p>
 					<p>2. With model</p>
 				</header>
+
 				<div class="push-bottom">
 					<ChalkyVenueCard />
 				</div>
-				<div>
-					<ChalkyVenueCard v-bind:venueModel="venueModel" v-on:click:gallery="Handle_OnClickCardGallery">
+
+				<div class="push-bottom">
+					<ChalkyVenueCard v-bind:showComments="true" v-bind:venueModel="venueModel" v-on:click:gallery="Handle_OnClickCardGallery">
 						<template v-slot:checkin:action="{ venueModel }">
 							<button class="size-x-small" v-bind:id="venueModel.id">Scan Table</button>
 						</template>
 					</ChalkyVenueCard>
+				</div>
+
+				<div>
+					<ChalkyVenueCard
+						v-bind:showCheckins="false"
+						v-bind:showComments="false"
+						v-bind:showHours="false"
+						v-bind:venueModel="venueModel"
+					/>
 				</div>
 			</section>
 
@@ -1324,6 +1335,15 @@
 
 				<div class="push-bottom">
 					<ChalkyVenueList class="variation-normal" v-bind:venueCollection="venueCollection" />
+				</div>
+			</section>
+
+			<section class="level-1">
+				<header>
+					<h3>Venue Comments</h3>
+				</header>
+				<div>
+					<ChalkyCommentList direction="asc" maxHeight="80svh" v-bind:model="venueModel" />
 				</div>
 			</section>
 		</section>
