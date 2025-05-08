@@ -43,7 +43,7 @@
 
 			<address class="address">
 				<div class="inner">
-					<span class="address">{{ venueModel.getAddress() }}</span>
+					<span class="address">{{ venueModel.getShortAddress() }}</span>
 				</div>
 			</address>
 

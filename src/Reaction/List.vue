@@ -156,14 +156,14 @@
 		 * Whether to show login prompt for unauthenticated users
 		 * @type boolean
 		 */
-		@Prop({ default: true })
+		@Prop({ default: false })
 		public showLoginPrompt!: boolean;
 
 		/**
 		 * Whether to show a summary of reactions
 		 * @type boolean
 		 */
-		@Prop({ default: true })
+		@Prop({ default: false })
 		public showSummary!: boolean;
 
 		/**
