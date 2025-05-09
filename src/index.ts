@@ -28,6 +28,7 @@ import CommentItem from './Comment/Item.vue';
 import CommentList from './Comment/List.vue';
 import ContentItem from './Content/Item.vue';
 import ContentList from './Content/List.vue';
+import ContentVideoPlayer from './Content/VideoPlayer.vue';
 import FactBanner from './Fact/Banner.vue';
 import FactCard from './Fact/Card.vue';
 import FeedCard from './Feed/Card.vue';
@@ -94,6 +95,7 @@ const components = {
 	CommentList,
 	ContentItem,
 	ContentList,
+	ContentVideoPlayer,
 	FactBanner,
 	FactCard,
 	FeedCard,
@@ -221,6 +223,7 @@ export {
 	CommentList,
 	ContentItem,
 	ContentList,
+	ContentVideoPlayer,
 	FactBanner,
 	FactCard,
 	FeedCard,

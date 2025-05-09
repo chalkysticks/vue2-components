@@ -9,6 +9,7 @@
 				<a href="#branding">Branding</a>
 				<a href="#feed">Feed</a>
 				<a href="#media">Media</a>
+				<br />
 				<a href="#tv">TV</a>
 				<a href="#user">User</a>
 				<a href="#utility">Utility</a>
@@ -412,6 +413,36 @@
 
 				<div>
 					<ChalkyContentItem v-bind:contentModel="contentCollection.at(0)" />
+				</div>
+			</section>
+
+			<section class="level-1">
+				<header>
+					<h3>Content Video Player</h3>
+				</header>
+
+				<div>
+					<ChalkyContentVideoPlayer v-bind:contentModel="contentCollection.first()" />
+				</div>
+			</section>
+
+			<section class="level-1">
+				<header>
+					<h3>Content Video Player, (3x2)</h3>
+				</header>
+
+				<div>
+					<ChalkyContentVideoPlayer aspectRatio="3 / 2" v-bind:contentModel="contentCollection.first()" />
+				</div>
+			</section>
+
+			<section class="level-1">
+				<header>
+					<h3>Content Video Player, (16x9)</h3>
+				</header>
+
+				<div>
+					<ChalkyContentVideoPlayer aspectRatio="16 / 9" v-bind:contentModel="contentCollection.first()" />
 				</div>
 			</section>
 		</section>
