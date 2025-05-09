@@ -77,7 +77,61 @@
 		public beforeDestroy(): void {
 			super.beforeDestroy();
 
+			// Clear any pending timeouts
+			if (this.timeoutInterval) {
+				clearTimeout(this.timeoutInterval);
+				this.timeoutInterval = null;
+			}
+
+			// Ensure all event listeners are removed
 			this.detachEvents();
+
+			// Properly destroy the YouTube player
+			this.destroyPlayer();
+		}
+
+		/**
+		 * Properly cleanup the YouTube player instance
+		 * This is called from beforeDestroy to ensure thorough cleanup
+		 *
+		 * @return void
+		 */
+		private destroyPlayer(): void {
+			try {
+				// Stop the player if it exists
+				if (this.api) {
+					// Stop the video to prevent audio continuing to play
+					this.pause();
+
+					// Destroy the player instance if method exists
+					if (typeof this.api.destroy === 'function') {
+						this.api.destroy();
+					}
+
+					// Remove the element from DOM for complete cleanup
+					const playerElement = document.getElementById(this.playerId);
+
+					if (playerElement && playerElement.parentNode) {
+						playerElement.parentNode.removeChild(playerElement);
+					}
+
+					// Create a fresh container for future use
+					const container = document.createElement('div');
+					container.id = this.playerId;
+
+					// Find the parent container (our component root)
+					const parent = this.$el.querySelector('.chalky.utility-video-youtube');
+
+					if (parent) {
+						parent.appendChild(container);
+					}
+				}
+			} catch (e) {
+				console.error('Error destroying YouTube player:', e);
+			} finally {
+				// Ensure the api reference is cleared
+				this.api = null;
+			}
 		}
 
 		/**
@@ -86,7 +140,7 @@
 		public attachEvents(): void {
 			super.attachEvents();
 
-			this.interval = setInterval(this.Handle_OnInterval, 250);
+			ChalkySticks.Core.Utility.Interval.add(this.Handle_OnInterval, 250, `youtube-${this.cid}`);
 		}
 
 		/**
@@ -95,8 +149,7 @@
 		public detachEvents(): void {
 			super.detachEvents();
 
-			clearInterval(this.interval);
-			this.interval = 0;
+			ChalkySticks.Core.Utility.Interval.remove(`youtube-${this.cid}`);
 		}
 
 		/**
@@ -105,74 +158,141 @@
 		 * @return Promise<void>
 		 */
 		public async createPlayer(code: string, time: number = 0): Promise<void> {
-			// Dont attempt loading forever
-			if (this.loadAttempts++ > 10) {
-				console.warn('Failed to load YT player after 10 attempts.');
+			// If no code provided, stop initialization
+			if (!code) {
+				console.warn('No video ID provided to createPlayer');
+				this.$emit('error', { message: 'No video ID provided' });
 				return;
 			}
 
-			// YT not loaded
-			if (!UtilityVideoShared.window.YT || !UtilityVideoShared.window.YT.Player) {
-				this.timeoutInterval = setTimeout(() => {
-					this.createPlayer(code, time);
-				}, 250);
-
-				return;
-			}
-
-			// Clear timeouts
-			if (this.timeoutInterval) {
-				clearTimeout(this.timeoutInterval);
-				this.timeoutInterval = null;
-			}
-
+			// Use a promise-based approach to wait for the YouTube API
 			try {
-				// If player already exists, change the video
+				await this.waitForYouTubeAPI();
+
+				// Clear any pending timeouts
+				if (this.timeoutInterval) {
+					clearTimeout(this.timeoutInterval);
+					this.timeoutInterval = null;
+				}
+
+				// If player already exists, just load the new video
 				if (this.api) {
 					this.api.loadVideoById({
 						startSeconds: time,
 						videoId: code,
 					});
+					return;
+				}
 
-					// console.log('Loading a video by ID, ', code);
-				} else {
-					this.api = new UtilityVideoShared.window.YT.Player(this.playerId, {
+				// Create new player instance and wait for it to be ready
+				await new Promise<void>((resolve, reject) => {
+					// Flag to track if we've handled the ready event
+					let playerReadyHandled = false;
+
+					// Create the player with specific options
+					const playerOptions = {
 						events: {
-							onError: () => this.Handle_OnPlayerError(),
-							onReady: (e: any) => this.Handle_OnPlayerReady(),
+							onError: (e: any) => {
+								this.Handle_OnPlayerError();
+
+								if (!playerReadyHandled) {
+									playerReadyHandled = true;
+									reject(new Error('Player creation failed'));
+								}
+							},
+							onReady: (e: any) => {
+								if (!playerReadyHandled) {
+									playerReadyHandled = true;
+									this.Handle_OnPlayerReady();
+									resolve();
+								}
+							},
 							onStateChange: (e: any) => this.Handle_OnPlayerStateChange(e),
 						},
 						playerVars: {
 							autohide: 1,
-							autoplay: this.autoplay && this.shouldPlay,
+							autoplay: this.autoplay && this.shouldPlay ? 1 : 0,
 							cc_load_policy: 0,
-							controls: 0,
+							controls: this.allowControl ? 1 : 0,
 							disablekb: 1,
 							enablejsapi: 1,
 							iv_load_policy: 3,
 							loop: 0,
 							modestbranding: 1,
-							mute: this.muted,
+							mute: this.muted ? 1 : 0,
 							origin: window.location.origin,
 							playsinline: 1,
 							rel: 0,
 							start: time,
 						},
 						videoId: code,
-					});
+					};
 
-					// console.log('Created a new player', this.api);
+					// Create the player instance
+					this.api = new UtilityVideoShared.window.YT.Player(this.playerId, playerOptions);
 
-					// Attach hystersis monitors
-					this.attachMonitors();
+					// Set a timeout in case YouTube never fires the ready event
+					this.timeoutInterval = setTimeout(() => {
+						if (!playerReadyHandled) {
+							playerReadyHandled = true;
+							console.warn('YouTube Player ready event timeout');
 
-					// Player is ready and API configured
-					this.Handle_OnPlayerReady();
-				}
+							// Still resolve to prevent deadlocks
+							resolve();
+						}
+					}, 5000);
+				});
+
+				// Set up monitoring after player is ready
+				this.attachMonitors();
 			} catch (e) {
-				console.warn('Tried to create a player but failed. We may have destroyed it early.', e);
-				this.$emit('error');
+				console.error('Failed to create YouTube player:', e);
+				this.$emit('error', {
+					error: e,
+					message: 'Failed to create player',
+				});
 			}
+		}
+
+		/**
+		 * Waits for the YouTube API to become available
+		 *
+		 * @return Promise<void>
+		 */
+		private async waitForYouTubeAPI(): Promise<void> {
+			return new Promise<void>((resolve, reject) => {
+				const maxAttempts = 20;
+				let attempts = 0;
+
+				// Check if API is already loaded
+				if (UtilityVideoShared.window.YT && UtilityVideoShared.window.YT.Player) {
+					resolve();
+					return;
+				}
+
+				// Function to check API availability
+				const checkAPI = () => {
+					attempts++;
+
+					// If we've exceeded max attempts, reject
+					if (attempts > maxAttempts) {
+						reject(new Error('YouTube API failed to load after multiple attempts'));
+						return;
+					}
+
+					// Check if API is available now
+					if (UtilityVideoShared.window.YT && UtilityVideoShared.window.YT.Player) {
+						resolve();
+						return;
+					}
+
+					// Try again after delay
+					setTimeout(checkAPI, 250);
+				};
+
+				// Start checking
+				checkAPI();
+			});
 		}
 
 		/**
@@ -221,7 +341,12 @@
 		 * @return number
 		 */
 		public play(): void {
-			this.api?.playVideo();
+			super.play();
+
+			// Play the video if API is available
+			if (this.api) {
+				this.api.playVideo();
+			}
 		}
 
 		/**
@@ -252,19 +377,22 @@
 		}
 
 		/**
-		 * @return void
+		 * @return Promise<void>
 		 */
-		protected embedScript(): void {
-			const tag = document.createElement('script');
-			tag.id = 'embed-youtube-api';
-			tag.src = 'https://www.youtube.com/iframe_api';
+		protected async embedScript(): Promise<void> {
+			const scriptId = 'embed-youtube-api';
+			const scriptUrl = 'https://www.youtube.com/iframe_api';
 
-			const firstScriptTag = document.getElementsByTagName('script')[0];
-			firstScriptTag?.parentNode?.insertBefore(tag, firstScriptTag);
-
+			// Set up global callback that YouTube API will call when loaded
 			UtilityVideoShared.window.onYouTubeIframeAPIReady = () => {
 				return this.Handle_OnApiLoaded();
 			};
+
+			// Load the script with our enhanced loader
+			await this.loadScript(scriptId, scriptUrl, () => {
+				// Script is loaded, but we wait for YouTube to call onYouTubeIframeAPIReady
+				// This callback intentionally left empty as YouTube handles it differently
+			});
 		}
 
 		/**

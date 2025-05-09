@@ -4,11 +4,41 @@ import { Component, Prop, Watch } from 'vue-property-decorator';
 import { beforeDestroy, mounted } from '@/Utility/Decorators';
 
 /**
+ * State of an external script loading process
+ */
+export interface ScriptLoadState {
+	callbacks: any[];
+	loaded: boolean;
+	loading: boolean;
+}
+
+/**
+ * Video player manager type
+ */
+export interface VideoPlayerManager {
+	activePlayer: UtilityVideoShared | null;
+	players: Set<UtilityVideoShared>;
+}
+
+/**
  * @author ChalkySticks LLC
  * @package Utility/Video
  * @project ChalkySticks SDK Vue2.0 Components
  */
 export default abstract class UtilityVideoShared extends ViewBase {
+	/**
+	 * Tracks script loading states for different APIs
+	 */
+	protected static scriptStates: Record<string, ScriptLoadState> = {};
+
+	/**
+	 * Global singleton manager for all video players
+	 */
+	protected static playerManager: VideoPlayerManager = {
+		activePlayer: null,
+		players: new Set<UtilityVideoShared>(),
+	};
+
 	/**
 	 * Show player controls
 	 *
@@ -130,6 +160,8 @@ export default abstract class UtilityVideoShared extends ViewBase {
 	public mounted(): void {
 		super.mounted();
 
+		// Register this player with the manager
+		this.registerPlayer();
 		this.attachEvents();
 	}
 
@@ -139,7 +171,83 @@ export default abstract class UtilityVideoShared extends ViewBase {
 	public beforeDestroy(): void {
 		super.beforeDestroy();
 
+		// Ensure player is stopped and resources released
+		this.cleanup();
+
+		// Unregister from the player manager
+		this.unregisterPlayer();
 		this.detachEvents();
+	}
+
+	/**
+	 * Perform complete cleanup of the player
+	 * Subclasses should extend this method for specific implementation cleanup
+	 *
+	 * @return void
+	 */
+	protected cleanup(): void {
+		// Stop all intervals and timers
+		if (this.interval) {
+			clearInterval(this.interval);
+			this.interval = 0;
+		}
+
+		// Ensure hysteresis monitors are stopped
+		this.hysteresisStarting?.stop();
+		this.hysteresisEnding?.stop();
+
+		// Stop playback
+		try {
+			this.pause();
+		} catch (e) {
+			// Ignore errors during cleanup
+		}
+	}
+
+	/**
+	 * Register this player with the global player manager
+	 *
+	 * @return void
+	 */
+	protected registerPlayer(): void {
+		UtilityVideoShared.playerManager.players.add(this);
+	}
+
+	/**
+	 * Unregister this player from the global player manager
+	 *
+	 * @return void
+	 */
+	protected unregisterPlayer(): void {
+		// Remove from the player collection
+		UtilityVideoShared.playerManager.players.delete(this);
+
+		// If this was the active player, clear the reference
+		if (UtilityVideoShared.playerManager.activePlayer === this) {
+			UtilityVideoShared.playerManager.activePlayer = null;
+		}
+	}
+
+	/**
+	 * Makes this player active and pauses all others
+	 *
+	 * @return void
+	 */
+	protected makeActive(): void {
+		const currentActive = UtilityVideoShared.playerManager.activePlayer;
+
+		// Don't do anything if this is already the active player
+		if (currentActive === this) {
+			return;
+		}
+
+		// Pause the currently active player if there is one
+		if (currentActive && currentActive !== this) {
+			currentActive.pause();
+		}
+
+		// Set this as the active player
+		UtilityVideoShared.playerManager.activePlayer = this;
 	}
 
 	/**
@@ -240,9 +348,15 @@ export default abstract class UtilityVideoShared extends ViewBase {
 	}
 
 	/**
+	 * Play this video and pause any other active players
+	 *
 	 * @return void
 	 */
 	public play(): void {
+		// Make this the active player (pauses other players)
+		this.makeActive();
+
+		// Subclasses must implement the actual play functionality
 		console.warn('Override this function in your implementation');
 	}
 
@@ -420,6 +534,112 @@ export default abstract class UtilityVideoShared extends ViewBase {
 
 	// region: Helpers
 	// ---------------------------------------------------------------------------
+
+	/**
+	 * Loads an external script with proper tracking and callback management
+	 *
+	 * @param string scriptId Unique identifier for this script
+	 * @param string src Script URL to load
+	 * @param Function callback Function to call when script loads
+	 * @return Promise<void>
+	 */
+	protected loadScript(scriptId: string, src: string, callback: any): Promise<void> {
+		return new Promise((resolve) => {
+			// Initialize script state if not already tracked
+			if (!UtilityVideoShared.scriptStates[scriptId]) {
+				UtilityVideoShared.scriptStates[scriptId] = {
+					callbacks: [],
+					loaded: false,
+					loading: false,
+				};
+			}
+
+			const scriptState = UtilityVideoShared.scriptStates[scriptId];
+
+			// Script already loaded - execute callback immediately
+			if (scriptState.loaded) {
+				callback();
+				resolve();
+				return;
+			}
+
+			// Add this callback to the queue
+			scriptState.callbacks.push(() => {
+				callback();
+				resolve();
+			});
+
+			// If already loading, just wait for the existing load to complete
+			if (scriptState.loading) {
+				return;
+			}
+
+			// Start loading the script
+			scriptState.loading = true;
+
+			// Check if script already exists in the DOM
+			const existingScript = document.getElementById(scriptId) as HTMLScriptElement;
+
+			if (existingScript) {
+				if (existingScript.getAttribute('data-loaded') === 'true') {
+					this.executeScriptCallbacks(scriptId);
+				}
+
+				return;
+			}
+
+			// Create and add the script
+			const tag = document.createElement('script');
+			tag.id = scriptId;
+			tag.src = src;
+			tag.setAttribute('data-loading', 'true');
+
+			// Set up load handler
+			tag.onload = () => {
+				tag.setAttribute('data-loaded', 'true');
+				this.executeScriptCallbacks(scriptId);
+			};
+
+			// Set up error handler
+			tag.onerror = (error) => {
+				console.error(`Failed to load script: ${scriptId}`, error);
+				scriptState.loading = false;
+				scriptState.loaded = true;
+				resolve();
+			};
+
+			// Insert script into DOM
+			const firstScriptTag = document.getElementsByTagName('script')[0];
+			firstScriptTag?.parentNode?.insertBefore(tag, firstScriptTag);
+		});
+	}
+
+	/**
+	 * Execute all callbacks registered for a script
+	 *
+	 * @param string scriptId Unique identifier for the script
+	 */
+	private executeScriptCallbacks(scriptId: string): void {
+		const scriptState = UtilityVideoShared.scriptStates[scriptId];
+		if (!scriptState) return;
+
+		// Mark as loaded
+		scriptState.loading = false;
+		scriptState.loaded = true;
+
+		// Execute all callbacks
+		while (scriptState.callbacks.length > 0) {
+			const callback = scriptState.callbacks.shift();
+
+			if (callback) {
+				try {
+					callback();
+				} catch (error) {
+					console.error(`Error executing callback for ${scriptId}`, error);
+				}
+			}
+		}
+	}
 
 	/**
 	 * @return void

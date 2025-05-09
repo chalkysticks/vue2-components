@@ -159,7 +159,13 @@
 		 * @return number
 		 */
 		public play(): void {
-			this.api?.play();
+			// Call base implementation to handle player management
+			super.play();
+
+			// Play the video if API is available
+			if (this.api) {
+				this.api.play();
+			}
 		}
 
 		/**
@@ -269,24 +275,79 @@
 		private resolvePlayerReady: ((instance: any) => void) | null = null;
 
 		/**
+		 * Extended cleanup for Facebook specific resources
+		 *
+		 * @return void
+		 */
+		protected cleanup(): void {
+			// Call base class cleanup first
+			super.cleanup();
+
+			try {
+				// Cleanup player specific resources
+				if (this.api) {
+					// Stop video playback
+					this.pause();
+
+					// Clear references
+					this.api = null;
+				}
+
+				// Only unsubscribe if FB exists
+				if (UtilityVideoShared.window.FB && UtilityVideoShared.window.FB.Event) {
+					UtilityVideoShared.window.FB.Event.unsubscribe('xfbml.ready', this.Handle_OnFacebookReady);
+				}
+
+				// Clear player element content
+				if (this.player && this.player.innerHTML) {
+					this.player.innerHTML = '';
+				}
+			} catch (e) {
+				console.error('Error cleaning up Facebook player:', e);
+			}
+		}
+
+		/**
+		 * More aggressive cleanup that removes all Facebook elements
+		 * Only use this when you want to completely remove Facebook SDK
+		 * WARNING: This can cause issues with other components that use Facebook
+		 *
 		 * @return void
 		 */
 		@beforeDestroy
 		private unsubscribeFromFacebook(): void {
-			UtilityVideoShared.window.FB.Event.unsubscribe('xfbml.ready', this.Handle_OnFacebookReady);
+			try {
+				// Call regular cleanup first
+				this.cleanup();
 
-			const xfbmlElements = document.querySelectorAll('.fb-video, .fb-like, .fb-comments');
-			const fbScript = document.querySelector('script[src*="connect.facebook.net"]');
+				// Only proceed with full cleanup if other Facebook players don't exist
+				const hasFBPlayers = Array.from(UtilityVideoShared.playerManager.players).some((player) => {
+					return player !== this && player instanceof UtilityVideoFacebook;
+				});
 
-			// @ts-ignore
-			xfbmlElements.forEach((el) => el.parentNode?.removeChild(el));
+				// If other FB players exist, don't remove global resources
+				if (hasFBPlayers) {
+					return;
+				}
 
-			// @ts-ignore
-			fbScript && fbScript.parentNode?.removeChild(fbScript);
+				// Remove all Facebook elements from the page
+				const xfbmlElements = document.querySelectorAll('.fb-video, .fb-like, .fb-comments');
+				xfbmlElements.forEach((el) => el.parentNode?.removeChild(el));
 
-			delete UtilityVideoShared.window.FB;
+				// Only remove the script if we're sure no other components need it
+				if (!document.querySelector('.chalky.utility-video-facebook')) {
+					const fbScript = document.querySelector('script[src*="connect.facebook.net"]');
+					fbScript && fbScript.parentNode?.removeChild(fbScript);
 
-			console.warn('WARNING. We are deleting the FB object. This may cause issues with other components.');
+					// Remove global FB object - very destructive!
+					if (UtilityVideoShared.window.FB) {
+						delete UtilityVideoShared.window.FB;
+						console.warn('Removed global FB object - this may affect other components');
+					}
+				}
+			} catch (e) {
+				console.error('Error during Facebook cleanup:', e);
+			}
 		}
 
 		/**
