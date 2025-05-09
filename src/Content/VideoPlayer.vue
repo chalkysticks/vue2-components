@@ -73,28 +73,34 @@
 		}
 
 		/**
-		 * Handle click event on the video player
-		 * @param {MouseEvent} event - Click event
-		 * @return {Promise<void>}
+		 * Play the video if the player is ready
+		 *
+		 * @param {MouseEvent} event
+		 * @returns {Promise<void>}
 		 */
 		protected async Handle_OnClick(event: MouseEvent): Promise<void> {
-			// Set playing state to trigger poster transition
 			this.isPlaying = true;
 
-			// Get iframe element and try to play the video
 			const iframe = this.$refs.videoIframe as HTMLIFrameElement;
 
-			if (iframe && iframe.contentWindow) {
-				// Use YouTube iframe API to play the video
-				iframe.contentWindow.postMessage(
-					JSON.stringify({
-						args: [],
-						event: 'command',
-						func: 'playVideo',
-					}),
-					'*',
-				);
-			}
+			// Retry mechanism if player not ready yet
+			const tryPlay = () => {
+				if (this.playerReady && iframe && iframe.contentWindow) {
+					iframe.contentWindow.postMessage(
+						JSON.stringify({
+							event: 'command',
+							func: 'playVideo',
+							args: [],
+						}),
+						'*',
+					);
+				} else {
+					// Try again in a bit
+					setTimeout(tryPlay, 300);
+				}
+			};
+
+			tryPlay();
 		}
 	}
 </script>
