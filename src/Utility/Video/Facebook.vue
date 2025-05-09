@@ -1,5 +1,5 @@
 <template>
-	<section class="chalky tv-video-facebook">
+	<section class="chalky utility-video-facebook">
 		<div
 			class="fb-video"
 			aria-label="Facebook video player"
@@ -19,17 +19,17 @@
 
 <script lang="ts">
 	import ChalkySticks from '@chalkysticks/sdk';
-	import TVVideoShared from './Shared';
+	import UtilityVideoShared from './Shared';
 	import { Component, Prop, Ref, Watch } from 'vue-property-decorator';
 	import { beforeDestroy, mounted } from '@/Utility/Decorators';
 
 	/**
 	 * @author ChalkySticks LLC
-	 * @package TV/Video
+	 * @package Utility/Video
 	 * @project ChalkySticks SDK Vue2.0 Components
 	 */
 	@Component
-	export default class TVVideoFacebook extends TVVideoShared {
+	export default class UtilityVideoFacebook extends UtilityVideoShared {
 		/**
 		 * @type HTMLElement
 		 */
@@ -85,7 +85,7 @@
 		 */
 		public async createPlayer(videoId: string, time: number = 0): Promise<void> {
 			// YT not loaded
-			if (!TVVideoShared.window.FB) {
+			if (!UtilityVideoShared.window.FB) {
 				setTimeout(() => {
 					this.createPlayer(videoId, time);
 				}, 250);
@@ -191,8 +191,8 @@
 			const firstScriptTag = document.getElementsByTagName('script')[0];
 			firstScriptTag?.parentNode?.insertBefore(tag, firstScriptTag);
 
-			TVVideoShared.window.fbAsyncInit = () => {
-				TVVideoShared.window.FB.init({
+			UtilityVideoShared.window.fbAsyncInit = () => {
+				UtilityVideoShared.window.FB.init({
 					appId: '416522395115051',
 					autoLogAppEvents: true,
 					version: 'v12.0',
@@ -226,7 +226,7 @@
 		 * @return boolean
 		 */
 		protected requiresScript(): boolean {
-			return typeof TVVideoShared.window != 'undefined' && !TVVideoShared.window.FB;
+			return typeof UtilityVideoShared.window != 'undefined' && !UtilityVideoShared.window.FB;
 		}
 
 		/**
@@ -273,7 +273,7 @@
 		 */
 		@beforeDestroy
 		private unsubscribeFromFacebook(): void {
-			TVVideoShared.window.FB.Event.unsubscribe('xfbml.ready', this.Handle_OnFacebookReady);
+			UtilityVideoShared.window.FB.Event.unsubscribe('xfbml.ready', this.Handle_OnFacebookReady);
 
 			const xfbmlElements = document.querySelectorAll('.fb-video, .fb-like, .fb-comments');
 			const fbScript = document.querySelector('script[src*="connect.facebook.net"]');
@@ -284,7 +284,7 @@
 			// @ts-ignore
 			fbScript && fbScript.parentNode?.removeChild(fbScript);
 
-			delete TVVideoShared.window.FB;
+			delete UtilityVideoShared.window.FB;
 
 			console.warn('WARNING. We are deleting the FB object. This may cause issues with other components.');
 		}
@@ -299,10 +299,10 @@
 
 				setTimeout(() => {
 					// Wait for player to be ready
-					TVVideoShared.window.FB.Event.subscribe('xfbml.ready', this.Handle_OnFacebookReady);
+					UtilityVideoShared.window.FB.Event.subscribe('xfbml.ready', this.Handle_OnFacebookReady);
 
 					// Parse new element
-					TVVideoShared.window.FB.XFBML.parse(this.player);
+					UtilityVideoShared.window.FB.XFBML.parse(this.player);
 				}, 250);
 			});
 		}
@@ -343,7 +343,7 @@
 </script>
 
 <style lang="scss">
-	.tv-video-facebook {
+	.chalky.utility-video-facebook {
 		height: 100%;
 		width: 100%;
 

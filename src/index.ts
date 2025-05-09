@@ -50,10 +50,8 @@ import TvSchedule from './TV/Schedule.vue';
 import TvScheduleItem from './TV/ScheduleItem.vue';
 import TvScheduleList from './TV/ScheduleList.vue';
 import TvTimeline from './TV/Timeline.vue';
-import TvVideoFacebook from './TV/Video/Facebook.vue';
 import TvVideoPreview from './TV/VideoPreview.vue';
 import TvVideoTheater from './TV/VideoTheater.vue';
-import TvVideoYouTube from './TV/Video/YouTube.vue';
 import UserAvatar from './User/Avatar.vue';
 import UserCard from './User/Card.vue';
 import UserMenu from './User/Menu.vue';
@@ -65,6 +63,7 @@ import UtilityModal from './Utility/Modal.vue';
 import UtilityPagination from './Utility/Pagination.vue';
 import UtilityPortraitOverlay from './Utility/PortraitOverlay.vue';
 import UtilityScrollToBegin from './Utility/ScrollToBegin.vue';
+import UtilityVideoFacebook from './Utility/Video/Facebook.vue';
 import UtilityVideoYouTube from './Utility/Video/YouTube.vue';
 import VenueButtonCall from './Venue/Button/Call.vue';
 import VenueButtonDirections from './Venue/Button/Directions.vue';
@@ -118,10 +117,8 @@ const components = {
 	TvScheduleItem,
 	TvScheduleList,
 	TvTimeline,
-	TvVideoFacebook,
 	TvVideoPreview,
 	TvVideoTheater,
-	TvVideoYouTube,
 	UserAvatar,
 	UserCard,
 	UserMenu,
@@ -133,6 +130,7 @@ const components = {
 	UtilityPagination,
 	UtilityPortraitOverlay,
 	UtilityScrollToBegin,
+	UtilityVideoFacebook,
 	UtilityVideoYouTube,
 	VenueButtonCall,
 	VenueButtonDirections,
@@ -247,10 +245,8 @@ export {
 	TvScheduleItem,
 	TvScheduleList,
 	TvTimeline,
-	TvVideoFacebook,
 	TvVideoPreview,
 	TvVideoTheater,
-	TvVideoYouTube,
 	UserAvatar,
 	UserCard,
 	UserMenu,
@@ -261,6 +257,7 @@ export {
 	UtilityPagination,
 	UtilityPortraitOverlay,
 	UtilityScrollToBegin,
+	UtilityVideoFacebook,
 	UtilityVideoYouTube,
 	VenueButtonCall,
 	VenueButtonDirections,

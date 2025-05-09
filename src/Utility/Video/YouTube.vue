@@ -1,5 +1,5 @@
 <template>
-	<section class="chalky utility-youtube">
+	<section class="chalky utility-video-youtube">
 		<div v-bind:id="playerId"></div>
 	</section>
 </template>
@@ -12,7 +12,7 @@
 
 	/**
 	 * @author ChalkySticks LLC
-	 * @package TV/Video
+	 * @package Utility/Video
 	 * @project ChalkySticks SDK Vue2.0 Components
 	 */
 	@Component
@@ -388,7 +388,7 @@
 </script>
 
 <style lang="scss">
-	.chalky.utility-youtube {
+	.chalky.utility-video-youtube {
 		background-color: var(--chalky-blue-4);
 		border: 1px solid rgba(255, 255, 255, 0.05);
 		height: 100%;

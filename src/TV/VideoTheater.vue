@@ -61,8 +61,8 @@
 <script lang="ts">
 	import ChalkySticks from '@chalkysticks/sdk';
 	import ViewBase from '../Core/Base';
-	import TvYouTube from './Video/YouTube.vue';
-	import TvFacebook from './Video/Facebook.vue';
+	import TvYouTube from '../Utility/Video/YouTube.vue';
+	import TvFacebook from '../Utility/Video/Facebook.vue';
 	import { Component, Prop, Ref, Watch } from 'vue-property-decorator';
 	import { beforeDestroy, mounted } from '@/Utility/Decorators';
 
