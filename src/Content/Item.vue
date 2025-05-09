@@ -29,7 +29,7 @@
 
 			<div class="body" v-html="contentModel.getContent()"></div>
 
-			<section class="video" v-if="contentModel.getMediaType() === 'video'">
+			<section class="video" v-if="allowVideo && contentModel.getMediaType() === 'video'">
 				<iframe
 					allowfullscreen
 					frameborder="0"
@@ -67,6 +67,12 @@
 	 */
 	@Component
 	export default class ContentItem extends ViewBase {
+		/**
+		 * @type boolean
+		 */
+		@Prop({ default: false })
+		public allowVideo!: boolean;
+
 		/**
 		 * @type ChalkySticks/Model/Content
 		 */

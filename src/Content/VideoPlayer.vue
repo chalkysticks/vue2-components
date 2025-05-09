@@ -1,26 +1,42 @@
 <template>
-	<section class="chalky content-videoplayer" v-bind:class="{ 'state-playing': isPlaying }">
-		<img class="poster rounded-large" v-bind:src="contentModel.getThumbnailUrl()" v-on:click="Handle_OnClick" />
+	<section
+		class="chalky content-videoplayer"
+		v-bind:class="{
+			'state-error': state === 'error',
+			'state-playing': state === 'playing',
+			'state-ready': state === 'ready',
+		}"
+	>
+		<figure
+			v-bind:class="{
+				'loading-overlay': state !== 'playing',
+				'loading-overlay-dark': state !== 'playing',
+				'loading-overlay-transparent': state !== 'playing',
+			}"
+		>
+			<img class="poster rounded-large" v-bind:src="contentModel.getThumbnailUrl()" v-on:click="Handle_OnClickThumbnail" />
+		</figure>
 
-		<iframe
-			allowfullscreen
-			class="rounded-large"
-			frameborder="0"
-			height="100%"
-			ref="videoIframe"
-			referrerpolicy="strict-origin-when-cross-origin"
-			v-bind:src="getYouTubeEmbedWithApi()"
+		<UtilityVideoYouTube
+			v-bind:autoplay="true"
+			v-bind:muted="false"
+			v-bind:ref="'videoPlayer'"
+			v-bind:shouldPlay="shouldPlay"
+			v-bind:url="contentModel.getYouTubeEmbed()"
+			v-on:error="Handle_OnError"
+			v-on:player:error="Handle_OnPlayerError"
+			v-on:player:ready="Handle_OnPlayerReady"
+			v-on:video:starting="Handle_OnVideoStarting"
 			v-bind:style="{ aspectRatio: aspectRatio }"
-			v-if="contentModel.id"
-			width="100%"
-		></iframe>
+		/>
 	</section>
 </template>
 
 <script lang="ts">
 	import ChalkySticks from '@chalkysticks/sdk';
+	import UtilityVideoYouTube from '../Utility/Video/YouTube.vue';
 	import ViewBase from '../Core/Base';
-	import { Component, Prop } from 'vue-property-decorator';
+	import { Component, Prop, Ref } from 'vue-property-decorator';
 	import { beforeDestroy, mounted } from '@/Utility/Decorators';
 
 	/**
@@ -28,13 +44,23 @@
 	 * @package Content
 	 * @project ChalkySticks SDK Vue2.0 Components
 	 */
-	@Component
+	@Component({
+		components: {
+			UtilityVideoYouTube,
+		},
+	})
 	export default class ContentVideoPlayer extends ViewBase {
+		/**
+		 * @type UtilityVideoYouTube
+		 */
+		@Ref('videoPlayer')
+		readonly videoPlayer!: UtilityVideoYouTube;
+
 		/**
 		 * @type string
 		 */
 		@Prop({
-			default: '1 / 1',
+			default: '16 / 9',
 		})
 		public aspectRatio!: string;
 
@@ -47,61 +73,77 @@
 		public contentModel!: ChalkySticks.Model.Content;
 
 		/**
-		 * Whether the video is currently playing
-		 * @type {boolean}
+		 * @type boolean
 		 */
-		protected isPlaying: boolean = false;
+		protected shouldPlay: boolean = false;
 
 		/**
-		 * Get YouTube embed URL with API parameters enabled
-		 * @return {string}
+		 * @type string
 		 */
-		protected getYouTubeEmbedWithApi(): string {
-			const baseUrl = this.contentModel.getYouTubeEmbed();
+		protected state: string = '';
 
-			// Add YouTube API parameters if they're not already present
-			if (baseUrl && !baseUrl.includes('enablejsapi=1')) {
-				// If URL already has parameters, add to them
-				if (baseUrl.includes('?')) {
-					return `${baseUrl}&enablejsapi=1&autoplay=0&mute=0`;
-				} else {
-					return `${baseUrl}?enablejsapi=1&autoplay=0&mute=0`;
-				}
+		/**
+		 * @type number
+		 */
+		private renderAttempts: number = 0;
+
+		/**
+		 * @param string state
+		 * @return void
+		 */
+		private setPlayerState(state: string): void {
+			this.state = state;
+		}
+
+		// region: Event Handlers
+		// ---------------------------------------------------------------------------
+
+		/**
+		 * @return Promise<void>
+		 */
+		protected async Handle_OnError(): Promise<void> {
+			this.setPlayerState('error');
+		}
+
+		/**
+		 * @param PointerEvent e
+		 * @return Promise<void>
+		 */
+		protected async Handle_OnClickThumbnail(e: PointerEvent): Promise<void> {
+			e.preventDefault();
+
+			this.shouldPlay = true;
+		}
+
+		/**
+		 * @return Promise<void>
+		 */
+		protected async Handle_OnPlayerError(): Promise<void> {
+			this.setPlayerState('error');
+
+			// Try re-rendering if there are ads maybe
+			if (this.renderAttempts++ > 3) {
+				return;
 			}
 
-			return baseUrl;
+			setTimeout(() => this.videoPlayer.reload(), 1000);
 		}
 
 		/**
-		 * Play the video if the player is ready
-		 *
-		 * @param {MouseEvent} event
-		 * @returns {Promise<void>}
+		 * @return Promise<void>
 		 */
-		protected async Handle_OnClick(event: MouseEvent): Promise<void> {
-			this.isPlaying = true;
-
-			const iframe = this.$refs.videoIframe as HTMLIFrameElement;
-
-			// Retry mechanism if player not ready yet
-			const tryPlay = () => {
-				if (this.playerReady && iframe && iframe.contentWindow) {
-					iframe.contentWindow.postMessage(
-						JSON.stringify({
-							event: 'command',
-							func: 'playVideo',
-							args: [],
-						}),
-						'*',
-					);
-				} else {
-					// Try again in a bit
-					setTimeout(tryPlay, 300);
-				}
-			};
-
-			tryPlay();
+		protected async Handle_OnPlayerReady(): Promise<void> {
+			this.setPlayerState('ready');
 		}
+
+		/**
+		 * @return Promise<void>
+		 */
+		protected async Handle_OnVideoStarting(): Promise<void> {
+			this.setPlayerState('playing');
+		}
+
+		// endregion: Event Handlers
 	}
 </script>
 
@@ -112,20 +154,40 @@
 		.poster {
 			height: 100%;
 			object-fit: cover;
+			opacity: 0.25;
 			position: absolute;
-			transition: opacity 1.5s ease-out;
-			transition-delay: 0.5s;
+			transition: opacity 1.25s ease-out;
 			width: 100%;
+		}
+
+		iframe {
+			opacity: 0;
+			transition: opacity 1s ease-out;
+			transition-delay: 0.5s;
 		}
 	}
 
 	// State
 	// ---------------------------------------------------------------------------
 
+	.chalky.content-videoplayer.state-ready {
+		.poster {
+			opacity: 1;
+		}
+
+		iframe {
+			opacity: 1;
+		}
+	}
+
 	.chalky.content-videoplayer.state-playing {
 		.poster {
 			opacity: 0;
 			pointer-events: none;
+		}
+
+		iframe {
+			opacity: 1;
 		}
 	}
 </style>

@@ -1069,8 +1069,8 @@
   resolved "https://codeload.github.com/chalkysticks/mrm-preset/tar.gz/ffb5de89f32263360d52934953a34fd823f0e841"
 
 "@chalkysticks/sass@github:chalkysticks/sass-theme":
-  version "1.11.5"
-  resolved "https://codeload.github.com/chalkysticks/sass-theme/tar.gz/b19ac885bc3a85f59ac7fe893e163a53fccacbca"
+  version "1.11.6"
+  resolved "https://codeload.github.com/chalkysticks/sass-theme/tar.gz/885c82f5ebf0c4791729ad7103892efae11a61a8"
   dependencies:
     bootstrap "^5.0.1"
 
@@ -1083,8 +1083,8 @@
     restmc "git+https://github.com/mattkenefick/restmc.git"
 
 "@chalkysticks/sdk-core@github:chalkysticks/sdk-core":
-  version "1.40.4"
-  resolved "https://codeload.github.com/chalkysticks/sdk-core/tar.gz/d0a59c87d7508a228ab18b6aab962ff098bd1e62"
+  version "1.40.5"
+  resolved "https://codeload.github.com/chalkysticks/sdk-core/tar.gz/4238b13870a115648c503d04068b89eb95cbe765"
   dependencies:
     "@chalkysticks/mrm-preset" "github:chalkysticks/mrm-preset"
     "@types/googlemaps" "^3.43.3"
@@ -1144,8 +1144,8 @@
     restmc "git+https://github.com/mattkenefick/restmc.git"
 
 "@chalkysticks/sdk@github:chalkysticks/sdk":
-  version "1.51.0"
-  resolved "https://codeload.github.com/chalkysticks/sdk/tar.gz/d9a896815b7439dd3739c496bff52ebe5fa110f2"
+  version "1.52.0"
+  resolved "https://codeload.github.com/chalkysticks/sdk/tar.gz/865e2ed7eba48be962becfe59aee855aa1e3ae26"
   dependencies:
     "@chalkysticks/sdk-authentication" "github:chalkysticks/sdk-authentication"
     "@chalkysticks/sdk-core" "github:chalkysticks/sdk-core"
@@ -2465,9 +2465,9 @@ boolbase@^1.0.0:
   integrity sha512-JZOSA7Mo9sNGB8+UjSgzdLtokWAky1zbztM3WRLCbZ70/3cTANmQmOdR7y2g+J0e2WXywy1yS468tY+IruqEww==
 
 bootstrap@^5.0.1:
-  version "5.3.5"
-  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-5.3.5.tgz#be42cfe0d580e97ee1abb7d38ce94f5c393c9bb6"
-  integrity sha512-ct1CHKtiobRimyGzmsSldEtM03E8fcEX4Tb3dGXz1V8faRwM50+vfHwTzOxB3IlKO7m+9vTH3s/3C6T2EAPeTA==
+  version "5.3.6"
+  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-5.3.6.tgz#fbd91ebaff093f5b191a1c01a8c866d24f9fa6e1"
+  integrity sha512-jX0GAcRzvdwISuvArXn3m7KZscWWFAf1MKBcnzaN02qWMb3jpMoUX4/qgeiGzqyIb4ojulRzs89UCUmGcFSzTA==
 
 brace-expansion@^1.1.7:
   version "1.1.11"

@@ -10,6 +10,7 @@
 
 			<ContentItem
 				class="list-item type-minimal"
+				v-bind:allowVideo="false"
 				v-bind:class="{ 'state-selected': contentModel.id == selectedContentId }"
 				v-bind:key="contentModel.id"
 				v-bind:contentModel="contentModel"

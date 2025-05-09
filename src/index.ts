@@ -65,6 +65,7 @@ import UtilityModal from './Utility/Modal.vue';
 import UtilityPagination from './Utility/Pagination.vue';
 import UtilityPortraitOverlay from './Utility/PortraitOverlay.vue';
 import UtilityScrollToBegin from './Utility/ScrollToBegin.vue';
+import UtilityVideoYouTube from './Utility/Video/YouTube.vue';
 import VenueButtonCall from './Venue/Button/Call.vue';
 import VenueButtonDirections from './Venue/Button/Directions.vue';
 import VenueButtonWebsite from './Venue/Button/Website.vue';
@@ -132,6 +133,7 @@ const components = {
 	UtilityPagination,
 	UtilityPortraitOverlay,
 	UtilityScrollToBegin,
+	UtilityVideoYouTube,
 	VenueButtonCall,
 	VenueButtonDirections,
 	VenueButtonWebsite,
@@ -259,6 +261,7 @@ export {
 	UtilityPagination,
 	UtilityPortraitOverlay,
 	UtilityScrollToBegin,
+	UtilityVideoYouTube,
 	VenueButtonCall,
 	VenueButtonDirections,
 	VenueButtonWebsite,

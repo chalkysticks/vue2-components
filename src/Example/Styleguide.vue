@@ -438,11 +438,11 @@
 
 			<section class="level-1">
 				<header>
-					<h3>Content Video Player, (16x9)</h3>
+					<h3>Content Video Player, (1x1)</h3>
 				</header>
 
 				<div>
-					<ChalkyContentVideoPlayer aspectRatio="16 / 9" v-bind:contentModel="contentCollection.first()" />
+					<ChalkyContentVideoPlayer aspectRatio="1 / 1" v-bind:contentModel="contentCollection.first()" />
 				</div>
 			</section>
 		</section>
@@ -1562,8 +1562,6 @@
 			}, 1000);
 
 			ChalkySticks.Utility.Geolocation.watchLocation((e: any) => {
-				console.log('Watched location', e);
-
 				this.venueCollection.setQueryParam('latitude', e.position.coords.latitude);
 				this.venueCollection.setQueryParam('longitude', e.position.coords.longitude);
 				this.venueCollection.fetch();
