@@ -315,6 +315,7 @@
 				}
 			}
 
+			.confirmed,
 			.address,
 			.details,
 			.description,
