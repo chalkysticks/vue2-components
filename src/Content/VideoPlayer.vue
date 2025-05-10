@@ -2,10 +2,12 @@
 	<section
 		class="chalky content-videoplayer"
 		v-bind:class="{
+			'state-clicked': state === 'clicked',
 			'state-error': state === 'error',
 			'state-playing': state === 'playing',
 			'state-ready': state === 'ready',
 		}"
+		v-on:pointerdown="Handle_OnClickThumbnail"
 	>
 		<figure
 			v-bind:class="{
@@ -14,10 +16,13 @@
 				'loading-overlay-transparent': state !== 'playing',
 			}"
 		>
-			<img class="poster rounded-large" v-bind:src="contentModel.getThumbnailUrl()" v-on:click="Handle_OnClickThumbnail" />
+			<img class="poster rounded-large" v-bind:src="contentModel.getThumbnailUrl()" />
+
+			<img class="play-icon icon filter-invert" src="~@chalkysticks/sass/build/asset/image/icon/video-play.svg" />
 		</figure>
 
 		<UtilityVideoYouTube
+			v-bind:allowControl="true"
 			v-bind:autoplay="true"
 			v-bind:muted="false"
 			v-bind:ref="'videoPlayer'"
@@ -113,6 +118,7 @@
 			e.preventDefault();
 
 			this.shouldPlay = true;
+			this.setPlayerState('clicked');
 		}
 
 		/**
@@ -162,14 +168,44 @@
 
 		iframe {
 			opacity: 0;
-			transition: opacity 1s ease-out;
+			pointer-events: none;
 			transition-delay: 0.5s;
+			transition: opacity 1s ease-out;
+		}
+
+		.play-icon {
+			left: 50%;
+			opacity: 0.5;
+			position: absolute;
+			top: 50%;
+			transform: translate(-50%, -50%);
+		}
+	}
+
+	// Animation
+	// ---------------------------------------------------------------------------
+
+	@keyframes content-videoplayer-play-animation {
+		0% {
+			opacity: 0.5;
+			transform: translate(-50%, -50%) scale(1);
+		}
+
+		30% {
+			opacity: 1;
+			transform: translate(-50%, -50%) scale(1.05);
+		}
+
+		100% {
+			opacity: 0;
+			transform: translate(-50%, -50%) scale(0.87);
 		}
 	}
 
 	// State
 	// ---------------------------------------------------------------------------
 
+	.chalky.content-videoplayer.state-clicked,
 	.chalky.content-videoplayer.state-ready {
 		.poster {
 			opacity: 1;
@@ -177,6 +213,19 @@
 
 		iframe {
 			opacity: 1;
+		}
+	}
+
+	.chalky.content-videoplayer.state-clicked {
+		.play-icon {
+			animation-delay: 0.5s;
+			animation-fill-mode: forwards;
+			animation-iteration-count: 1;
+			animation-name: content-videoplayer-play-animation;
+			animation-timing-function: ease-out;
+			animation: content-videoplayer-play-animation 1s ease-out;
+			opacity: 0;
+			transform: translate(-50%, -50%) scale(0.87);
 		}
 	}
 
@@ -188,6 +237,10 @@
 
 		iframe {
 			opacity: 1;
+		}
+
+		.play-icon {
+			opacity: 0;
 		}
 	}
 </style>
