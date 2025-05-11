@@ -1144,6 +1144,17 @@
 
 			<section class="level-1">
 				<header>
+					<h3>Reaction Favorite</h3>
+
+					<p><small>@todo add location</small></p>
+				</header>
+				<div>
+					<ChalkyReactionFavorite v-bind:model="venueModel" />
+				</div>
+			</section>
+
+			<section class="level-1">
+				<header>
 					<h3>Reaction List</h3>
 
 					<p><small>@todo add location</small></p>

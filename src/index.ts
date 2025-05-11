@@ -40,6 +40,7 @@ import MediaFeed from './Media/Feed.vue';
 import MediaUser from './Media/User.vue';
 import MediaVenue from './Media/Venue.vue';
 import ReactionButton from './Reaction/Button.vue';
+import ReactionFavorite from './Reaction/Favorite.vue';
 import ReactionList from './Reaction/List.vue';
 import ReactionSummary from './Reaction/Summary.vue';
 import TvAttributionBanner from './TV/AttributionBanner.vue';
@@ -107,6 +108,7 @@ const components = {
 	MediaUser,
 	MediaVenue,
 	ReactionButton,
+	ReactionFavorite,
 	ReactionList,
 	ReactionSummary,
 	TvAttributionBanner,
@@ -235,6 +237,7 @@ export {
 	MediaUser,
 	MediaVenue,
 	ReactionButton,
+	ReactionFavorite,
 	ReactionList,
 	ReactionSummary,
 	TvAttributionBanner,

@@ -1,5 +1,5 @@
 <template>
-	<section class="chalky reaction-list" :class="[`layout-${layout}`, { 'is-compact': compact }]">
+	<section class="chalky reaction-list" v-bind:class="[`layout-${layout}`, { 'is-compact': compact }]">
 		<slot name="before"></slot>
 
 		<div class="reaction-buttons">

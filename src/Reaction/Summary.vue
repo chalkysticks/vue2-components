@@ -143,8 +143,14 @@
 			}
 
 			// Check each reaction type to see if user has reacted
-			for (const type in this.model.reactions) {
-				if (this.model.reactions[type]?.some((reaction: ChalkySticks.Model.Reaction) => reaction.user.id === userModel.id)) {
+			for (const type of this.reactionTypes) {
+				const reactionByType = this.model.reactions[type];
+
+				if (!reactionByType?.length) {
+					continue;
+				}
+
+				if (reactionByType.models.some((reaction: ChalkySticks.Model.Reaction) => reaction.user.id === userModel.id)) {
 					return type;
 				}
 			}
