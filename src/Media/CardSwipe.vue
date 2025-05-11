@@ -102,7 +102,7 @@
 		 * Advances to the next card
 		 * @return void
 		 */
-		protected next(): void {
+		protected next(direction: number = 0): void {
 			this.$el.classList.add('state-transitioning');
 
 			gsap.to(this, {
@@ -112,14 +112,14 @@
 				onComplete: () => {
 					this.$el.classList.remove('state-transitioning');
 					this.activeIndex = (this.activeIndex + 1) % this.getCardCount();
-					this.setOffsetZIndex();
+					this.setOffsetZIndex(direction);
 
 					this.dx = 0;
 					this.dy = 0;
 					this.ratio = 0;
 					this.ratioNormal = 0;
 				},
-				ratio: 1,
+				ratio: direction,
 				ratioNormal: 1,
 			});
 		}
@@ -139,9 +139,10 @@
 		}
 
 		/**
+		 * @param number direction
 		 * @return void
 		 */
-		protected setOffsetZIndex(): void {
+		protected setOffsetZIndex(direction: number = 0): void {
 			const cards = Array.from(this.$el.children) as HTMLElement[];
 			const len = cards.length;
 			if (len === 0) return;
@@ -153,11 +154,11 @@
 
 			cards.forEach((card, i) => {
 				// Clear and set states
-				card.classList.remove('state-active', 'state-previous', 'state-next');
+				card.classList.remove('state-active', 'state-previous', 'state-next', 'direction-left', 'direction-right');
 
 				if (i === active) card.classList.add('state-active');
 				else if (i === prev) card.classList.add('state-previous');
-				else if (i === next) card.classList.add('state-next');
+				else if (i === next) card.classList.add('state-next', `direction-${this.ratio > 0 ? 'left' : 'right'}`);
 
 				// Simple z-index: active highest, then prev/next, then others
 				card.style.zIndex = i === active ? '4' : i === next ? '3' : i === prev ? '2' : '1';
@@ -181,8 +182,8 @@
 		protected async Handle_OnDrag(e: ChalkySticks.Core.IDispatcherEvent<any>): Promise<void> {
 			this.dx = e.data.dx;
 			this.dy = e.data.dy;
-			this.ratio = Math.min(1, Math.abs(this.dx) / 50) * (this.dx < 0 ? -1 : 1);
-			this.ratioNormal = Math.min(1, Math.abs(this.dx) / 50);
+			this.ratio = Math.min(1, Math.abs(this.dx) / 100) * (this.dx < 0 ? -1 : 1);
+			this.ratioNormal = Math.min(1, Math.abs(this.dx) / 100);
 		}
 
 		/**
@@ -190,8 +191,8 @@
 		 * @return Promise<void>
 		 */
 		protected async Handle_OnDragRelease(e: ChalkySticks.Core.IDispatcherEvent<any>): Promise<void> {
-			if (Math.abs(this.ratio) >= 0.75) {
-				this.next();
+			if (Math.abs(this.ratio) >= 0.85) {
+				this.next(this.ratio);
 			} else {
 				this.reset();
 			}
@@ -202,7 +203,8 @@
 		 * @return Promise<void>
 		 */
 		protected async Handle_OnTap(e: ChalkySticks.Core.IDispatcherEvent<any>): Promise<void> {
-			console.log('Tap', e);
+			this.$emit('tap');
+			this.$emit('select');
 		}
 
 		// endregion: Event Handlers
@@ -230,7 +232,6 @@
 
 		&:not(.state-transitioning) > .state-active {
 			transform: rotate(calc(var(--ratio) * 10deg)) translateX(calc(var(--ratio) * 125px)) translateY(calc(var(--ratio) * -10px)) scale(1);
-			transition: transform 0.1s ease-out;
 			will-change: transform;
 		}
 	}
@@ -243,7 +244,29 @@
 	}
 
 	.chalky.media-cardswipe.state-transitioning .state-next {
-		animation: cardswipe-left 0.5s ease-in-out;
+		animation: cardswipe-bump 0.5s ease-in-out;
+	}
+
+	.chalky.media-cardswipe.state-transitioning .state-next.direction-left {
+		//animation: cardswipe-left 0.5s ease-in-out;
+	}
+
+	.chalky.media-cardswipe.state-transitioning .state-next.direction-right {
+		//animation: cardswipe-right 0.5s ease-in-out;
+	}
+
+	@keyframes cardswipe-bump {
+		0% {
+			transform: scale(1);
+		}
+
+		30% {
+			transform: scale(1.033);
+		}
+
+		100% {
+			transform: scale(1);
+		}
 	}
 
 	@keyframes cardswipe {
@@ -270,6 +293,20 @@
 
 		30% {
 			transform: rotate(-10deg) translateX(-150px) translateY(-10px) scale(1);
+		}
+
+		100% {
+			transform: rotate(0deg) translateX(0px) translateY(0px) scale(1);
+		}
+	}
+
+	@keyframes cardswipe-right {
+		0% {
+			transform: rotate(0deg) translateX(0px) translateY(0px) scale(1);
+		}
+
+		30% {
+			transform: rotate(10deg) translateX(150px) translateY(-10px) scale(1);
 		}
 
 		100% {
