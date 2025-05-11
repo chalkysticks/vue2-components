@@ -584,7 +584,7 @@
 				</header>
 				<div class="d-flex" style="gap: 1rem">
 					<ChalkyMediaVenue animationStyle="crossfade" type="exterior" v-bind:limit="5" />
-					<ChalkyMediaVenue animationStyle="slide" type="exterior" v-bind:limit="5" />
+					<ChalkyMediaVenue animationStyle="slide" type="exterior" v-bind:limit="5" v-on:select="Handle_OnSelectMediaVenue" />
 				</div>
 			</section>
 
@@ -1831,6 +1831,15 @@
 		 */
 		protected async Handle_OnSelectChannel(channel: string): Promise<void> {
 			console.log('Selected Channel', channel);
+		}
+
+		/**
+		 * @param ChalkySticks.Model.Media mediaModel
+		 * @param number index
+		 * @return Promise<void>
+		 */
+		protected async Handle_OnSelectMediaVenue(mediaModel: ChalkySticks.Model.Media, index: number): Promise<void> {
+			console.log('Selected Media', mediaModel, index);
 		}
 
 		/**

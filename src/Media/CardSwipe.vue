@@ -212,8 +212,8 @@
 		 * @return Promise<void>
 		 */
 		protected async Handle_OnTap(e: ChalkySticks.Core.IDispatcherEvent<any>): Promise<void> {
-			this.$emit('tap');
-			this.$emit('select');
+			this.$emit('tap', { index: this.activeIndex });
+			this.$emit('select', { index: this.activeIndex });
 		}
 
 		// endregion: Event Handlers

@@ -14,6 +14,7 @@
 				v-bind:class="getAnimationClass(index)"
 				v-bind:key="mediaModel.id"
 				v-for="(mediaModel, index) in mediaCollection"
+				v-on:click="$emit('select', mediaModel, index)"
 				v-show="animationStyle === 'none' ? index === currentIndex : true"
 			>
 				<img class="background" v-bind:src="mediaModel.getUrl()" />
