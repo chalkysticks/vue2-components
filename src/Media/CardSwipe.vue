@@ -1,6 +1,9 @@
 <template>
 	<section
 		class="chalky media-cardswipe"
+		v-bind:class="{
+			'state-loading': isLoading,
+		}"
 		v-bind:style="{
 			'--dx': dx + 'px',
 			'--dy': dy + 'px',
@@ -51,6 +54,11 @@
 		protected globalPointer!: ChalkySticks.Core.Input.Pointer;
 
 		/**
+		 * @type boolean
+		 */
+		protected isLoading: boolean = true;
+
+		/**
 		 * @type ChalkySticks.Core.Input.Pointer
 		 */
 		protected pointer!: ChalkySticks.Core.Input.Pointer;
@@ -71,6 +79,7 @@
 		@mounted
 		public setupCards(): void {
 			setTimeout(() => {
+				this.isLoading = false;
 				this.setOffsetZIndex();
 			}, 1000);
 		}
@@ -219,6 +228,10 @@
 
 		display: grid;
 
+		.media-feed {
+			transition: opacity 0.3s ease-out;
+		}
+
 		> * {
 			grid-column: 1;
 			grid-row: 1;
@@ -233,6 +246,17 @@
 		&:not(.state-transitioning) > .state-active {
 			transform: rotate(calc(var(--ratio) * 10deg)) translateX(calc(var(--ratio) * 125px)) translateY(calc(var(--ratio) * -10px)) scale(1);
 			will-change: transform;
+		}
+	}
+
+	// State
+	// ---------------------------------------------------------------------------
+
+	.chalky.media-cardswipe.state-loading {
+		background: url('~@chalkysticks/sass/build/asset/image/loader/triangle-white-light.svg') no-repeat center center;
+
+		.media-feed {
+			opacity: 0;
 		}
 	}
 

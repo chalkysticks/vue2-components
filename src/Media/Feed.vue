@@ -187,8 +187,6 @@
 		protected async Handle_OnSlideshowInterval(): Promise<void> {
 			this.previousIndex = this.currentIndex;
 			this.currentIndex = (this.currentIndex + 1) % this.mediaCollection.length || 1;
-
-			console.log('Current index:', this.currentIndex);
 		}
 
 		// endregion: Event Handlers
