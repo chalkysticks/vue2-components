@@ -7,7 +7,7 @@
 			'state-playing': state === 'playing',
 			'state-ready': state === 'ready',
 		}"
-		v-on:pointerdown="Handle_OnClickThumbnail"
+		v-on:click="Handle_OnClickThumbnail"
 	>
 		<figure
 			v-bind:class="{
@@ -117,8 +117,11 @@
 		protected async Handle_OnClickThumbnail(e: PointerEvent): Promise<void> {
 			e.preventDefault();
 
+			if (!this.shouldPlay) {
+				this.setPlayerState('clicked');
+			}
+
 			this.shouldPlay = true;
-			this.setPlayerState('clicked');
 		}
 
 		/**
@@ -230,6 +233,10 @@
 	}
 
 	.chalky.content-videoplayer.state-playing {
+		figure {
+			pointer-events: none;
+		}
+
 		.poster {
 			opacity: 0;
 			pointer-events: none;
@@ -237,6 +244,7 @@
 
 		iframe {
 			opacity: 1;
+			pointer-events: all;
 		}
 
 		.play-icon {
