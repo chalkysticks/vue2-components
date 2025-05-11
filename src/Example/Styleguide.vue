@@ -582,8 +582,9 @@
 				<header>
 					<h3>Venue Exterior</h3>
 				</header>
-				<div>
-					<ChalkyMediaVenue type="exterior" />
+				<div class="d-flex" style="gap: 1rem">
+					<ChalkyMediaVenue animationStyle="crossfade" type="exterior" v-bind:limit="5" />
+					<ChalkyMediaVenue animationStyle="slide" type="exterior" v-bind:limit="5" />
 				</div>
 			</section>
 
@@ -593,7 +594,7 @@
 				</header>
 				<div style="display: flex; gap: 1rem">
 					<ChalkyMediaVenue type="table" />
-					<ChalkyMediaVenue type="table" v-if="venueCollection.length" v-bind:venueModel="venueCollection.at(0)" />
+					<ChalkyMediaVenue animationStyle="slide" type="table" v-if="venueCollection.length" v-bind:venueModel="venueCollection.at(0)" />
 				</div>
 			</section>
 
