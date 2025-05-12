@@ -48,7 +48,7 @@
 		<section v-else-if="showCommentForm && !isAuthenticated" class="login-prompt">
 			<slot name="login-prompt">
 				<p>
-					<a href="#" @click.prevent="$emit('login')">Sign in</a>
+					<a href="#" v-on:click.prevent="Handle_OnClickSignIn">Sign in</a>
 					to leave a comment
 				</p>
 			</slot>
@@ -133,6 +133,18 @@
 		 */
 		protected isLoading: boolean = false;
 
+		// region: Event Handlers
+		// ---------------------------------------------------------------------------
+
+		/**
+		 * @param PointerEvent e
+		 * @return Promise<void>
+		 */
+		protected async Handle_OnClickSignIn(e: PointerEvent): Promise<void> {
+			this.$emit('login:request');
+			ChalkySticks.Core.Event.Bus.dispatch('login:request');
+		}
+
 		/**
 		 * Handle successful comment submission
 		 *
@@ -154,6 +166,8 @@
 			this.$emit('delete', commentModel);
 			this.$forceUpdate();
 		}
+
+		// endregion: Event Handlers
 	}
 </script>
 
@@ -204,11 +218,11 @@
 			text-align: center;
 
 			a {
-				color: var(--chalky-blue, #0077cc);
-				text-decoration: none;
+				color: var(--chalky-white, #fff);
+				text-decoration: underline;
 
 				&:hover {
-					text-decoration: underline;
+					color: var(--chalky-grey-1, #ccc);
 				}
 			}
 		}

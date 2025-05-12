@@ -313,6 +313,13 @@
 				}
 			}
 
+			.checkins {
+				bottom: 25%;
+				left: 0.5rem;
+				position: absolute;
+				right: 0.5rem;
+			}
+
 			.confirmed,
 			.address,
 			.details,
@@ -336,6 +343,16 @@
 		--chalky-venue-list-checkin-avatar-size: 30px;
 		--chalky-venue-list-thumbnail-size: 2.5em;
 		--chalky-venue-list-title-font-size: 1em;
+
+		.content {
+			column-gap: 1rem;
+			display: grid;
+			grid-template-columns: 1fr auto;
+			grid-template-rows: auto auto;
+			grid-template-areas:
+				'title checkins'
+				'address checkins';
+		}
 
 		.venue-card {
 			grid-column-gap: 0.75rem;
@@ -368,14 +385,16 @@
 		--chalky-reaction-favorite-size: 1.5em;
 
 		.content {
+			column-gap: 1rem;
 			display: grid;
-			grid-template-columns: 1fr 1fr;
+			grid-template-columns: 1fr auto;
 			grid-template-rows: auto auto;
 			grid-template-areas:
 				'title reactions'
 				'address reactions';
 		}
 
+		.checkins,
 		.open-closed,
 		.distance {
 			display: none;
@@ -393,6 +412,20 @@
 	}
 
 	.chalky.venue-list.variation-normal {
+		.content {
+			column-gap: 1rem;
+			display: grid;
+			grid-template-columns: 1fr auto;
+			grid-template-rows: auto auto;
+			grid-template-areas:
+				'title checkins'
+				'address checkins';
+		}
+
+		.distance {
+			display: none;
+		}
+
 		.open-closed {
 			height: 100%;
 			left: 0;

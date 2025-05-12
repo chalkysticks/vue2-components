@@ -146,31 +146,10 @@
 		}
 
 		.whos-here-users {
-			display: grid;
-			place-items: center;
+			display: flex;
 
 			> * {
-				grid-area: 1 / 1;
-
-				&:nth-child(1) {
-					transform: translate(0, 0);
-				}
-
-				&:nth-child(2) {
-					transform: translate(2rem, 0);
-				}
-
-				&:nth-child(3) {
-					transform: translate(4rem, 0);
-				}
-
-				&:nth-child(4) {
-					transform: translate(6rem, 0);
-				}
-
-				&:nth-child(5) {
-					transform: translate(8rem, 0);
-				}
+				margin-left: calc(var(--avatar-size-sm) * 0.3 * -1);
 			}
 		}
 

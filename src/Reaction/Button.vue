@@ -166,7 +166,8 @@
 		protected async Handle_OnClick(): Promise<void> {
 			if (this.isSubmitting || !this.$store?.getters['authentication/authenticated']) {
 				if (!this.$store?.getters['authentication/authenticated']) {
-					this.$emit('unauthenticated');
+					this.$emit('login:request');
+					ChalkySticks.Core.Event.Bus.dispatch('login:request');
 				}
 
 				return;

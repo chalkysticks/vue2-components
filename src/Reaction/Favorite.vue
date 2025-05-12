@@ -62,6 +62,9 @@
 			return this.model.reactions.hasReaction(ChalkySticks.Enum.ReactionType.Love);
 		}
 
+		// region: Event Handlers
+		// ---------------------------------------------------------------------------
+
 		/**
 		 * Click handler for the favorite button
 		 * @return Promise<void>
@@ -69,7 +72,8 @@
 		protected async Handle_OnClick(): Promise<void> {
 			if (this.isSubmitting || !this.$store?.getters['authentication/authenticated']) {
 				if (!this.$store?.getters['authentication/authenticated']) {
-					this.$emit('unauthenticated');
+					this.$emit('login:request');
+					ChalkySticks.Core.Event.Bus.dispatch('login:request');
 				}
 				return;
 			}
@@ -86,6 +90,8 @@
 				this.isSubmitting = false;
 			}
 		}
+
+		// endregion: Event Handlers
 	}
 </script>
 

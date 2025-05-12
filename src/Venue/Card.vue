@@ -5,7 +5,7 @@
 		<UtilityGallery
 			class="gallery"
 			ref="gallery"
-			v-bind:key="venueModel.id"
+			v-bind:key="venueModel.uniqueKey"
 			v-bind:interactive="interactiveGallery"
 			v-bind:model="venueModel"
 			v-on:tap:small="$emit('click:gallery')"
@@ -342,10 +342,6 @@
 			}
 		}
 
-		header + .inner {
-			margin-top: 1rem;
-		}
-
 		.title {
 			float: left;
 			margin-right: 1rem;
@@ -576,22 +572,20 @@
 			}
 
 			.checkins {
-				bottom: 25%;
-				position: absolute;
-				right: 0.5rem;
+				.inner {
+					justify-content: flex-end;
+					pointer-events: none;
+					width: 100%;
+				}
 
 				header,
-				.user-avatar,
 				.action {
 					display: none;
 				}
 
-				.user-avatar:first-child {
-					display: block;
-				}
-
 				.user-avatar {
 					--avatar-size-sm: var(--chalky-venue-list-checkin-avatar-size);
+					pointer-events: all;
 				}
 			}
 		}
@@ -606,29 +600,6 @@
 		.rating,
 		.actions {
 			display: none;
-		}
-	}
-
-	// List item view styles
-	.chalky.venue-card.list-item {
-		.checkins {
-			bottom: 25%;
-			position: absolute;
-			right: 0.5rem;
-
-			header,
-			.user-avatar,
-			.action {
-				display: none;
-			}
-
-			.user-avatar:first-child {
-				display: block;
-			}
-
-			.user-avatar {
-				--avatar-size-sm: var(--chalky-venue-list-checkin-avatar-size);
-			}
 		}
 	}
 
