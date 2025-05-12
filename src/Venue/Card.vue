@@ -1,8 +1,9 @@
 <template>
-	<div class="chalky venue-card glass-panel" v-bind:class="'type-' + venueModel.getType()" v-bind:key="venueModel.uniqueKey">
+	<div class="chalky venue-card glass-panel" v-bind:class="'type-' + venueModel.getType()">
 		<slot name="before"></slot>
 
 		<UtilityGallery
+			class="gallery"
 			ref="gallery"
 			v-bind:key="venueModel.id"
 			v-bind:interactive="interactiveGallery"
@@ -10,7 +11,7 @@
 			v-on:tap:small="$emit('click:gallery')"
 		/>
 
-		<section class="content" v-if="venueModel.getName()">
+		<section class="content" v-bind:key="venueModel.uniqueKey" v-if="venueModel.getName()">
 			<slot name="content:before"></slot>
 
 			<section class="title">
@@ -22,18 +23,14 @@
 			<section class="reactions">
 				<div class="inner">
 					<ReactionList v-bind:model="venueModel" />
+					<ReactionFavorite v-bind:model="venueModel" />
+					<!-- <span>{{ venueModel.reactions.like.length }} Likes</span> -->
 				</div>
 			</section>
 
 			<section class="rating">
 				<div class="inner">
 					<span>{{ rating }}</span>
-				</div>
-			</section>
-
-			<section class="reactions" v-if="false">
-				<div class="inner">
-					<span>{{ venueModel.reactions.like.length }} Likes</span>
 				</div>
 			</section>
 
@@ -152,6 +149,7 @@
 	import ButtonCheckin from '../Button/Checkin.vue';
 	import ChalkySticks from '@chalkysticks/sdk';
 	import CommentList from '../Comment/List.vue';
+	import ReactionFavorite from '../Reaction/Favorite.vue';
 	import ReactionList from '../Reaction/List.vue';
 	import UserAvatar from '../User/Avatar.vue';
 	import UtilityGallery from '../Utility/Gallery.vue';
@@ -173,6 +171,7 @@
 		components: {
 			ButtonCheckin,
 			CommentList,
+			ReactionFavorite,
 			ReactionList,
 			UserAvatar,
 			UtilityGallery,
@@ -285,6 +284,64 @@
 		padding: 0.5rem;
 		position: relative;
 
+		.content {
+			.title {
+				grid-area: title;
+			}
+
+			.rating {
+				grid-area: rating;
+			}
+
+			.confirmed {
+				grid-area: confirmed;
+			}
+
+			.address {
+				grid-area: address;
+			}
+
+			.reactions {
+				grid-area: reactions;
+			}
+
+			.today {
+				grid-area: today;
+			}
+
+			.checkins {
+				grid-area: checkins;
+			}
+
+			.description {
+				grid-area: description;
+			}
+
+			.details {
+				grid-area: details;
+			}
+
+			.hours {
+				grid-area: hours;
+			}
+
+			.actions {
+				grid-area: actions;
+			}
+
+			.comments {
+				grid-area: comments;
+			}
+
+			.open-closed {
+				grid-area: open-closed;
+			}
+
+			.distance {
+				grid-area: distance;
+			}
+		}
+
 		header + .inner {
 			margin-top: 1rem;
 		}
@@ -304,8 +361,12 @@
 		}
 
 		.rating {
-			display: block;
+			display: none;
 			transform: translate(0, 2px);
+		}
+
+		.confirmed {
+			display: none;
 		}
 
 		.utility-gallery + .content {
@@ -338,12 +399,6 @@
 			}
 		}
 
-		.confirmed {
-			position: absolute;
-			right: 0.75rem;
-			top: 0.75rem;
-		}
-
 		.address {
 			clear: both;
 			margin-bottom: 1.5rem;
@@ -353,7 +408,7 @@
 			margin-top: 0.5rem;
 		}
 
-		.actions {
+		.content > .actions {
 			margin-top: 3em;
 
 			.inner {
@@ -405,6 +460,13 @@
 				flex-shrink: 1;
 			}
 		}
+
+		.comments {
+			.comment-container {
+				margin-left: -1rem;
+				margin-right: -1rem;
+			}
+		}
 	}
 
 	// Variations
@@ -412,6 +474,36 @@
 
 	.chalky.venue-card.glass-panel {
 		.confirmed {
+		}
+	}
+
+	.chalky.venue-card.minimal {
+		.content {
+			display: grid;
+			grid-template-columns: auto min-content;
+			grid-template-rows: auto min-content;
+			grid-template-areas:
+				'title reactions'
+				'address reactions';
+		}
+
+		.address {
+			margin-bottom: 0;
+		}
+
+		.hours,
+		.checkins,
+		.rating,
+		.today,
+		.details,
+		.reactions .reaction-list,
+		.reactions .reaction-list,
+		.comments,
+		.confirmed,
+		.tags,
+		.actions,
+		.description {
+			display: none;
 		}
 	}
 
@@ -423,11 +515,8 @@
 
 	.chalky.venue-card.list-item {
 		display: grid;
-		grid-column-gap: 0px;
-		grid-row-gap: 0px;
 		grid-template-columns: auto 1fr;
 		grid-template-rows: auto auto auto;
-		// height: var(--chalky-venue-list-thumbnail-size);
 		max-width: 100%;
 		padding: 0;
 
@@ -453,7 +542,6 @@
 			flex-direction: column;
 			justify-content: center;
 			padding: 0 1rem;
-			padding-right: 60px;
 
 			.title {
 				align-content: flex-end;

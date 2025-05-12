@@ -8,7 +8,7 @@
 			</slot>
 		</header>
 
-		<div class="comment-container" v-bind:key="model.comments.uniqueKey">
+		<section class="comment-container" v-bind:key="model.comments.uniqueKey">
 			<!-- Loading spinner when fetching comments -->
 			<div class="loading" v-if="isLoading">
 				<slot name="loading">
@@ -37,22 +37,22 @@
 
 				<slot name="comments:after"></slot>
 			</div>
-		</div>
+		</section>
 
-		<div v-if="showCommentForm && isAuthenticated" class="main-comment-form">
+		<section v-if="showCommentForm && isAuthenticated" class="main-comment-form">
 			<slot name="comment-form">
 				<CommentForm v-bind:contextModel="model" v-on:submit:error="$emit('comment:error', $event)" v-on:submit="Handle_OnCommentSuccess" />
 			</slot>
-		</div>
+		</section>
 
-		<div v-else-if="showCommentForm && !isAuthenticated" class="login-prompt">
+		<section v-else-if="showCommentForm && !isAuthenticated" class="login-prompt">
 			<slot name="login-prompt">
 				<p>
 					<a href="#" @click.prevent="$emit('login')">Sign in</a>
 					to leave a comment
 				</p>
 			</slot>
-		</div>
+		</section>
 
 		<slot name="after"></slot>
 	</section>
@@ -167,6 +167,11 @@
 			margin-bottom: 1rem;
 		}
 
+		.comment-wrapper {
+			overflow: hidden;
+			position: relative;
+		}
+
 		.comment-container {
 			overflow: auto;
 			position: relative;
@@ -191,7 +196,7 @@
 		}
 
 		.main-comment-form {
-			margin-top: 2rem;
+			margin-top: 1rem;
 		}
 
 		.login-prompt {
@@ -226,6 +231,27 @@
 	.chalky.comment-list.direction-asc {
 		.comments {
 			flex-direction: column-reverse;
+		}
+	}
+
+	.chalky.comment-list.variation-compact {
+		--chalky-comments-avatar-size: 1rem;
+
+		.comments {
+			gap: 0.5em;
+		}
+
+		.comment-item {
+			padding: 0.25em;
+		}
+
+		.author {
+			font-size: 0.75em;
+		}
+
+		.user-avatar .avatar {
+			height: var(--chalky-comments-avatar-size);
+			width: var(--chalky-comments-avatar-size);
 		}
 	}
 </style>

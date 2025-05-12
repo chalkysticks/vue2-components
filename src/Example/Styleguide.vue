@@ -1212,6 +1212,17 @@
 					<ChalkyCommentList direction="asc" maxHeight="80svh" v-bind:model="venueModel" />
 				</div>
 			</section>
+
+			<section class="level-1">
+				<header>
+					<h3>Comment List</h3>
+
+					<p><small>@todo add location</small></p>
+				</header>
+				<div>
+					<ChalkyCommentList class="variation-compact" direction="asc" maxHeight="60svh" v-bind:model="venueModel" />
+				</div>
+			</section>
 		</section>
 
 		<section class="level-0" v-if="tab == 'venues'" v-bind:class="{ 'state-active': tab == 'venues' }">
@@ -1268,6 +1279,23 @@
 						</template>
 					</ChalkyVenueCard>
 				</div>
+			</section>
+
+			<section class="level-1">
+				<header>
+					<h3>Venue Card (minimal)</h3>
+				</header>
+
+				<div>
+					<ChalkyVenueCard class="minimal" v-bind:venueModel="venueModel" />
+				</div>
+			</section>
+
+			<section class="level-1">
+				<header>
+					<h3>Venue Card</h3>
+					<p>(no checkins, comments, or hours)</p>
+				</header>
 
 				<div>
 					<ChalkyVenueCard
@@ -1369,15 +1397,15 @@
 				</header>
 
 				<div class="push-bottom">
-					<ChalkyVenueList class="variation-compact" v-bind:venueCollection="venueCollection" />
+					<ChalkyVenueList class="variation-compact on-light" v-bind:venueCollection="venueCollection" />
 				</div>
 
 				<div class="push-bottom">
-					<ChalkyVenueList class="variation-small" v-bind:venueCollection="venueCollection" />
+					<ChalkyVenueList class="variation-small on-light" v-bind:venueCollection="venueCollection" />
 				</div>
 
 				<div class="push-bottom">
-					<ChalkyVenueList class="variation-normal" v-bind:venueCollection="venueCollection" />
+					<ChalkyVenueList class="variation-normal on-light" v-bind:venueCollection="venueCollection" />
 				</div>
 			</section>
 
@@ -1385,6 +1413,7 @@
 				<header>
 					<h3>Venue Comments</h3>
 				</header>
+
 				<div>
 					<ChalkyCommentList direction="asc" maxHeight="80svh" v-bind:model="venueModel" />
 				</div>

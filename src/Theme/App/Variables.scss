@@ -5,6 +5,8 @@
 	--chalky-avatar-stroke-color: var(--color-blue);
 	--chalky-avatar-stroke-width: 3px;
 
+	--chalky-comments-avatar-size: var(--avatar-size-xs);
+
 	--chalky-tv-channel-count: 9;
 	--chalky-tv-hour-height: 200px;
 	--chalky-tv-schedule-gap: 1px;
@@ -14,6 +16,9 @@
 	--chalky-tv-schedule-sidebar-size: 120px;
 
 	--chalky-utilityscreen-zindex: 500;
+
+	--chalky-reaction-favorite-padding: 1em;
+	--chalky-reaction-favorite-size: 2rem;
 
 	--chalky-venue-card-border-radius: var(--rounded-corner-outer);
 	--chalky-venue-card-content-border-radius: var(--rounded-corner-outer);

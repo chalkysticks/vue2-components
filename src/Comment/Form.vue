@@ -6,7 +6,7 @@
 			<slot name="form:before"></slot>
 
 			<div class="user" v-bind:key="isAuthenticated">
-				<slot name="user" v-bind:userModel="userModel">
+				<slot name="user" v-bind:userModel="userModel" v-if="showAvatar">
 					<UserAvatar v-bind:userModel="userModel" size="sm" />
 				</slot>
 			</div>
@@ -140,6 +140,14 @@
 		 */
 		@Prop({ default: 3 })
 		public rows!: number;
+
+		/**
+		 * Whether to show the user avatar
+		 *
+		 * @type boolean
+		 */
+		@Prop({ default: false })
+		public showAvatar!: boolean;
 
 		/**
 		 * Text for the submit button
@@ -302,6 +310,7 @@
 				grid-area: actions;
 				display: flex;
 				justify-content: flex-end;
+				margin: 0;
 			}
 		}
 	}

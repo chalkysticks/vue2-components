@@ -79,8 +79,6 @@
 			try {
 				this.isActive() ? await this.model.reactions.unfavorite() : await this.model.reactions.favorite();
 
-				console.log(this.model.reactions);
-
 				this.$forceUpdate();
 			} catch (error) {
 				console.error('Failed to favorite reaction:', error);
@@ -93,8 +91,6 @@
 
 <style lang="scss">
 	.chalky.reaction-favorite {
-		--size: 2rem;
-
 		button {
 			align-items: center;
 			background-color: transparent;
@@ -102,7 +98,7 @@
 			display: inline-flex;
 			gap: 0.5rem;
 			justify-content: center;
-			padding: 1em;
+			padding: var(--chalky-reaction-favorite-padding);
 			transition: all 0.2s ease;
 
 			&:disabled {
@@ -112,10 +108,10 @@
 		}
 
 		.heart-icon {
-			height: var(--size);
+			height: var(--chalky-reaction-favorite-size);
 			transition: transform 0.18s cubic-bezier(0.4, 0, 0.2, 1);
 			vertical-align: middle;
-			width: var(--size);
+			width: var(--chalky-reaction-favorite-size);
 		}
 	}
 
@@ -125,5 +121,9 @@
 	.chalky.reaction-favorite:not(.state-active) .heart-active,
 	.chalky.reaction-favorite.state-active .heart-inactive {
 		display: none;
+	}
+
+	.on-light .chalky.reaction-favorite .heart-inactive {
+		filter: invert(0);
 	}
 </style>
