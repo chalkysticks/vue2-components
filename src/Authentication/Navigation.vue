@@ -172,6 +172,7 @@
 		 */
 		@mounted
 		public attachEvents(): void {
+			ChalkySticks.Core.Event.Bus.on('login:request', this.Handle_OnLoginRequest);
 			document.addEventListener('click', this.Handle_OnClickDocument);
 			this.authModel.on('login', this.Handle_OnLogin);
 		}
@@ -181,6 +182,7 @@
 		 */
 		@beforeDestroy
 		public detachEvents(): void {
+			ChalkySticks.Core.Event.Bus.off('login:request', this.Handle_OnLoginRequest);
 			document.removeEventListener('click', this.Handle_OnClickDocument);
 			this.authModel.off('login', this.Handle_OnLogin);
 		}
@@ -291,6 +293,15 @@
 
 			// Hide the modal
 			this.hideLogin();
+		}
+
+		/**
+		 * @return Promise<void>
+		 */
+		protected async Handle_OnLoginRequest(): Promise<void> {
+			setTimeout(() => {
+				this.showLogin();
+			}, 100);
 		}
 
 		// endregion: Event Handlers

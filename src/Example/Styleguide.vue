@@ -1189,6 +1189,10 @@
 				<div>
 					<ChalkyAuthenticationAuthPanel v-bind:allowForgotPassword="true" v-bind:allowSignup="true" v-bind:authModel="authModel" />
 				</div>
+
+				<div>
+					<ChalkyAuthenticationNavigation v-bind:authModel="authModel" />
+				</div>
 			</section>
 
 			<section class="level-1">
