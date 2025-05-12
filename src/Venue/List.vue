@@ -280,10 +280,6 @@
 			.gallery {
 				background-color: transparent;
 				margin: 0;
-
-				picture {
-					width: 100%;
-				}
 			}
 
 			.content {
