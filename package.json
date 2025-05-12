@@ -1,93 +1,93 @@
 {
-	"author": "ChalkySticks LLC",
-	"bugs": {
-		"url": "https://github.com/chalkysticks/vue2-components/issues"
-	},
-	"dependencies": {
-		"@capacitor/core": "^6.2.0",
-		"@chalkysticks/sass": "github:chalkysticks/sass-theme",
-		"@chalkysticks/sdk": "github:chalkysticks/sdk",
-		"@fortawesome/fontawesome-free": "^5.15.3",
-		"colorconsole": "github:mattkenefick/colorconsole",
-		"gsap": "^3.7.0",
-		"swipetobegin": "github:mattkenefick/swipetobegin",
-		"vue2-google-maps": "^0.10.7"
-	},
-	"description": "ChalkySticks components made for Vue2",
-	"devDependencies": {
-		"@babel/preset-typescript": "^7.23.3",
-		"@typescript-eslint/eslint-plugin": "^5.4.0",
-		"@typescript-eslint/parser": "^5.4.0",
-		"@vue/babel-preset-app": "^4.5.12",
-		"@vue/cli-plugin-babel": "~5.0.0",
-		"@vue/cli-plugin-eslint": "~5.0.0",
-		"@vue/cli-plugin-router": "~5.0.0",
-		"@vue/cli-plugin-typescript": "~5.0.0",
-		"@vue/cli-plugin-vuex": "~5.0.0",
-		"@vue/cli-service": "~5.0.0",
-		"@vue/eslint-config-typescript": "^11.0.2",
-		"core-js": "^3.6.5",
-		"eslint": "^7.32.0",
-		"eslint-plugin-prettier": "^3.3.1",
-		"eslint-plugin-vue": "^8.0.3",
-		"husky": "^6.0.0",
-		"prettier": "^2.2.1",
-		"sass": "^1.26.5",
-		"sass-loader": "^8.0.2",
-		"typescript": "5.1.6",
-		"util": "^0.12.5",
-		"vue": "^2.7.14",
-		"vue-class-component": "^7.2.6",
-		"vue-property-decorator": "^9.1.2",
-		"vue-router": "^3.4.9",
-		"vue-template-compiler": "^2.6.14",
-		"vuex": "^3.6.0"
-	},
-	"directories": {
-		"example": "example"
-	},
-	"files": [
-		"./build"
-	],
-	"homepage": "https://www.chalkysticks.com",
-	"keywords": [
-		"billiards",
-		"chalkysticks",
-		"pool"
-	],
-	"license": "MIT",
-	"main": "./src/index.ts",
-	"name": "@chalkysticks/vue2-components",
-	"optionalDependencies": {
-		"@capacitor/geolocation": "^6.0.2"
-	},
-	"peerDependencies": {
-		"@byteowls/capacitor-oauth2": "^5.0.0",
-		"@capacitor/browser": "^6.0.2",
-		"@capacitor/core": "^6.2.0",
-		"sass": "^1.26.5",
-		"sass-loader": "^8.0.2",
-		"vue": "^2.7.14",
-		"vue-class-component": "^7.2.6",
-		"vue-property-decorator": "^9.1.2",
-		"vue-router": "^3.4.9",
-		"vue2-google-maps": "^0.10.7",
-		"vuex": "^3.6.0"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/chalkysticks/vue2-components.git"
-	},
-	"scripts": {
-		"build": "vue-cli-service build --target lib --name chalkysticks-vue2 ./src/index.ts --dest build",
-		"format": "prettier --write src/**/*.{js,ts,vue}",
-		"lint": "eslint --ext .js,.ts,.vue src",
-		"pushquick": "yarn build && version patch && giddyup \".\"",
-		"serve": "vue-cli-service serve ./src/app.ts",
-		"test": "vue-cli-service test:unit"
-	},
-	"template": {
-		"name": "ChalkySticks SDK Vue2.0 Components"
-	},
-	"version": "1.39.13"
+    "author": "ChalkySticks LLC",
+    "bugs": {
+        "url": "https://github.com/chalkysticks/vue2-components/issues"
+    },
+    "dependencies": {
+        "@capacitor/core": "^6.2.0",
+        "@chalkysticks/sass": "github:chalkysticks/sass-theme",
+        "@chalkysticks/sdk": "github:chalkysticks/sdk",
+        "@fortawesome/fontawesome-free": "^5.15.3",
+        "colorconsole": "github:mattkenefick/colorconsole",
+        "gsap": "^3.7.0",
+        "swipetobegin": "github:mattkenefick/swipetobegin",
+        "vue2-google-maps": "^0.10.7"
+    },
+    "description": "ChalkySticks components made for Vue2",
+    "devDependencies": {
+        "@babel/preset-typescript": "^7.23.3",
+        "@typescript-eslint/eslint-plugin": "^5.4.0",
+        "@typescript-eslint/parser": "^5.4.0",
+        "@vue/babel-preset-app": "^4.5.12",
+        "@vue/cli-plugin-babel": "~5.0.0",
+        "@vue/cli-plugin-eslint": "~5.0.0",
+        "@vue/cli-plugin-router": "~5.0.0",
+        "@vue/cli-plugin-typescript": "~5.0.0",
+        "@vue/cli-plugin-vuex": "~5.0.0",
+        "@vue/cli-service": "~5.0.0",
+        "@vue/eslint-config-typescript": "^11.0.2",
+        "core-js": "^3.6.5",
+        "eslint": "^7.32.0",
+        "eslint-plugin-prettier": "^3.3.1",
+        "eslint-plugin-vue": "^8.0.3",
+        "husky": "^6.0.0",
+        "prettier": "^2.2.1",
+        "sass": "^1.26.5",
+        "sass-loader": "^8.0.2",
+        "typescript": "5.1.6",
+        "util": "^0.12.5",
+        "vue": "^2.7.14",
+        "vue-class-component": "^7.2.6",
+        "vue-property-decorator": "^9.1.2",
+        "vue-router": "^3.4.9",
+        "vue-template-compiler": "^2.6.14",
+        "vuex": "^3.6.0"
+    },
+    "directories": {
+        "example": "example"
+    },
+    "files": [
+        "./build"
+    ],
+    "homepage": "https://www.chalkysticks.com",
+    "keywords": [
+        "billiards",
+        "chalkysticks",
+        "pool"
+    ],
+    "license": "MIT",
+    "main": "./src/index.ts",
+    "name": "@chalkysticks/vue2-components",
+    "optionalDependencies": {
+        "@capacitor/geolocation": "^6.0.2"
+    },
+    "peerDependencies": {
+        "@byteowls/capacitor-oauth2": "^5.0.0",
+        "@capacitor/browser": "^6.0.2",
+        "@capacitor/core": "^6.2.0",
+        "sass": "^1.26.5",
+        "sass-loader": "^8.0.2",
+        "vue": "^2.7.14",
+        "vue-class-component": "^7.2.6",
+        "vue-property-decorator": "^9.1.2",
+        "vue-router": "^3.4.9",
+        "vue2-google-maps": "^0.10.7",
+        "vuex": "^3.6.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/chalkysticks/vue2-components.git"
+    },
+    "scripts": {
+        "build": "vue-cli-service build --target lib --name chalkysticks-vue2 ./src/index.ts --dest build",
+        "format": "prettier --write src/**/*.{js,ts,vue}",
+        "lint": "eslint --ext .js,.ts,.vue src",
+        "pushquick": "yarn build && version patch && giddyup \".\"",
+        "serve": "vue-cli-service serve ./src/app.ts",
+        "test": "vue-cli-service test:unit"
+    },
+    "template": {
+        "name": "ChalkySticks SDK Vue2.0 Components"
+    },
+    "version": "1.40.0"
 }

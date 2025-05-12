@@ -55,6 +55,7 @@ import TvVideoPreview from './TV/VideoPreview.vue';
 import TvVideoTheater from './TV/VideoTheater.vue';
 import UserAvatar from './User/Avatar.vue';
 import UserCard from './User/Card.vue';
+import UserList from './User/List.vue';
 import UserMenu from './User/Menu.vue';
 import UtilityAlertPrompt from './Utility/AlertPrompt.vue';
 import UtilityDots from './Utility/Dots.vue';
@@ -123,6 +124,7 @@ const components = {
 	TvVideoTheater,
 	UserAvatar,
 	UserCard,
+	UserList,
 	UserMenu,
 	UtilityAlertPrompt,
 	UtilityDots,
@@ -252,6 +254,7 @@ export {
 	TvVideoTheater,
 	UserAvatar,
 	UserCard,
+	UserList,
 	UserMenu,
 	UtilityAlertPrompt,
 	UtilityDots,

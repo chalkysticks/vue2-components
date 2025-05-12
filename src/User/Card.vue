@@ -51,45 +51,45 @@
 				</div>
 			</section>
 
+			<section class="favorites-venues" v-if="userModel.id">
+				<header>
+					<h3>Favorite Venues</h3>
+				</header>
+
+				<section>
+					<ChalkyVenueList
+						class="horizontal"
+						v-bind:key="favoriteCollection.uniqueKey"
+						v-bind:useLocation="true"
+						v-bind:venueCollection="favoriteCollection"
+						v-if="favoriteCollection.length"
+						v-on:venue:select="Handle_OnSelectVenue"
+					/>
+
+					<section v-else>This user has not favorited anything yet.</section>
+				</section>
+			</section>
+
+			<section class="recent-checkins" v-if="userModel.id">
+				<header>
+					<h3>Recent Checkins</h3>
+				</header>
+
+				<section>
+					<ChalkyVenueList
+						class="horizontal"
+						v-bind:key="venueCollection.uniqueKey"
+						v-bind:useLocation="true"
+						v-bind:venueCollection="venueCollection"
+						v-if="venueCollection.length"
+						v-on:venue:select="Handle_OnSelectVenue"
+					/>
+
+					<section v-else>This user has not checked in anywhere.</section>
+				</section>
+			</section>
+
 			<slot name="content:after"></slot>
-		</section>
-
-		<section class="favorites-venues" v-if="userModel.id">
-			<header>
-				<h3>Favorite Venues</h3>
-			</header>
-
-			<section>
-				<ChalkyVenueList
-					class="horizontal"
-					v-bind:key="favoriteCollection.uniqueKey"
-					v-bind:useLocation="true"
-					v-bind:venueCollection="favoriteCollection"
-					v-if="favoriteCollection.length"
-					v-on:venue:select="Handle_OnSelectVenue"
-				/>
-
-				<section v-else>This user has not favorited anything yet.</section>
-			</section>
-		</section>
-
-		<section class="recent-checkins" v-if="userModel.id">
-			<header>
-				<h3>Recent Checkins</h3>
-			</header>
-
-			<section>
-				<ChalkyVenueList
-					class="horizontal"
-					v-bind:key="venueCollection.uniqueKey"
-					v-bind:useLocation="true"
-					v-bind:venueCollection="venueCollection"
-					v-if="venueCollection.length"
-					v-on:venue:select="Handle_OnSelectVenue"
-				/>
-
-				<section v-else>This user has not checked in anywhere.</section>
-			</section>
 		</section>
 
 		<slot name="after"></slot>
@@ -333,14 +333,11 @@
 		.utility-gallery {
 			margin-bottom: 1rem;
 		}
-
-		// Responsive adjustments
-		@container (min-width: 400px) {
-			--chalky-user-list-thumbnail-size: 60px;
-		}
 	}
 
-	// List item variant
+	// Variations
+	// ---------------------------------------------------------------------------
+
 	.chalky.user-card.list-item {
 		display: grid;
 		grid-template-columns: auto 1fr;
@@ -384,6 +381,19 @@
 					max-width: 70%;
 				}
 			}
+
+			.bio,
+			.games-played,
+			.hometown,
+			.talent-level,
+			.wallet {
+				display: none;
+			}
+		}
+
+		.favorites-venues,
+		.recent-checkins {
+			display: none;
 		}
 	}
 </style>

@@ -514,6 +514,26 @@
 
 			<section class="level-1">
 				<header>
+					<h3>User List</h3>
+
+					<p><small>@todo add location</small></p>
+				</header>
+
+				<div class="push-bottom">
+					<ChalkyUserList class="variation-compact on-light" v-bind:userCollection="userCollection" />
+				</div>
+
+				<div class="push-bottom">
+					<ChalkyUserList class="variation-small on-light" v-bind:userCollection="userCollection" />
+				</div>
+
+				<div class="push-bottom">
+					<ChalkyUserList class="horizontal" v-bind:userCollection="userCollection" />
+				</div>
+			</section>
+
+			<section class="level-1">
+				<header>
 					<h3>User Menu</h3>
 				</header>
 				<div>
@@ -1530,6 +1550,17 @@
 		 */
 		@Prop({
 			default: () =>
+				ChalkySticks.Factory.User.collection({
+					limit: 12,
+				}),
+		})
+		public userCollection!: ChalkySticks.Collection.User;
+
+		/**
+		 * @type ChalkySticks/Collection/User
+		 */
+		@Prop({
+			default: () =>
 				ChalkySticks.Factory.User.model({
 					id: 1,
 				}),
@@ -1639,6 +1670,7 @@
 			this.contentCollection.fetch();
 			this.liveScheduleCollection.fetch();
 			this.scheduleCollection.fetch();
+			this.userCollection.fetch();
 			this.userModel.fetch();
 			this.venueCollection.fetch();
 			this.venueModel.fetch().then(() => {
