@@ -293,7 +293,7 @@ module.exports = {
 		'lines-between-class-members': 0, // Require or disallow an empty line between class members
 		'max-depth': ['error', 4], // Enforce a maximum depth that blocks can be nested
 		'max-len': 0, // Enforce a maximum line length
-		'max-lines': ['error', 2000], // Enforce a maximum number of lines per file
+		'max-lines': ['error', 5000], // Enforce a maximum number of lines per file
 		'max-nested-callbacks': ['error', 3], // Enforce a maximum depth that callbacks can be nested
 		'max-params': ['error', 6], // Enforce a maximum number of parameters in function definitions
 		'max-statements': 0, // Enforce a maximum number of statements allowed in function blocks

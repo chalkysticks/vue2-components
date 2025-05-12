@@ -490,30 +490,36 @@
 
 			<section class="level-1">
 				<header>
+					<h3>User Card</h3>
+
+					<p>1. No model</p>
+					<p>2. With model</p>
+				</header>
+
+				<div class="push-bottom">
+					<ChalkyUserCard />
+				</div>
+
+				<div class="push-bottom">
+					<ChalkyUserCard
+						v-bind:key="store.getters['authentication/user'].uniqueKey"
+						v-bind:userModel="store.getters['authentication/user']"
+					/>
+				</div>
+
+				<div>
+					<ChalkyUserCard v-bind:key="userModel.uniqueKey" v-bind:userModel="userModel" />
+				</div>
+			</section>
+
+			<section class="level-1">
+				<header>
 					<h3>User Menu</h3>
 				</header>
 				<div>
 					<UserAvatar v-bind:key="store.getters['authentication/user'].uniqueKey" v-bind:userModel="store.getters['authentication/user']" />
 
 					<ChalkyUserMenu v-bind:authModel="authModel" />
-				</div>
-			</section>
-
-			<section class="level-1">
-				<header>
-					<h3>User Card</h3>
-
-					<p>1. No model</p>
-					<p>2. With model</p>
-				</header>
-				<div class="push-bottom">
-					<ChalkyUserCard />
-				</div>
-				<div>
-					<ChalkyUserCard
-						v-bind:key="store.getters['authentication/user'].uniqueKey"
-						v-bind:userModel="store.getters['authentication/user']"
-					/>
 				</div>
 			</section>
 		</section>
@@ -1520,6 +1526,17 @@
 		public scheduleCollection!: ChalkySticks.Collection.Schedule;
 
 		/**
+		 * @type ChalkySticks/Collection/User
+		 */
+		@Prop({
+			default: () =>
+				ChalkySticks.Factory.User.model({
+					id: 1,
+				}),
+		})
+		public userModel!: ChalkySticks.Model.User;
+
+		/**
 		 * @type ChalkySticks/Collection/Venue
 		 */
 		@Prop({
@@ -1620,9 +1637,10 @@
 			this.venueCollection.setQueryParam('distance', '1000');
 
 			this.contentCollection.fetch();
-			this.venueCollection.fetch();
 			this.liveScheduleCollection.fetch();
 			this.scheduleCollection.fetch();
+			this.userModel.fetch();
+			this.venueCollection.fetch();
 			this.venueModel.fetch().then(() => {
 				console.log('Venue Model', this.venueModel);
 			});

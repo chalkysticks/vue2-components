@@ -45,13 +45,51 @@
 
 			<section class="games-played">
 				<div class="inner">
-					<div class="game" v-bind:key="game.id" v-for="game in userModel.games">
+					<div class="game" v-bind:class="['game-' + game.getKey()]" v-bind:key="game.id" v-for="game in userModel.games">
 						{{ game.getValue() }}
 					</div>
 				</div>
 			</section>
 
 			<slot name="content:after"></slot>
+		</section>
+
+		<section class="favorites-venues" v-if="userModel.id">
+			<header>
+				<h3>Favorite Venues</h3>
+			</header>
+
+			<section>
+				<ChalkyVenueList
+					class="horizontal"
+					v-bind:key="favoriteCollection.uniqueKey"
+					v-bind:useLocation="true"
+					v-bind:venueCollection="favoriteCollection"
+					v-if="favoriteCollection.length"
+					v-on:venue:select="Handle_OnSelectVenue"
+				/>
+
+				<section v-else>This user has not favorited anything yet.</section>
+			</section>
+		</section>
+
+		<section class="recent-checkins" v-if="userModel.id">
+			<header>
+				<h3>Recent Checkins</h3>
+			</header>
+
+			<section>
+				<ChalkyVenueList
+					class="horizontal"
+					v-bind:key="venueCollection.uniqueKey"
+					v-bind:useLocation="true"
+					v-bind:venueCollection="venueCollection"
+					v-if="venueCollection.length"
+					v-on:venue:select="Handle_OnSelectVenue"
+				/>
+
+				<section v-else>This user has not checked in anywhere.</section>
+			</section>
 		</section>
 
 		<slot name="after"></slot>
@@ -64,11 +102,11 @@
 	import UserAvatar from '../User/Avatar.vue';
 	import UtilityGallery from '../Utility/Gallery.vue';
 	import ViewBase from '../Core/Base';
-	import { Component, Prop, Ref } from 'vue-property-decorator';
+	import { Component, Prop, Ref, Watch } from 'vue-property-decorator';
 	import { beforeDestroy, mounted } from '../Utility/Decorators';
 
 	/**
-	 * @class VenueCard
+	 * @class UserCard
 	 * @package Venue
 	 * @project ChalkySticks SDK Vue2.0 Components
 	 */
@@ -79,52 +117,7 @@
 			UtilityGallery,
 		},
 	})
-	export default class VenueCard extends ViewBase {
-		/**
-		 * @return string
-		 */
-		public get distance(): string {
-			const myLatitude = this.$store.getters['location/latitude'];
-			const myLongitude = this.$store.getters['location/longitude'];
-			const distance = this.userModel.getDistance(myLatitude, myLongitude, 'mi');
-
-			// const venueLatitude = this.userModel.getLatitude();
-			// const venueLongitude = this.userModel.getLongitude();
-			// const distance = ChalkySticks.Utility.Geolocation.distanceBetween(myLatitude, myLongitude, venueLatitude, venueLongitude);
-
-			return distance.toFixed(2);
-		}
-
-		/**
-		 * @return boolean
-		 */
-		public get hasTableImage(): boolean {
-			return !!this.userModel.media.findWhere({
-				subgroup: 'table',
-			});
-		}
-
-		/**
-		 * If we're within 0.1 miles of the venue, we consider it "nearby".
-		 *
-		 * @return boolean
-		 */
-		public get isNearby(): boolean {
-			return parseFloat(this.distance) < 0.1;
-		}
-
-		/**
-		 * @return string
-		 */
-		public get rating(): string {
-			const rating = Math.round(this.userModel.getRating());
-			const filled = '★ '.repeat(rating);
-			const empty = '☆ '.repeat(5 - rating);
-			const output = filled + empty;
-
-			return output;
-		}
-
+	export default class UserCard extends ViewBase {
 		/**
 		 * @type UtilityGallery
 		 */
@@ -138,37 +131,125 @@
 		public interactiveGallery!: boolean;
 
 		/**
+		 * @type ChalkySticks/Model/User
+		 */
+		@Prop({
+			default: () => ChalkySticks.Factory.User.model(),
+		})
+		public userModel!: ChalkySticks.Model.User;
+
+		/**
 		 * @type ChalkySticks/Model/Venue
 		 */
 		@Prop({
-			default: () => new ChalkySticks.Model.Venue(),
+			default: () =>
+				ChalkySticks.Factory.Venue.collection({
+					limit: 8,
+					qp: {
+						reaction: ChalkySticks.Enum.ReactionType.Love,
+						reaction_from: '',
+					},
+				}),
 		})
-		public userModel!: ChalkySticks.Model.Venue;
+		public favoriteCollection!: ChalkySticks.Collection.Venue;
 
 		/**
-		 * @return boolean
+		 * @type ChalkySticks/Collection/Venue
 		 */
-		protected isCheckedInHere(): boolean {
-			const userModel = this.$store.getters['authentication/user'];
+		@Prop({
+			default: () => ChalkySticks.Factory.Venue.collection(),
+		})
+		public venueCollection!: ChalkySticks.Collection.Venue;
 
-			// Check if the user is checked in here
-			return this.userModel.checkins.models.some((checkin) => checkin.user.id === userModel?.id);
+		/**
+		 * @type ChalkySticks/Collection/VenueCheckin
+		 */
+		@Prop({
+			default: () => new ChalkySticks.Collection.VenueCheckin({ limit: 8 }),
+		})
+		public venueCheckinCollection!: ChalkySticks.Collection.VenueCheckin;
+
+		/**
+		 * @return void
+		 */
+		@mounted
+		public attachEvents(): void {
+			this.venueCheckinCollection.on('complete', this.Handle_OnVenueCheckinCollectionComplete);
 		}
 
 		/**
-		 * @return string
+		 * @return void
 		 */
-		protected getMapUrl(): string {
-			let output: string;
-
-			// Set root url
-			output = 'https://www.google.com/maps/place/';
-
-			// Set address
-			output += encodeURIComponent(this.userModel.getAddress());
-
-			return output;
+		@beforeDestroy
+		public detachEvents(): void {
+			this.venueCheckinCollection.off('complete', this.Handle_OnVenueCheckinCollectionComplete);
 		}
+
+		/**
+		 * @return Promise<void>
+		 */
+		@mounted
+		protected async setup(): Promise<void> {
+			if (!this.userModel.id) {
+				return;
+			}
+
+			// Get favorites for a user
+			this.favoriteCollection.setQueryParam('reaction_from', this.userModel.id);
+			this.favoriteCollection.setQueryParam('limit', '8');
+			this.favoriteCollection.fetch();
+
+			// Get recent checkins for a user
+			this.venueCheckinCollection.setQueryParam('user_id', this.userModel.id);
+			this.venueCheckinCollection.setQueryParam('limit', '8');
+			this.venueCheckinCollection.fetch();
+		}
+
+		// region: Event Handlers
+		// ---------------------------------------------------------------------------
+
+		/**
+		 * @return Promise<void>
+		 */
+		protected async Handle_OnUserLoaded(): Promise<void> {
+			this.setup();
+		}
+
+		/**
+		 * @param ChalkySticks.Model.Venue venueModel
+		 * @return Promise<void>
+		 */
+		protected async Handle_OnSelectVenue(venueModel: ChalkySticks.Model.Venue): Promise<void> {
+			console.log('Select venue', venueModel);
+		}
+
+		/**
+		 * Listen for changes on the user ID prop and re-fetch data if it changes.
+		 *
+		 * @return Promise<void>
+		 */
+		@Watch('userModel.id')
+		protected async Handle_OnUserIdChange(): Promise<void> {
+			if (!this.userModel.id) {
+				return;
+			}
+
+			this.setup();
+		}
+
+		/**
+		 * @param ChalkySticks.Model.Venue venueModel
+		 * @return Promise<void>
+		 */
+		protected async Handle_OnVenueCheckinCollectionComplete(): Promise<void> {
+			this.venueCollection.clear();
+
+			this.venueCheckinCollection.each((venueCheckinModel: ChalkySticks.Model.VenueCheckin) => {
+				this.venueCollection.add(venueCheckinModel.venue);
+			});
+		}
+
+		// endregion: Event Handlers
 	}
 </script>
 
@@ -182,183 +263,88 @@
 			margin-top: 1rem;
 		}
 
-		.title {
-			float: left;
-			margin-right: 1rem;
-			max-width: 50%;
-
-			h1 {
-				font-size: var(--chalky-user-card-title);
-			}
-		}
-
-		.description {
-			clear: both;
-		}
-
-		.rating {
-			display: block;
-			transform: translate(0, 2px);
-		}
-
-		.utility-gallery + .content {
-			background: rgba(255, 255, 255, 0.75);
-			color: var(--chalky-blue);
-			padding: 1rem;
-		}
-
-		.today {
-			.inner {
-				align-items: center;
-				display: flex;
-				gap: 0.5rem;
-
-				.badge {
-					font-size: 0.675em;
-					font-weight: bold;
-					padding: 0.5em 0.75em;
-				}
-			}
-		}
-
+		// Main content area
 		.content {
 			border-radius: var(--chalky-user-card-content-border-radius);
+			background: rgba(255, 255, 255, 0.75);
 			border-top-left-radius: 0;
 			border-top-right-radius: 0;
+			color: var(--chalky-blue);
+			margin-bottom: 1rem;
+			padding: 1rem;
 
 			&:empty {
 				display: none;
 			}
 		}
 
-		.confirmed {
-			position: absolute;
-			right: 0.75rem;
-			top: 0.75rem;
-		}
-
-		.address {
-			clear: both;
-			margin-bottom: 1.5rem;
-		}
-
-		.description {
-			margin-top: 0.5rem;
-		}
-
-		.actions {
-			margin-top: 3em;
+		.title {
+			margin-bottom: 0.5rem;
 
 			.inner {
-				align-items: center;
+				max-width: 70%;
+			}
+
+			.name {
+				font-size: var(--chalky-user-card-title, 1.3rem);
+				font-weight: bold;
+			}
+		}
+
+		.bio,
+		.hometown,
+		.talent-level,
+		.wallet {
+			margin-bottom: 0.5rem;
+
+			.inner {
+				font-size: 1rem;
+				color: #555;
+			}
+		}
+
+		.games-played {
+			margin-bottom: 1rem;
+
+			.inner {
 				display: flex;
+				flex-wrap: wrap;
 				gap: 0.5rem;
-				justify-content: space-between;
-			}
 
-			.action {
-				// flex: 1;
-				align-items: center;
-				display: inline-flex;
-				flex-grow: 1;
-				gap: 0.5em;
-				justify-content: center;
+				.game {
+					background: #f2f2f2;
+					border-radius: 8px;
+					padding: 0.2rem 0.7rem;
+					font-size: 0.95rem;
+				}
 			}
 		}
 
-		.open-closed {
-			position: absolute;
-			right: 0.75rem;
-			top: 0.5rem;
+		.favorites-venues,
+		.recent-checkins {
+			margin-bottom: 1.5rem;
 
-			.is-open {
-				display: none;
+			.horizontal {
+				margin-top: 0.5rem;
 			}
 		}
 
-		.distance {
-			align-items: center;
-			display: flex;
-			flex-direction: column;
-			font-size: var(--chalky-user-card-distance-font-size);
-			font-weight: var(--chalky-user-card-distance-font-weight);
-			gap: 0.25rem;
-			justify-content: center;
-			letter-spacing: -0.05em;
+		// Gallery styles
+		.utility-gallery {
+			margin-bottom: 1rem;
 		}
 
-		dl {
-			margin: 1rem 0;
-
-			dt {
-				float: left;
-				margin-right: 0.5rem;
-			}
-		}
-
-		.checkins {
-			.inner {
-				align-items: center;
-				display: flex;
-				justify-content: space-between;
-			}
-
-			.inner .actions {
-				flex-shrink: 1;
-			}
-		}
-
-		.whos-here-users {
-			display: grid;
-			place-items: center;
-
-			> * {
-				grid-area: 1 / 1;
-
-				&:nth-child(1) {
-					transform: translate(0, 0);
-				}
-
-				&:nth-child(2) {
-					transform: translate(2rem, 0);
-				}
-
-				&:nth-child(3) {
-					transform: translate(4rem, 0);
-				}
-
-				&:nth-child(4) {
-					transform: translate(6rem, 0);
-				}
-
-				&:nth-child(5) {
-					transform: translate(8rem, 0);
-				}
-			}
+		// Responsive adjustments
+		@container (min-width: 400px) {
+			--chalky-user-list-thumbnail-size: 60px;
 		}
 	}
 
-	// Variations
-	// ---------------------------------------------------------------------------
-
-	.chalky.user-card.glass-panel {
-		.confirmed {
-		}
-	}
-
-	.chalky.user-card:not(.list-item) {
-		.distance {
-			display: none;
-		}
-	}
-
+	// List item variant
 	.chalky.user-card.list-item {
 		display: grid;
-		grid-column-gap: 0px;
-		grid-row-gap: 0px;
 		grid-template-columns: auto 1fr;
 		grid-template-rows: auto auto auto;
-		// height: var(--chalky-user-list-thumbnail-size);
 		max-width: 100%;
 		padding: 0;
 
@@ -390,7 +376,7 @@
 				align-content: flex-end;
 				max-width: 100%;
 
-				h3 {
+				.name {
 					font-size: var(--chalky-user-list-title-font-size);
 				}
 
@@ -398,64 +384,6 @@
 					max-width: 70%;
 				}
 			}
-
-			.confirmed {
-				right: 0.25rem;
-				top: 0.25rem;
-			}
-
-			.address {
-				align-content: flex-start;
-				font-size: var(--chalky-user-list-address-font-size);
-				line-height: 1.25;
-				margin-bottom: 0;
-			}
-
-			.distance {
-				position: absolute;
-				right: 1rem;
-				top: 50%;
-				transform: translate(0, -50%);
-			}
-
-			.checkins {
-				bottom: 25%;
-				position: absolute;
-				right: 0.5rem;
-
-				header,
-				.user-avatar,
-				.action {
-					display: none;
-				}
-
-				.user-avatar:first-child {
-					display: block;
-				}
-
-				.user-avatar {
-					--avatar-size-sm: var(--chalky-user-list-checkin-avatar-size);
-				}
-			}
-		}
-
-		.checkin-cta,
-		.today,
-		.hours,
-		.details,
-		.description,
-		.rating,
-		.actions {
-			display: none;
-		}
-	}
-
-	// Media Queries
-	// ---------------------------------------------------------------------------
-
-	@container (min-width: 400px) {
-		.chalky.user-card {
-			--chalky-user-list-thumbnail-size: 60px;
 		}
 	}
 </style>
