@@ -801,13 +801,13 @@
 					</p>
 				</header>
 				<div>
-					<!-- <ChalkyAuthenticationBasicLogin
+					<ChalkyAuthenticationBasicLogin
 						v-bind:allowForgotPassword="true"
 						v-bind:allowSignup="true"
 						v-bind:authModel="authModel"
 						v-on:success="Handle_OnLoginSuccess"
 						v-on:error="Handle_OnLoginError"
-					/> -->
+					/>
 				</div>
 			</section>
 
@@ -1968,9 +1968,6 @@
 
 <style lang="scss">
 	.styleguide {
-		-moz-osx-font-smoothing: grayscale;
-		-webkit-font-smoothing: antialiased;
-		font-family: Avenir, Helvetica, Arial, sans-serif;
 		margin: 0 auto;
 		min-height: 100vh;
 		overflow-x: hidden;

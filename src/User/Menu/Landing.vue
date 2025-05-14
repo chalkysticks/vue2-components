@@ -1,7 +1,7 @@
 <template>
 	<section class="chalky user-menu-landing">
 		<header class="header">
-			<UserAvatar size="md" v-bind:userModel="store.getters['authentication/user']" />
+			<UserAvatar size="sm" v-bind:userModel="store.getters['authentication/user']" />
 
 			<section>
 				<h3 class="username">{{ store.getters['authentication/user'].getName() }}</h3>

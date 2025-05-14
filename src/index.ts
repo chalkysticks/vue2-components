@@ -21,6 +21,7 @@ import AuthenticationSocialLogin from './Authentication/SocialLogin.vue';
 import BrandingBadge from './Branding/Badge.vue';
 import BrandingSplash from './Branding/Splash.vue';
 import BrandingStandard from './Branding/Standard.vue';
+import ButtonCancel from './Button/Cancel.vue';
 import ButtonLogin from './Button/Login.vue';
 import ButtonSignup from './Button/Signup.vue';
 import CommentForm from './Comment/Form.vue';
@@ -90,6 +91,7 @@ const components = {
 	BrandingBadge,
 	BrandingSplash,
 	BrandingStandard,
+	ButtonCancel,
 	ButtonLogin,
 	ButtonSignup,
 	CommentForm,
@@ -220,6 +222,7 @@ export {
 	BrandingBadge,
 	BrandingSplash,
 	BrandingStandard,
+	ButtonCancel,
 	ButtonLogin,
 	ButtonSignup,
 	CommentForm,

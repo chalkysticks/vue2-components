@@ -483,7 +483,14 @@
 				'address reactions';
 		}
 
+		.title {
+			// This seems wrong but works so far.
+			// margin-bottom: -0.5em;
+			// margin-top: 0.5em;
+		}
+
 		.address {
+			color: var(--chalky-grey-3);
 			margin-bottom: 0;
 		}
 
@@ -492,8 +499,9 @@
 		.rating,
 		.today,
 		.details,
+		.reactions,
 		.reactions .reaction-list,
-		.reactions .reaction-list,
+		.reactions .reaction-summary,
 		.comments,
 		.confirmed,
 		.tags,

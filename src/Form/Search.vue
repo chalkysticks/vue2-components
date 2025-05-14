@@ -35,7 +35,7 @@
 		/**
 		 * @type string
 		 */
-		@Prop({ default: 'New York, NY' })
+		@Prop({ default: 'Search for a location, e.g. New York, NY' })
 		public placeholder!: string;
 
 		/**

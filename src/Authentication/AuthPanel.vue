@@ -7,23 +7,39 @@
 		<section class="login-container">
 			<AuthenticationBasicLogin
 				v-bind:allowForgotPassword="allowForgotPassword"
-				v-bind:allowSignup="allowSignup"
 				v-bind:authModel="authModel"
-				v-if="includeBasic"
+				v-if="includeBasic && !showSignup"
 				v-on:error="$emit('error', $event)"
 				v-on:login="$emit('login', $event)"
 				v-on:success="$emit('success', $event)"
 			/>
 
-			<hr v-if="includeBasic && includeSocial" />
+			<AuthenticationBasicSignup
+				v-bind:authModel="authModel"
+				v-if="includeBasic && showSignup"
+				v-on:error="$emit('error', $event)"
+				v-on:login-click="showSignup = false"
+				v-on:signup="$emit('signup', $event)"
+				v-on:success="$emit('success', $event)"
+			/>
 
-			<AuthenticationSocialLogin v-bind:authModel="authModel" v-if="includeSocial" />
+			<hr v-if="includeBasic && includeSocial && !showSignup" />
+
+			<AuthenticationSocialLogin v-if="includeSocial && !showSignup" v-bind:authModel="authModel" />
+
+			<AuthenticationSignupCTA
+				v-bind:allowSignup="allowSignup"
+				v-if="includeBasic && allowSignup && !showSignup"
+				v-on:signup-click="showSignup = true"
+			/>
 		</section>
 	</div>
 </template>
 
 <script lang="ts">
 	import AuthenticationBasicLogin from './BasicLogin.vue';
+	import AuthenticationBasicSignup from './BasicSignup.vue';
+	import AuthenticationSignupCTA from './SignupCTA.vue';
 	import AuthenticationSocialLogin from './SocialLogin.vue';
 	import BrandingBadge from '../Branding/Badge.vue';
 	import BrandingStandard from '../Branding/Standard.vue';
@@ -40,6 +56,8 @@
 	@Component({
 		components: {
 			AuthenticationBasicLogin,
+			AuthenticationBasicSignup,
+			AuthenticationSignupCTA,
 			AuthenticationSocialLogin,
 			BrandingBadge,
 			BrandingStandard,
@@ -92,6 +110,13 @@
 			default: false,
 		})
 		public includeSocial!: boolean;
+
+		/**
+		 * Whether to show signup form instead of login
+		 *
+		 * @type boolean
+		 */
+		protected showSignup: boolean = false;
 
 		// region: Event Handlers
 		// ---------------------------------------------------------------------------
@@ -162,7 +187,6 @@
 		outline: 1px solid var(--chalky-grey-4);
 		position: relative;
 		width: calc(var(--chalky-authpanel-graphic-width) + var(--chalky-authpanel-content-width));
-		z-index: var(--z-modal-mid);
 
 		header {
 			align-items: center;
@@ -181,10 +205,14 @@
 				content: ' ';
 				height: 100%;
 				left: 0;
-				opacity: 0.75;
+				opacity: 0.15;
 				position: absolute;
 				top: 0;
 				width: 100%;
+			}
+
+			.branding-badge {
+				transform: scale(0.85);
 			}
 		}
 
@@ -200,7 +228,8 @@
 			margin: 1.5rem 0 !important;
 		}
 
-		.chalky.authentication-basiclogin button {
+		.chalky.authentication-basiclogin button,
+		.chalky.authentication-basicsignup button {
 			width: 100%;
 		}
 	}
@@ -216,12 +245,17 @@
 			header {
 				border-bottom-left-radius: 0;
 				border-bottom-right-radius: 0;
-				height: 200px;
+				height: 160px;
 				width: 100%;
 			}
 
 			.login-container {
 				padding: 1rem;
+
+				.authentication-basiclogin,
+				.authentication-basicsignup {
+					margin-top: -1rem;
+				}
 			}
 		}
 	}

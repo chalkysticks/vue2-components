@@ -1,21 +1,34 @@
 <template>
 	<div
-		class="chalky authentication-basiclogin"
+		class="chalky authentication-basicsignup"
 		v-bind:class="{
 			'state-loading': this.authModel.loading,
-			'state-login-failed': this.loginFailed,
-			'state-login-success': this.authModel.isLoggedIn(),
+			'state-signup-failed': this.signupFailed,
+			'state-signup-success': this.authModel.isLoggedIn(),
 		}"
 	>
-		<form v-on:submit="Handle_OnSubmitLogin">
+		<form v-on:submit="Handle_OnSubmitSignup">
 			<fieldset>
-				<legend>Login</legend>
+				<legend>Sign up</legend>
+
+				<label>
+					<h6>Name</h6>
+					<input
+						autocomplete="name"
+						minlength="6"
+						name="name"
+						placeholder="John Doe"
+						type="text"
+						v-model="fullName"
+						v-on:keydown="Handle_OnKeydownInput"
+					/>
+				</label>
 
 				<label>
 					<h6>Email Address</h6>
 					<input
 						autocomplete="email"
-						minlength="6"
+						minlength="8"
 						name="email"
 						placeholder="john@example.com"
 						type="email"
@@ -24,20 +37,29 @@
 					/>
 				</label>
 
-				<label class="clearfix">
+				<label>
 					<h6>Password</h6>
 					<input
 						autocomplete="current-password"
 						minlength="6"
 						name="password"
+						placeholder="Password"
 						type="password"
 						v-model="password"
 						v-on:keydown="Handle_OnKeydownInput"
 					/>
+				</label>
 
-					<a class="type-caps" href="/forgot-password" title="Forgot Password" v-if="allowForgotPassword">
-						<span>Forget password</span>
-					</a>
+				<label class="clearfix">
+					<input
+						autocomplete="current-password"
+						minlength="6"
+						name="confirm-password"
+						placeholder="Confirm Password"
+						type="password"
+						v-model="passwordConfirmation"
+						v-on:keydown="Handle_OnKeydownInput"
+					/>
 				</label>
 
 				<div class="action-container">
@@ -47,9 +69,11 @@
 						<span>Welcome {{ this.authModel.user.getName() }}</span>
 					</div>
 
-					<ButtonLogin v-else-if="!this.loginFailed" />
+					<ButtonSignup v-else-if="!this.signupFailed" />
 
-					<div class="alert alert-danger" v-if="this.loginFailed">
+					<ButtonCancel class="push-top" v-on:click.native="Handle_OnClickBack" />
+
+					<div class="alert alert-danger" v-if="this.signupFailed">
 						<i class="fa fa-exclamation-triangle"></i>
 						&nbsp;
 						<span>{{ message }}</span>
@@ -61,7 +85,8 @@
 </template>
 
 <script lang="ts">
-	import ButtonLogin from '../Button/Login.vue';
+	import ButtonCancel from '../Button/Cancel.vue';
+	import ButtonSignup from '../Button/Signup.vue';
 	import ChalkySticks from '@chalkysticks/sdk';
 	import Store from '../Store';
 	import ViewBase from '../Core/Base';
@@ -69,24 +94,17 @@
 	import { beforeDestroy, mounted } from '../Utility/Decorators';
 
 	/**
-	 * @class AuthenticationBasicLogin
+	 * @class AuthenticationBasicSignup
 	 * @package Authentication
 	 * @project ChalkySticks SDK Vue2.0 Components
 	 */
 	@Component({
 		components: {
-			ButtonLogin,
+			ButtonCancel,
+			ButtonSignup,
 		},
 	})
-	export default class AuthenticationBasicLogin extends ViewBase {
-		/**
-		 * Whether or not to allow signup
-		 *
-		 * @type boolean
-		 */
-		@Prop({ default: true })
-		public allowForgotPassword!: boolean;
-
+	export default class AuthenticationBasicSignup extends ViewBase {
 		/**
 		 * @type ChalkySticks/Model/Authentication
 		 */
@@ -104,9 +122,14 @@
 		public email: string = '';
 
 		/**
+		 * @type string
+		 */
+		public fullName: string = '';
+
+		/**
 		 * @type boolean
 		 */
-		public loginFailed: boolean = false;
+		public signupFailed: boolean = false;
 
 		/**
 		 * @type string
@@ -117,6 +140,11 @@
 		 * @type string
 		 */
 		public password: string = '';
+
+		/**
+		 * @type string
+		 */
+		public passwordConfirmation: string = '';
 
 		/**
 		 * @return void
@@ -137,17 +165,22 @@
 		}
 
 		/**
-		 * Login via email
+		 * Signup via email
 		 *
 		 * @return Promise<ChalkySticks.Model.User>
 		 */
-		public async login(): Promise<ChalkySticks.Model.User> {
-			// Reset login failure
-			this.loginFailed = false;
+		public async signup(): Promise<ChalkySticks.Model.User> {
+			// Reset signup failure
+			this.signupFailed = false;
 
-			// Attempt login
+			// Attempt signup
 			try {
-				return await this.authModel.login(this.email, this.password);
+				return await this.authModel.signup({
+					email: this.email,
+					name: this.fullName,
+					password: this.password,
+					password_confirmation: this.passwordConfirmation,
+				});
 			} catch (e) {
 				this.$emit('error');
 			}
@@ -159,11 +192,21 @@
 		// ---------------------------------------------------------------------------
 
 		/**
+		 * @param PointerEvent e
+		 * @return Promise<void>
+		 */
+		protected async Handle_OnClickBack(e: PointerEvent): Promise<void> {
+			e.preventDefault();
+
+			this.$emit('login-click');
+		}
+
+		/**
 		 * @param KeyboardEvent e
 		 * @return void
 		 */
 		protected Handle_OnKeydownInput(e: KeyboardEvent): void {
-			this.loginFailed = false;
+			this.signupFailed = false;
 			this.message = '';
 		}
 
@@ -172,11 +215,11 @@
 		 */
 		protected Handle_OnFailure(e: any): void {
 			this.message = e.detail?.error?.message || 'The action could not be completed.';
-			this.loginFailed = true;
+			this.signupFailed = true;
 			this.$emit('error');
 
 			setTimeout(() => {
-				this.loginFailed = false;
+				this.signupFailed = false;
 			}, 1000 * 2.5);
 
 			this.$forceUpdate();
@@ -186,17 +229,17 @@
 		 * @param SubmitEvent e
 		 * @return void
 		 */
-		protected Handle_OnSubmitLogin(e: SubmitEvent): void {
+		protected Handle_OnSubmitSignup(e: SubmitEvent): void {
 			e.preventDefault();
 
-			this.login();
+			this.signup();
 		}
 
 		/**
 		 * @return void
 		 */
 		protected Handle_OnSuccess(): void {
-			this.$emit('login', this.authModel.user);
+			this.$emit('signup', this.authModel.user);
 			this.$emit('success', this.authModel.user);
 
 			this.$forceUpdate();
@@ -207,10 +250,27 @@
 </script>
 
 <style lang="scss">
-	.chalky.authentication-basiclogin {
+	.chalky.authentication-basicsignup {
 		margin: 0 auto;
 		max-width: 500px;
 		transition: opacity 0.15s ease-in-out;
+
+		.back-button {
+			cursor: pointer;
+			left: 1rem;
+			position: absolute;
+			top: 1rem;
+			transition: opacity 0.15s ease-in-out;
+
+			i {
+				color: var(--chalky-white);
+				font-size: 1.25rem;
+			}
+
+			&:hover {
+				opacity: 0.75;
+			}
+		}
 
 		.action-container {
 			text-align: center;
@@ -239,7 +299,7 @@
 			}
 		}
 
-		&.state-login-success {
+		&.state-signup-success {
 			label {
 				opacity: 0.75;
 				pointer-events: none;

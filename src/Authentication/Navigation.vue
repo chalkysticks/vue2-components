@@ -9,7 +9,7 @@
 
 		<!-- When we're logged out (using avatar icon) -->
 		<section class="logged-out" v-else>
-			<button class="icon-only" v-on:click="Handle_OnClickSignIn">
+			<button class="icon-only no-hover" v-on:click="Handle_OnClickSignIn">
 				<picture class="avatar" v-bind:class="'size-' + size">
 					<img class="filter-invert" src="~@chalkysticks/sass/build/asset/image/icon/user-logged-out.svg" />
 				</picture>
@@ -314,7 +314,10 @@
 			align-items: center;
 			display: inline-flex;
 			justify-content: center;
-			transform: scale(0.7);
+
+			picture.avatar {
+				background-color: var(--chalky-grey-4);
+			}
 		}
 
 		.logged-in {
