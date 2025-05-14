@@ -187,7 +187,8 @@
 				width: 100%;
 
 				&::placeholder {
-					color: var(--chalky-grey-2);
+					color: var(--chalky-grey-3);
+					font-size: 1rem;
 				}
 			}
 		}

@@ -1360,7 +1360,6 @@
 
 				<div class="padded">
 					<ChalkyFormSearch
-						placeholder="New York, NY"
 						queryParameter="search"
 						type="location"
 						v-on:click:badge="Handle_OnClickBadge"
