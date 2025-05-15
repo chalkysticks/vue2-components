@@ -202,7 +202,104 @@ const ChalkySticksVue = {
 		});
 
 		// Directives (like v-model, v-show)
-		// @see https://v3.vuejs.org/guide/custom-directive.html#intro
+		// ---------------------------------------------------------------------------
+
+		// Pointer directive for custom pointer events (tap, drag, etc)
+		/**
+		 * Extends HTMLElement to allow _chalkyPointer property for pointer directive.
+		 */
+		interface ChalkyPointerHTMLElement extends HTMLElement {
+			_chalkyPointer?: {
+				on: (event: string, handler: (...args: any[]) => void) => void;
+				off: (event: string, handler: (...args: any[]) => void) => void;
+				destroy?: () => void;
+				_listenerCount?: number;
+			};
+		}
+
+		/**
+		 * Type for the Vue directive binding object used in v-pointer.
+		 */
+		type PointerDirectiveBinding = {
+			arg?: string;
+			value: (...args: any[]) => void;
+		};
+
+		/**
+		 * v-pointer directive: Attach ChalkySticks pointer events (tap, drag, etc) to an element.
+		 *
+		 * Supported events (see Pointer.ts):
+		 *
+		 *   - down
+		 *   - move
+		 *   - drag
+		 *   - up
+		 *   - tap
+		 *   - doubletap
+		 *   - hold
+		 *   - twofingertap
+		 *   - twofingerdoubletap
+		 *   - swipe
+		 *   - swipe:left
+		 *   - swipe:right
+		 *   - swipe:up
+		 *   - swipe:down
+		 *   - tap:small
+		 *   - tap:xsmall
+		 *   - zoom
+		 *   - zoom:in
+		 *   - zoom:out
+		 *
+		 * @param {ChalkyPointerHTMLElement} el - The element the directive is bound to
+		 * @param {PointerDirectiveBinding} binding - Vue binding object
+		 * @returns {void}
+		 */
+		Vue.directive('pointer', {
+			/**
+			 * Bind ChalkySticks pointer event listeners to the element.
+			 *
+			 * @param {ChalkyPointerHTMLElement} el - The element the directive is bound to
+			 * @param {PointerDirectiveBinding} binding - Vue binding object
+			 * @returns {void}
+			 */
+			bind(el: ChalkyPointerHTMLElement, binding: PointerDirectiveBinding): void {
+				const eventType: string = binding.arg || 'tap';
+				const handler = binding.value;
+				if (typeof handler !== 'function') return;
+
+				if (!el._chalkyPointer) {
+					el._chalkyPointer = new ChalkySticks.Core.Input.Pointer('pointer', true, el);
+					el._chalkyPointer._listenerCount = 0;
+				}
+
+				el._chalkyPointer.on(eventType, handler);
+				el._chalkyPointer._listenerCount = (el._chalkyPointer._listenerCount || 0) + 1;
+			},
+
+			/**
+			 * Unbind ChalkySticks pointer event listeners and destroy pointer if none remain.
+			 *
+			 * @param {ChalkyPointerHTMLElement} el - The element the directive is unbound from
+			 * @param {PointerDirectiveBinding} binding - Vue binding object
+			 * @returns {void}
+			 */
+			unbind(el: ChalkyPointerHTMLElement, binding: PointerDirectiveBinding): void {
+				const eventType: string = binding.arg || 'tap';
+				const handler = binding.value;
+
+				if (el._chalkyPointer && typeof handler === 'function') {
+					el._chalkyPointer.off(eventType, handler);
+					el._chalkyPointer._listenerCount = (el._chalkyPointer._listenerCount || 1) - 1;
+
+					if (el._chalkyPointer._listenerCount <= 0) {
+						if (typeof el._chalkyPointer.destroy === 'function') {
+							el._chalkyPointer.destroy();
+						}
+						delete el._chalkyPointer;
+					}
+				}
+			},
+		});
 
 		Object.keys(components).forEach((name) => {
 			const component = components[name as keyof typeof components];
