@@ -96,7 +96,7 @@
 			}
 
 			// Remove from the backend
-			await avatarMediaModel.useModifiedEndpoint(this.userModel).delete();
+			await avatarMediaModel.delete();
 
 			// Remove from the user model's media collection
 			this.userModel.media.remove(avatarMediaModel);
@@ -121,14 +121,18 @@
 		 * @return Promise<void>
 		 */
 		protected async unsetAvatars(): Promise<void> {
+			const promises: Promise<void>[] = [];
 			for (const mediaModel of this.userModel.media) {
 				// If the media model is an avatar, unset it
 				if (mediaModel.attributes.subgroup === ChalkySticks.Enum.MediaSubgroup.Avatar) {
-					await mediaModel.useModifiedEndpoint(this.userModel).save({
-						subgroup: ChalkySticks.Enum.MediaSubgroup.Person,
-					});
+					promises.push(
+						mediaModel.save({
+							subgroup: ChalkySticks.Enum.MediaSubgroup.Person,
+						}),
+					);
 				}
 			}
+			await Promise.all(promises);
 		}
 
 		/**
@@ -149,7 +153,7 @@
 			});
 
 			// Set new avatar
-			await existingMediaModel.useModifiedEndpoint(this.userModel).save({
+			await existingMediaModel.save({
 				subgroup: ChalkySticks.Enum.MediaSubgroup.Avatar,
 			});
 
@@ -197,7 +201,7 @@
 			}
 
 			// Remove from the backend
-			await mediaModel.useModifiedEndpoint(this.userModel).delete();
+			await mediaModel.delete();
 
 			// Remove from the user model's media collection
 			this.userModel.media.remove(mediaModel);

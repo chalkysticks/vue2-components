@@ -490,6 +490,17 @@
 
 			<section class="level-1">
 				<header>
+					<h3>User Menu</h3>
+				</header>
+				<div>
+					<UserAvatar v-bind:key="store.getters['authentication/user'].uniqueKey" v-bind:userModel="store.getters['authentication/user']" />
+
+					<ChalkyUserMenu v-bind:authModel="authModel" />
+				</div>
+			</section>
+
+			<section class="level-1">
+				<header>
 					<h3>User Card</h3>
 
 					<p>1. No model</p>
@@ -501,14 +512,16 @@
 				</div>
 
 				<div class="push-bottom">
-					<ChalkyUserCard
+					These have rendering issues
+					<!-- <ChalkyUserCard
 						v-bind:key="store.getters['authentication/user'].uniqueKey"
 						v-bind:userModel="store.getters['authentication/user']"
-					/>
+					/> -->
 				</div>
 
 				<div>
-					<ChalkyUserCard v-bind:key="userModel.uniqueKey" v-bind:userModel="userModel" />
+					These have rendering issues
+					<!-- <ChalkyUserCard v-bind:key="userModel.uniqueKey" v-bind:userModel="userModel" /> -->
 				</div>
 			</section>
 
@@ -529,17 +542,6 @@
 
 				<div class="push-bottom">
 					<ChalkyUserList class="horizontal" v-bind:userCollection="userCollection" />
-				</div>
-			</section>
-
-			<section class="level-1">
-				<header>
-					<h3>User Menu</h3>
-				</header>
-				<div>
-					<UserAvatar v-bind:key="store.getters['authentication/user'].uniqueKey" v-bind:userModel="store.getters['authentication/user']" />
-
-					<ChalkyUserMenu v-bind:authModel="authModel" />
 				</div>
 			</section>
 		</section>
@@ -1670,11 +1672,24 @@
 			this.liveScheduleCollection.fetch();
 			this.scheduleCollection.fetch();
 			this.userCollection.fetch();
-			this.userModel.fetch();
+			this.userModel.fetch().then(() => {
+				console.log('User Model', this.userModel);
+
+				// console.log('    ', this.userModel.getEndpoint());
+				// console.log('    ', this.userModel.b.getUrl());
+				// console.log('    Media', this.userModel.media);
+				// console.log('        ', this.userModel.media.getEndpoint());
+				// console.log('        ', this.userModel.media.b.getUrl());
+				// console.log('        Media Model', this.userModel.media.at(0));
+				// console.log('            ', this.userModel.media.at(0).getEndpoint());
+				// console.log('            ', this.userModel.media.at(0).b.getUrl());
+			});
 			this.venueCollection.fetch();
 			this.venueModel.fetch().then(() => {
 				console.log('Venue Model', this.venueModel);
 			});
+
+			console.log('sup');
 
 			// Listeners
 			window.addEventListener('hashchange', this.Handle_OnHashChange);

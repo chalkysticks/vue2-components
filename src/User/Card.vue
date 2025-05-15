@@ -51,7 +51,7 @@
 				</div>
 			</section>
 
-			<section class="favorites-venues" v-if="userModel.id">
+			<section class="favorites-venues" v-if="userModel.id && showFavorites">
 				<header>
 					<h3>Favorite Venues</h3>
 				</header>
@@ -70,7 +70,7 @@
 				</section>
 			</section>
 
-			<section class="recent-checkins" v-if="userModel.id">
+			<section class="recent-checkins" v-if="userModel.id && showCheckins">
 				<header>
 					<h3>Recent Checkins</h3>
 				</header>
@@ -154,6 +154,24 @@
 		public favoriteCollection!: ChalkySticks.Collection.Venue;
 
 		/**
+		 * @type boolean
+		 */
+		@Prop({ default: false })
+		public showCheckins!: boolean;
+
+		/**
+		 * @type boolean
+		 */
+		@Prop({ default: false })
+		public showComments!: boolean;
+
+		/**
+		 * @type boolean
+		 */
+		@Prop({ default: false })
+		public showFavorites!: boolean;
+
+		/**
 		 * @type ChalkySticks/Collection/Venue
 		 */
 		@Prop({
@@ -195,14 +213,20 @@
 			}
 
 			// Get favorites for a user
-			this.favoriteCollection.setQueryParam('reaction_from', this.userModel.id);
-			this.favoriteCollection.setQueryParam('limit', '8');
-			this.favoriteCollection.fetch();
+			// @todo this should be an include=favorites on the user
+			if (this.showFavorites) {
+				this.favoriteCollection.setQueryParam('reaction_from', this.userModel.id);
+				this.favoriteCollection.setQueryParam('limit', '8');
+				this.favoriteCollection.fetch();
+			}
 
 			// Get recent checkins for a user
-			this.venueCheckinCollection.setQueryParam('user_id', this.userModel.id);
-			this.venueCheckinCollection.setQueryParam('limit', '8');
-			this.venueCheckinCollection.fetch();
+			// @todo this should be an include=checkins on the user
+			if (this.showCheckins) {
+				this.venueCheckinCollection.setQueryParam('user_id', this.userModel.id);
+				this.venueCheckinCollection.setQueryParam('limit', '8');
+				this.venueCheckinCollection.fetch();
+			}
 		}
 
 		// region: Event Handlers
