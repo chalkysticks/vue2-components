@@ -1,11 +1,12 @@
 <template>
 	<a
-		class="chalky venue-button-call btn button-tertiary size-small"
+		class="chalky venue-button-call"
 		target="_blank"
+		v-bind:class="[`button-${type}`, `size-${size}`]"
 		v-bind:href="'tel:' + venueModel.getPhone()"
 		v-if="venueModel.getPhone()"
 	>
-		<i class="icon fa fa-phone"></i>
+		<i v-if="useIcon" class="icon fa fa-phone"></i>
 		<span>Call</span>
 	</a>
 </template>
@@ -22,6 +23,24 @@
 	 */
 	@Component
 	export default class VenueButtonCall extends ViewBase {
+		/**
+		 * @type string
+		 */
+		@Prop({ default: 'x-small' })
+		public size!: string;
+
+		/**
+		 * @type string
+		 */
+		@Prop({ default: 'secondary' })
+		public type!: string;
+
+		/**
+		 * @type boolean
+		 */
+		@Prop({ default: false })
+		public useIcon!: boolean;
+
 		/**
 		 * @type ChalkySticks/Model/Venue
 		 */

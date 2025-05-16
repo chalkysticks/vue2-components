@@ -1,6 +1,12 @@
 <template>
-	<a class="chalky venue-button-directions btn button-tertiary size-small" target="_blank" v-bind:href="getMapUrl()" v-if="venueModel.getAddress()">
-		<i class="icon fa fa-map-marker"></i>
+	<a
+		class="chalky venue-button-directions"
+		target="_blank"
+		v-bind:class="[`button-${type}`, `size-${size}`]"
+		v-bind:href="getMapUrl()"
+		v-if="venueModel.getAddress()"
+	>
+		<i v-if="useIcon" class="icon fa fa-map-marker"></i>
 		<span>Directions</span>
 	</a>
 </template>
@@ -17,6 +23,24 @@
 	 */
 	@Component
 	export default class VenueButtonDirections extends ViewBase {
+		/**
+		 * @type string
+		 */
+		@Prop({ default: 'x-small' })
+		public size!: string;
+
+		/**
+		 * @type string
+		 */
+		@Prop({ default: 'secondary' })
+		public type!: string;
+
+		/**
+		 * @type boolean
+		 */
+		@Prop({ default: false })
+		public useIcon!: boolean;
+
 		/**
 		 * @type ChalkySticks/Model/Venue
 		 */
