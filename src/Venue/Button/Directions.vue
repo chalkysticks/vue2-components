@@ -3,6 +3,7 @@
 		class="chalky venue-button-directions"
 		target="_blank"
 		v-bind:class="[`button-${type}`, `size-${size}`]"
+		v-bind:disabled="!venueModel.getAddress()"
 		v-bind:href="getMapUrl()"
 		v-if="venueModel.getAddress()"
 	>
@@ -26,7 +27,7 @@
 		/**
 		 * @type string
 		 */
-		@Prop({ default: 'x-small' })
+		@Prop({ default: 'small' })
 		public size!: string;
 
 		/**

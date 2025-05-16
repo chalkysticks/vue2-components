@@ -1449,6 +1449,20 @@
 					<ChalkyCommentList direction="asc" maxHeight="80svh" v-bind:model="venueModel" />
 				</div>
 			</section>
+
+			<section class="level-1">
+				<header>
+					<h3>Action Bar</h3>
+				</header>
+
+				<div>
+					<section class="actions button-group" v-if="venueModel.uniqueKey">
+						<ChalkyVenueButtonCall class="button-secondary" size="medium" v-bind:venueModel="venueModel" />
+						<ChalkyVenueButtonWebsite class="button-secondary" size="medium" v-bind:venueModel="venueModel" />
+						<ChalkyVenueButtonDirections class="button-secondary" size="medium" v-bind:venueModel="venueModel" />
+					</section>
+				</div>
+			</section>
 		</section>
 
 		<section class="level-0" v-if="tab == 'wallet'" v-bind:class="{ 'state-active': tab == 'wallet' }">

@@ -3,6 +3,7 @@
 		class="chalky venue-button-website"
 		target="_blank"
 		v-bind:class="[`button-${type}`, `size-${size}`]"
+		v-bind:disabled="!venueModel.getWebsite()"
 		v-bind:href="venueModel.getWebsite()"
 		v-if="venueModel.getWebsite()"
 	>
@@ -26,7 +27,7 @@
 		/**
 		 * @type string
 		 */
-		@Prop({ default: 'x-small' })
+		@Prop({ default: 'small' })
 		public size!: string;
 
 		/**

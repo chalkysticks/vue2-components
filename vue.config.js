@@ -15,6 +15,12 @@ module.exports = {
 		config.module.rules.delete('eslint');
 	},
 	configureWebpack: {
+		cache: {
+			buildDependencies: {
+				config: [__filename],
+			},
+			type: 'filesystem',
+		},
 		devServer: {
 			client: {
 				overlay: false,
@@ -49,5 +55,8 @@ module.exports = {
 		extract: false,
 	},
 	publicPath: process.env.VUE_APP_PUBLIC_PATH || '/',
-	transpileDependencies: true,
+
+	// transpileDependencies: true,
+	// transpileDependencies: ['@chalkysticks/sdk', '@chalkysticks/sass'],
+	transpileDependencies: [],
 };

@@ -3,6 +3,7 @@
 		class="chalky venue-button-call"
 		target="_blank"
 		v-bind:class="[`button-${type}`, `size-${size}`]"
+		v-bind:disabled="!venueModel.getPhone()"
 		v-bind:href="'tel:' + venueModel.getPhone()"
 		v-if="venueModel.getPhone()"
 	>
@@ -26,7 +27,7 @@
 		/**
 		 * @type string
 		 */
-		@Prop({ default: 'x-small' })
+		@Prop({ default: 'small' })
 		public size!: string;
 
 		/**
