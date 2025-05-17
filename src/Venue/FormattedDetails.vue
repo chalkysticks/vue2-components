@@ -1,5 +1,10 @@
 <template>
-	<section class="chalky venue-formatteddetails">
+	<section
+		class="chalky venue-formatteddetails"
+		v-bind:class="{
+			'has-details': details.length > 0,
+		}"
+	>
 		<div class="detail-list background-chalky-blue">
 			<div
 				class="list-item"
