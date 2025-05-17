@@ -20,7 +20,7 @@
 	import ViewBase from '../Core/Base';
 	import { Component, Prop } from 'vue-property-decorator';
 	import { beforeDestroy, mounted } from '@/Utility/Decorators';
-	import { assetRef } from '@/Manager/Asset';
+	import { assetRef } from '../Manager/Asset';
 
 	/**
 	 * @author ChalkySticks LLC
