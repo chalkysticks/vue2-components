@@ -5,7 +5,7 @@
 				class="list-item"
 				v-bind:class="venueDetailModel.getKey()"
 				v-bind:key="venueDetailModel.getKey()"
-				v-for="venueDetailModel in venueModel.details"
+				v-for="venueDetailModel in details"
 			>
 				<img class="icon" v-bind:src="getIcon(venueDetailModel)" />
 				<h3 class="title" v-html="getTitle(venueDetailModel)"></h3>
@@ -29,6 +29,15 @@
 	 */
 	@Component
 	export default class VenueFormattedDetails extends ViewBase {
+		/**
+		 * @type ChalkySticks.Model.VenueDetail
+		 */
+		protected get details(): ChalkySticks.Model.VenueDetail[] {
+			return this.venueModel.details.filter((venueDetailModel: ChalkySticks.Model.VenueDetail) => {
+				return !!this.getIcon(venueDetailModel);
+			});
+		}
+
 		/**
 		 * @type ChalkySticks.Model.Venue
 		 */
@@ -149,7 +158,7 @@
 		 */
 		protected getIcon(venueDetailModel: ChalkySticks.Model.VenueDetail): string {
 			const language = this.getLanguageItem(venueDetailModel);
-			return this.getLanguageItem(venueDetailModel)?.icon || venueDetailModel.getKey();
+			return this.getLanguageItem(venueDetailModel)?.icon || '';
 		}
 
 		/**
@@ -183,9 +192,14 @@
 	@import '~@chalkysticks/sass/src/app/typography.scss';
 
 	.chalky.venue-formatteddetails {
+		--icon-size: 32px;
+
 		.detail-list {
 			border-radius: var(--border-radius);
-			padding: 1rem 0 0.5rem 0;
+			display: flex;
+			flex-direction: column;
+			gap: 1rem;
+			padding: 1rem 0;
 
 			.list-item {
 				column-gap: 1rem;
@@ -202,6 +216,7 @@
 				@extend .type-paragraph;
 
 				grid-area: title;
+				margin: 0;
 			}
 
 			.description {
@@ -209,12 +224,13 @@
 
 				color: var(--chalky-grey);
 				grid-area: description;
+				margin: 0;
 			}
 
 			.icon {
 				grid-area: icon;
-				height: 32px;
-				width: 32px;
+				height: var(--icon-size);
+				width: var(--icon-size);
 			}
 		}
 	}
