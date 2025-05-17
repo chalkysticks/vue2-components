@@ -1463,6 +1463,16 @@
 					</section>
 				</div>
 			</section>
+
+			<section class="level-1">
+				<header>
+					<h3>Formatted Details</h3>
+				</header>
+
+				<div v-if="venueModel.uniqueKey">
+					<ChalkyVenueFormattedDetails v-bind:venueModel="venueModel" />
+				</div>
+			</section>
 		</section>
 
 		<section class="level-0" v-if="tab == 'wallet'" v-bind:class="{ 'state-active': tab == 'wallet' }">
@@ -1702,8 +1712,6 @@
 			this.venueModel.fetch().then(() => {
 				console.log('Venue Model', this.venueModel);
 			});
-
-			console.log('sup');
 
 			// Listeners
 			window.addEventListener('hashchange', this.Handle_OnHashChange);

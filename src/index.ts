@@ -1,4 +1,5 @@
 import * as VueGoogleMaps from 'vue2-google-maps';
+import Asset from './Manager/Asset';
 import ChalkySticks from '@chalkysticks/sdk';
 import Router from './Core/Router';
 
@@ -73,6 +74,7 @@ import VenueButtonDirections from './Venue/Button/Directions.vue';
 import VenueButtonWebsite from './Venue/Button/Website.vue';
 import VenueCard from './Venue/Card.vue';
 import VenueCheckins from './Venue/Checkins.vue';
+import VenueFormattedDetails from './Venue/FormattedDetails.vue';
 import VenueGallery from './Venue/Gallery.vue';
 import VenueHours from './Venue/Hours.vue';
 import VenueList from './Venue/List.vue';
@@ -143,6 +145,7 @@ const components = {
 	VenueButtonWebsite,
 	VenueCard,
 	VenueCheckins,
+	VenueFormattedDetails,
 	VenueGallery,
 	VenueHours,
 	VenueList,
@@ -160,6 +163,8 @@ const ChalkySticksVue = {
 			log: () => console.log('ChalkySticks v3', options),
 			options: options,
 		};
+
+		Asset.createIndex();
 
 		// Check for a $router was passed in
 		if (options.provide?.router) {
@@ -370,6 +375,7 @@ export {
 	VenueButtonWebsite,
 	VenueCard,
 	VenueCheckins,
+	VenueFormattedDetails,
 	VenueGallery,
 	VenueHours,
 	VenueList,
